@@ -1,11 +1,25 @@
-import React from 'react'
-
+import styled from "styled-components"
+import Layout from "../components/Layout/Layout"
+import PostList from "../components/features/PostList";
+import Search from "../pages/Search";
 const Home = () => {
- 
+
   return (
-    <>작성페이지인데 모듈로 작성할 수 있게</>
+    <HomePage>
+      <Layout>
+        <Search />
+        <PostList />
+      </Layout>
+    </HomePage>
+    
   )
 }
 
 export default Home ;
 
+const HomePage = styled.div`
+  /* width: 90%; */
+  max-width: 1440px;
+  margin: auto;
+  background-color: #b5cefd;
+`;

@@ -5,9 +5,8 @@ import { configureStore } from "@reduxjs/toolkit";
  * import 해온 것은 slice.reducer 입니다.
  */
 
-import mainlist from "../modules/AddPageSlice";
-import comments from "../modules/CommentsSlice";
-import account from "../modules/LoginSlice";
+import conimalList from "../modules/postSlice";
+import search from "../modules/searchSlice";
 
 /**
  * 모듈(Slice)이 여러개인 경우
@@ -17,8 +16,8 @@ import account from "../modules/LoginSlice";
  * 이것을 각각 모듈로 구현한 다음에 아래 코드로 2개의 모듈을 스토어에 연결해준 것 입니다.
  */
 const store = configureStore({
-
-  reducer: { mainlist: mainlist, comments: comments, account : account },
+    
+  reducer: { conimalList: conimalList , search:search},
 
   //dev tool을 개발 환경에서만 설정
   // devTools: process.env.REACT_APP_MOD !== "production",

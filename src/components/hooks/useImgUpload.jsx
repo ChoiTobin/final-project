@@ -16,7 +16,7 @@ const useImgUpload = (limitCount = 0, isComp = false, imgMaxSize = 1, imgMaxWidt
     const handler = (e) => {
         //파일 가져오기
         const files = e.currentTarget.files;
-
+        
         //state 초기화
         setImgFiles([]);
         setImgUrls([]);
