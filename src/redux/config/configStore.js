@@ -6,7 +6,6 @@ import { configureStore } from "@reduxjs/toolkit";
  */
 
 import conimalList from "../modules/postSlice";
-import search from "../modules/searchSlice";
 
 /**
  * 모듈(Slice)이 여러개인 경우
@@ -17,7 +16,7 @@ import search from "../modules/searchSlice";
  */
 const store = configureStore({
     
-  reducer: { conimalList: conimalList , search:search},
+  reducer: { conimalList: conimalList}
 
   //dev tool을 개발 환경에서만 설정
   // devTools: process.env.REACT_APP_MOD !== "production",

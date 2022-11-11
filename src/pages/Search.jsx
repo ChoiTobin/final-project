@@ -1,14 +1,17 @@
-import { useState } from "react";
+// import React, {useEffect} from "recat"
+// import {useDispatch,useSelector} from "react-redux"
+// import {getSeartch} from "../redux/modules/postSlice"
+const Search = () =>{
 
-const Search = () => {
-
-  return (
+  // useEffect(()=>{
+  //   dispatch(getSearch())
+  // },[dispatch])
+  return(
     <>
-      검색바
+    ㅎㅇ
     </>
-    
   )
+  
 }
 
-export default Search ;
-
+export default Search

@@ -1,60 +1,41 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
-import axios from "axios";
-import { getCookie } from "../../shared/Cookie"
-
-// const params = {
-//   key: process.env.REACT_APP_MOVIE,
-// };
-
-// const headers = {
-//   'Content-Type' : 'application/json',
-//   'Access_Token' : getCookie('Access_Token')
-// }
+import Apis from "../../shared/Apis"
 
 const initialState = {
     postList: [],
     isLoading: false,
     error: null,
   } 
-
-  // 추가
+  
   export const __postConimal = createAsyncThunk(
   "conimal/postConimal",
   async (payload, thunkAPI) => {
-  // console.log("데이터",payload);
-  // const Authorization =  (getCookie('Access_Token'))
-  // const RefreshToken= (getCookie('refreshToken'))
+    console.log("페이로드",payload)
   try {
-  const data = await axios.post(`http://localhost:3001/posts`,payload,{
-    // headers:{
-    //   enctype:"multipart/form-data",
-    //   Authorization:`Bearer ${Authorization}`,
-    //   RefreshToken:RefreshToken,
-    //   "cache-control":"no-cache",
-    // }
-  })
-  // console.log("데이터2",data);
+  const data = await Apis.postFileAX(payload)
+  // window.location.replace("/")
+  console.log("데이터",data)
   return thunkAPI.fulfillWithValue(data.data);
   }catch (error) {
+  // window.location.replace("/")
   return thunkAPI.rejectWithValue(error);
   }});
   
-  // 생성
   export const __getConimal = createAsyncThunk(
   "conimal/getConimal",
   async (payload, thunkAPI) => {
   try {
-  // const Authorization =  (getCookie('Access_Token'))
-  // const RefreshToken= (getCookie('refreshToken'))
-  const data = await axios.get("http://localhost:3001/posts",{
-    // headers:{
-    //   enctype:"multipart/form-data",
-    //   Authorization:`Bearer ${Authorization}`,
-    //   RefreshToken:RefreshToken,
-    //   "cache-control":"no-cache",
-    // }
-  })
-  // console.log("데이타",data.data)
+  const data = await Apis.getPostTimeAX()
+  return thunkAPI.fulfillWithValue(data.data)
+  } catch (error) {
+  return thunkAPI.rejectWithValue(error)
+  }})
+  
+  export const __getSearch = createAsyncThunk(
+  "search/getSearch",
+  async (payload, thunkAPI) => {
+  try {
+  const data = await Apis.getKeywordAX()
   return thunkAPI.fulfillWithValue(data.data)
   } catch (error) {
   return thunkAPI.rejectWithValue(error)
@@ -64,21 +45,17 @@ const initialState = {
     name: "conimalList",
     initialState,
     extraReducers: {
-      // 생성
       [__postConimal.pending]: (state) => {
         state.isLoading = true;
       },
       [__postConimal.fulfilled]: (state, action) => {
         state.isLoading = false;
         state.postList = action.payload
-        // console.log("들어와줘",action.payload)
       },
       [__postConimal.rejected]: (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       },
-
-      //추가
       [__getConimal.pending]: (state) => {
         state.isLoading = true;
       },
@@ -88,6 +65,19 @@ const initialState = {
         state.postList = action.payload;
       },
       [__getConimal.rejected]: (state, action) => {
+        state.isLoading = false;
+        // state.isSuccess = false;
+        state.error = action.payload;
+      },
+      [__getSearch.pending]: (state) => {
+        state.isLoading = true;
+      },
+      [__getSearch.fulfilled]: (state, action) => {
+        state.isLoading = false;
+        // state.isSuccess = false;
+        state.postList = action.payload;
+      },
+      [__getSearch.rejected]: (state, action) => {
         state.isLoading = false;
         // state.isSuccess = false;
         state.error = action.payload;

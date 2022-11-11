@@ -1,13 +1,11 @@
 import styled from "styled-components"
 import Layout from "../components/Layout/Layout"
 import PostList from "../components/features/PostList";
-import Search from "../pages/Search";
 const Home = () => {
 
   return (
     <HomePage>
       <Layout>
-        <Search />
         <PostList />
       </Layout>
     </HomePage>
