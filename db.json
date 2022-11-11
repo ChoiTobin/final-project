@@ -13,7 +13,23 @@
       "postId": 1
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "profile": [
+    {
+      "userId": 1,
+      "nickname": "푸딩이언니",
+      "rank": 5,
+      "petId": 1,
+      "name": "푸딩",
+      "age": 3,
+      "category": "소형견"
+    }
+  ],
+  "petInfo": [
+    {
+      "petId": 1,
+      "name": "푸딩",
+      "age": 3,
+      "category": "소형견"
+    }
+  ]
 }

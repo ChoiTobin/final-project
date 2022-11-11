@@ -18,7 +18,7 @@ const Router = () => {
         <Route path="/posts" element={<Post />} />
         <Route path="/chat" element={<Chatroom />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/profileedit" element={<ProfileEdit/>}/>
+        <Route path="/mypage/image" element={<ProfileEdit/>}/>
       </Routes>
     </BrowserRouter>
   );
