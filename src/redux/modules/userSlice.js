@@ -1,0 +1,203 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import Apis from "../../shared/Apis";
+ import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";
+
+
+const initialState = {
+  account : [],
+  detail : {},
+  feeds : [],
+  isLoading : false,
+  error : null
+};
+
+
+
+// const params = {
+//   key: process.env.REACT_APP_ACCOUNT,
+// };
+// const SERVICE_URL = params.key
+
+// const headers = {
+//   'Content-Type' : 'application/json',
+//   'Access_Token' : getCookie('Access_Token')
+// }
+// 게시글 좋아요 수 Sort
+
+
+
+export const __userLogout = createAsyncThunk(
+  "account/userLogout",
+  async(payload, thunkAPI) => {
+    try {
+      await axios.delete(`http://localhost:3000`,)
+      delCookie("Access_Token")
+      delCookie("refreshToken")
+      delCookie("nickname")
+      return thunkAPI.fulfillWithValue(payload)
+    }catch(error){
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
+
+//로그아웃 만드는 중 이였다.
+//싹다훑고 네이버는 글쌔 ? 일단 소켓io로 바로가기
+
+
+//tobin전체 로그아웃-----------------------------------------------------------------------
+
+export const __kakaoLogin = (code) => {
+  return function (dispatch, getState) {
+      console.log( "카카오 코드")
+      // membersApis.loginAX(code)
+      //axios.get(`http://localhost:3000?code=${code}`)
+      //post가 아닌 get으로 보낸다.
+      // `http://{서버주소}?code=${code}`
+          .then((res) => {
+              console.log("넘어온 토큰값", res); // 토큰이 넘어올 것임
+              const Access_Token = res.headers.access_token;
+              const refreshToken = res.headers.refreshToken;
+              setCookie("Access_Token", Access_Token);
+              setCookie("refreshToken", refreshToken);
+              setCookie("nickname", res.data.accountName);
+              setCookie("profileImage", res.profileImage);
+              setCookie("ageRange", res.ageRange);
+              setCookie("email", res.email);
+              // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
+              window.location.replace("/home")
+          })
+          .catch((error) => {
+              console.log("소셜로그인 에러", error);
+              window.alert("로그인에 실패하였습니다.");
+              // 로그인 실패하면 로그인 화면으로 돌려보냄
+              window.location.replace("/login");
+          })
+  }
+};
+
+//tobin카카오톡 로그인-----------------------------------------------------------------------
+export const  __userSignUp = createAsyncThunk(
+  "account/userSignUp",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await Apis.signupAX(payload)
+      .then ((response)=>{
+        console.log(response)
+      })
+      
+      return thunkAPI.fulfillWithValue(res.data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+//tobin회원가입------------------------------------------------------------------------
+export const __userCheck = createAsyncThunk(
+  "account/userCheck",
+  // login : reducer name, 경로 정해줘야
+  async (payload, thunkAPI) => {
+    try {
+      const res = await Apis.usernameAX(payload)
+      return thunkAPI.fulfillWithValue(res.data)
+    } catch (error) {
+
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+//tobin아이디 중복검사------------------------------------------------------------------------
+export const __userLogin = createAsyncThunk(
+  "account/userLogin",
+  // login : reducer name, 경로 정해줘야
+  async (payload, thunkAPI) => {
+    try {
+      await Apis.loginAX(payload)
+      
+      .then((response)=>{
+        if (response.status === 200) {
+          console.log(response)
+          console.log(response.headers)
+          setCookie("Access_Token", response.headers.access_token)
+          alert(response.data.msg)
+          // window.location.replace("/edit")
+        }
+        return thunkAPI.fulfillWithValue(payload)
+      })
+    } catch (error) {
+      if (error.response.data.status === 500) {
+        window.location.reload();
+        alert("로그인 정보를 다시 확인해주세요")
+      }
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+//tobin로그인------------------------------------------------------------------------
+
+
+export const LoginSlice = createSlice({
+  name: "account",
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [__userSignUp.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__userSignUp.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.account=action.payload; //
+    },
+    [__userSignUp.rejected]: (state, action) => {
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
+
+    [__userCheck.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__userCheck.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.account=action.payload; // 
+    },
+    [__userCheck.rejected]: (state, action) => {
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
+
+    [__userLogin.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__userLogin.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.account=action.payload; // 
+    },
+    [__userLogin.rejected]: (state, action) => {
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+    },
+    [__userLogout.pending]: (state) => {
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+    },
+    [__userLogout.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isSuccess = false;
+      state.account = action.payload; // 
+    },
+    
+  }
+})
+
+// 액션크리에이터는 컴포넌트에서 사용하기 위해 export 하고
+export const { userLogin, userSignUp, userSignUpGet} = LoginSlice.actions;
+// reducer 는 configStore에 등록하기 위해 export default 합니다.
+export default LoginSlice.reducer;
