@@ -5,7 +5,6 @@ import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import Layout from '../components/Layout/Layout';
 import MyPage from "./MyPage";
-import SignIn from './SignIn';
 
 const Home = () => {
 
