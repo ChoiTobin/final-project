@@ -20,9 +20,6 @@ const token = axios.create({
   withCredentials: true,
 })
 
-
-
-
 const file = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
@@ -37,14 +34,16 @@ const file = axios.create({
 export const Apis = {  
   loginAX: (loginInfo) => noToken.post(`http://localhost:3001/posts`, loginInfo),
   //로그인
+
   signupAX: (signupInfo) => noToken.post(`http://localhost:3001/posts`, signupInfo),
   //회원가입
   usernameAX: (userid) => noToken.post(`http://localhost:3001/posts`, userid),
   //이메일중복확인
+  nicknameAX: (payload) => noToken.post(`http://localhost:3001/posts`, payload),
 
 
 
-  //현재 사용하는곳 ------------------------------------------------------------------------------------------------------------
+  //토빈 현재 사용하는곳 ------------------------------------------------------------------------------------------------------------
 
   //게시글 작성
   postFileAX: (payload) => file.post(`/team01/post`, payload),

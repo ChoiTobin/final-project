@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { __userSignUp,__userCheck } from '../../src/redux/modules/userSlice'
+import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -23,11 +23,16 @@ const SignUp = () => {
   const [PwValid, setPwValid] = useState(false);
   const [PwCValid, setPwCValid] = useState(false);
 
+ 
+
+
   const onChangeHandler = (event) => {
     const {name, value} = event.target
     setJoin({...join, [name] : value})
     //red 시작
-    const regexId = /^[A-za-z0-9]{3,11}$/g;
+    const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+    //이메일 체크
+  //https://velog.io/@gym/React-721
     if(regexId.test(join.userId)){
       setIdValid(true);
     }else{
@@ -63,9 +68,10 @@ const SignUp = () => {
     passwordConfirm: join.passwordConfirm,
   }
 
-  const userIdCheck =  /^[A-za-z0-9]{4,12}$/g;
-  //아이디:대/소문자,숫자 모두 사용 가능 4-12자. 아이디중복확인
-  const usernicknameCheck = /^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{1,19}$/;
+  const userIdCheck =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+  //이메일 체크
+  //https://velog.io/@gym/React-721
+  const usernicknameCheck = /^[가-힣ㄱ-ㅎa-zA-Z0-9._]{1,19}$/;
   //글자수만제한 2~20
   const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
   //if (!regPass.test(password)) alert("영문, 숫자, 특수기호 조합으로 8-20자리 이상 입력해주세요.")
@@ -133,15 +139,19 @@ const SignUp = () => {
           <FlexInput>
               <Input
                 name='userId'
-                placeholder='아이디 영문 또는 숫자 4자~12자 '
+                placeholder='이메일 형식을 입력해주세요 '
                 onChange={onChangeHandler}
               /> 
-              <button onClick={() => dispatch(__userCheck({userId:join.userId}))}
+              <button onClick={() => {dispatch(__userCheck({userId:join.userId}))}}
                 >중복확인</button>
               <ErrorMessageWrap>
-              {
+              { !IdValid ?
                   !IdValid && join.userId.length > 0 && (
-                    <div>아이디 영문 또는 숫자 4자~12자.</div>
+                    <div>이메일 형식을 입력해주세요</div>
+                  )
+                  :
+                  IdValid && join.userId.length > 0 && (
+                    <Green>올바른 이메일 형식 입니다.</Green>
                   )
               }  
               </ErrorMessageWrap>
@@ -149,46 +159,68 @@ const SignUp = () => {
           <FlexInput>
               <Input
                 name='nickname'
-                placeholder='닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자 '
+                placeholder='닉네임 영문 또는 숫자 _기호 2자~20자 이하'
                 onChange={onChangeHandler}
               />
+              <button onClick={() =>{ dispatch(__NickCheck({nickname:join.nickname}))}}
+                >중복확인</button>
               <ErrorMessageWrap>
                 {
+                  !nickValid ?
                   !nickValid && join.nickname.length > 0 && (
                   <div>닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</div>
                   )
+                  :
+                  nickValid && join.nickname.length > 0 && (
+                    <Green>올바른 닉네임 형식 입니다.</Green>
+                    )
+                  
                 }  
                 </ErrorMessageWrap>
             </FlexInput>
 
             <FlexInput>
                 <Input
-                  placeholder='비밀번호 영문 숫자 특수기호 포함 8자~20자 '
+                  placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하 '
                   type='password'
                   name='password'
                   onChange={onChangeHandler}
                 />
                   <ErrorMessageWrap>
                 {
+                  !PwValid ?
+
                   !PwValid && join.password.length > 0 && (
                   <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
                   )
+                  :
+                  PwValid && join.password.length > 0 && (
+                    <Green>사용 가능한 비밀번호 입니다.</Green>
+                    )
+
                 }  
                 </ErrorMessageWrap>
             </FlexInput>
             
             <FlexInput>
+              
               <Input
-                placeholder='비밀번호 영문 숫자 특수기호 포함 8자~20자 '
+                placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하'
                 type='password'
                 name='passwordConfirm'
                 onChange={onChangeHandler}
               />
               <ErrorMessageWrap>
                   {
+                    !PwCValid ? 
                     !PwCValid && join.passwordConfirm.length > 0 && (
                     <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
                     )
+                    :
+                    PwCValid && join.passwordConfirm.length > 0 && (
+                      <Green>사용 가능한 비밀번호 입니다.</Green>
+                    )
+
                   }  
               </ErrorMessageWrap>
 
@@ -204,6 +236,10 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+const Green = styled.div`
+color:green;
+`
 
 const ErrorMessageWrap =styled.div`
 margin:4px;

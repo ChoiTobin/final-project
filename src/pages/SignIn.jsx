@@ -21,13 +21,15 @@ const SignIn = () => {
   const onChangeHandler = (event) => {
     const {name, value} = event.target
     setLogin({...login, [name] : value})
-    const regexId = /^[A-za-z0-9]{4,12}$/g;
+    
+    const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+    
     if(regexId.test(login.userId)){
       setIdValid(true);
     }else{
       setIdValid(false);
     }
-    const regexPw =/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    const regexPw =/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
     if(regexPw.test(login.password)){
       setPwValid(true)
     }else{
@@ -52,7 +54,7 @@ const SignIn = () => {
           <div>
             <LoginBox>
               <Input
-                placeholder='사용자 아이디'
+                placeholder='사용자 이메일'
                 type='text'
                 name='userId'
                 value={login.userId}
@@ -60,9 +62,16 @@ const SignIn = () => {
               />
               <ErrorMessageWrap>
               {
+                !IdValid ?
+
               !IdValid && login.userId.length > 0 && 
               (
               <div>올바른 아이디를 입력해주세요.</div>
+              )
+              :
+              IdValid && login.userId.length > 0 && 
+              (
+              <Green>올바른 아이디 형식입니다.</Green>
               )
               }  
               </ErrorMessageWrap>
@@ -75,9 +84,15 @@ const SignIn = () => {
               />
               <ErrorMessageWrap>
               {
+                !PwValid ?
               !PwValid && login.password.length > 0 && 
               (
               <div>영문,숫자,특수문자 포함 8자 이상 입력해주세요</div>
+              )
+              :
+              PwValid && login.password.length > 0 && 
+              (
+              <Green>올바른 비밀번호 형식입니다.</Green>
               )
               }  
               </ErrorMessageWrap>
@@ -102,6 +117,12 @@ const SignIn = () => {
 }
 
 export default SignIn
+
+
+const Green = styled.div`
+color:green;
+`
+
 
 const ErrorMessageWrap =styled.div`
 margin:4px;

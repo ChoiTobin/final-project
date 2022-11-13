@@ -11,7 +11,7 @@ const Home = () => {
     <HomePage>
       <Layout>
         <Header />
-        <MyPage />
+        <MyPage />   
         <Footer />
       </Layout>
     </HomePage>

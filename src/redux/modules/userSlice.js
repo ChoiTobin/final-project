@@ -14,20 +14,6 @@ const initialState = {
 };
 
 
-
-// const params = {
-//   key: process.env.REACT_APP_ACCOUNT,
-// };
-// const SERVICE_URL = params.key
-
-// const headers = {
-//   'Content-Type' : 'application/json',
-//   'Access_Token' : getCookie('Access_Token')
-// }
-// 게시글 좋아요 수 Sort
-
-
-
 export const __userLogout = createAsyncThunk(
   "account/userLogout",
   async(payload, thunkAPI) => {
@@ -43,17 +29,28 @@ export const __userLogout = createAsyncThunk(
   }
 )
 
-//로그아웃 만드는 중 이였다.
-//싹다훑고 네이버는 글쌔 ? 일단 소켓io로 바로가기
-
-
 //tobin전체 로그아웃-----------------------------------------------------------------------
+// export const __kakaoLogout = createAsyncThunk(
+//   "account/kakaoLogout",
+//   async(payload, thunkAPI) => {
+//     try {
+//       await axios.get(`https://kauth.kakao.com/oauth/logout?client_$id=${process.env.REACT_APP_API_KAKAO_ID}&logout_redirect_uri=${process.env.REACT_APP_API_KAKAO_LOGOUT}`)
+//       return thunkAPI.fulfillWithValue(payload)
+//     }catch(error){
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// )
+
+
+//tobin카카오톡 로그아웃-----------------------------------------------------------------------
+
 
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
-      console.log( "카카오 코드")
+      console.log( "카카오 코드",code)
       // membersApis.loginAX(code)
-      //axios.get(`http://localhost:3000?code=${code}`)
+      axios.get(`http://localhost:3000?code=${code}`)
       //post가 아닌 get으로 보낸다.
       // `http://{서버주소}?code=${code}`
           .then((res) => {
@@ -67,13 +64,13 @@ export const __kakaoLogin = (code) => {
               setCookie("ageRange", res.ageRange);
               setCookie("email", res.email);
               // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
-              window.location.replace("/home")
+              window.location.replace("/")
           })
           .catch((error) => {
               console.log("소셜로그인 에러", error);
               window.alert("로그인에 실패하였습니다.");
               // 로그인 실패하면 로그인 화면으로 돌려보냄
-              window.location.replace("/login");
+              window.location.replace('/SignIn');
           })
   }
 };
@@ -82,6 +79,7 @@ export const __kakaoLogin = (code) => {
 export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
+    
     try {
       const res = await Apis.signupAX(payload)
       .then ((response)=>{
@@ -95,6 +93,10 @@ export const  __userSignUp = createAsyncThunk(
   }
 )
 //tobin회원가입------------------------------------------------------------------------
+
+
+
+
 export const __userCheck = createAsyncThunk(
   "account/userCheck",
   // login : reducer name, 경로 정해줘야
@@ -109,6 +111,23 @@ export const __userCheck = createAsyncThunk(
   }
 );
 //tobin아이디 중복검사------------------------------------------------------------------------
+export const __NickCheck = createAsyncThunk(
+  "account/NickCheck",
+  // login : reducer name, 경로 정해줘야
+  async (payload, thunkAPI) => {
+    try {
+      const res = await Apis.nicknameAX(payload)
+      return thunkAPI.fulfillWithValue(res.data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+//tobin닉네임 중복검사------------------------------------------------------------------------
+
+
+
+
 export const __userLogin = createAsyncThunk(
   "account/userLogin",
   // login : reducer name, 경로 정해줘야
@@ -137,6 +156,9 @@ export const __userLogin = createAsyncThunk(
 );
 
 //tobin로그인------------------------------------------------------------------------
+
+
+
 
 
 export const LoginSlice = createSlice({
