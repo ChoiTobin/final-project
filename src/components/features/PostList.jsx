@@ -27,7 +27,7 @@ const PostList = () => {
 
   return (
       <>
-      리스트뽑
+      리스트
         {
           mainList.length > 0 &&
           mainList.map((post) =>  {
