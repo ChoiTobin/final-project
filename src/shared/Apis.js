@@ -9,12 +9,6 @@ const noToken = axios.create({
   withCredentials: true,
 })
 
-const noToken = axios.create({
-  // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: process.env.REACT_APP_URL,
-  withCredentials: true,
-})
-
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,

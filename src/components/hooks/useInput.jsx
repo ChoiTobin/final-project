@@ -10,7 +10,7 @@ const useInput = (init = {}) => {
     const valueSetValue = (e) => {
         setValue({ ...e });
     }
-
+    
     //onChange에서 사용할 함수
     const handler = (e) => {
         setValue({
