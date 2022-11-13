@@ -12,6 +12,9 @@ const Layouts = styled.div`
   max-width: 414px;
   height: 785px;
   margin: auto;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 746fcc812859ad71aafeea7cb190e86b704d0dcb
   background-color: lightpink;
 `;

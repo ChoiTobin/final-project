@@ -1,82 +1,345 @@
-import React, { useState } from 'react'
-import styled from 'styled-components';
-import ValidBtnInput from '../components/element/ValidBtnInput';
-import ValidInput from '../components/element/ValidInput';
-import regex from '../shared/regex';
+import React from 'react'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const SignUp = () => {
-  const [value, setValue] = useState("")
-  const [isCheck, setIsCheck] = useState(false)
-  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {account} = useSelector((state) => state.account)
+  const initialState = {
+    userId: "",
+    nickname: "",
+    password: "",
+    passwordConfirm:"",    
+  };
+
+  const [join, setJoin] = useState(initialState);
+  const [IdValid, setIdValid] = useState(false);
+  const [nickValid, setNickValid] = useState(false);
+  const [PwValid, setPwValid] = useState(false);
+  const [PwCValid, setPwCValid] = useState(false);
+
+ 
+
+
+  const onChangeHandler = (event) => {
+    const {name, value} = event.target
+    setJoin({...join, [name] : value})
+    //red 시작
+    const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+    //이메일 체크
+  //https://velog.io/@gym/React-721
+    if(regexId.test(join.userId)){
+      setIdValid(true);
+    }else{
+      setIdValid(false);
+    }
+
+    const regexNick = /^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{1,19}$/;
+    if(regexNick.test(join.nickname)){
+      setNickValid(true);
+    }else{
+      setNickValid(false);
+    }
+
+    const regexPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
+    if(regexPw.test(join.password)){
+      setPwValid(true);
+    }else{
+      setPwValid(false);
+    }
+
+    const regexPwC = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
+    if(regexPwC.test(join.passwordConfirm)){
+      setPwCValid(true);
+    }else{
+      setPwCValid(false);
+    }
+  }
+
+  const obj = {
+    userId: join.userId,
+    nickname: join.nickname,
+    password: join.password,
+    passwordConfirm: join.passwordConfirm,
+  }
+
+  const userIdCheck =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+  //이메일 체크
+  //https://velog.io/@gym/React-721
+  const usernicknameCheck = /^[가-힣ㄱ-ㅎa-zA-Z0-9._]{1,19}$/;
+  //글자수만제한 2~20
+  const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
+  //if (!regPass.test(password)) alert("영문, 숫자, 특수기호 조합으로 8-20자리 이상 입력해주세요.")
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+    if(!userIdCheck.test(obj.userId)){
+      return alert("아이디 양식에 맞춰주세요")
+    }
+    //중복아이디체크들어가야함 true이면 넘어가게 
+
+
+    if(!usernicknameCheck.test(obj.nickname)){
+      return alert("닉네임 양식에 맞춰주세요")
+    }
+    if(!passwordCheck.test(obj.password)){
+      return alert("비밀번호 양식에 맞춰주세요")
+    }
+    if(!passwordCheck.test(obj.passwordConfirm)){
+      return alert("비밀번호 양식에 맞춰주세요")
+    }
+    if(obj.userId === "" || obj.userId === undefined) {
+      return alert("빈칸을 입력해주세요.")
+    }
+
+    if(obj.nickname === "" || obj.nickname === undefined) {
+      return alert("빈칸을 입력해주세요.")
+    }
+
+    if(obj.password === "" || obj.password === undefined) {
+      return alert("빈칸을 입력해주세요.")
+    }
+
+    if(obj.passwordConfirm === "" || obj.passwordConfirm === undefined) {
+      return alert("빈칸을 입력해주세요.")
+    }
+
+    //일단 여기 이렇게 두고 나중에 받았을때 useEffect부분사용하기
+    dispatch(__userSignUp(obj))
+    alert("회원가입이 완료되었습니다.")
+    window.location.replace("/SignIn")
+  }
+  
+    useEffect(() => {
+      
+      if(account.statusCode === 200){
+        alert("회원가입이 완료되었습니다.")
+        setJoin({
+          userId : "",
+          nickname: "",
+          password: "",
+          passwordConfirm: "",
+        })
+          window.location.replace("/SignIn")
+      }
+    },[account])
 
   return (
-    <div>
-      <h2>크멍 회원가입하기</h2>
-      <div>
-        <label>닉네임</label>
-        <ValidBtnInput
-          label="닉네임"
-          value={value}
-          setValue={setValue}
-          isCheck={isCheck}
-          setIsCheck={setIsCheck}
-          handleValueCheck={() => {
-            alert("인증완료!");
-            setIsCheck(true);
-          }}
-          regexCheck={regex.email}
-          defaultText="닉네임을 입력해주세요"
-          successText="사용할 수 있는 닉네임입니다"
-          errorText="닉네임 형식을 다시 확인해주세요"
-        />
-        <label>아이디</label>
-        <ValidBtnInput
-          label="아이디"
-          value={value}
-          setValue={setValue}
-          isCheck={isCheck}
-          setIsCheck={setIsCheck}
-          handleValueCheck={() => {
-            alert("인증완료!");
-            setIsCheck(true);
-          }}
-          regexCheck={regex.email}
-          defaultText="아이디를 입력해주세요"
-          successText="사용할 수 있는 아이디입니다"
-          errorText="아이디 형식을 다시 확인해주세요"
-        />
-        <label>비밀번호</label>
-        <ValidInput
-          label="비밀번호"
-          type="password"
-          value={password}
-          setValue={password}
-          maxValue={30}
-          regexCheck={regex.password}
-          defaultText="비밀번호를 입력해주세요"
-          successText="사용할 수 있는 비밀번호입니다"
-          errorText="비밀번호 형식을 다시 확인해주세요"
-        />
-        <label>비밀번호 확인</label>
-        <ValidInput
-          label="비밀번호 확인"
-          type="password"
-          value={password}
-          setValue={password}
-          maxValue={30}
-          regexCheck={regex.password}
-          defaultText="비밀번호를 입력해주세요"
-          successText="사용할 수 있는 비밀번호입니다"
-          errorText="비밀번호 형식을 다시 확인해주세요"
-        />
-      </div>
-      <div>
-        <button>회원가입 완료</button>
-        <button>로그인하기</button>
-      </div>
-    </div>
+    <SignupContainer>
+      <SignupBox onSubmit={onSubmitHandler}>
+        <LogoBox>
+
+        </LogoBox>
+          <InputBox>
+          <FlexInput>
+              <Input
+                name='userId'
+                placeholder='이메일 형식을 입력해주세요 '
+                onChange={onChangeHandler}
+              /> 
+              <button onClick={() => {dispatch(__userCheck({userId:join.userId}))}}
+                >중복확인</button>
+              <ErrorMessageWrap>
+              { !IdValid ?
+                  !IdValid && join.userId.length > 0 && (
+                    <div>이메일 형식을 입력해주세요</div>
+                  )
+                  :
+                  IdValid && join.userId.length > 0 && (
+                    <Green>올바른 이메일 형식 입니다.</Green>
+                  )
+              }  
+              </ErrorMessageWrap>
+          </FlexInput>
+          <FlexInput>
+              <Input
+                name='nickname'
+                placeholder='닉네임 영문 또는 숫자 _기호 2자~20자 이하'
+                onChange={onChangeHandler}
+              />
+              <button onClick={() =>{ dispatch(__NickCheck({nickname:join.nickname}))}}
+                >중복확인</button>
+              <ErrorMessageWrap>
+                {
+                  !nickValid ?
+                  !nickValid && join.nickname.length > 0 && (
+                  <div>닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</div>
+                  )
+                  :
+                  nickValid && join.nickname.length > 0 && (
+                    <Green>올바른 닉네임 형식 입니다.</Green>
+                    )
+                  
+                }  
+                </ErrorMessageWrap>
+            </FlexInput>
+
+            <FlexInput>
+                <Input
+                  placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하 '
+                  type='password'
+                  name='password'
+                  onChange={onChangeHandler}
+                />
+                  <ErrorMessageWrap>
+                {
+                  !PwValid ?
+
+                  !PwValid && join.password.length > 0 && (
+                  <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
+                  )
+                  :
+                  PwValid && join.password.length > 0 && (
+                    <Green>사용 가능한 비밀번호 입니다.</Green>
+                    )
+
+                }  
+                </ErrorMessageWrap>
+            </FlexInput>
+            
+            <FlexInput>
+              
+              <Input
+                placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하'
+                type='password'
+                name='passwordConfirm'
+                onChange={onChangeHandler}
+              />
+              <ErrorMessageWrap>
+                  {
+                    !PwCValid ? 
+                    !PwCValid && join.passwordConfirm.length > 0 && (
+                    <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
+                    )
+                    :
+                    PwCValid && join.passwordConfirm.length > 0 && (
+                      <Green>사용 가능한 비밀번호 입니다.</Green>
+                    )
+
+                  }  
+              </ErrorMessageWrap>
+
+            </FlexInput>
+            <SignupButton onClick={onSubmitHandler}>회원가입</SignupButton>
+          </InputBox>
+      </SignupBox>
+      <LoginBox> 이미 계정이 있으신가요?{' '}
+        <span onClick={() => navigate('/SignIn')}>로그인</span>
+      </LoginBox>
+    </SignupContainer>
   );
-}
+};
 
-export default SignUp ;
+export default SignUp;
 
+const Green = styled.div`
+color:green;
+`
+
+const ErrorMessageWrap =styled.div`
+margin:4px;
+color:#ef0000;
+font-size:6px;
+`
+
+const FlexInput = styled.span``
+
+const SignupContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const SignupBox = styled.form`
+  background-color: white;
+  width: 350px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 36px;
+`;
+
+const InputBox = styled.div`
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  border: none;
+
+  width: 250px;
+  height: 40px;
+  margin-bottom: 8px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #fafafa;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
+
+const SignupButton = styled.button`
+
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 250px;
+  height: 30px;
+  margin-top: 40px;
+  &:disabled {
+    background-color: #b2dffc;
+  }
+`;
+
+const LogoBox = styled.div`
+  width: 175px;
+  height: 51px;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const SignupText = styled.div`
+  width: 200px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: bold;
+
+`;
+
+
+const LoginBox = styled.div`
+  background-color: white;
+  width: 350px;
+  padding: 20px;
+
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+
+    margin-left: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+`;

@@ -1,24 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import chat from "../modules/chatSlice"
-import list from "../modules/listSlice"
-import mypage from "../modules/mypageSlice"
-import post from "../modules/postSlice"
-import search from "../modules/searchSlice"
-import user from "../modules/userSlice"
+/**
+ * import 해온 것은 slice.reducer 입니다.
+ */
+
+import mainlist from "../modules/AddPageSlice";
+import comments from "../modules/CommentsSlice";
+import account from "../modules/LoginSlice";
 
 const store = configureStore({
 
-  reducer: {
-    chat,
-    list,
-    mypage,
-    post,
-    search,
-    user,
-  },
+  reducer: { mainlist: mainlist, comments: comments, account : account },
 
   //dev tool을 개발 환경에서만 설정
-  devTools: process.env.REACT_APP_MOD !== "production",
+  // devTools: process.env.REACT_APP_MOD !== "production",
 });
 
 export default store;

@@ -4,6 +4,49 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
+    },
+    {
+      "userId": "rorobin",
+      "nickname": "rorobin",
+      "password": "1849712c!!",
+      "passwordConfirm": "1849712c!!",
+      "id": 2
+    },
+    {
+      "rorobin": "",
+      "id": 3
+    },
+    {
+      "rorobin": "",
+      "id": 4
+    },
+    {
+      "userId": "rorobin",
+      "id": 5
+    },
+    {
+      "userId": "rorobin",
+      "id": 6
+    },
+    {
+      "userId": "rorobin",
+      "id": 7
+    },
+    {
+      "userId": "rorobin",
+      "id": 8
+    },
+    {
+      "userId": "rorobin",
+      "id": 9
+    },
+    {
+      "userId": "",
+      "id": 10
+    },
+    {
+      "userId": "rorobin",
+      "id": 11
     }
   ],
   "comments": [
