@@ -14,7 +14,7 @@ const initialState = {
   try {
   const data = await axios.post("http://localhost:3001/posts",payload);
   // window.location.replace("/")
-  console.log("포스트데이터",data)
+  // console.log("포스트데이터",data)
   return thunkAPI.fulfillWithValue(data.data);
   }catch (error) {
   // window.location.replace("/")
@@ -27,12 +27,12 @@ const initialState = {
   console.log("페이로드 들어오니?",payload)
   try {
     const data = await axios.get("http://localhost:3001/posts")
-  console.log("데이터2",data)
+  // console.log("데이터2",data)
   return thunkAPI.fulfillWithValue(data.data)
   } catch (error) {
   return thunkAPI.rejectWithValue(error)
   }})
-  
+
   // export const __postConimal = createAsyncThunk(
   // "conimal/postConimal",
   // async (payload, thunkAPI) => {
@@ -62,14 +62,14 @@ const initialState = {
   async (payload, thunkAPI) => {
   try {
   const data = await Apis.getKeywordAX()
-  console.log("데이터",data)
+  // console.log("데이터",data)
   return thunkAPI.fulfillWithValue(data.data)
   } catch (error) {
   return thunkAPI.rejectWithValue(error)
   }})
   
   const PostSlice = createSlice({
-    name: "conimalList",
+    name: "postList",
     initialState,
     extraReducers: {
       [__postConimal.pending]: (state) => {
@@ -88,7 +88,7 @@ const initialState = {
       },
       [__getConimal.fulfilled]: (state, action) => {
         state.isLoading = false;
-        console.log("풀필드",action.payload)
+        // console.log("풀필드",action.payload)
         // state.isSuccess = false;
         state.postList = action.payload;
         // console.log("페이로드3",state.postList)
@@ -113,5 +113,5 @@ const initialState = {
       }
 }})
 
-export const {postList} = PostSlice.actions;
+export const {postConimal,getConimal} = PostSlice.actions;
 export default PostSlice.reducer;

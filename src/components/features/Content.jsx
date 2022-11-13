@@ -24,7 +24,7 @@ const Content = () => {
   //   dispatch(__getSearch())
   // }
   
-
+  
   return (
       <div>
         <div className="검색">
