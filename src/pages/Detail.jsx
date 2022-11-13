@@ -3,20 +3,20 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-// import { __getConimal } from"../../redux/modules/postSlice"
+import { __getConimal } from"../../redux/modules/postSlice"
 
 const Detail = () => {
   // const navigator = useNavigate();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const {id}  = useParams()
 
   const mainList  = useSelector((state) => state.conimalList.postList)
-
-  // useEffect(() => {
-  //   dispatch(
-  //     __getConimal()
-  //   );
-  // }, []);
+  
+  useEffect(() => {
+    dispatch(
+      __getConimal()
+    );
+  }, []);
   
   return (
       <>

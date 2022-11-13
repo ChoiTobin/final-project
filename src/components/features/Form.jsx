@@ -78,7 +78,7 @@ const Post = () => {
           ref={imgRef} 
           multiple 
         />
-        <input type="text"  maxLength={30} name="title" value={conimal.title || ""} onChange={onChangeHandler} placeholder="제목"/>
+        <input type="text" maxLength={30} name="title" value={conimal.title || ""} onChange={onChangeHandler} placeholder="제목"/> 
         <select name="category" value={conimal.category || ""} onChange={onChangeHandler} >
             <option value="대형">대형</option>
             <option value="중형">중형</option>
