@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
-import Chatroom from "../pages/Chatroom";
-import Home from "../pages/Home";
-import MyPage from "../pages/MyPage"
-import Detail from "../pages/Detail";
-import MainLogin from "../pages/MainLogin";
-import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
+import SignIn from "../SignIn";
+import SignUp from "../SignUp";
+import Home from "../../pages/Home";
+import MainPage from "../pages/MainPage";
+import Edit from "../pages/Edit";
+
+
+
 
 const Router = () => {
   return (

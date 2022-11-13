@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import SignIn from './SignIn';
 
 const Home = () => {
-
+ 
   return (
     <HomePage>
       <Layout>
@@ -21,6 +21,12 @@ const Home = () => {
 
 export default Home ;
 
+const HomePage = styled.div`
+  /* width: 90%; */
+  max-width: 1440px;
+  margin: auto;
+  background-color: #b5cefd;
+`;
 const HomePage = styled.div`
   /* width: 90%; */
   max-width: 1440px;

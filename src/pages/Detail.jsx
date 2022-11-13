@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Detail = () => {
- 
   return (
-    <>Detail</>
+    <div>
+      
+    </div>
   )
-}
+};
 
-export default Detail ;
-
+export default Detail;

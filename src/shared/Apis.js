@@ -9,13 +9,19 @@ const noToken = axios.create({
   withCredentials: true,
 })
 
+const noToken = axios.create({
+  // 추후에 로컬에서 서버 주소로 변경해야 함
+  baseURL: process.env.REACT_APP_URL,
+  withCredentials: true,
+})
+
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
   headers: {
     accept: "application/json",
-    AccessToken: `${cookies.get("Access_Token")}`,
-    RefreshToken: `${cookies.get("refreshToken")}`,
+    Access_Token: `${cookies.get("Access_Token")}`,
+    Refresh_Token: `${cookies.get("Refresh_Token")}`,
   },
   withCredentials: true,
 })
@@ -26,56 +32,63 @@ const file = axios.create({
   headers: {
     enctype: "multipart/form-data",
     Access_Token: `${cookies.get("Access_Token")}`,
-    RefreshToken: `${cookies.get("refreshToken")}`,
+    Refresh_Token: `${cookies.get("Refresh_Token")}`,
   },
   withCredentials: true,
 })
 
-export const Apis = {  
-  loginAX: (loginInfo) => noToken.post(`http://localhost:3001/posts`, loginInfo),
-  //로그인
+export const Apis = {
+  // 회원가입
+  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),
+  // 이메일 중복확인
+  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),
+  // 로그인
+  loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
+  // 소셜 로그인 - 카카오
+  loginKakaoAX: (loginInfo) => noToken.post(`auth/kakaoLogin`, loginInfo),
 
-  signupAX: (signupInfo) => noToken.post(`http://localhost:3001/posts`, signupInfo),
-  //회원가입
-  usernameAX: (userid) => noToken.post(`http://localhost:3001/posts`, userid),
-  //이메일중복확인
-  nicknameAX: (payload) => noToken.post(`http://localhost:3001/posts`, payload),
+  // 게시글 작성
+  postFileAX: (payload) => file.post(`/api/posts`, payload),
+  // 게시글 수정
+  putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload.content),
+  // 게시글 삭제
+  deletePostAX: (id) => token.delete(`/api/posts/${id}`),
+
+  // 게시글 전체 조회
+  getPostTimeAX: () => noToken.get(`/api/posts`),
+  // 게시글 상세 조회
+  getDetailAX: (postId) => noToken.get(`/api/posts/${postId}`),
+  // 게시글 진행 상테 수정
+  getStateAX: (postId) => token.put(`/api/posts/${postId}/state`),
+
+  // 마이페이지 조회
+  getMyPageAX: () => token.get(`/api/mypage`),
+  // 마이페이지 내 게시글 조회
+  getMyPostAX: (pageCount) => token.get(`/api/mypage/posts?page=${pageCount}`),
+  // 마이페이지 프로필 이미지 업로드
+  postMyImgAX: (payload) => token.post(`api/mypage/image`, payload),
 
 
+  // 마이페이지 반려동물 정보 조회
+  getMyPetAX: () => token.get(`api/mypage/pet`),
+  // 마이페이지 반려동물 정보 작성
+  postMyPetAX: () => token.get(`api/mypage/pet`),
+  // 마이페이지 반려동물 정보 수정
+  putMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
+  // 마이페이지 반려동물 정보 삭제
+  deleteMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
 
-  //토빈 현재 사용하는곳 ------------------------------------------------------------------------------------------------------------
+  // 다른회원 마이페이지 정보 조회
+  getUserInfoAX: (userId) => noToken.get(`api/users/${userId}`),
+  // 다른회원 마이페이지 반려동물 정보 조회
+  getPetInfoAX: (userId) => noToken.get(`api/users/${userId}/pet`),
+  // 다른회원 마이페이지 게시글 조회
+  getPostInfoAX: (userId) => token.get(`api/users/${userId}/posts`),
 
-  //게시글 작성
-  postFileAX: (payload) => file.post(`/team01/post`, payload),
-  //게시글 수정
-  putPostAX: (payload) => file.put(`/team01/post/${payload.id}`, payload.content),
-  //게시글 삭제
-  deletePostAX: (id) => token.delete(`/team01/post/${id}`),
-  //게시글 좋아요
-  likePostAX: (postId) => token.get(`/team01/likes/${postId}`),
-
-  //게시글 전체 조회 - 좋아요순
-  getPostLikeAX: () => noToken.get(`/team01/getAllPostByLike`),
-  //게시글 전체 조회 - 시간순
-  getPostTimeAX: () => noToken.get(`/team01/getAllPostByTime`),
-  //게시글 상세 조회
-  getDetailAX: (postId) => token.get(`/team01/getPost/${postId}`),
-
-  //댓글 작성
-  postCmtAX: (payload) => token.post(`/team01/comment/${payload.id}`, payload.comment),
-  //댓글 삭제
-  deleteCmtAX: (id) => token.delete(`/team01/comment/${id}`),
-
-  //마이페이지 조회
-  getMyPageAX: (userId) => noToken.get(`/team01/getMyPage?id=${userId}`),
-  //마이페이지 작성자 소개 수정
-  postMyPageAX: (payload) => token.post(`team01/mypage/intro`, payload),
-  //마이페이지 이미지 수정
-  postMyImgAX: (payload) => token.post(`/team01/mypage/img`, payload),
-
-  //검색
-  getSearchAX: (keyword) => noToken.get(`/team01/search/?content=${keyword}`),
+  // 게시글 검색 - 특정 단어 포함 게시글 조회
+  getKeywordAX: (searchKeyword) => noToken.get(`/api/search/?content=${searchKeyword}`, searchKeyword),
+  // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
+  getFilterAX: (category) => noToken.get(`/api/filter&category=${category}`)
 
 }
-
 export default Apis

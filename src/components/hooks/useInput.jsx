@@ -1,5 +1,3 @@
-// src/hooks/useInput.js
-
 import { useState } from "react";
 
 const useInput = (init = {}) => {
