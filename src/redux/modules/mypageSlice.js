@@ -64,11 +64,11 @@ export const __getMyPost = createAsyncThunk(
 )
 
 // 마이페이지 프로필 이미지 업로드
-export const __postMyPage = createAsyncThunk(
-  "api/mypage/__postMyPage",
+export const __postMyImg = createAsyncThunk(
+  "api/mypage/__postMyImg",
   async (payload, thunkAPI) => {
     try {
-      await Apis.putPostAX(payload)
+      await Apis.postMyImgAX(payload)
         .then((response) => {
           return thunkAPI.fulfillWithValue(payload)
       })
@@ -93,8 +93,8 @@ export const __getMyPet = createAsyncThunk(
 )
 
 // 마이페이지 반려동물 정보 작성
-export const __postMyPet = createAsyncThunk(
-  "api/mypage/postMyPet",
+export const __addMyPet = createAsyncThunk(
+  "api/mypage/addMyPet",
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.postMyPetAX(payload)
@@ -200,15 +200,15 @@ const mypageSlice = createSlice({
       state.error = action.payload;
     },
     // 마이페이지 프로필 이미지 업로드
-    [__getMyPost.pending]: (state) => {
+    [__postMyImg.pending]: (state) => {
       state.isLoading = true;
     },
-    [__getMyPost.fulfilled]: (state, action) => {
+    [__postMyImg.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.mypage.response.push(action.payload.data)
     },
-    [__getMyPost.rejected]: (state, action) => {
+    [__postMyImg.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -216,26 +216,26 @@ const mypageSlice = createSlice({
     [__getMyPet.pending]: (state) => {
       state.isLoading = true;
     },
-    [__getMyPost.fulfilled]: (state, action) => {
+    [__getMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.mypage = action.payload.data;
     },
-    [__getMyPost.rejected]: (state, action) => {
+    [__getMyPet.rejected]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.error = action.payload;
     },
     // 마이페이지 반려동물 정보 작성
-    [__postMyPet.pending]: (state) => {
+    [__addMyPet.pending]: (state) => {
       state.isLoading = true;
     },
-    [__postMyPet.fulfilled]: (state, action) => {
+    [__addMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.mypage.response.push(action.payload.data)
     },
-    [__postMyPet.rejected]: (state, action) => {
+    [__addMyPet.rejected]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.error = action.payload;

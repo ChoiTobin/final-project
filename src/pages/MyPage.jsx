@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom/dist";
 import { ReactComponent as Delete } from "../img/delete.svg";
 import { ReactComponent as Edit } from "../img/edit.svg";
 import { __getMyPost } from "../redux/modules/mypageSlice";
@@ -12,7 +11,6 @@ import Post from "./Post";
 // 전체 마이페이지 뷰
 const MyPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const myInfos = useSelector((state) => state.mypage.profile);
 
   // 작성한 내용 GET으로 가져와서 뿌려주기

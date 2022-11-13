@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __getMyPage } from "../../redux/modules/mypageSlice";
+import { __deleteMyPet, __getMyPage } from "../../redux/modules/mypageSlice";
 import { useNavigate } from "react-router-dom";
 
 // 여기에 있는 마이페이지 프로필에 담기는 정보들을 props로 다른 컴포넌트에 전달한다. (자식이 부모한테)
@@ -9,6 +9,12 @@ import { useNavigate } from "react-router-dom";
 const Profile = ({ myInfo }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
+
+  const onDeletePetInfo = (petId) => {
+    dispatch(__deleteMyPet(petId))
+    window.confirm("반려동물 정보를 삭제하시겠습니까?")
+    navigate("/mypage")
+  }
 
   // GET으로 리스트에 붙일 마이페이지 정보들을 받아와서 브라우저에 뿌려준다.
   useEffect(() => {
@@ -30,9 +36,9 @@ const Profile = ({ myInfo }) => {
 
               {/* 마이페이지에서 반려동물 정보 수정할 수 있는 버튼 */}
               <div className="petinfo-btn">
-                <button onClick={()=> {navigate("")}}>등록</button>
-                <button>수정</button>
-                <button>삭제</button>
+                <button onClick={()=> {navigate("/mypage/image")}}>등록</button>
+                <button onClick={() => {navigate("/mypage/image")}}>수정</button>
+                <button onClick={() => onDeletePetInfo(myInfo.petId)}>삭제</button>
               </div>
             </div>
 
