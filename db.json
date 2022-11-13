@@ -1,49 +1,5 @@
 {
   "posts": [
-    {
-      "id": 1,
-      "title": "타이틀1",
-      "category": "대형",
-      "price": "10000원",
-      "content": "산책"
-    },
-    {
-      "id": 2,
-      "title": "타이틀2",
-      "category": "중형",
-      "price": "5000원",
-      "content": "간식"
-    },
-    {
-      "id": 3,
-      "title": "타이틀1",
-      "category": "소형",
-      "price": "1000원",
-      "content": "간식2"
-    },
-    {
-      "id": 4,
-      "title": "타이틀2",
-      "category": "대형",
-      "price": "10000원",
-      "content": "산책"
-    },
-    {
-      "id": 5,
-      "title": "타이틀3",
-      "category": "중형",
-      "price": "5000원",
-      "content": "간식"
-    },
-    {
-      "id": 6,
-      "title": "타이틀3",
-      "category": "소형",
-      "price": "1000원",
-      "content": "간식2"
-    },
-    {
-      "id": 7
-    }
+    
   ]
 }

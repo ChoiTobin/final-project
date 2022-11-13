@@ -1,4 +1,6 @@
-import styled from "styled-components"
+import React from 'react';
+import styled from "styled-components";
+
 const Layout = (props) => {
   return <Layouts className="layout">{props.children}</Layouts>;
 };
@@ -10,6 +12,5 @@ const Layouts = styled.div`
   max-width: 414px;
   height: 785px;
   margin: auto;
-
   background-color: lightpink;
-`;
+`

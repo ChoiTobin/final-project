@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import { __getConimal } from"../redux/modules/postSlice"
 
 const Detail = () => {
-  
 
   return (
       <>
@@ -16,4 +15,5 @@ const Detail = () => {
 }
 
 export default Detail ;
+
 
