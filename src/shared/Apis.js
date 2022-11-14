@@ -36,8 +36,16 @@ export const Apis = {
   signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),
   // 이메일 중복확인
   usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),
+  //닉네임체크
+  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),
   // 로그인
   loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
+//-------------------------------------------------------------------tobin사용중
+
+
+
+  
+
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => noToken.post(`auth/kakaoLogin`, loginInfo),
   

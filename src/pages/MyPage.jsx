@@ -43,7 +43,7 @@ const MyPage = () => {
                   <button>
                     수정버튼 아이콘
                     <Edit />
-                  </button>
+                  </button> */}
                 </div>
               );
           })}

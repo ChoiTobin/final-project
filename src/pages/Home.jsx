@@ -7,6 +7,7 @@ import Layout from '../components/Layout/Layout';
 import MyPage from "./MyPage";
 import SignIn from './SignIn';
 
+
 const Home = () => {
 
   return (
@@ -14,7 +15,7 @@ const Home = () => {
       <Layout>
         <Header />
         <PostList />
-        {/* <Content /> */}
+        <SignIn/>
         <MyPage />   
         <Footer />
       </Layout>
