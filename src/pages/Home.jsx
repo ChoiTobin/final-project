@@ -3,7 +3,8 @@ import PostList from "../components/features/PostList";
 import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import Layout from '../components/Layout/Layout';
-import SignIn from "./SignIn";
+import MyPage from "./MyPage";
+import SignIn from './SignIn';
 
 const Home = () => {
 
@@ -11,7 +12,9 @@ const Home = () => {
     <HomePage>
       <Layout>
         <Header />
-        <SignIn />  
+        <PostList />
+        {/* <Content /> */}
+        <MyPage />   
         <Footer />
       </Layout>
     </HomePage>

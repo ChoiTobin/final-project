@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyPost } from "../redux/modules/mypageSlice";
 import Profile from "../components/features/Profile";
-import Detail from "./Detail"
+import Detail from "./Detail";
+
 // 전체 마이페이지 뷰
 const MyPage = () => {
   const dispatch = useDispatch();

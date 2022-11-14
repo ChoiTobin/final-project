@@ -9,13 +9,14 @@ import { useEffect } from 'react'
 const SignUp = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {account} = useSelector((state) => state.account)
+  const account = useSelector((state) => state.account)
   const initialState = {
     userId: "",
     nickname: "",
     password: "",
-    passwordConfirm:"",    
+    passwordCheck:"",    
   };
+
 
   const [join, setJoin] = useState(initialState);
   const [IdValid, setIdValid] = useState(false);
@@ -52,18 +53,19 @@ const SignUp = () => {
     }
 
     const regexPwC = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
-    if(regexPwC.test(join.passwordConfirm)){
+    if(regexPwC.test(join.passwordCheck)){
       setPwCValid(true);
     }else{
       setPwCValid(false);
     }
   }
 
+
   const obj = {
     userId: join.userId,
     nickname: join.nickname,
     password: join.password,
-    passwordConfirm: join.passwordConfirm,
+    passwordCheck: join.passwordCheck,
   }
 
   const userIdCheck =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
@@ -74,58 +76,61 @@ const SignUp = () => {
   const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
   //if (!regPass.test(password)) alert("영문, 숫자, 특수기호 조합으로 8-20자리 이상 입력해주세요.")
 
+
+
   const onSubmitHandler = (event) => {
     event.preventDefault()
+    if(account.idCheck.status === 200 && account.nickCheck.status === 200){
     if(!userIdCheck.test(obj.userId)){
       return alert("아이디 양식에 맞춰주세요")
     }
-    //중복아이디체크들어가야함 true이면 넘어가게 
-
 
     if(!usernicknameCheck.test(obj.nickname)){
       return alert("닉네임 양식에 맞춰주세요")
     }
     if(!passwordCheck.test(obj.password)){
       return alert("비밀번호 양식에 맞춰주세요")
-    }
-    if(!passwordCheck.test(obj.passwordConfirm)){
+    }if(!passwordCheck.test(obj.passwordCheck)){
       return alert("비밀번호 양식에 맞춰주세요")
     }
+    
     if(obj.userId === "" || obj.userId === undefined) {
       return alert("빈칸을 입력해주세요.")
     }
-
     if(obj.nickname === "" || obj.nickname === undefined) {
       return alert("빈칸을 입력해주세요.")
     }
-
     if(obj.password === "" || obj.password === undefined) {
       return alert("빈칸을 입력해주세요.")
     }
-
-    if(obj.passwordConfirm === "" || obj.passwordConfirm === undefined) {
+    if(obj.passwordCheck === "" || obj.passwordCheck === undefined) {
       return alert("빈칸을 입력해주세요.")
     }
-
-    //일단 여기 이렇게 두고 나중에 받았을때 useEffect부분사용하기
+    
+  }
+    // 중복확인이 true이고 true일때 그리고 dispatch를 보내서
+    // account statusCode 회원가입이 response로 왔을때 가입됨. 
+    
     dispatch(__userSignUp(obj))
-    alert("회원가입이 완료되었습니다.")
+    if(account.idCheck.status ===200 && account.nickCheck.status === 200 &&obj.password == obj.passwordConfirm){
+      alert("회원가입이 완료되었습니다.")  
     window.location.replace("/SignIn")
+    }
   }
   
-    useEffect(() => {
+    // useEffect(() => {
       
-      if(account.statusCode === 200){
-        alert("회원가입이 완료되었습니다.")
-        setJoin({
-          userId : "",
-          nickname: "",
-          password: "",
-          passwordConfirm: "",
-        })
-          window.location.replace("/SignIn")
-      }
-    },[account])
+    //   if(account.statusCode === 200){
+    //     alert("회원가입이 완료되었습니다.")
+    //     setJoin({
+    //       userId : "",
+    //       nickname: "",
+    //       password: "",
+    //       passwordCheck: "",
+    //     })
+    //       window.location.replace("/SignIn")
+    //   }
+    // },[account])
 
   return (
     <SignupContainer>
@@ -140,8 +145,10 @@ const SignUp = () => {
                 placeholder='이메일 형식을 입력해주세요 '
                 onChange={onChangeHandler}
               /> 
-              <button onClick={() => {dispatch(__userCheck({userId:join.userId}))}}
-                >중복확인</button>
+
+              <button onClick={()=>{dispatch(__userCheck({userId:join.userId}))}}
+                >중복확인
+              </button>
               <ErrorMessageWrap>
               { !IdValid ?
                   !IdValid && join.userId.length > 0 && (
@@ -160,7 +167,9 @@ const SignUp = () => {
                 placeholder='닉네임 영문 또는 숫자 _기호 2자~20자 이하'
                 onChange={onChangeHandler}
               />
-              <button onClick={() =>{ dispatch(__NickCheck({nickname:join.nickname}))}}
+
+
+              <button onClick={()=>{dispatch(__NickCheck({nickname:join.nickname}))}}
                 >중복확인</button>
               <ErrorMessageWrap>
                 {
@@ -186,7 +195,7 @@ const SignUp = () => {
                 />
                   <ErrorMessageWrap>
                 {
-                  !PwValid ?
+                  !PwValid?
 
                   !PwValid && join.password.length > 0 && (
                   <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
@@ -205,18 +214,23 @@ const SignUp = () => {
               <Input
                 placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하'
                 type='password'
-                name='passwordConfirm'
+                name='passwordCheck'
                 onChange={onChangeHandler}
               />
               <ErrorMessageWrap>
                   {
                     !PwCValid ? 
-                    !PwCValid && join.passwordConfirm.length > 0 && (
+                    !PwCValid && join.passwordCheck.length > 0 && (
                     <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
                     )
                     :
-                    PwCValid && join.passwordConfirm.length > 0 && (
+                    PwCValid && join.passwordCheck.length > 0  && (
+                      
+                      join.passwordCheck == join.password? 
                       <Green>사용 가능한 비밀번호 입니다.</Green>
+                      :
+                      <div>비밀번호가 일치하지 않습니다.</div>
+                      //위에 비밀번호와 일치하는지 대조.
                     )
 
                   }  
