@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Apis from "../../shared/Apis";
- import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";
+import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";
 
 
 const initialState = {
@@ -18,7 +18,7 @@ export const __userLogout = createAsyncThunk(
   "account/userLogout",
   async(payload, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3000`,)
+      await axios.delete(`https://wepungsan.kro.kr`,)
       delCookie("Access_Token")
       delCookie("refreshToken")
       delCookie("nickname")
@@ -50,7 +50,7 @@ export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       console.log( "카카오 코드",code)
       // membersApis.loginAX(code)
-      axios.get(`http://localhost:3000?code=${code}`)
+      axios.get(`https://wepungsan.kro.kr?code=${code}`)
       //post가 아닌 get으로 보낸다.
       // `http://{서버주소}?code=${code}`
           .then((res) => {

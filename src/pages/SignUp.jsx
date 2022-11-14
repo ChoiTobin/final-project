@@ -23,8 +23,6 @@ const SignUp = () => {
   const [PwValid, setPwValid] = useState(false);
   const [PwCValid, setPwCValid] = useState(false);
 
- 
-
 
   const onChangeHandler = (event) => {
     const {name, value} = event.target

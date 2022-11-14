@@ -25,7 +25,12 @@ const Profile = ({ myInfo }) => {
     <div>
       <Account className="top-info">
         <div>
-          <UserImg src={myInfo.UserImg} alt="profile" />
+          {/* 등록된 유저이미지가 없으면 기본 이미지를 보여주고, 유저이미지가 있으면 그걸로 보여준다 */}
+          {myInfo.UserImg.length === 0 ? (
+            <img src="../../img/user.png" alt="userImg" />
+          ) : (
+            <UserImg src={myInfo.UserImg} alt="profile" />
+          )}
         </div>
         <div>
           <h2>{myInfo.nickname}</h2>
@@ -36,9 +41,23 @@ const Profile = ({ myInfo }) => {
 
               {/* 마이페이지에서 반려동물 정보 수정할 수 있는 버튼 */}
               <div className="petinfo-btn">
-                <button onClick={()=> {navigate("/mypage/image")}}>등록</button>
-                <button onClick={() => {navigate("/mypage/image")}}>수정</button>
-                <button onClick={() => onDeletePetInfo(myInfo.petId)}>삭제</button>
+                <button
+                  onClick={() => {
+                    navigate("/mypage/pet");
+                  }}
+                >
+                  등록
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/mypage/pet");
+                  }}
+                >
+                  수정
+                </button>
+                <button onClick={() => onDeletePetInfo(myInfo.petId)}>
+                  삭제
+                </button>
               </div>
             </div>
 

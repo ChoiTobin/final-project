@@ -1,10 +1,9 @@
 import styled from "styled-components"
 import PostList from "../components/features/PostList";
-// import Content from "../components/features/Content";
 import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import Layout from '../components/Layout/Layout';
-import MyPage from "./MyPage";
+import SignIn from "./SignIn";
 
 const Home = () => {
 
@@ -12,9 +11,7 @@ const Home = () => {
     <HomePage>
       <Layout>
         <Header />
-        <PostList />
-        {/* <Content /> */}
-        <MyPage />   
+        <SignIn />  
         <Footer />
       </Layout>
     </HomePage>

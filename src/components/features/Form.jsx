@@ -2,7 +2,7 @@ import React, {useState,useRef} from 'react'
 import { useDispatch  } from "react-redux";
 import styled from "styled-components"
 import useImgUpload from '../hooks/useImgUpload'
-import { __postConimal} from "../../redux/modules/postSlice"
+import { __addPost } from "../../redux/modules/postSlice";
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const Post = () => {
     formData.append("content",conimal.content);
     formData.append("category",conimal.category);
     formData.append("price",conimal.price);
-    dispatch(__postConimal(formData));
+    dispatch(__addPost(formData));
   }
   
   return (
