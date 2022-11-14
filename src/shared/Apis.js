@@ -40,14 +40,13 @@ export const Apis = {
   loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => noToken.post(`auth/kakaoLogin`, loginInfo),
-
+  
   // 게시글 작성
   postFileAX: (payload) => file.post(`/api/posts`, payload),
   // 게시글 수정
   putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload.content),
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
-
   // 게시글 전체 조회
   getPostTimeAX: () => noToken.get(`/api/posts`),
   // 게시글 상세 조회

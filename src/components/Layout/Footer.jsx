@@ -21,9 +21,9 @@ const Footer = () => {
   const onClickHome = () => {
     navigate(`/`);
   };
-
+  
   const onClickWrite = () => {
-    navigate(`/post`);
+    navigate(`/form`);
   };
 
   const onClickMy = () => {

@@ -1,13 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-/**
- * import 해온 것은 slice.reducer 입니다.
- */
-
-import postList from "../modules/postSlice";
+import chat from "../modules/chatSlice";
+import list from "../modules/listSlice";
+import mypage from "../modules/mypageSlice";
+import post from "../modules/postSlice";
+import search from "../modules/searchSlice";
+import user from "../modules/userSlice";
 
 const store = configureStore({
     
-  reducer: { postList: postList}
+  reducer: {
+    chat,
+    list,
+    mypage,
+    post,
+    search,
+    user,
+  }
   
   //dev tool을 개발 환경에서만 설정
   // devTools: process.env.REACT_APP_MOD !== "production",

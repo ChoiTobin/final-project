@@ -22,7 +22,7 @@ const SignUp = () => {
   const [nickValid, setNickValid] = useState(false);
   const [PwValid, setPwValid] = useState(false);
   const [PwCValid, setPwCValid] = useState(false);
-
+  
  
 
 
@@ -38,7 +38,7 @@ const SignUp = () => {
     }else{
       setIdValid(false);
     }
-
+    
     const regexNick = /^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{1,19}$/;
     if(regexNick.test(join.nickname)){
       setNickValid(true);
