@@ -4,10 +4,11 @@ import { configureStore } from "@reduxjs/toolkit";
  */
 
 import postList from "../modules/postSlice";
+import account from "../modules/userSlice";
 
 const store = configureStore({
     
-  reducer: { postList: postList}
+  reducer: { postList: postList,account:account}
   
   //dev tool을 개발 환경에서만 설정
   // devTools: process.env.REACT_APP_MOD !== "production",

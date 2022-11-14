@@ -10,6 +10,10 @@ import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
 import PostList from "../components/features/PostList";
 
+// 추가
+import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
+import MainLogin from "../pages/MainLogin";
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -18,11 +22,17 @@ const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/form" element={<Form />} />
-        <Route path="/content" element={<Content />} />
         <Route path="/chat" element={<Chatroom />} />
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
+      
+      
+      {/* 추가 */}
+      <Route path="/oauth/callback/kakao" element={<OAuth2RedirectHandler />} />
+      <Route path='/MainLogin' element={<MainLogin />} />
+
+      
       </Routes>
     </BrowserRouter>
   );

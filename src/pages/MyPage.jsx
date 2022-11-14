@@ -6,7 +6,7 @@ import { ReactComponent as Delete } from "../img/delete.svg";
 import { ReactComponent as Edit } from "../img/edit.svg";
 import { __getMyPost } from "../redux/modules/mypageSlice";
 import Profile from "../components/features/Profile";
-import Post from "./Post";
+import Detail from "./Detail";
 
 // 전체 마이페이지 뷰
 const MyPage = () => {
@@ -35,15 +35,15 @@ const MyPage = () => {
             if (post.length !== 0)
               return (
                 <div>
-                  <Post key={post.postId} post={post} />
+                  {/* <Detail key={post.postId} post={post} />
                   <button>
-                    {/* 삭제버튼 아이콘 */}
+                     삭제버튼 아이콘 
                     <Delete />
                   </button>
                   <button>
-                    {/* 수정버튼 아이콘 */}
+             수정버튼 아이콘
                     <Edit />
-                  </button>
+                  </button> */}
                 </div>
               );
           })}
