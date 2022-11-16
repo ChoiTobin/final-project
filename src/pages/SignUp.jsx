@@ -105,9 +105,12 @@ const SignUp = () => {
     if (obj.passwordCheck === "" || obj.passwordCheck === undefined) {
       return alert("빈칸을 입력해주세요.");
     }
-    if(account.idCheck.status !== 200 || account.nickCheck.status !== 200){
-    alert("중복확인을 해주세요")
+    if( account.nickCheck.status !== 200){
+    alert("닉네임 중복확인을 해주세요")
     }
+    if(account.idCheck.status !== 200 ){
+      alert("아이디 중복확인을 해주세요")
+      }
     // 중복확인이 true이고 true일때 그리고 dispatch를 보내서
     // account statusCode 회원가입이 response로 왔을때 가입됨. 
     
