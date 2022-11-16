@@ -13,9 +13,10 @@ const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
   headers: {
-    accept: "application/json",
-    Access_Token: `${cookies.get("Access_Token")}`,
-    Refresh_Token: `${cookies.get("Refresh_Token")}`,
+    Access_Token:
+      localStorage.getItem("Access_Token") === undefined
+        ? ""
+        : localStorage.getItem("Access_Token"),
   },
   withCredentials: true,
 })
@@ -25,8 +26,10 @@ const file = axios.create({
   baseURL: process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
-    Access_Token: `${cookies.get("Access_Token")}`,
-    // Refresh_Token: `${cookies.get("Refresh_Token")}`,
+    Access_Token:
+      localStorage.getItem("Access_Token") === undefined
+        ? ""
+        : localStorage.getItem("Access_Token"),
   },
   withCredentials: true,
 })
@@ -40,15 +43,10 @@ export const Apis = {
   nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),
   // 로그인
   loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
-//-------------------------------------------------------------------tobin사용중
-
-
-
-  
 
   // 소셜 로그인 - 카카오
-  loginKakaoAX: (loginInfo) => noToken.post(`auth/kakaoLogin`, loginInfo),
-  
+  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
+
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
@@ -59,7 +57,7 @@ export const Apis = {
   // 게시글 전체 조회
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
-  getDetailAX: (postId) => noToken.get(`/api/posts/${postId}`),
+  getDetailAX: (postId) => token.get(`/api/posts/${postId}`),
   // 게시글 진행 상테 수정
   getStateAX: (postId) => token.put(`/api/posts/${postId}/state`),
 
@@ -68,7 +66,7 @@ export const Apis = {
   // 마이페이지 내 게시글 조회
   getMyPostAX: (pageCount) => token.get(`/api/mypage/posts?page=${pageCount}`),
   // 마이페이지 프로필 이미지 업로드
-  postMyImgAX: (payload) => token.post(`api/mypage/image`, payload),
+  postMyImgAX: (payload) => file.post(`api/mypage/image`, payload),
 
   // 마이페이지 반려동물 정보 조회
   getMyPetAX: () => token.get(`api/mypage/pet`),

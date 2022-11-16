@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";	
+import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Apis from "../../shared/Apis"
 import axios from "axios";

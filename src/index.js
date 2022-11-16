@@ -1,4 +1,3 @@
-// 원래부터 있던 코드
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -11,10 +10,10 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>
-      <BrowserRouter />
-      <Provider store={store}>
+    <BrowserRouter />
+    <Provider store={store}>
         <App />
-      </Provider>
+    </Provider>
     </>
 );
 
