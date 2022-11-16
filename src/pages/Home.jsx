@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import Layout from '../components/Layout/Layout';
-import PostList from "../components/features/PostList";
+import Content from "../components/features/Content";
 
 const Home = () => {
 
@@ -10,7 +10,7 @@ const Home = () => {
     <HomePage>
       <Layout>
         <Header />
-        <PostList/> 
+        <Content/> 
         <Footer />
       </Layout>
     </HomePage>

@@ -7,7 +7,6 @@ import Form from "../components/features/Form";
 import Content from "../components/features/Content";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
-import PostList from "../components/features/PostList";
 import ChatRoomPage from "../pages/chatting/ChatRoomPage";
 
 
@@ -25,7 +24,7 @@ const Router = () => {
         <Route path="/form" element={<Form />} />
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
-        <Route path="/postlist" element={<PostList/>}/>
+        <Route path="/content" element={<Content/>}/>
       {/* 추가 */}
       <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
       <Route path='/MainLogin' element={<MainLogin />} />
