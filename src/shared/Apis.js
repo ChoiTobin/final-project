@@ -78,7 +78,7 @@ export const Apis = {
   putMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
   // 마이페이지 반려동물 정보 삭제
   deleteMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
-
+  
   // 다른회원 마이페이지 정보 조회
   getUserInfoAX: (email) => noToken.get(`api/users/${email}`),
   // 다른회원 마이페이지 반려동물 정보 조회
@@ -87,9 +87,17 @@ export const Apis = {
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
   // 게시글 검색 - 특정 단어 포함 게시글 조회
-  getKeywordAX: (searchKeyword) => token.get(`/api/search/?content=${searchKeyword}`),
+  getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
-  getFilterAX: (categoryKeyword) => token.get(`/api/filter&category=${categoryKeyword}`)
-  
+  getFilterAX: (categoryKeyword) => token.get(`/api/filter?category=${categoryKeyword}`),
+  // 무한스크롤
+  // getScrollAX: (page) => token.get(`/api/posts?&size=1&page=1${infinitescroll}`)
+  getScrollAX: (curPage, payload) => token.get(`/api/posts?&size={curPage}&page=${payload}`)
+  // /api/posts?&size=1&page=1
+  // /api/posts?&size=10&page=1
+
+  // const curPage = payload * 10;
+  // const curPage = page * 10;
+  // return thunkAPI.fulfillWithValue(res.data.slice((curPage - 10), curPage));
 }
 export default Apis

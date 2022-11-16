@@ -10,10 +10,22 @@ const initialState = {
 }
 
 // 게시글 전체 조회	
+// export const __getPostTime = createAsyncThunk(	
+//   "api/posts/getPost",	
+//   async (payload, thunkAPI) => {	
+//     try {	
+//       const response = await Apis.getPostTimeAX(payload)	
+//       return thunkAPI.fulfillWithValue(response.data);	
+//     } catch (error) {	
+//       return thunkAPI.rejectWithValue(error);	
+//     }	
+//   }	
+// )	
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {	
     try {	
+      
       const response = await Apis.getPostTimeAX(payload)	
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
@@ -49,7 +61,7 @@ export const __addPost = createAsyncThunk(
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
-)	
+)
 
 // 게시글 진행 상테 수정	
 export const __editState = createAsyncThunk(	
@@ -91,6 +103,7 @@ export const __getCategory = createAsyncThunk(
     }	
   }	
 )	
+
 
 const postSlice = createSlice({	
   name: "post",	
@@ -160,7 +173,7 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
-      console.log("검색",action.payload)
+      // console.log("검색",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
       state.post.response = action.payload.data;	
@@ -183,7 +196,7 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
       state.error = action.payload;	
-    },
+    }
   }	
 })	
 export default postSlice.reducer;

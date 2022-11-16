@@ -1,6 +1,5 @@
 import React, { useEffect , useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
 import postSlice, { __getPostTime , __getKeyword , __getCategory } from "../../redux/modules/postSlice"
 import PostList from "../features/PostList"
 // 검색
@@ -8,13 +7,12 @@ const Content = () => {
   const dispatch = useDispatch()
   // 리스트
   const posts  = useSelector((state) => state.post.post)
-  const params = useParams
   //전체조회
   useEffect(() => {
     dispatch(
       __getPostTime()
     )
-  }, [params]);
+  }, [dispatch]);
   
   //검색
   const [ getSearch , setGetSearch ] = useState({search:""});
@@ -35,19 +33,24 @@ const Content = () => {
     dispatch(__getPostTime());
   }
 
-  const onClickBig = () =>{ //대형검색
-    const data = posts.response.filter((item)=> item.category === "대형" )
-    dispatch(__getCategory(data));
-    console.log("데이터",data)
+  const onClickBig = () =>{ //대형
+    // const data = posts.response.filter((item)=> item.category === "대형" )
+    // 휴먼에러 처음에 "대형"이라고 문자열로 보냈을시 잘 요청했었는데 데이터를 확인하니 글자가 아닌 이상한 영어가나옴
+    // api주소에서 특수문자 오타로인해 딴방향을 잡고있었음
+    dispatch(__getCategory("대형"));
   } 
-    
-  console.log("페이",posts)
-  // console.log("d",solt[0]) //전체조회가 딱 한번밖에 안된다. //대형을누르면 한번더 랜더링 해야한다.
-  // https://wepungsan.kro.kr/api/filter?category=대형
+  const onClickMiddle = () =>{ //중형
+    dispatch(__getCategory("중형"));
+  } 
+  const onClickSmall = () =>{ //소형
+    dispatch(__getCategory("소형"));
+  } 
   return (
       <div>
         <button type='button' onClick={onClickAll}>전체</button>
         <button type='button' name="대형" onClick={onClickBig}>대형</button>
+        <button type='button' name="중형" onClick={onClickMiddle}>중형</button>
+        <button type='button' name="소형" onClick={onClickSmall}>소형</button>
         <div className="검색">
           <input type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler} />
           <button onClick={onClickSearch}>검색</button>
