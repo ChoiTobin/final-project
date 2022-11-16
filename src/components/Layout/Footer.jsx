@@ -19,11 +19,11 @@ const Footer = () => {
   };
 
   const onClickHome = () => {
-    navigate(`/`);
+    navigate(`/home`);
   };
 
   const onClickWrite = () => {
-    navigate(`/post`);
+    navigate(`/form`);
   };
 
   const onClickMy = () => {
@@ -50,4 +50,5 @@ const Layout = styled.div`
   justify-content: center;
   margin: auto;
   gap: 30px;
+  cursor: pointer;
 `;

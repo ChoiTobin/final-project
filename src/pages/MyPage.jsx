@@ -1,65 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __getMyPost } from "../redux/modules/mypageSlice";
-import Profile from "../components/features/Profile";
-import Detail from "./Detail";
+import UserInfo from "../components/features/UserInfo";
+import MyPosts from "../components/features/MyPosts";
+import PetInfo from "../components/features/PetInfo";
+import Portal from "../components/modal/Portal";
+import Modal from "../components/modal/Modal";
+import { __deleteMyPet } from "../redux/modules/mypageSlice";
 
 // 전체 마이페이지 뷰
-const MyPage = () => {
-  const dispatch = useDispatch();
-  const myInfos = useSelector((state) => state.mypage.profile);
+const MyPage = (props) => {
+  const mypage = useSelector((state) => state.mypage.mypage);
+  const mypost = useSelector((state) => state.mypage.mypost);
+  console.log("마이페이지 정보", mypage);
+  console.log("내가쓴 글 정보", mypost);
 
-  // 작성한 내용 GET으로 가져와서 뿌려주기
-  useEffect(() => {
-    dispatch(__getMyPost());
-  }, [dispatch]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  // 모달창 띄우기 - 수정
+  const [modalOn, setModalOn] = useState(false);
+  const handleModal = () => {
+    setModalOn(!modalOn);
+  }
+
+  // 반려동물 정보 삭제
+  const onDeletePetInfo = () => {
+    dispatch(__deleteMyPet(mypage.petId))
+    window.confirm("정말로 삭제하시겠습니까?")
+    navigate("/mypage")
+  }
+
+  const [toggle, setToggle] = useState("true");
+
+  const onToggleBtn = () => {
+    setToggle(!toggle)
+  }
+
 
   return (
-    <div>
-      {/* Profile.jsx에서 유저 닉네임 + 반려동물 정보 import해서 가지고 옴 */}
-      <div className="profile">
-        <Profile key={myInfos.userId} myInfos={myInfos} />
+    <Layouts>
+      <div className="user-info">
+        {/* <UserInfo key={mypage.userId} mypage={mypage}  /> */}
+        <button>프로필 사진</button>
       </div>
-      {/* 내가 쓴 글만 마이페이지에서 보기 + 수정/삭제 */}
-      <MyPost className="myPost">
+
+      <div>
+        <hr />
+        <button onClick={onToggleBtn}>내가 쓴 글</button>
+        <button onClick={onToggleBtn}>반려동물 정보</button>
+        <hr/>
+      </div>
+      
+      <div toggle={toggle}>
+        {/* 내가 쓴 게시글 여러개 붙이기 */}
+        {/* {mypost.map((post) => {
+          if (post.length !== 0)
+            return (
+              <MyPosts key={post.postId} post={post}/>
+            )
+        })} */}
+      </div>
+
+      <div toggle={toggle}>
+        {/* 반려동물 정보 여러개 붙이기 */}
+        {/* {mypage.map((petInfo) => {
+          if (petInfo.length !== 0)
+          return (
+            <PetInfo key={petInfo.petId} petInfo={petInfo}/>
+          )
+        })} */}
         <div>
-          <h3>My Post</h3>
+          <button onClick={handleModal}>수정</button>
+          <button onClick={onDeletePetInfo}>삭제</button>
         </div>
-        {/* 게시글 목록 리스트 + 제목 클릭하면 게시글 상세로 + 수정은 수정페이지로 navigate + 삭제는 confirm */}
-        <PostList>
-          {myInfos.map((post) => {
-            if (post.length !== 0)
-              return (
-                <div>
-                  <Detail key={post.postId} post={post} />
-                  <button>
-                    삭제
-                  </button>
-                  <button>
-                    수정
-                  </button>
-                </div>
-              );
-          })}
-          <div></div>
-        </PostList>
-      </MyPost>
-    </div>
+        <Portal>{modalOn && <Modal setModalOn={setModalOn}/>}</Portal>
+      </div>
+    </Layouts>
   );
 };
 
 export default MyPage;
 
-const MyPost = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const PostList = styled.div`
-  display: flex;
-  flex-direction: row;
+const Layouts = styled.div`
+  width: 95%;
+  max-width: 414px;
+  height: 785px;
+  margin: auto;
+  /* background-color: lightpink; */
 `;

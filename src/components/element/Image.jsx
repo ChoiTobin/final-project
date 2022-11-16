@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { __postMyPage } from "../../redux/modules/mypageSlice";
+import { __addPost } from "../../redux/modules/postSlice";
 
 const Image = () => {
   const [imgUrl, setImgUrl] = useState(null)
@@ -26,13 +26,13 @@ const Image = () => {
     const formData = new FormData()
 
     formData.append("img", imgFile)
-    dispatch(__postMyPage(formData))
+    dispatch(__addPost(formData))
   }
 
   return (
     <div>
       <img
-        src={imgUrl ? imgUrl : "http://localhost:3000" + "/src/img/user.png"}
+        src={imgUrl ? imgUrl : process.env.PUBLIC_URL + "/src/img/user.png"}
         alt="userImg"
       />
       <input

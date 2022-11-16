@@ -9,7 +9,7 @@ const PostList = () => {
   const dispatch = useDispatch()
 
   
-  const posts = useSelector((state)=>state.post.post)
+  const posts = useSelector((state)=>state.response.post)
 
   console.log(posts)
 

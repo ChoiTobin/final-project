@@ -70,14 +70,16 @@ const Post = () => {
               })
             }
         </div>
-        <input type="File" 
-          id="imgFile"
-          name="imgFile"
-          accept="image/*" 
-          onChange={onChangeImage}
-          ref={imgRef} 
-          multiple 
-        />
+        
+          <input type="File" 
+            id="imgFile"
+            name="imgFile"
+            accept="image/*" 
+            onChange={onChangeImage}
+            ref={imgRef} 
+            multiple 
+          />
+        
         <input type="text" maxLength={30} name="title" value={conimal.title || ""} onChange={onChangeHandler} placeholder="제목"/> 
         <select name="category" value={conimal.category || ""} onChange={onChangeHandler} >
             <option value="대형">대형</option>
@@ -88,8 +90,8 @@ const Post = () => {
         <input type="text" maxLength={200} name="content" value={conimal.content || ""} onChange={onChangeHandler} placeholder="내용"/>
       </Form>
       <div>
-        <button onClick={writeSubmit}>작성하기</button>
-        <button>취소하기</button>
+        <FormBtn onClick={writeSubmit}>작성하기</FormBtn>
+        <FormBtn>취소하기</FormBtn>
       </div>
     </>
   )
@@ -105,6 +107,11 @@ const Form = styled.div`
 `
 const Img = styled.img`
   width:100px;
-  hegith:100px;
+  height:100px;
   background-size:cover;
+`
+
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+const FormBtn = styled.button`
+  cursor: pointer;
 `

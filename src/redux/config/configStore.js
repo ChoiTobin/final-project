@@ -15,7 +15,7 @@ const store = configureStore({
     post,
     search,
     account,
-  }
+  },
   
   //dev tool을 개발 환경에서만 설정
   // devTools: process.env.REACT_APP_MOD !== "production",

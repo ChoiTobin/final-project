@@ -12,5 +12,5 @@ const Layouts = styled.div`
   max-width: 414px;
   height: 785px;
   margin: auto;
-  background-color: lightpink;
+  /* background-color: lightpink; */
 `

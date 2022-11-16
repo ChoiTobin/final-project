@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom/dist";
-import { __postMyPet, __putMyPet } from "../redux/modules/mypageSlice";
-import Image from "../components/element/Image";
+import { __addMyPet } from "../../redux/modules/mypageSlice";
+import Image from "../element/Image";
 
+// 마이페이지 반려동물 정보 등록
 const ProfileEdit = () => {
   const [petInfo, setPetInfo] = useState({
     name: "",
@@ -20,32 +21,26 @@ const ProfileEdit = () => {
     setPetInfo({
       ...petInfo,
       [name]: value,
-    })
-
-  }
+    });
+  };
 
   const onAddPetInfo = (event) => {
     event.preventDefault();
     if (
-      petInfo.name.trim() === "" || petInfo.age.trim() === "" || petInfo.category.trim() === ""
+      petInfo.name.trim() === "" ||
+      petInfo.age.trim() === "" ||
+      petInfo.category.trim() === ""
     ) {
-      return alert("모든 항목을 입력해주세요!")
+      return alert("모든 항목을 입력해주세요!");
     }
-    dispatch(__postMyPet(petInfo));
-    window.location.reload("/mypage")
-  }
-
-  // 프로필 수정 - 반려동물 정보(이름, 나이, 종류)
-  const onUpdatePetInfo = () => {
-    dispatch(__putMyPet(petInfo));
-    window.alert("반려동물 정보수정이 완료되었습니다!")
-    navigate("/mypage");
+    dispatch(__addMyPet(petInfo));
+    window.location.reload("/mypage");
   };
 
   return (
     <Layout>
       <div className="user-img">
-        <Image/>
+        <Image />
       </div>
       {/* 등록 누르면 신규 정보 입력, 수정 버튼을 눌렀을 때, 인풋창에 수정하고 싶은 내용을 작성할 수 있는 페이지 */}
       <div className="edit-input">
@@ -86,35 +81,17 @@ const ProfileEdit = () => {
         </div>
         <br />
       </div>
-
-      <div>
-        {/* 반려동물 정보값이 없으면 정보저장할 수 있도록, 아니면 정보수정이 가능하도록 설정 */}
-        {petInfo.length === 0 ? (
-          // 정보등록
-          <PlaceBtn>
-            <button onClick={onAddPetInfo}>완료</button>
-            <button
-              onClick={() => {
-                navigate(-1);
-              }}
-            >
-              취소
-            </button>
-          </PlaceBtn>
-        ) : (
-            // 정보수정
-          <PlaceBtn>
-            <button onClick={onUpdatePetInfo}>저장</button>
-            <button
-              onClick={() => {
-                navigate(-1);
-              }}
-            >
-              취소
-            </button>
-          </PlaceBtn>
-        )}
-      </div>
+      {/* 정보등록 */}
+      <PlaceBtn>
+        <button onClick={onAddPetInfo}>완료</button>
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          취소
+        </button>
+      </PlaceBtn>
     </Layout>
   );
 };
