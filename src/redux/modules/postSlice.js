@@ -8,32 +8,6 @@ const initialState = {
   error: null,	
   post: {},	
 }
-  
-  // export const __postConimal = createAsyncThunk(
-  // "conimal/postConimal",
-  // async (payload, thunkAPI) => {
-  // console.log("포스트페이로드",payload)
-  // try {
-  // const data = await axios.post("http://localhost:3001/posts",payload);
-  // // window.location.replace("/")
-  // // console.log("포스트데이터",data)
-  // return thunkAPI.fulfillWithValue(data.data);
-  // }catch (error) {
-  // // window.location.replace("/")
-  // return thunkAPI.rejectWithValue(error);
-  // }});
-  
-  // export const __getConimal = createAsyncThunk(
-  // "conimal/getConimal",
-  // async (payload, thunkAPI) => {
-  // // console.log("페이로드 들어오니?",payload)
-  // try {
-  //   const data = await axios.get("http://localhost:3001/posts")
-  // // console.log("데이터2",data)
-  // return thunkAPI.fulfillWithValue(data.data)
-  // } catch (error) {
-  // return thunkAPI.rejectWithValue(error)
-  // }})
 
 // 게시글 전체 조회	
 export const __getPostTime = createAsyncThunk(	
@@ -65,14 +39,18 @@ export const __getDetail = createAsyncThunk(
 export const __addPost = createAsyncThunk(	
   "api/posts/addPost",	
   async (payload, thunkAPI) => {	
+    // console.log("제발페이로드야",payload)
     try {	
+      
       const response = await Apis.postFileAX(payload)	
+      console.log("제발리스폰스야",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
 )	
+
 // 게시글 진행 상테 수정	
 export const __editState = createAsyncThunk(	
   "api/posts/editState",	
@@ -84,7 +62,36 @@ export const __editState = createAsyncThunk(
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
+)
+
+// 게시글 검색
+export const __getKeyword = createAsyncThunk(	
+  "/api/search/getSearch",	
+  async (payload, thunkAPI) => {	
+    try {	
+      const response = await Apis.getKeywordAX(payload)	
+      return thunkAPI.fulfillWithValue(response.data);	
+    } catch (error) {	
+      return thunkAPI.rejectWithValue(error);	
+    }	
+  }	
 )	
+
+// 카테고리 검색
+export const __getCategory = createAsyncThunk(	
+  "/api/search/getCategory",	
+  async (payload, thunkAPI) => {	
+    console.log("이건페이로드",payload)
+    try {	
+      const response = await Apis.getFilterAX(payload)	
+      console.log("이건리스폰스",response)
+      return thunkAPI.fulfillWithValue(response.data);	
+    } catch (error) {	
+      return thunkAPI.rejectWithValue(error);	
+    }	
+  }	
+)	
+
 const postSlice = createSlice({	
   name: "post",	
   initialState,	
@@ -123,9 +130,11 @@ const postSlice = createSlice({
       state.isLoading = false;	
     },	
     [__addPost.fulfilled]: (state, action) => {	
+      // console.log("이난",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response.push(action.payload.data)	
+      // state.post.response.push(action.payload.data)	
+      state.post = action.payload
     },	
     [__addPost.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -145,7 +154,36 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
       state.error = action.payload;	
-    }	
+    },
+    // 검색
+    [__getKeyword.pending]: (state) => {	
+      state.isLoading = true;	
+    },	
+    [__getKeyword.fulfilled]: (state, action) => {	
+      console.log("검색",action.payload)
+      state.isLoading = false;	
+      state.isSuccess = false;	
+      state.post.response = action.payload.data;	
+    },	
+    [__getKeyword.rejected]: (state, action) => {	
+      state.isLoading = false;	
+      state.isSuccess = false;	
+      state.error = action.payload;	
+    },
+    // 카테고리 검색
+    [__getCategory.pending]: (state) => {	
+      state.isLoading = true;	
+    },	
+    [__getCategory.fulfilled]: (state, action) => {	
+      state.isLoading = false;	
+      state.isSuccess = false;	
+      state.post.response = action.payload.data;	
+    },	
+    [__getCategory.rejected]: (state, action) => {	
+      state.isLoading = false;	
+      state.isSuccess = false;	
+      state.error = action.payload;	
+    },
   }	
 })	
 export default postSlice.reducer;

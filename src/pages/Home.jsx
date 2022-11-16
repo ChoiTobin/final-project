@@ -14,9 +14,7 @@ const Home = () => {
     <HomePage>
       <Layout>
         <Header />
-        <PostList />
         <SignIn/>
-        <MyPage />   
         <Footer />
       </Layout>
     </HomePage>

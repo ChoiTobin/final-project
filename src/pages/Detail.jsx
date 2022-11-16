@@ -8,7 +8,7 @@ import { __getConimal } from"../redux/modules/postSlice"
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
-  const  mainList  = useSelector((state) => state.postList.postList)
+  const posts = useSelector((state)=>state.post.post)	
   const onClickMove = () => {
     navigator(-1);
   };
@@ -18,7 +18,7 @@ const Detail = () => {
       <p>디테일페이지로이동했지롱</p>
       <button onClick={() => onClickMove()}>이전버튼</button>
         {
-          mainList.map((post) => (post.id === Number(id) ) && (
+          posts.response.map((post) => (post.id === Number(id) ) && (
           <>
             <div key={post.id}>
                 <p>{post.title}</p>

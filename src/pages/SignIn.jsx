@@ -2,17 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector} from 'react-redux'
 import {__userLogin} from "../../src/redux/modules/userSlice"
 import KakaoLogin from '../components/features/KakaoLogin';
 import { useLocation } from 'react-router-dom';
-
-
 const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const account = useSelector((state) => state.account)
   const initialState = {
-    userId: "",
+    email: "",
     password: "",
   };
   const [login, setLogin] = useState(initialState);
@@ -21,10 +20,8 @@ const SignIn = () => {
   const onChangeHandler = (event) => {
     const {name, value} = event.target
     setLogin({...login, [name] : value})
-    
     const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
-    
-    if(regexId.test(login.userId)){
+    if(regexId.test(login.email)){
       setIdValid(true);
     }else{
       setIdValid(false);
@@ -39,15 +36,15 @@ const SignIn = () => {
   //유효성검사 red 체크
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    const obj = 
+    const obj =
     {
-      userId: login.userId,
+      email: login.email,
       password: login.password,
     }
     dispatch(__userLogin(obj))
     //navigate('/postlist')
   }
-  return (  
+  return (
     <div>
       <LoginContainer>
         <Wrap>
@@ -56,24 +53,23 @@ const SignIn = () => {
               <Input
                 placeholder='사용자 이메일'
                 type='text'
-                name='userId'
-                value={login.userId}
+                name='email'
+                value={login.email}
                 onChange={onChangeHandler}
               />
               <ErrorMessageWrap>
               {
                 !IdValid ?
-
-              !IdValid && login.userId.length > 0 && 
+              !IdValid && login.email.length > 0 &&
               (
               <div>올바른 아이디를 입력해주세요.</div>
               )
               :
-              IdValid && login.userId.length > 0 && 
+              IdValid && login.email.length > 0 &&
               (
               <Green>올바른 아이디 형식입니다.</Green>
               )
-              }  
+              }
               </ErrorMessageWrap>
               <Input
                 placeholder='비밀번호'
@@ -85,16 +81,16 @@ const SignIn = () => {
               <ErrorMessageWrap>
               {
                 !PwValid ?
-              !PwValid && login.password.length > 0 && 
+              !PwValid && login.password.length > 0 &&
               (
               <div>영문,숫자,특수문자 포함 8자 이상 입력해주세요</div>
               )
               :
-              PwValid && login.password.length > 0 && 
+              PwValid && login.password.length > 0 &&
               (
               <Green>올바른 비밀번호 형식입니다.</Green>
               )
-              }  
+              }
               </ErrorMessageWrap>
               <LoginButton onClick={onSubmitHandler}>
                 로그인
@@ -106,7 +102,7 @@ const SignIn = () => {
                 가입하기
             </SignupButton>
             </SignupBox>
-              <p id="token-result"></p> 
+              <p id="token-result"></p>
             <KakaoLogin>
             </KakaoLogin>
           </div>
@@ -115,15 +111,10 @@ const SignIn = () => {
     </div>
   )
 }
-
 export default SignIn
-
-
 const Green = styled.div`
 color:green;
 `
-
-
 const ErrorMessageWrap =styled.div`
 margin:4px;
 color:#ef0000;
@@ -135,11 +126,9 @@ const LoginContainer = styled.div`
   justify-content: center;
   height: 100vh;
 `;
-
 const Wrap = styled.div`
   display: flex;
 `;
-
 const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -155,24 +144,20 @@ const LoginBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const Input = styled.input`
   border: none;
-
   width: 250px;
   height: 40px;
   margin-bottom: 7px;
   padding: 10px;
   font-size: 12px;
   border-radius: 4px;
-  background: #fafafa;
+  background: #FAFAFA;
   &:focus {
-    outline: 1px solid #adadad;
+    outline: 1px solid #ADADAD;
   }
 `;
-
 const LoginButton = styled.button`
-
   color: white;
   border: none;
   border-radius: 5px;
@@ -182,10 +167,9 @@ const LoginButton = styled.button`
   margin-top: 10px;
   margin-bottom: 20px;
   &:disabled {
-    background-color: #b2dffc;
+    background-color: #B2DFFC;
   }
 `;
-
 const SignupBox = styled.div`
   background-color: white;
   width: 350px;
@@ -197,7 +181,6 @@ const SignupBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const LogoBox = styled.div`
   width: 175px;
   height: 51px;
@@ -207,10 +190,8 @@ const LogoBox = styled.div`
     height: 100%;
   }
 `;
-
 const SignupButton = styled.button`
   border: none;
   background: none;
   font-weight: bold;
-
-`;
+`; 

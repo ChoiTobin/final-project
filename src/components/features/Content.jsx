@@ -1,41 +1,60 @@
-// 검색,카테고리로 리스트들을 뿌려주는 컨텐츠 컴포넌트
-
 import React, { useEffect , useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-// import { useNavigate } from "react-router-dom"
-import { __getPostTime, __getSearch } from "../../redux/modules/postSlice"
+import { useParams } from "react-router-dom"
+import postSlice, { __getPostTime , __getKeyword , __getCategory } from "../../redux/modules/postSlice"
 import PostList from "../features/PostList"
 // 검색
 const Content = () => {
-  //const navigate = useNavigate()
   const dispatch = useDispatch()
-
   // 리스트
   const posts  = useSelector((state) => state.post.post)
-  
-  //유즈이펙트가 랜더링될때 단 한번만 나타난다.
+  const params = useParams
+  //전체조회
   useEffect(() => {
     dispatch(
       __getPostTime()
-    );
-  }, []);
+    )
+  }, [params]);
+  
+  //검색
+  const [ getSearch , setGetSearch ] = useState({search:""});
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setGetSearch({...getSearch,[name]: value,});
+  };
+  
+  //키워드검색 #제목 #내용 #지역
+  const onClickSearch = () =>{ 
+    if (getSearch.search.trim() === "" )  {
+      return alert("내용을 입력해주세요.");
+    } 
+    dispatch(__getKeyword(getSearch.search));
+  } 
+  
+  const onClickAll = () =>{ //전체검색
+    dispatch(__getPostTime());
+  }
 
-  // const onClickSearch = () =>{
-  //   dispatch(__getSearch())
-  // }
-  
-  
+  const onClickBig = () =>{ //대형검색
+    const data = posts.response.filter((item)=> item.category === "대형" )
+    dispatch(__getCategory(data));
+    console.log("데이터",data)
+  } 
+    
+  console.log("페이",posts)
+  // console.log("d",solt[0]) //전체조회가 딱 한번밖에 안된다. //대형을누르면 한번더 랜더링 해야한다.
+  // https://wepungsan.kro.kr/api/filter?category=대형
   return (
       <div>
+        <button type='button' onClick={onClickAll}>전체</button>
+        <button type='button' name="대형" onClick={onClickBig}>대형</button>
         <div className="검색">
-          <input type="text"/>
-          <button >검색</button>
+          <input type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler} />
+          <button onClick={onClickSearch}>검색</button>
         </div>
-        <div>홈에서 리스트맵돌린거 불러왔음 아래에 나올꺼임</div>
         <PostList posts={posts} key={posts.postId} />
       </div> 
   )
 }
 
 export default Content
-

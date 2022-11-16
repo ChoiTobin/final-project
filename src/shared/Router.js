@@ -26,6 +26,7 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
+        <Route path="/content" element={<Content/>}/>
       
       
       {/* 추가 */}
