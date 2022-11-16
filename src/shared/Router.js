@@ -3,10 +3,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import Form from "../components/features/Form";
-import Chatroom from "../pages/Chatroom"
+import Content from "../components/features/Content";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
 import PostList from "../components/features/PostList";
+import CreateReadChat from "../pages/chatting/ReadChat";
+
 
 // 추가
 import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
@@ -19,18 +21,14 @@ const Router = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/form" element={<Form />} />
-        <Route path="/chat" element={<Chatroom />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/detail/:postId" element={<Detail/>}/>
+        <Route path="/mypage" element={<MyPage/>}/>
+        <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
-        <Route path="/content" element={<Content/>}/>
-      
-      
       {/* 추가 */}
-      <Route path="/oauth/callback/kakao" element={<OAuth2RedirectHandler />} />
-      <Route path='/' element={<MainLogin />} />
+      <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
+      <Route path='/MainLogin' element={<MainLogin />} />
+      <Route path="/CreateReadChat/:id" element={<CreateReadChat />} />
 
-      
       </Routes>
     </BrowserRouter>
   );

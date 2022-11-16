@@ -43,26 +43,27 @@ export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       console.log( "카카오 코드",code)
       // membersApis.loginAX(code)
-      axios.get(`http://localhost:3000?code=${code}`)
+      axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
       //post가 아닌 get으로 보낸다.
       // `http://{서버주소}?code=${code}`
           .then((res) => {
-              console.log("넘어온 토큰값", res); // 토큰이 넘어올 것임
+
+              if(res.data.status ==200){
               const Access_Token = res.headers.access_token;
-              const refreshToken = res.headers.refreshToken;
               setCookie("Access_Token", Access_Token);
-              setCookie("refreshToken", refreshToken);
-              setCookie("nickname", res.data.accountName);
-              setCookie("profileImage", res.profileImage);
-              setCookie("ageRange", res.ageRange);
-              setCookie("email", res.email);
+              setCookie("email", res.data.data.email);
+              setCookie("nickname", res.data.data.nickname);
+              setCookie("userImage", res.data.data.userImage);
+              //카멜케이스
               // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
               window.location.replace("/home")
+            }
           })
           .catch((error) => {
               console.log("소셜로그인 에러", error);
               window.alert("로그인에 실패하였습니다.");
               // 로그인 실패하면 로그인 화면으로 돌려보냄
+              //window.location.replace('/SignIn');
           })
   }
 };
@@ -71,10 +72,15 @@ export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
     try {
+      console.log("찍히는지",payload)
       const res = await Apis.signupAX(payload)
       .then((response)=>{
+        // if(response.status ==200){
+        //   window.location.replace('/home')
+        //   alert("회원가입이 완료됬습니다.")
+        // }
       })
-      return thunkAPI.fulfillWithValue(res.data)
+      return thunkAPI.fulfillWithValue(res)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -85,8 +91,10 @@ export const __userCheck = createAsyncThunk(
   "idCheck/userCheck",
   // login : reducer name, 경로 정해줘야
   async (payload, thunkAPI) => {
+
     try {
       const res = await Apis.usernameAX(payload)
+
       alert(res.data.message)
       return thunkAPI.fulfillWithValue(res.data)
     } catch (error) {
@@ -101,7 +109,7 @@ export const __NickCheck = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await Apis.nicknameAX(payload)
-      console.log(res)
+
       alert(res.data.message)
       return thunkAPI.fulfillWithValue(res.data)
     } catch (error) {
@@ -119,13 +127,15 @@ export const __userLogin = createAsyncThunk(
       .then((response)=>{
         console.log(response.data)
         if (response.data.status === 200) {
-          //setCookie represh token 받기
+          //setCookie represh token 받기 
+          
           setCookie("Access_Token", response.headers.access_token)
           setCookie("user-nickname", response.data.data.nickname)
           setCookie("user-userId", response.data.data.userId)
-          window.location.replace('/MainLogin');
+          window.location.replace('/home');
           alert(response.data.message)
-        }else if(response.data.status === 500)(alert("이미 사용중인 닉네임입니다."))
+          
+        }
         return thunkAPI.fulfillWithValue(response.data)
       })
     } catch (error) {

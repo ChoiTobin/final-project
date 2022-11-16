@@ -8,9 +8,10 @@ import { useLocation } from 'react-router-dom'
 const KakaoLogin = () => {
     const REST_API_KEY = process.env.REACT_APP_API_KAKAO_ID
     const REDIRECT_URI = process.env.REACT_APP_API_URL
+    //console.log(REDIRECT_URI,REST_API_KEY,"확인")
 
 
-    const location = useLocation();
+    // const location = useLocation();
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 //⭐️TOKEN 저장
     // const getKakaoToken = () => {

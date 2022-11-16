@@ -18,11 +18,12 @@ const SignIn = () => {
   const [IdValid, setIdValid] = useState(false);
   const [PwValid, setPwValid] = useState(false);
   const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setLogin({ ...login, [name]: value });
-    const regexId =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
-    if (regexId.test(login.email)) {
+    const {name, value} = event.target
+    setLogin({...login, [name] : value})
+    
+    const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+    
+    if(regexId.test(login.email)){
       setIdValid(true);
     } else {
       setIdValid(false);
@@ -36,8 +37,9 @@ const SignIn = () => {
   };
   //유효성검사 red 체크
   const onSubmitHandler = (event) => {
-    event.preventDefault();
-    const obj = {
+    event.preventDefault()
+    const obj = 
+    {
       email: login.email,
       password: login.password,
     };
@@ -51,22 +53,26 @@ const SignIn = () => {
           <div>
             <LoginBox>
               <Input
-                placeholder="사용자 이메일"
-                type="text"
-                name="email"
+                placeholder='사용자 이메일'
+                type='text'
+                name='email'
                 value={login.email}
                 onChange={onChangeHandler}
               />
               <ErrorMessageWrap>
-                {!IdValid
-                  ? !IdValid &&
-                    login.email.length > 0 && (
-                      <div>올바른 아이디를 입력해주세요.</div>
-                    )
-                  : IdValid &&
-                    login.email.length > 0 && (
-                      <Green>올바른 아이디 형식입니다.</Green>
-                    )}
+              {
+                !IdValid ?
+
+              !IdValid && login.email.length > 0 && 
+              (
+              <div>올바른 아이디를 입력해주세요.</div>
+              )
+              :
+              IdValid && login.email.length > 0 && 
+              (
+              <Green>올바른 아이디 형식입니다.</Green>
+              )
+              }  
               </ErrorMessageWrap>
               <Input
                 placeholder="비밀번호"

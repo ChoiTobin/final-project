@@ -6,6 +6,7 @@ import post from "../modules/postSlice";
 import search from "../modules/searchSlice";
 import account from "../modules/userSlice";
 
+
 const store = configureStore({
     
   reducer: {
