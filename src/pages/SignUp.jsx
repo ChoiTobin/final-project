@@ -126,6 +126,9 @@ const SignUp = () => {
   return (
     <SignupContainer>
       <SignupBox onSubmit={onSubmitHandler}>
+        <LogoBox>
+        </LogoBox>
+          <InputBox>
         <LogoBox></LogoBox>
         <InputBox>
           <FlexInput>
@@ -149,6 +152,7 @@ const SignUp = () => {
                 : IdValid &&
                   join.email.length > 0 && (
                     <Green>올바른 이메일 형식 입니다.</Green>
+                  )
                   )}
             </ErrorMessageWrap>
           </FlexInput>
@@ -274,9 +278,9 @@ const Input = styled.input`
   padding: 10px;
   font-size: 12px;
   border-radius: 4px;
-  background: #fafafa;
+  background: #FAFAFA;
   &:focus {
-    outline: 1px solid #adadad;
+    outline: 1px solid #ADADAD;
   }
 `;
 const SignupButton = styled.button`
@@ -289,7 +293,7 @@ const SignupButton = styled.button`
   margin-top: 40px;
   cursor: pointer;
   &:disabled {
-    background-color: #b2dffc;
+    background-color: #B2DFFC;
   }
 `;
 const LogoBox = styled.div`

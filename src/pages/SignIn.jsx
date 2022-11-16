@@ -94,8 +94,9 @@ const SignIn = () => {
                 가입하기
               </SignupButton>
             </SignupBox>
-            <p id="token-result"></p>
-            <KakaoLogin></KakaoLogin>
+              <p id="token-result"></p>
+            <KakaoLogin>
+            </KakaoLogin>
           </div>
         </Wrap>
       </LoginContainer>
@@ -143,9 +144,9 @@ const Input = styled.input`
   padding: 10px;
   font-size: 12px;
   border-radius: 4px;
-  background: #fafafa;
+  background: #FAFAFA;
   &:focus {
-    outline: 1px solid #adadad;
+    outline: 1px solid #ADADAD;
   }
 `;
 const LoginButton = styled.button`
@@ -160,7 +161,7 @@ const LoginButton = styled.button`
   // 버튼 누르면 손모양 나오게 하는 마우스 커서
   cursor: pointer;
   &:disabled {
-    background-color: #b2dffc;
+    background-color: #B2DFFC;
   }
 `;
 const SignupBox = styled.div`

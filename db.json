@@ -1,5 +1,25 @@
 {
   "posts": [
-    
+    {
+      "id": 1,
+      "title": "제목",
+      "content": "컨텐트",
+      "category": "중형",
+      "price": "5000원"
+    },
+    {
+      "id": 2,
+      "title": "제목2",
+      "content": "컨텐트2",
+      "category": "소형",
+      "price": "10000원"
+    },
+    {
+      "id": 3,
+      "title": "제목3",
+      "content": "컨텐트3",
+      "category": "대형",
+      "price": "15000원"
+    }
   ]
 }

@@ -9,11 +9,11 @@ const Header = () => {
   const onClickMove = () => {
     navigate(-1);
   };
-
+  
   const onClickHome = () => {
     navigate("/");
   };
-
+  
   return (
     <Layout>
       <button onClick={() => onClickMove()}>

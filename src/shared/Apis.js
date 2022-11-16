@@ -25,6 +25,7 @@ const file = axios.create({
   headers: {
     enctype: "multipart/form-data",
     Access_Token: `${cookies.get("Access_Token")}`,
+    // Refresh_Token: `${cookies.get("Refresh_Token")}`,
   },
   withCredentials: true,
 })
@@ -43,12 +44,12 @@ export const Apis = {
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
 
   // 게시글 작성
-  postFileAX: (payload) => file.post(`/api/posts`, payload),
+  // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
+  postFileAX: (payload) => file.post(`/api/posts`,payload),
   // 게시글 수정
   putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload.content),
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
-
   // 게시글 전체 조회
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
@@ -73,16 +74,16 @@ export const Apis = {
   deleteMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
 
   // 다른회원 마이페이지 정보 조회
-  getUserInfoAX: (userId) => noToken.get(`api/users/${userId}`),
+  getUserInfoAX: (email) => noToken.get(`api/users/${email}`),
   // 다른회원 마이페이지 반려동물 정보 조회
-  getPetInfoAX: (userId) => noToken.get(`api/users/${userId}/pet`),
+  getPetInfoAX: (email) => noToken.get(`api/users/${email}/pet`),
   // 다른회원 마이페이지 게시글 조회
-  getPostInfoAX: (userId) => token.get(`api/users/${userId}/posts`),
-
+  getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
+  
   // 게시글 검색 - 특정 단어 포함 게시글 조회
-  getKeywordAX: (searchKeyword) => token.get(`/api/search/?content=${searchKeyword}`, searchKeyword),
+  getKeywordAX: (searchKeyword) => token.get(`/api/search/?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
-  getFilterAX: (category) => token.get(`/api/filter&category=${category}`)
-
+  getFilterAX: (categoryKeyword) => token.get(`/api/filter&category=${categoryKeyword}`)
+  
 }
 export default Apis
