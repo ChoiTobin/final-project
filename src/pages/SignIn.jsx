@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector} from 'react-redux'
 import {__userLogin} from "../../src/redux/modules/userSlice"
 import KakaoLogin from '../components/features/KakaoLogin';
 import { useLocation } from 'react-router-dom';
@@ -11,8 +11,9 @@ import { useLocation } from 'react-router-dom';
 const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const account = useSelector((state) => state.account)
   const initialState = {
-    userId: "",
+    email: "",
     password: "",
   };
   const [login, setLogin] = useState(initialState);
@@ -24,7 +25,7 @@ const SignIn = () => {
     
     const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
     
-    if(regexId.test(login.userId)){
+    if(regexId.test(login.email)){
       setIdValid(true);
     }else{
       setIdValid(false);
@@ -41,7 +42,7 @@ const SignIn = () => {
     event.preventDefault()
     const obj = 
     {
-      userId: login.userId,
+      email: login.email,
       password: login.password,
     }
     dispatch(__userLogin(obj))
@@ -56,20 +57,20 @@ const SignIn = () => {
               <Input
                 placeholder='사용자 이메일'
                 type='text'
-                name='userId'
-                value={login.userId}
+                name='email'
+                value={login.email}
                 onChange={onChangeHandler}
               />
               <ErrorMessageWrap>
               {
                 !IdValid ?
 
-              !IdValid && login.userId.length > 0 && 
+              !IdValid && login.email.length > 0 && 
               (
               <div>올바른 아이디를 입력해주세요.</div>
               )
               :
-              IdValid && login.userId.length > 0 && 
+              IdValid && login.email.length > 0 && 
               (
               <Green>올바른 아이디 형식입니다.</Green>
               )

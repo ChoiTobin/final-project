@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as Delete } from "../img/delete.svg";
-import { ReactComponent as Edit } from "../img/edit.svg";
 import { __getMyPost } from "../redux/modules/mypageSlice";
 import Profile from "../components/features/Profile";
 import Detail from "./Detail";
@@ -35,15 +33,13 @@ const MyPage = () => {
             if (post.length !== 0)
               return (
                 <div>
-                  {/* <Detail key={post.postId} post={post} />
+                  <Detail key={post.postId} post={post} />
                   <button>
-                     삭제버튼 아이콘 
-                    <Delete />
+                    삭제
                   </button>
                   <button>
-             수정버튼 아이콘
-                    <Edit />
-                  </button> */}
+                    수정
+                  </button>
                 </div>
               );
           })}

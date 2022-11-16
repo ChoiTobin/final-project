@@ -11,7 +11,7 @@ const SignUp = () => {
   const dispatch = useDispatch()
   const account = useSelector((state) => state.account)
   const initialState = {
-    userId: "",
+    email: "",
     nickname: "",
     password: "",
     passwordCheck:"",    
@@ -24,8 +24,6 @@ const SignUp = () => {
   const [PwValid, setPwValid] = useState(false);
   const [PwCValid, setPwCValid] = useState(false);
 
- 
- 
 
   const onChangeHandler = (event) => {
     const {name, value} = event.target
@@ -34,7 +32,7 @@ const SignUp = () => {
     const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
     //이메일 체크
   //https://velog.io/@gym/React-721
-    if(regexId.test(join.userId)){
+    if(regexId.test(join.email)){
       setIdValid(true);
     }else{
       setIdValid(false);
@@ -64,7 +62,7 @@ const SignUp = () => {
 
 
   const obj = {
-    userId: join.userId,
+    email: join.email,
     nickname: join.nickname,
     password: join.password,
     passwordCheck: join.passwordCheck,
@@ -82,8 +80,8 @@ const SignUp = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    if(account.idCheck.status === 200 && account.nickCheck.status === 200){
-    if(!userIdCheck.test(obj.userId)){
+    
+    if(!userIdCheck.test(obj.email)){
       return alert("아이디 양식에 맞춰주세요")
     }
 
@@ -96,7 +94,7 @@ const SignUp = () => {
       return alert("비밀번호 양식에 맞춰주세요")
     }
     
-    if(obj.userId === "" || obj.userId === undefined) {
+    if(obj.email === "" || obj.email === undefined) {
       return alert("빈칸을 입력해주세요.")
     }
     if(obj.nickname === "" || obj.nickname === undefined) {
@@ -108,13 +106,14 @@ const SignUp = () => {
     if(obj.passwordCheck === "" || obj.passwordCheck === undefined) {
       return alert("빈칸을 입력해주세요.")
     }
-    
-  }
+    if(account.idCheck.status !== 200 || account.nickCheck.status !== 200){
+    alert("중복확인을 해주세요")
+    }
     // 중복확인이 true이고 true일때 그리고 dispatch를 보내서
     // account statusCode 회원가입이 response로 왔을때 가입됨. 
     
     dispatch(__userSignUp(obj))
-    if(account.idCheck.status ===200 && account.nickCheck.status === 200 &&obj.password == obj.passwordConfirm){
+    if(account.idCheck.status ===200 && account.nickCheck.status === 200 &&obj.password === obj.passwordCheck){
       alert("회원가입이 완료되었습니다.")  
     window.location.replace("/SignIn")
     }
@@ -125,7 +124,7 @@ const SignUp = () => {
     //   if(account.statusCode === 200){
     //     alert("회원가입이 완료되었습니다.")
     //     setJoin({
-    //       userId : "",
+    //       email : "",
     //       nickname: "",
     //       password: "",
     //       passwordCheck: "",
@@ -143,21 +142,21 @@ const SignUp = () => {
           <InputBox>
           <FlexInput>
               <Input
-                name='userId'
+                name='email'
                 placeholder='이메일 형식을 입력해주세요 '
                 onChange={onChangeHandler}
               /> 
 
-              <button onClick={()=>{dispatch(__userCheck({userId:join.userId}))}}
+              <button type='button' onClick={()=>{dispatch(__userCheck({email:join.email}))}}
                 >중복확인
               </button>
               <ErrorMessageWrap>
               { !IdValid ?
-                  !IdValid && join.userId.length > 0 && (
+                  !IdValid && join.email.length > 0 && (
                     <div>이메일 형식을 입력해주세요</div>
                   )
                   :
-                  IdValid && join.userId.length > 0 && (
+                  IdValid && join.email.length > 0 && (
                     <Green>올바른 이메일 형식 입니다.</Green>
                   )
               }  
@@ -171,7 +170,7 @@ const SignUp = () => {
               />
 
 
-              <button onClick={()=>{dispatch(__NickCheck({nickname:join.nickname}))}}
+              <button type='button'  onClick={()=>{dispatch(__NickCheck({nickname:join.nickname}))}}
                 >중복확인</button>
               <ErrorMessageWrap>
                 {
@@ -228,7 +227,7 @@ const SignUp = () => {
                     :
                     PwCValid && join.passwordCheck.length > 0  && (
                       
-                      join.passwordCheck == join.password? 
+                      join.passwordCheck === join.password? 
                       <Green>사용 가능한 비밀번호 입니다.</Green>
                       :
                       <div>비밀번호가 일치하지 않습니다.</div>

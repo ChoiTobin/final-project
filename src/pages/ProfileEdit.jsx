@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom/dist";
-import { __postMyPet, __putMyPet } from "../redux/modules/mypageSlice";
+import {  __addPost, __putMyPet } from "../redux/modules/mypageSlice";
 import Image from "../components/element/Image";
 
 const ProfileEdit = () => {
@@ -31,7 +31,7 @@ const ProfileEdit = () => {
     ) {
       return alert("모든 항목을 입력해주세요!")
     }
-    dispatch(__postMyPet(petInfo));
+    dispatch(__addPost(petInfo));
     window.location.reload("/mypage")
   }
 

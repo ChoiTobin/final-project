@@ -6,6 +6,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import postList from "../modules/postSlice";
 import account from "../modules/userSlice";
 
+
 const store = configureStore({
     
   reducer: { postList: postList,account:account}

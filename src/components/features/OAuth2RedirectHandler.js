@@ -16,9 +16,9 @@ const OAuth2RedirectHandler = () => {
     useEffect(async () => 
     {
         console.log("찍히는지",code)
-
     await dispatch(__kakaoLogin(code));
     }, []);
+    
     return <div />;
     }
 

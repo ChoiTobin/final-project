@@ -12,12 +12,10 @@ const Home = () => {
 
   return (
     <HomePage>
-      <Layout>
-        <Header />
-        <PostList />
-        <SignIn/>
-        <MyPage />   
-        <Footer />
+      <Layout>  
+      <Header />
+      <SignIn/>
+      <Footer />
       </Layout>
     </HomePage>
     
