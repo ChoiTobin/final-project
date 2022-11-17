@@ -13,7 +13,7 @@ const Content = () => {
       __getPostTime()
     )
   }, [dispatch]);
-  
+    
   //검색
   const [ getSearch , setGetSearch ] = useState({search:""});
   const onChangeHandler = (e) => {
@@ -32,7 +32,7 @@ const Content = () => {
   const onClickAll = () =>{ //전체검색
     dispatch(__getPostTime());
   }
-
+  
   const onClickBig = () =>{ //대형
     // const data = posts.response.filter((item)=> item.category === "대형" )
     // 휴먼에러 처음에 "대형"이라고 문자열로 보냈을시 잘 요청했었는데 데이터를 확인하니 글자가 아닌 이상한 영어가나옴

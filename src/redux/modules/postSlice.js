@@ -5,9 +5,9 @@ import axios from "axios";
 import { __putPost } from "./mypageSlice";	
 const initialState = {	
   isLoading: false,	
-  // posts:[], //공배열로 바꿔야함
-  error: null,	
   post: {},	
+  posts:[], //공배열로 바꿔야함
+  error: null,	
 }
 
 // 게시글 전체 조회	
@@ -21,16 +21,13 @@ const initialState = {
 //       return thunkAPI.rejectWithValue(error);	
 //     }	
 //   }	
-// )	
+// )
+	
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {	
     try {	
-      console.log("payload",payload)
       const response = await Apis.getPostTimeAX(payload)
-      // const curSize = payload * 5;
-      // return thunkAPI.fulfillWithValue(response.data.slice((curSize - 5), curSize));	
-      // console.log("data",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -42,8 +39,10 @@ export const __getPostTime = createAsyncThunk(
 export const __getDetail = createAsyncThunk(	
   "api/post/getDetail",	
   async (payload, thunkAPI) => {	
+    
     try {	
-      const response = await Apis.getDetailAX(payload)	
+      const response = await Apis.getDetailAX(payload)
+      // console.log("제발",response.data)	
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -57,9 +56,8 @@ export const __addPost = createAsyncThunk(
   async (payload, thunkAPI) => {	
     // console.log("제발페이로드야",payload)
     try {	
-      
       const response = await Apis.postFileAX(payload)	
-      console.log("게시글작성완료",response)
+      // console.log("게시글작성완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -122,8 +120,8 @@ const postSlice = createSlice({
       // console.log("페이로드야",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;
-      // state.posts.response.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야함
+      // state.post.response = action.payload.data;
+      state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -167,7 +165,7 @@ const postSlice = createSlice({
     [__editState.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response.push(action.payload.data)	
+      state.post.response.push(...action.payload.data)	
     },	
     [__editState.rejected]: (state, action) => {	
       state.isLoading = false;	

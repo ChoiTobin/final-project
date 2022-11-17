@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { __getConimal } from"../redux/modules/postSlice"
+import { __getDetail } from"../redux/modules/postSlice"
 
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
-  const posts = useSelector((state)=>state.post.post)	
+  const dispatch = useDispatch()	
+  const posts = useSelector((state)=>state.post.post)
+  console.log("sdfsd",posts)	
+  useEffect(() => {	
+    dispatch(__getDetail(id));	
+  }, [dispatch]);	
   const onClickMove = () => {
     navigator(-1);
   };
@@ -16,10 +21,12 @@ const Detail = () => {
   return (
       <>
       <p>디테일페이지로이동했지롱</p>
-        {
-          posts.response.map((post) => (post.id === Number(id) ) && (
+        { posts.id === Number(id)  && (
+          <>
+          {/* {
+            posts.map((post) => ( 
             <div key={post.id}>
-                {/* <img src={post.imgs[0]} alt="#" /> */}
+                <img src={post.imgs[0]} alt="#" />
                 <p><strong>{post.state}</strong>{post.title}</p>
                 <p>{post.date}</p>
                 <p>{post.content}</p>
@@ -28,6 +35,10 @@ const Detail = () => {
             </div>
           )
           )
+          } */}
+          </>
+        ) 
+          
         }
         <button onClick={() => onClickMove()}>이전버튼</button>
       </>
