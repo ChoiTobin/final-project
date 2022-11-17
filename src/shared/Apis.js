@@ -13,8 +13,10 @@ const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL,
   headers: {
-    accept: "application/json",
-    Access_Token: `${cookies.get("Access_Token")}`,
+    Access_Token:
+      localStorage.getItem("Access_Token") === undefined
+        ? ""
+        : localStorage.getItem("Access_Token"),
   },
   withCredentials: true,
 })
@@ -24,8 +26,10 @@ const file = axios.create({
   baseURL: process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
-    Access_Token: `${cookies.get("Access_Token")}`,
-    // Refresh_Token: `${cookies.get("Refresh_Token")}`,
+    Access_Token:
+      localStorage.getItem("Access_Token") === undefined
+        ? ""
+        : localStorage.getItem("Access_Token"),
   },
   withCredentials: true,
 })

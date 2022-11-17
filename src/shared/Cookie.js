@@ -7,5 +7,6 @@ export const getCookie = (name) => {
   return cookies.get(name)
 }
 export const delCookie = (name) => {
+
   return cookies.remove(name, { path: "/" })
 }

@@ -13,10 +13,10 @@ const OAuth2RedirectHandler = () => {
     // 인가코드
     let code = new URL(window.location.href).searchParams.get("code");
 
-    useEffect( () => 
+    useEffect(() => 
     {
-      console.log("찍히는지",code)
-    dispatch(__kakaoLogin(code));
+    
+     dispatch(__kakaoLogin(code));
     }, []);
     
     return <div />;

@@ -43,17 +43,21 @@ export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       console.log( "카카오 코드",code)
       // membersApis.loginAX(code)
-      axios.get(`http://localhost:3000?code=${code}`)
-      //post가 아닌 get으로 보낸다.
-      // `http://{서버주소}?code=${code}`
+      axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
+    //post가 아닌 get으로 보낸다.
+    // `http://{서버주소}?code=${code}`
           .then((res) => {
             console.log("response", res);
               if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
-              setCookie("Access_Token", Access_Token);
-              setCookie("email", res.data.data.email);
-              setCookie("nickname", res.data.data.nickname);
-              setCookie("userImage", res.data.data.userImage);
+              localStorage.setItem("Access_Token", Access_Token);
+
+              localStorage.setItem("user-userId", res.data.data.email);
+
+              localStorage.setItem("user-nickname", res.data.data.nickname);
+
+              localStorage.setItem("userImage", res.data.data.userImage);
+
               //카멜케이스
               // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
               window.location.replace("/home")
@@ -128,10 +132,9 @@ export const __userLogin = createAsyncThunk(
         console.log(response.data)
         if (response.data.status === 200) {
           //setCookie represh token 받기 
-          
-          setCookie("Access_Token", response.headers.access_token)
-          setCookie("user-nickname", response.data.data.nickname)
-          setCookie("user-userId", response.data.data.userId)
+          localStorage.setItem("Access_Token", response.headers.access_token)
+          localStorage.setItem("user-nickname", response.data.data.nickname)
+          localStorage.setItem("user-userId", response.data.data.userId)
           window.location.replace('/home');
           alert(response.data.message)
           
