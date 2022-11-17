@@ -43,12 +43,12 @@ export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       console.log( "카카오 코드",code)
       // membersApis.loginAX(code)
-      axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
+      axios.get(`http://localhost:3000?code=${code}`)
       //post가 아닌 get으로 보낸다.
       // `http://{서버주소}?code=${code}`
           .then((res) => {
-
-              if(res.data.status ==200){
+            console.log("response", res);
+              if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
               setCookie("Access_Token", Access_Token);
               setCookie("email", res.data.data.email);

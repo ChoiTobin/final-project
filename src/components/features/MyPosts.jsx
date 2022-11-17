@@ -1,28 +1,39 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { __getMyPost } from "../../redux/modules/mypageSlice";
 
 // 내가 쓴 게시글 1개
-const MyPosts = () => {
-  const dispatch = useDispatch();
-  const mypost = useSelector((state) => state.mypage.mypost)
+// myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
+const MyPosts = ({ myPost }) => {
 
+  const dispatch = useDispatch();
+
+  // 내가 쓴 글 조회
   useEffect(() => {
-    dispatch(__getMyPost());
+    dispatch(__getMyPost);
   }, [dispatch]);
 
   return (
-    <div>
-      <div>
-        <div>
-          <h3>{mypost.state}</h3>
-          <span>{mypost.title}</span>
-        </div>
-        <span>{mypost.date}</span>
-      </div>
+    <>
+      {myPost !== undefined &&
+        myPost.map((post) => {
+          return (
+            <div key={post.id}>
+              <div className="top-line">
+                <span>{post.state}</span>
+                <span>{post.title}</span>
+                <div>
+                  <span>{post.date}</span>
+                </div>
+              </div>
 
-      <span>{mypost.createdAt}</span>
-    </div>
+              <div className="bottom-line">
+                <span>{post.createdAt}</span>
+              </div>
+            </div>
+          );
+        })}
+    </>
   );
 }
 

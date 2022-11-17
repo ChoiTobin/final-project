@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
+import SignIn from "../pages/SignIn"
 import SignUp from "../pages/SignUp";
 import Form from "../components/features/Form";
-import Content from "../components/features/Content";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
 import PostList from "../components/features/PostList";
@@ -19,6 +19,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/form" element={<Form />} />
         <Route path="/mypage" element={<MyPage/>}/>

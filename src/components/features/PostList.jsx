@@ -1,9 +1,13 @@
-import React, {useState} from 'react'	
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom'	
 import { useDispatch, useSelector } from 'react-redux'	
 import { useEffect } from 'react'	
+// yarn add react-intersection-observer
 import { useInView } from "react-intersection-observer"
-import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
+import { __getPostTime } from "../../redux/modules/postSlice";
+import Header from '../Layout/Header'
+import Footer from '../Layout/Footer'
 const PostList = () => {	
   const navigator = useNavigate();	
   const dispatch = useDispatch()	
@@ -16,7 +20,9 @@ const PostList = () => {
   }, [dispatch]);	
   
   return (	
-      <>	
+    <>
+      <Layouts>
+        <Header />
         {	
           posts.response !== undefined &&  
           posts.response.map((post) =>  {	
@@ -34,11 +40,21 @@ const PostList = () => {
                       <li>{post.createdAt}</li>	
                     </ul>	
                   </div>	
-              )	
-        })	
+                )	
+          })	
         }	
-      </>	
+        <Footer/>
+      </Layouts>
+    </>	
   )	
 }	
 export default PostList ;	
 // onClick={()=>{navigator(`/Detail/${post.postId}`)}}
+
+const Layouts = styled.div`
+  width: 95%;
+  max-width: 414px;
+  height: 785px;
+  margin: auto;
+  /* background-color: lightpink; */
+`;
