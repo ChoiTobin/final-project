@@ -10,7 +10,7 @@ export default Layout;
 const Layouts = styled.div`
   width: 95%;
   max-width: 414px;
-  height: 785px;
+  height: 770px;
   margin: auto;
   background-color: lightpink;
 `

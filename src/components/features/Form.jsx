@@ -5,8 +5,6 @@ import styled from "styled-components"
 import useImgUpload from '../hooks/useImgUpload'
 import { __addPost } from "../../redux/modules/postSlice";	
 import { $CombinedState } from 'redux';
-import Footer from '../Layout/Footer';
-import Header from '../Layout/Header';
 const Post = () => {
   const navigate = useNavigate
   const dispatch = useDispatch();
@@ -85,7 +83,6 @@ const Post = () => {
   return (
     <>
       <Layouts>
-        <Header/>
         <Form>
         <label htmlFor="imgFile" />
           <div className="preview">
@@ -142,7 +139,6 @@ const Post = () => {
             <FormBtn onClick={writeSubmit}>작성하기</FormBtn>
             <FormBtn>취소하기</FormBtn>
           </div>
-        <Footer/>
       </Layouts>
       
     </>

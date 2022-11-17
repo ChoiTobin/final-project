@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyPage, __getMyPet, __getMyPost, __postMyImg } from "../redux/modules/mypageSlice";
-import Header from "../components/Layout/Header";
-import Footer from "../components/Layout/Footer";
 import PetInfo from "../components/features/PetInfo";
 import User from "../img/user.png";
 import MyContent from "../components/features/MyContent";
@@ -63,7 +61,6 @@ const MyPage = () => {
 
   return (
     <Layouts>
-      <Header />
       <div className="user-info">
         <UserImg src={userPic ? myInfo.userImage : User} alt="pic"/>
         <div>
@@ -93,11 +90,11 @@ const MyPage = () => {
       {/* 내가 쓴 게시글 여러개 붙이기 - myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}] */}
       <MyContent myPost={myPosts} />
 
+      <br/>
       {/* 반려동물 정보 여러개 붙이기 - myPets: [{petId, name, age, categoryName}, {""}, {""}] */}
       <div>
         <PetInfo myPets={myPets} />
       </div>
-      <Footer />
     </Layouts>
   );
 };

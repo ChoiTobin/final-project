@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom/dist";
-import { __putMyPet } from "../redux/modules/mypageSlice";
+import { __putMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 수정
 // myPets: [{petId, name, age, categoryName}, {""}, {""}]
@@ -24,11 +24,9 @@ const ProfileEdit = () => {
   // 프로필 수정 - 반려동물 정보(이름, 나이, 종류)
   const onUpdateMyPets = () => {
     dispatch(__putMyPet(myPet));
-    window.alert("반려동물 정보수정이 완료되었습니다!")
+    window.alert("반려동물 정보수정이 완료되었습니다!");
     navigate("/mypage");
   };
-
-  
 
   return (
     <Layout>

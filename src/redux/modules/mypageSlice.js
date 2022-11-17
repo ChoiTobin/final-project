@@ -58,9 +58,13 @@ export const __deleteMyPost = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       console.log("deletePost", id)
-      const response = await Apis.deletePostAX(id)
-      return thunkAPI.fulfillWithValue(response.data);
+      await Apis.deletePostAX(id)
+        .then((response) => {
+        console.log("response", response.data)
+      })
+      return thunkAPI.fulfillWithValue(id);
     } catch (error) {
+      alert(error.response.data)
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -149,9 +153,9 @@ export const __putMyPet = createAsyncThunk(
     console.log("putMyPet", payload)
     try {
       const response = await Apis.putMyPetAX(payload)
-          return thunkAPI.fulfillWithValue(response.data)
+      console.log(response, "반려동물 수정 완료")
+          return thunkAPI.fulfillWithValue(payload)
     } catch (error) {
-      alert(error.response)
       return thunkAPI.rejectWithValue(error)
     }
   }
@@ -197,12 +201,12 @@ const mypageSlice = createSlice({
     [__deleteMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.post.id = action.payload
+      state.post = state.post.splice(action.payload, 1)
     },
     [__deleteMyPost.rejected]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.error = action.payload;
+      state.error = action.id;
     },
     // 마이페이지 조회 - myInfo{id, nickname, userImage}
     [__getMyPage.pending]: (state) => {
@@ -297,7 +301,7 @@ const mypageSlice = createSlice({
     [__deleteMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.myPets.petId = action.payload;
+      state.myPets = state.myPets.splice(action.payload, 1)
     },
     [__deleteMyPet.rejected]: (state, action) => {
       state.isLoading = false;

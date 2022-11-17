@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -14,9 +15,10 @@ const Detail = () => {
   };
   
   return (
-      <>
-      <p>디테일페이지로이동했지롱</p>
-      <button onClick={() => onClickMove()}>이전버튼</button>
+    <>
+      <Layouts>
+        <p>디테일페이지로이동했지롱</p>
+      <BackBtn onClick={() => onClickMove()}>이전버튼</BackBtn>
         {
           posts.response.map((post) => (post.id === Number(id) ) && (
           <>
@@ -30,10 +32,22 @@ const Detail = () => {
           )
           )
         }
+      </Layouts>
+      
       </>
   )
 }
 
-export default Detail ;
+export default Detail;
 
+const Layouts = styled.div`
+  width: 414px;
+  max-height: 765px;
+  margin: auto;
+  overflow: auto;
+  /* background-color: lightpink; */
+`;
 
+const BackBtn = styled.button`
+  cursor: pointer;
+`

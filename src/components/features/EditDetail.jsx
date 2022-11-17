@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import regex from "../../../shared/regex";
-import ValidInput from "../../element/ValidBtnInput";
-import useImgUpload from "../../hooks/useImgUpload";
-import photoIMG from "../../../img/photoIMG.png"
-import { __putMyPost } from "../../../redux/modules/mypageSlice";
+import regex from "../../shared/regex";
+import ValidInput from "../element/ValidBtnInput";
+import useImgUpload from "../hooks/useImgUpload";
+import photoIMG from "../../img/photoIMG.png"
+import { __putMyPost } from "../../redux/modules/mypageSlice";
 
 // 내가 쓴 게시글 수정 및 삭제
 // post{id}
@@ -23,6 +23,7 @@ const EditDetail = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const onChangePost = (event) => {
     const { name, value } = event.target.value;
@@ -77,8 +78,6 @@ const EditDetail = () => {
     // API 날리기
     dispatch(__putMyPost(formData));
   }
-
-  
 
   return (
     <div>

@@ -6,6 +6,7 @@ import post from "../modules/postSlice";
 import search from "../modules/searchSlice";
 import account from "../modules/userSlice";
 import chatting from "../modules/chattingSlice";
+import modal from "../../components/modal/modalSlice";
 
 
 const store = configureStore({
@@ -16,7 +17,8 @@ const store = configureStore({
     post,
     search,
     account,
-    chatting
+    chatting,
+    modal,
   },
   
   //dev tool을 개발 환경에서만 설정

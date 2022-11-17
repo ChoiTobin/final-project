@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { __deleteMyPost, __getMyPost } from "../../redux/modules/mypageSlice";
+import EditDetail from "./EditDetail";
 
 // 내가 쓴 게시글 1개
 // myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
@@ -11,7 +12,7 @@ const MyContent = ({ myPost }) => {
   // 내가 쓴 글 삭제
   const onDeleteMyPost = (id) => {
     dispatch(__deleteMyPost(id));
-    window.alert("해당 게시글을 삭제하시겠습니까?");
+    window.confirm("해당 게시글을 삭제하시겠습니까?");
     window.location.reload();
   };
 
@@ -38,6 +39,7 @@ const MyContent = ({ myPost }) => {
                 <div className="bottom-line">
                   <span>{post.createdAt}</span>
                 </div>
+                {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
                 <button>수정하기</button>
                 <button onClick={() => onDeleteMyPost(myPost.id)}>
                   삭제하기
