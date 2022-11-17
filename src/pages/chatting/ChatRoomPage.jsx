@@ -10,6 +10,8 @@ import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import { postChat, clearChat } from "../../redux/modules/chattingSlice";
 import GlobalHeaderChat from "./element/GlobalHeaderChat";
 import { v4 as uuidv4 } from "uuid";
+// yarn add react-hook-form
+// yarn add react-is
 import { set } from "react-hook-form";
 //import moment from "moment";
 import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";

@@ -1,39 +1,72 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __getMyPet } from "../../redux/modules/mypageSlice";
+import { __deleteMyPet, __getMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
 // myPets: [{petId, name, age, categoryName}, {""}, {""}]
 
-const Profile = ({ myPets }) => {
-  
+const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
 
-  // GET으로 리스트에 붙일 마이페이지 정보들을 받아와서 브라우저에 뿌려준다.
+  // 나의 반려동물 삭제
+  const onDeleteMyPet = (petId) => {
+    dispatch(__deleteMyPet(petId));
+    window.alert("반려동물 정보를 삭제하시겠습니까?");
+    window.location.reload();
+  };
+
+  // 반려동물 정보 조회
   useEffect(() => {
     dispatch(__getMyPet());
   }, [dispatch]);
 
   return (
     <div>
-      <PetInfo className="pet-info">
+      {myPets !== undefined &&
+        myPets.map((myPet) => {
+          if (myPet !== "") {
+            return (
+              <Pet className="pet-info">
+                <div>
+                  <h3>{myPets.categoryName}</h3>
+                  <span>{myPets.name}</span>
+                </div>
+
+                <div>
+                  <span> {myPets.age}</span>
+                </div>
+                <button>수정하기</button>
+                <button onClick={() => onDeleteMyPet(myPets.petId)}>
+                  삭제하기
+                </button>
+              </Pet>
+            );
+          } else {
+            return (
+              <div>
+                <h3>반려동물을 등록해보세요</h3>
+              </div>
+            );
+          }
+        })}
+      {/* <Pet className="pet-info">
         <div>
-          <h3>{myPets.category}</h3>
+          <h3>{myPets.categoryName}</h3>
           <span>{myPets.name}</span>
         </div>
 
         <div>
           <span> {myPets.age}</span>
         </div>
-      </PetInfo>
+      </Pet> */}
     </div>
   );
 };
 
-export default Profile;
+export default PetInfo;
 
-const PetInfo = styled.div`
+const Pet = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;

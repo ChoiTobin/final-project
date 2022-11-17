@@ -5,15 +5,34 @@ import Apis from "../../shared/Apis"
 // post{id}, myInfo{id, nickname, userImage}, myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}],
 // myPic{userImage}, myPets: [{petId, name, age, categoryName}, {""}, {""}]
 const initialState = {
-  post: {},
-  myInfo: {},
-  mypost: [],
-  myPic: {},
-  myPets: {
-    pet1: {},
-    pet2: {},
-    pet3: {}
+  post: {id: 0,},
+  myInfo: {
+    id: 0,
+    nickname: "",
+    userImage: "",
   },
+  myPost: [
+    {
+      id: 0,
+      title: "",
+      content: "",
+      price: "",
+      categoryName: "",
+      state: "",
+      local: "",
+      date: "",
+      imgs: [],
+    }
+  ],
+  myPic: {},
+  myPets: [
+    {
+      petId: 0,
+      name: "",
+      age: "",
+      categoryName: "",
+    },
+  ],
   isLoading: false,
   error: null,
 
@@ -53,9 +72,9 @@ export const __getMyPage = createAsyncThunk(
   "mypage/__getMyPage",
   async (payload, thunkAPI) => {
     try {
-      console.log("getMyPage", payload)
+      console.log("마이페이지 get 페이로드", payload)
       const response = await Apis.getMyPageAX()
-      console.log("response MyPage", response);
+      console.log("마이페이지 조회", response);
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -68,10 +87,9 @@ export const __getMyPost = createAsyncThunk(
   "mypage/__getmypost",
   async (payload, thunkAPI) => {
     try {
-      console.log("getMyPost", payload)
-      const response = await Apis.getMyPostAX(payload)
+      const response = await Apis.getMyPostAX()
       console.log("내 게시글", response);
-      return thunkAPI.fulfillWithValue(response.data)
+      return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -82,10 +100,10 @@ export const __getMyPost = createAsyncThunk(
 export const __postMyImg = createAsyncThunk(
   "mypage/__postMyImg",
   async (payload, thunkAPI) => {
-    console.log("postMyImg", payload)
     try {
       await Apis.postMyImgAX(payload)
         .then((response) => {
+          console.log("프사 res", response);
           return thunkAPI.fulfillWithValue(response)
       })
     } catch (error) {
@@ -99,10 +117,9 @@ export const __postMyImg = createAsyncThunk(
 export const __getMyPet = createAsyncThunk(
   "mypage/__getMyPet",
   async (payload, thunkAPI) => {
-    console.log("getMyPet", payload)
     try {
-      const response = await Apis.getMyPetAX(payload)
-      console.log("getMyPet res", response);
+      const response = await Apis.getMyPetAX()
+      console.log("반려동물 정보", response);
       return thunkAPI.fulfillWithValue(response.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -145,7 +162,6 @@ export const __deleteMyPet = createAsyncThunk(
   "mypage/__deleteMyPet",
   async (petId, thunkAPI) => {
     try {
-      console.log("deleteMyPet", petId)
       const response =  Apis.deleteMyPetAX(petId)
       return thunkAPI.fulfillWithValue(response.data)
     } catch (error) {
@@ -195,6 +211,7 @@ const mypageSlice = createSlice({
     [__getMyPage.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("여기서는?", action.payload)
       state.myInfo = action.payload;
     },
     [__getMyPage.rejected]: (state, action) => {
@@ -209,6 +226,7 @@ const mypageSlice = createSlice({
     [__getMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("내 글은?", action.payload)
       state.myPost = action.payload;
     },
     [__getMyPost.rejected]: (state, action) => {
@@ -236,6 +254,7 @@ const mypageSlice = createSlice({
     [__getMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("이거는?", action.payload)
       state.myPets = action.payload;
     },
     [__getMyPet.rejected]: (state, action) => {
