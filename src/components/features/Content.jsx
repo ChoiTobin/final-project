@@ -6,7 +6,11 @@ import PostList from "../features/PostList"
 const Content = () => {
   const dispatch = useDispatch()
   // 리스트
-  const posts  = useSelector((state) => state.post.post)
+  const {posts} = useSelector((state)=>state.post)	
+  // const {posts} = useSelector((state)=>state.post.posts)	
+  const searchposts  = useSelector((state) => state.post.post.response)
+  console.log("postsssss",searchposts)
+
   //전체조회
   useEffect(() => {
     dispatch(
@@ -34,9 +38,6 @@ const Content = () => {
   }
   
   const onClickBig = () =>{ //대형
-    // const data = posts.response.filter((item)=> item.category === "대형" )
-    // 휴먼에러 처음에 "대형"이라고 문자열로 보냈을시 잘 요청했었는데 데이터를 확인하니 글자가 아닌 이상한 영어가나옴
-    // api주소에서 특수문자 오타로인해 딴방향을 잡고있었음
     dispatch(__getCategory("대형"));
   } 
   const onClickMiddle = () =>{ //중형
@@ -55,7 +56,7 @@ const Content = () => {
           <input type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler} />
           <button onClick={onClickSearch}>검색</button>
         </div>
-        <PostList posts={posts} key={posts.postId} />
+        <PostList posts={posts} key={posts.postId} searchposts={searchposts} />
       </div> 
   )
 }

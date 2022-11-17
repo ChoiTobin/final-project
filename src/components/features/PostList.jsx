@@ -5,15 +5,15 @@ import { useInView } from "react-intersection-observer"
 import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
 import axios from "axios";
 
-const PostList = () => {	
+const PostList = ({searchposts,posts}) => {	
   const navigator = useNavigate();	
   const dispatch = useDispatch()	
-  const {posts} = useSelector((state)=>state.post)	
-
+  // const {posts} = useSelector((state)=>state.post)	
+  console.log("서치",searchposts)
   // useEffect(() => {	
   //   dispatch(__getPostTime());	
   // }, [dispatch]);	
-
+  console.log("포스츠",posts)
   const [page, setPage] = useState(1) //페이지수
   const [size, setSize] = useState([]) //리스트수
   const [loading, setLoading] = useState(false)
@@ -42,11 +42,25 @@ const PostList = () => {
 
   return (	
       <>	
-        {	 
-          posts.map((post) =>  {	
+        {	searchposts && searchposts.Length  !== 0 ? searchposts.map((post)=>{
+          return(	
+            <div  key={post.id}>	
+              <ul>	
+                <li>{post.state},{post.title}</li>
+                <li>{post.content}</li>
+                <li>{post.category}</li>
+                <li>{post.price}원</li>		
+                <li>{post.date}</li>		
+                <li>{post.local}</li>		
+                <li>{post.createdAt}</li>	
+              </ul>	
+            </div>	
+          )
+        }) :
+            posts.map((post) =>  {	
               // if (post.length !== 0)	
               return(	
-                  <div onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>	
+                  <div  key={post.id}>	
                     <ul>	
                       <li>{post.state},{post.title}</li>
                       <li>{post.content}</li>

@@ -22,7 +22,7 @@ const initialState = {
 //     }	
 //   }	
 // )
-	
+
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {	
@@ -39,7 +39,6 @@ export const __getPostTime = createAsyncThunk(
 export const __getDetail = createAsyncThunk(	
   "api/post/getDetail",	
   async (payload, thunkAPI) => {	
-    
     try {	
       const response = await Apis.getDetailAX(payload)
       // console.log("제발",response.data)	
@@ -121,6 +120,8 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
       // state.post.response = action.payload.data;
+      console.log("pay",action.payload.data)
+
       state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
     },	
     [__getPostTime.rejected]: (state, action) => {	
