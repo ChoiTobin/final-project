@@ -48,9 +48,9 @@ const Content = () => {
   return (
       <div>
         <button type='button' onClick={onClickAll}>전체</button>
-        <button type='button' name="대형" onClick={onClickBig}>대형</button>
-        <button type='button' name="중형" onClick={onClickMiddle}>중형</button>
-        <button type='button' name="소형" onClick={onClickSmall}>소형</button>
+        <button type='button' name="대형" onClick={onClickBig}>큰동물</button>
+        <button type='button' name="중형" onClick={onClickMiddle}>중간동물</button>
+        <button type='button' name="소형" onClick={onClickSmall}>작은동물</button>
         <div className="검색">
           <input type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler} />
           <button onClick={onClickSearch}>검색</button>

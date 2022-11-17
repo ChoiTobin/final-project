@@ -16,20 +16,20 @@ const Detail = () => {
   return (
       <>
       <p>디테일페이지로이동했지롱</p>
-      <button onClick={() => onClickMove()}>이전버튼</button>
         {
           posts.response.map((post) => (post.id === Number(id) ) && (
-          <>
             <div key={post.id}>
-                <p>{post.title}</p>
+                {/* <img src={post.imgs[0]} alt="#" /> */}
+                <p><strong>{post.state}</strong>{post.title}</p>
+                <p>{post.date}</p>
                 <p>{post.content}</p>
                 <p>{post.price}</p>
-                <p>{post.category}</p>
+                <p>{post.createdAt}</p>
             </div>
-          </>  
           )
           )
         }
+        <button onClick={() => onClickMove()}>이전버튼</button>
       </>
   )
 }

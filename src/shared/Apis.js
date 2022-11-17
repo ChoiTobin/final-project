@@ -46,7 +46,7 @@ export const Apis = {
 
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
-
+  
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
@@ -55,6 +55,8 @@ export const Apis = {
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
+  // getPostTimeAX: () => token.get(`/api/posts?&size=5&page=0`),
+  // getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload}`),
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
   getDetailAX: (postId) => token.get(`/api/posts/${postId}`),
@@ -88,14 +90,5 @@ export const Apis = {
   getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
   getFilterAX: (categoryKeyword) => token.get(`/api/filter?category=${categoryKeyword}`),
-  // 무한스크롤
-  // getScrollAX: (page) => token.get(`/api/posts?&size=1&page=1${infinitescroll}`)
-  getScrollAX: (curPage, payload) => token.get(`/api/posts?&size={curPage}&page=${payload}`)
-  // /api/posts?&size=1&page=1
-  // /api/posts?&size=10&page=1
-
-  // const curPage = payload * 10;
-  // const curPage = page * 10;
-  // return thunkAPI.fulfillWithValue(res.data.slice((curPage - 10), curPage));
 }
 export default Apis
