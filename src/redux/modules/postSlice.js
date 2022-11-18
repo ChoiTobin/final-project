@@ -5,16 +5,32 @@ import axios from "axios";
 import { __putPost } from "./mypageSlice";	
 const initialState = {	
   isLoading: false,	
+  // posts:[], //공배열로 바꿔야함
   error: null,	
   post: {},	
 }
 
 // 게시글 전체 조회	
+// export const __getPostTime = createAsyncThunk(	
+//   "api/posts/getPost",	
+//   async (payload, thunkAPI) => {	
+//     try {	
+//       const response = await Apis.getPostTimeAX(payload)	
+//       return thunkAPI.fulfillWithValue(response.data);	
+//     } catch (error) {	
+//       return thunkAPI.rejectWithValue(error);	
+//     }	
+//   }	
+// )	
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {	
     try {	
-      const response = await Apis.getPostTimeAX(payload)	
+      console.log("payload",payload)
+      const response = await Apis.getPostTimeAX(payload)
+      // const curSize = payload * 5;
+      // return thunkAPI.fulfillWithValue(response.data.slice((curSize - 5), curSize));	
+      // console.log("data",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -43,13 +59,13 @@ export const __addPost = createAsyncThunk(
     try {	
       
       const response = await Apis.postFileAX(payload)	
-      console.log("제발리스폰스야",response)
+      console.log("게시글작성완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
-)	
+)
 
 // 게시글 진행 상테 수정	
 export const __editState = createAsyncThunk(	
@@ -81,16 +97,17 @@ export const __getKeyword = createAsyncThunk(
 export const __getCategory = createAsyncThunk(	
   "/api/search/getCategory",	
   async (payload, thunkAPI) => {	
-    console.log("이건페이로드",payload)
+    // console.log("이건페이로드",payload)
     try {	
       const response = await Apis.getFilterAX(payload)	
-      console.log("이건리스폰스",response)
+      console.log("카테고리검색완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
 )	
+
 
 const postSlice = createSlice({	
   name: "post",	
@@ -102,9 +119,11 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostTime.fulfilled]: (state, action) => {	
+      // console.log("페이로드야",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;	
+      state.post.response = action.payload.data;
+      // state.posts.response.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야함
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -160,7 +179,7 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
-      console.log("검색",action.payload)
+      // console.log("검색",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
       state.post.response = action.payload.data;	
@@ -183,7 +202,7 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
       state.error = action.payload;	
-    },
+    }
   }	
 })	
 export default postSlice.reducer;

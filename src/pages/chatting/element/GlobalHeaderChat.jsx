@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 //mport { ReactComponent as ArrowBackIcon } from "../../assets/icons/arrow_back_ios.svg";
 //import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
+import Modal from "../modalfolder/Modal";
 
 const GlobalHeaderChat = () => {
   const navigate = useNavigate();
 
-  const member = localStorage.getItem("user-info");
-  const obj = JSON.parse(member);
-  const nickname = obj.nickname;
+  const member = localStorage.getItem("user-nickname");
+  const obj = member
+  //JSON.parse(member);
+  const nickname = obj
 
   return (
     <NavbarWrapper>
@@ -20,6 +22,10 @@ const GlobalHeaderChat = () => {
         </NavItem>
         <NavItem></NavItem>
         <NavItem>
+          <div>승락버튼
+              <Modal></Modal>
+
+          </div>
           <ExitButton>나가기</ExitButton>
         </NavItem>
       </Navbar>

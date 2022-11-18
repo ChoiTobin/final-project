@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom'
 const KakaoLogin = () => {
     const REST_API_KEY = process.env.REACT_APP_API_KAKAO_ID
     const REDIRECT_URI = process.env.REACT_APP_API_URL
-    //console.log(REDIRECT_URI,REST_API_KEY,"확인")
+    console.log(REDIRECT_URI,REST_API_KEY,"확인")
 
 
     // const location = useLocation();
