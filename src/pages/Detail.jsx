@@ -9,21 +9,24 @@ const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
   const dispatch = useDispatch()	
+
   const posts = useSelector((state)=>state.post.post)
+  
   console.log("sdfsd",posts)	
+
   useEffect(() => {	
     dispatch(__getDetail(id));	
   }, [dispatch]);	
+
   const onClickMove = () => {
     navigator(-1);
   };
   
   return (
       <>
-      <p>디테일페이지로이동했지롱</p>
         { posts.id === Number(id)  && (
           <>
-          {/* {
+          {
             posts.map((post) => ( 
             <div key={post.id}>
                 <img src={post.imgs[0]} alt="#" />
@@ -35,7 +38,7 @@ const Detail = () => {
             </div>
           )
           )
-          } */}
+          }
           </>
         ) 
           

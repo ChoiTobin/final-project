@@ -3,25 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'	
 import { useInView } from "react-intersection-observer"
 import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
-import axios from "axios";
 
 const PostList = ({searchposts,posts}) => {	
   const navigator = useNavigate();	
   const dispatch = useDispatch()	
-  // const {posts} = useSelector((state)=>state.post)	
-  console.log("서치",searchposts)
-  // useEffect(() => {	
-  //   dispatch(__getPostTime());	
-  // }, [dispatch]);	
-  console.log("포스츠",posts)
+
   const [page, setPage] = useState(1) //페이지수
-  const [size, setSize] = useState([]) //리스트수
+  const [size, setSize] = useState([]) //리스트수 
   const [loading, setLoading] = useState(false)
-  // console.log("page",page)
   const [ref, inView] = useInView()
   
   /**  서버에서 아이템을 가지고 오는 함수 */
-  const getItems = useCallback(async () => { //의존하는 값(deps)들이 바뀌지 않는 한 기존 함수를 재사용할 수 있습니다.
+  const getItems = useCallback(async () => {
     dispatch(__getPostTime(page));
   }, [page])  
   
@@ -31,7 +24,7 @@ const PostList = ({searchposts,posts}) => {
     setSize(posts)
     // console.log("size", size)
   }, [getItems])
-  
+   
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading && size !== posts) {
@@ -44,7 +37,7 @@ const PostList = ({searchposts,posts}) => {
       <>	
         {	searchposts && searchposts.Length  !== 0 ? searchposts.map((post)=>{
           return(	
-            <div  key={post.id}>	
+            <div key={post.id}>	
               <ul>	
                 <li>{post.state},{post.title}</li>
                 <li>{post.content}</li>
@@ -60,7 +53,7 @@ const PostList = ({searchposts,posts}) => {
             posts.map((post) =>  {	
               // if (post.length !== 0)	
               return(	
-                  <div  key={post.id}>	
+                  <div onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>	
                     <ul>	
                       <li>{post.state},{post.title}</li>
                       <li>{post.content}</li>

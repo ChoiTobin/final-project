@@ -5,7 +5,6 @@ import Layout from '../components/Layout/Layout';
 import Content from "../components/features/Content";
 
 const Home = () => {
-
   return (
     <HomePage>
       <Layout>
@@ -14,7 +13,6 @@ const Home = () => {
         <Footer />
       </Layout>
     </HomePage>
-    
   )
 }
 
