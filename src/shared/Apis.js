@@ -24,6 +24,7 @@ const token = axios.create({
 })
 
 const file = axios.create({
+  
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL:"http://54.180.92.242:8080", 
   //process.env.REACT_APP_URL,
