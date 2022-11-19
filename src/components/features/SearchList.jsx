@@ -20,10 +20,14 @@ const Content = () => {
     } 
     dispatch(__getKeyword(getSearch.search));
   }
+  // useEffect(() => {	
+  //   dispatch(__getPostTime());	
+  // }, [dispatch])
 
   const onClickAll = () =>{ //전체검색
-    // dispatch(__getPostTime(searchposts));
-    alert("점검중입니다.")
+    window.location.replace();
+    // dispatch(__getPostTime());
+    // alert("점검중입니다.")
   }
   
   // 카테고리검색
@@ -36,7 +40,7 @@ const Content = () => {
   const onClickSmall = () =>{ 
     dispatch(__getCategory("소형"));
   } 
-
+  
   return (
       <div>
         <button type='button' onClick={onClickAll}>전체</button>

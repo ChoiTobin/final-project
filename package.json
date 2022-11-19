@@ -33,6 +33,7 @@
     "sockjs-client": "^1.6.1",
     "stomp-websocket": "^2.3.4-next",
     "styled-components": "^5.3.6",
+    "swiper": "^8.4.4",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34",
     "webstomp-client": "^1.2.6"

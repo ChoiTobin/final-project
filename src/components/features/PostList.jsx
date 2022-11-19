@@ -8,7 +8,7 @@ const PostList = ({searchposts,posts}) => {
   const navigator = useNavigate();	
   const dispatch = useDispatch()	
 
-  const [page, setPage] = useState(1) //페이지수
+  const [page, setPage] = useState(0) //페이지수
   const [size, setSize] = useState([]) //리스트수 
   const [loading, setLoading] = useState(false)
   const [ref, inView] = useInView()
@@ -62,6 +62,7 @@ const PostList = ({searchposts,posts}) => {
                       <li>{post.date}</li>		
                       <li>{post.local}</li>		
                       <li>{post.createdAt}</li>	
+                      <li>{post.nickname}</li>	
                     </ul>	
                   </div>	
           )	
@@ -71,4 +72,4 @@ const PostList = ({searchposts,posts}) => {
   )	
 }	
 export default PostList ;	
-// onClick={()=>{navigator(`/Detail/${post.id}`)}}
+// 
