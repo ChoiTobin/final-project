@@ -10,7 +10,6 @@ import { __getPostTime } from "../../redux/modules/postSlice";
 const PostList = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const [ref, inView] = useInView();
   const posts = useSelector((state) => state.post.post);
   // console.log("포스츠",posts)
 
@@ -54,8 +53,8 @@ export default PostList;
 // onClick={()=>{navigator(`/Detail/${post.postId}`)}}
 
 const Layouts = styled.div`
-  width: 414px;
-  max-height: 765px;
+  width: 360px;
+  max-height: 640px;
   margin: auto;
   overflow: auto;
   /* background-color: lightpink; */

@@ -9,7 +9,8 @@ import { __getConimal } from"../redux/modules/postSlice"
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
-  const posts = useSelector((state)=>state.post.post)	
+  const posts = useSelector((state) => state.post.post)	
+  console.log("@detail",posts);
   const onClickMove = () => {
     navigator(-1);
   };
@@ -41,8 +42,8 @@ const Detail = () => {
 export default Detail;
 
 const Layouts = styled.div`
-  width: 414px;
-  max-height: 765px;
+  width: 360px;
+  max-height: 640px;
   margin: auto;
   overflow: auto;
   /* background-color: lightpink; */

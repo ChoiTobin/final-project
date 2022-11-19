@@ -165,8 +165,8 @@ const FormBtn = styled.button`
 `
 const Layouts = styled.div`
   width: 95%;
-  max-width: 414px;
-  height: 785px;
+  max-width: 360px;
+  height: 640px;
   margin: auto;
   /* background-color: lightpink; */
 `;

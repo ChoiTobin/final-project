@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __deleteMyPet, __getMyPet } from "../../redux/modules/mypageSlice";
+import Modal from "../modal/modal";
+import useModal from "../modal/useModal";
 import EditPetInfo from "./EditPetInfo";
 
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
@@ -9,13 +11,27 @@ import EditPetInfo from "./EditPetInfo";
 
 const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
+  
+  console.log("형태가 뭐야 대체", myPets);
+
+  const [modalOption, showModal] = useModal();
+
+  const onClickModal = useCallback(() => {
+    showModal(
+      true,
+      "안녕하세요",
+      () => console.log("모달 on"),
+      null,
+      <EditPetInfo/>
+    )
+  }, [modalOption])
 
 
   // 나의 반려동물 삭제
   const onDeleteMyPet = (petId) => {
     dispatch(__deleteMyPet(petId));
     window.alert("반려동물 정보를 삭제하시겠습니까?");
-    window.location.reload();
+    // window.location.reload();
   };
 
   // 반려동물 정보 조회
@@ -29,18 +45,20 @@ const PetInfo = ({ myPets }) => {
         myPets.map((myPet) => {
           if (myPet !== "") {
             return (
-              <Pet className="pet-info">
+              <Pet className="pet-info" key={myPet.petId}>
                 <div>
-                  <h3>{myPets.categoryName}</h3>
-                  <span>{myPets.name}</span>
+                  <h3>{myPet.categoryName}</h3>
+                  <span>{myPet.name}</span>
                 </div>
 
                 <div>
-                  <span> {myPets.age}</span>
+                  <span> {myPet.age}</span>
                 </div>
                 {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
-                <button>수정하기</button>
-                <button onClick={() => onDeleteMyPet(myPets.petId)}>
+                <button onClick={onClickModal}>수정하기</button>
+                <Modal modalOption={modalOption}/>
+
+                <button onClick={() => onDeleteMyPet(myPet.petId)}>
                   삭제하기
                 </button>
               </Pet>

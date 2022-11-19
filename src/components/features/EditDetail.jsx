@@ -1,9 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import regex from "../../shared/regex";
-import ValidInput from "../element/ValidBtnInput";
 import useImgUpload from "../hooks/useImgUpload";
 import photoIMG from "../../img/photoIMG.png"
 import { __putMyPost } from "../../redux/modules/mypageSlice";
@@ -26,9 +24,11 @@ const EditDetail = () => {
 
 
   const onChangePost = (event) => {
-    const { name, value } = event.target.value;
-    setMyPost({...myPost, [name]: value})
+    const { name, value } = event.target;
+    setMyPost({ ...myPost, [name]: value })
   };
+
+  console.log("온체인지 포스트", myPost);
 
   // 이미지 업로드 훅
   const [files, filesUrls, uploadHandle] = useImgUpload(5);
@@ -38,53 +38,56 @@ const EditDetail = () => {
 
   // submit
   const writeSubmit = () => {
-    // request로 날릴 formData
-    const formData = new FormData();
+    
+  // request로 날릴 formData
+  const formData = new FormData();
 
-    // FormData에 파일 담기
-    if (files.length > 0) {
-      files.forEach((file) => {
-        formData.append("images", file);
-      })
-    } else {
-      formData.append("images", null)
-    }
-
-    // 이미지와 함께 formData에 보낼 input onChange value
-    if (myPost.categoryName === "") {
-      alert("종류를 선택해주세요")
-      return
-    }
-    if (myPost.title === "") {
-      alert("제목을 입력해주세요")
-      return
-    }
-    if (myPost.price === "") {
-      alert("가격을 입력해주세요");
-      return;
-    }
-    if (myPost.local === "") {
-      alert("위치를 선택해주세요");
-      return;
-    }
-    if (myPost.content === "") {
-      alert("내용을 입력해주세요");
-      return;
+  // FormData에 파일 담기
+  if (files.length > 0) {
+    files.forEach((file) => {
+      console.log("이미지 파일 올라가나", file);
+      formData.append("postImg", file);
+    })
+  } else {
+    formData.append("postImg", null)
     }
 
-    // formData에 작성한 데이터 넣기
-    formData.append("post", JSON.stringify(myPost));
+  setMyPost("")
 
-    // API 날리기
-    dispatch(__putMyPost(formData));
-  }
+  const myPostData = {
+    "title": myPost.title,
+    "content": myPost.content,
+    "categoryName": myPost.categoryName,
+    "price": parseInt(myPost.price),
+    "local": myPost.local,
+    }
+    
+    console.log("전체내용", myPostData);
+    console.log("이미지들", filesUrls);
+
+  formData.append("mypostImg", filesUrls);
+
+  // formData에 작성한 데이터 넣기
+  formData.append("post", new Blob([JSON.stringify(myPostData)], {
+    type: "application/json"
+  }));
+
+    console.log("폼데이터", formData);
+    
+  // API 날리기
+  dispatch(__putMyPost(formData));
+}
 
   return (
     <div>
       <div>
-        <label>종류</label>
-        <select onChange={onChangePost} value={myPost.categoryName}>
-          <option defaultValue="all">전체</option>
+        <label htmlFor="text">종류</label>
+        <select
+          onChange={onChangePost}
+          name="categoryName"
+          value={myPost.categoryName}
+        >
+          <option defaultValue="">전체</option>
           <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
           <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
           <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
@@ -92,11 +95,6 @@ const EditDetail = () => {
       </div>
       <div>
         <label htmlFor="imgFile">
-          {/* 이미지 미리보기 Preview */}
-          {filesUrls.map((imgs, id) => {
-            return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
-          })}
-
           {/* 이미지 업로더 */}
           <input
             type="file"
@@ -123,25 +121,30 @@ const EditDetail = () => {
         </label>
       </div>
 
+      <ImgPreview>
+        {/* 이미지 미리보기 Preview */}
+        {filesUrls.map((imgs, id) => {
+          return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
+        })}
+      </ImgPreview>
+
       <div>
-        <label>제목</label>
-        <ValidInput
-          label="제목"
+        <label htmlFor="text">제목</label>
+        <input
+          type="text"
+          name="title"
           value={myPost.title}
-          setValue={setMyPost}
-          maxValue={30}
-          regexCheck={regex.title}
+          maxLength={30}
           onChange={onChangePost}
-          defaultText="제목을 입력해주세요"
-          successText="통과"
-          errorText="제목은 30자 이내로 작성해야 합니다"
+          placeholder="제목을 입력해주세요"
         />
       </div>
 
       <div>
-        <span>가격</span>
+        <label htmlFor="text">가격</label>
         <input
-          type="number"
+          type="text"
+          name="price"
           value={myPost.price}
           onChange={onChangePost}
           placeholder="예) 20000원"
@@ -149,8 +152,8 @@ const EditDetail = () => {
       </div>
 
       <div>
-        <span>위치</span>
-        <select onChange={onChangePost} value={myPost.local}>
+        <label htmlFor="text">위치</label>
+        <select onChange={onChangePost} name="local" value={myPost.local}>
           <option defaultValue="">---지역을 선택해주세요---</option>
           <option value="강원도">강원도</option>
           <option value="경기도">경기도</option>
@@ -171,16 +174,15 @@ const EditDetail = () => {
       </div>
 
       <div>
-        <label>내용</label>
-        <ValidInput
-          label="내용"
+        <label htmlFor="text">내용</label>
+        <input
+          type="text"
+          name="content"
           value={myPost.content}
-          setValue={setMyPost}
-          regexCheck={regex.body}
+          maxLength={200}
           onChange={onChangePost}
-          defaultText="내용을 입력해주세요"
-          successText="통과"
-          errorText="내용은 200자 이내로 작성해야 합니다."
+          placeholder="내용을 입력해주세요"
+          style={{ minHeight: "100px" }}
         />
       </div>
 
@@ -196,3 +198,9 @@ const EditDetail = () => {
   );
 }
 export default EditDetail;
+
+const ImgPreview = styled.div`
+  width: 200px;
+  height: 200px;
+  
+`

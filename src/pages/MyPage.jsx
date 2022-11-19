@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __getMyPage, __getMyPet, __getMyPost, __postMyImg } from "../redux/modules/mypageSlice";
+import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import PetInfo from "../components/features/PetInfo";
 import User from "../img/user.png";
 import MyContent from "../components/features/MyContent";
+import Mytab from "../components/features/mypageTab";
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
@@ -13,8 +13,6 @@ import MyContent from "../components/features/MyContent";
 // myPic{userImage}, myPets: [{petId, name, age, categoryName}, {""}, {""}]
 
 const MyPage = () => {
-  const [userPic, setUserPic] = useState(false)
-  const [updateMyPic, setUpdateMyPic] = useState("");
   const dispatch = useDispatch();
 
   const all = useSelector((state) => state.mypage);
@@ -32,16 +30,7 @@ const MyPage = () => {
   console.log("셀렉터myPic", myPic);
   console.log("셀렉터myPets", myPets);
 
-  // 프로필 사진 업로드
-  const onSaveImg = () => {
-    if (updateMyPic === "") {
-      return alert("이미지를 선택해 주세요");
-    }
-    dispatch(__postMyImg(
-      setUpdateMyPic("")
-    ));
-    setUserPic(true);
-  };
+  
 
   // 마이페이지 회원정보 조회
   useEffect(() => {
@@ -58,43 +47,28 @@ const MyPage = () => {
     dispatch(__getMyPet());
   }, []);
 
-
   return (
     <Layouts>
       <div className="user-info">
-        <UserImg src={userPic ? myInfo.userImage : User} alt="pic"/>
-        <div>
-          <input
-            type="file"
-            name="userImage"
-            value={myInfo.userImage}
-            onChange={(event) => {
-              setUpdateMyPic(event.target.value);
-            }}
-          />
-        </div>
+        <UserImg src={myInfo.userImage === "" ? myInfo.userImage : User} alt="pic" />
 
         <div>
           <h1>{myInfo.nickname}</h1>
-          <button onClick={onSaveImg}>프로필 사진 수정</button>
         </div>
       </div>
 
       <div>
-        <hr />
-        <button>내가 쓴 글</button>
-        <button>반려동물 정보</button>
-        <hr />
+        <Mytab/>
       </div>
 
       {/* 내가 쓴 게시글 여러개 붙이기 - myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}] */}
-      <MyContent myPost={myPosts} />
+      {/* <MyContent myPost={myPosts} /> */}
 
-      <br/>
+      {/* <br /> */}
       {/* 반려동물 정보 여러개 붙이기 - myPets: [{petId, name, age, categoryName}, {""}, {""}] */}
-      <div>
+      {/* <div>
         <PetInfo myPets={myPets} />
-      </div>
+      </div> */}
     </Layouts>
   );
 };
@@ -103,10 +77,10 @@ export default MyPage;
 
 const Layouts = styled.div`
   width: 95%;
-  max-width: 414px;
-  height: 785px;
+  max-width: 360px;
+  height: 640px;
   margin: auto;
-  /* background-color: lightpink; */
+  background-color: lightpink;
 `;
 
 const UserImg = styled.img`
