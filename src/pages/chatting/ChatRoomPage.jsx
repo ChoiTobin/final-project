@@ -5,6 +5,8 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { __CreateRoom } from "../../redux/modules/chattingSlice";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
+import Modal from "./modalfolder/Modal";
+import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 
 import { postChat, clearChat } from "../../redux/modules/chattingSlice";
 import GlobalHeaderChat from "./element/GlobalHeaderChat";
@@ -15,202 +17,171 @@ import ChatSubmitBox from "./ChatSubmitBox";
 import ChatCard from "./ChatCard";
 
 function ChatRoomPage() {
-  const {id}  = useParams()
-
-  const sock = new SockJS("http://54.180.92.242:8080/ws/chat");
-  const ws = webstomp.over(sock);
-  //0.소켓 연결
-
-
-  // access-token
-  // const Access_Token = localStorage.getItem("Access_Token");
-  let subscription;
   const dispatch = useDispatch();
+  const {id}  = useParams()
   const navigate = useNavigate();
 
-  // // stompClient
-  // const stompClient = useRef(null);
-  // //
-  // const prevDate = useRef(0);
-  // // 채팅 내역 리스트
-  // //주석 const listRef = useRef();
-
-  // // 방
-  // const [room, setRoom] = useState();
-  
 
   const chatList = useSelector((state) => state.chatting.chatList);
 
-  // useEffect(() => {
-  // dispatch(__CreateRoom({name:"dkdkdk"}));
-  // }, []);
-  //1.방생성 받는 data:id와 name id=숫자
+  const sock = new SockJS("http://15.164.229.198:8080/ws/chat");
+  const ws = webstomp.over(sock);
+  const loginMemberId = localStorage.getItem("user-nickname");
+  let postId = id
+  const Access_Token = localStorage.getItem("Access-Token");
 
 
-  //드려야할것 방생성할때 postid=URLparams값,title,엑세스토큰
-
-
-
-  // const member = localStorage.getItem("user-nickname");
-  // const obj = JSON.parse(member);
-  // const 
-  //login memberid가 어떻게되는지?
-  // const loginMemberId = member;
-
-  // const postId = localStorage.getItem("user-nickname");
-
-  //id:nickname
-
-
-  // 컴포넌트 마운트시에 소켓 연결 , 채팅방 생성
-//   useEffect(() => {
-
-//     dispatch(__CreateRoom({name:"dkdkdk"}));
-// //
-//     //방생성****** 확인 완료.
-// // dispatch(__getinitialChatList(postId));
-// // wsConnectSubscribe()
-//  //주석풀기 waitForConnection(ws, wsConnectSubscribe());
-//     // makeRoom();
-
-//     return () => {
-//       // 주석풀기wsDisConnectUnsubscribe();
-
-//     };
-//   }, []);
-  // useEffect(() => {
-  //   listRef.current.scrollTop = listRef.current.scrollHeight;
-  // }, [chatList]);
-
-  // 웹소켓 연결, 구독
+  useEffect(() => {
+    dispatch(__getinitialChatList(postId));
+    waitForConnection(ws, wsConnectSubscribe());
+    // makeRoom();
+  }, []);
   
 
-  // let headers = { 
-  //   Access_Token: localStorage.getItem('Access_Token')
-  // };
-  // 헤더 주석풀기 75~94
-  // console.log('헤더스',headers.Acc)
-  // function wsConnectSubscribe() {
-  //   try {
-  //     ws.connect(headers,
-  //       () => {
-  //         // 채팅방 만들기(memberId) -> 방 만드는 사람의 아이디(로그인한 사람의 아이디)
-  //         // send랑 똑같은 멤버 아이디
-  //         let num = 0;
-  //         const chatroom = ws.subscribe(
-  //           `/sub/room/founder/${loginMemberId}`,
-  //           function (frame) {
-  //             //주석풀기 const data = JSON.parse(frame.body);
-  //             // const roomId = data.roomInfoId;
-  //             // num = roomId;
-  //             // setRoom(num);
-  //             // console.log(num);
-  //           }
-  //         );
-// 주석 풀기 95~126 setTimeout
-          // setTimeout(() => {
-          //   chatroom.unsubscribe();
-          //   subscription = ws.subscribe(
-          //     `/sub/chat/room/${num}`,
-          //     function (frame) {
-          //       dispatch(postChat(JSON.parse(frame.body)));
-          //       console.log(frame);
-          //     },
-          //     {
-          //       Access_Token: Access_Token,
-          //     },
-          //     function (payload) {
-          //       console.log(payload);
-          //       ws.disconnect();
-          //     }
-          //   );
-          //   return () => {
-          //     dispatch(clearChat());
-          //     prevDate.current = null;
-          //     const headers = { postId: postId, room: room };
-          //     subscription.unsubscribe(headers);
-          //     ws.current.disconnect();
-          //   };
-          // }, 500);
-  //       },
-  //       [dispatch]
-  //     );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+//params
 
-  // 연결해제, 구독해제 주석풀기 128-140
-  // function wsDisConnectUnsubscribe() {
-  //   try {
-  //     ws.disconnect(
-  //       () => {
-  //         ws.unsubscribe("sub-0");
-  //       },
-  //       { Access_Token: Access_Token }
-  //     );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
-  // 웹소켓이 연결될 때 까지 실행하는 함수 주석풀기 142-156
-  // function waitForConnection(ws, callback = () => {}) {
-  //   setTimeout(
-  //     function () {
-  //       // 연결되었을 때 콜백함수 실행
-  //       if (ws.ws.readyState === 1) {
-  //         callback();
-  //         // 연결이 안 되었으면 재호출
-  //       } else {
-  //         waitForConnection(ws, callback);
-  //       }
-  //     },
-  //     1 // 밀리초 간격으로 실행
-  //   );
-  // }
+  // useEffect(() => {
+  //   wsConnectSubscribe();
+  //   return () => {
+  //     wsConnectSubscribe();
+  //   };
+  // }, []);
 
-  // 방 생성하기 주석 158-195
+  const [room, setRoom] = useState();
+
+
+
+
+  const [chatBody, setChatBody] = useState("");
+  const content = {
+    message:chatBody,
+      sender:localStorage.getItem('user-nickname')
+    };
+
+
+
+  let headers = { 
+    Access_Token: localStorage.getItem('Access_Token')
+  };
+
+  wsConnectSubscribe()
+
+
+  function wsConnectSubscribe() {
+    try {
+      ws.connect(
+        headers,
+        () => {
+          let num = 0;
+          const chatroom = ws.subscribe(
+            `/room/${postId}`,
+            function (frame) {
+              console.log("어떻게나올수있지?",frame);
+              const data = JSON.parse(frame.body);
+              const roomId = data.roomInfoId;
+              num = roomId;
+              setRoom(num);
+              console.log(num);
+              console.log("채팅방 생성");
+            });
+        },
+        [dispatch]
+      );
+    } catch (error) {
+    }
+  }
+  function waitForConnection(ws, callback = () => {}) {
+    setTimeout(
+      function () {
+        // 연결되었을 때 콜백함수 실행
+        if (ws.ws.readyState === 1) {
+          callback();
+          // 연결이 안 되었으면 재호출
+        } else {
+          waitForConnection(ws, callback);
+        }
+      },
+      1 // 밀리초 간격으로 실행
+    );
+  }
+
+
   // function makeRoom() {
   //   try {
   //     // token이 없으면 로그인 페이지로 이동
-  //     if (!Access_Token) {
-  //       alert("토큰이 없습니다. 다시 로그인 해주세요.");
-  //       navigate("/login");
-  //     }
   //     // 데이터 보내기
-  //    // waitForConnection(ws, function () {
+  //     waitForConnection(ws, function () {
   //       // 초대하는 사람의 멤버 아이디
   //       // 방을 만드는 사람(로그인한 사람) , 두번째가 초대되는 사람(글 쓴 사람) , 초대되는사람 닉네임
-  //       // postId 추가
+  //       // itemId 추가
   //       ws.send(
-  //         `/pub/room/founder/${postId}`,
-  //         JSON.stringify({
-  //           // memberId: localStorage.getItem("itemMemberId"),
-  //           // nickname: localStorage.getItem("user-nickname"),
-  //           postId: localStorage.getItem("postId"),
-  //           // title: localStorage.getItem("title"),
-  //         }),
-  //         {
-  //           Access_Token: Access_Token,
-  //         }
+  //         `/send/${loginMemberId}`,
+  //           Access_Token ,
+  //         input,
   //       );
-        
   //       // 채팅만든 사람의 memberId 방에 들어가있는 리스트
   //       // ws.send(`/pub/room/15`, {}, { token: token });
   //       // console.log(ws.ws.readyState);
-  //   //  });
+  //     });
   //   } catch (error) {
   //     console.log(error);
   //     console.log(ws.ws.readyState);
   //   }
   // }
-   //주석 useEffect(() => {
-    //주석  listRef.current.scrollTop = listRef.current.scrollHeight;
-   //주석 }, [chatList]);
 
-  return (
+const inputHandler = (e) =>{
+  setChatBody(e.target.value)
+}
+const onSubmitHandler = (event) =>{
+  event.preventDefault()
+  ws.send(
+    `/send/${postId}`,
+    JSON.stringify(content),
+            {
+              Access_Token: localStorage.getItem("Access_Token")
+            },
+         )
+       console.log("여기에?",ws) 
+   }
+
+   console.log("쳇 리스트",chatList)
+return (
     <>
+      <input onChange={inputHandler}></input>
+      <button onClick={onSubmitHandler}>버튼</button>
+
+    {/* <div>
+      <body>
+        <header>
+          <span>
+          1
+          </span>
+          <span> 
+              <span>하잇</span>
+              <span>30분전 접속</span>
+          </span>
+          <Modal>        
+          </Modal>
+        </header>
+        <middle>
+            <span>사진</span>
+            <span>
+              <span>모집중</span>
+              <span>12,000원</span>
+            </span>
+            <span>저와 산책같이...</span>
+        </middle>
+        <footer>
+            <div>2022년 11월 1일</div>
+            <div>대화배열로 뿌리기 맵 id값으로필터 왼쪽으로 css</div>
+            <div>대화배열로 뿌리기 맵 id값으로필터 오른쪽으로 css색깔</div>
+            <input>
+            </input>
+        </footer>
+
+      </body>
+    </div> */}
       {/* <GlobalHeaderChat />
       <StChatRoomPage>
         <StChatListContainer ref={listRef}>

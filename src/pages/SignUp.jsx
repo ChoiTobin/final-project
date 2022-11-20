@@ -139,19 +139,23 @@ const SignUp = () => {
     <SignupContainer>
       <SignupBox onSubmit={onSubmitHandler}>
         <LogoBox>
-
+          <LoGoSignUp>
+              <img src={require("../img/LogoImg.png")} width="90px" height="70px"/>
+          </LoGoSignUp>
+          <LoGoSignUp1>
+            SIGN UP
+          </LoGoSignUp1>
         </LogoBox>
-          <InputBox>
+        <InputBox>
           <FlexInput>
               <Input
                 name='email'
-                placeholder='이메일 형식을 입력해주세요 '
+                placeholder='아이디'
                 onChange={onChangeHandler}
               /> 
-
-              <button type='button' onClick={()=>{dispatch(__userCheck({email:join.email}))}}
+              <DuplicateCheckEmail type='button' onClick={()=>{dispatch(__userCheck({email:join.email}))}}
                 >중복확인
-              </button>
+              </DuplicateCheckEmail>
               <ErrorMessageWrap>
               { !IdValid ?
                   !IdValid && join.email.length > 0 && (
@@ -164,16 +168,16 @@ const SignUp = () => {
               }  
               </ErrorMessageWrap>
           </FlexInput>
-          <FlexInput>
-              <Input
+          <FlexInput2>
+              <Input2
                 name='nickname'
-                placeholder='닉네임 영문 또는 숫자 _기호 2자~20자 이하'
+                placeholder='닉네임'
                 onChange={onChangeHandler}
-              />
-
-
-              <button type='button'  onClick={()=>{dispatch(__NickCheck({nickname:join.nickname}))}}
-                >중복확인</button>
+              >
+              </Input2>
+              <DuplicateCheckNick type='button'  onClick={()=>{dispatch(__NickCheck({nickname:join.nickname}))}}
+                >중복확인
+              </DuplicateCheckNick>
               <ErrorMessageWrap>
                 {
                   !nickValid ?
@@ -187,11 +191,10 @@ const SignUp = () => {
                   
                 }  
                 </ErrorMessageWrap>
-            </FlexInput>
-
-            <FlexInput>
-                <Input
-                  placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하 '
+            </FlexInput2>
+            <FlexInput3>
+                <Input3
+                  placeholder='비밀번호'
                   type='password'
                   name='password'
                   onChange={onChangeHandler}
@@ -210,12 +213,10 @@ const SignUp = () => {
 
                 }  
                 </ErrorMessageWrap>
-            </FlexInput>
-            
-            <FlexInput>
-              
-              <Input
-                placeholder='비밀번호는 영문 숫자 특수기호 포함 8자~20자 이하'
+            </FlexInput3>
+            <FlexInput4>
+              <Input4
+                placeholder='비밀번호 확인'
                 type='password'
                 name='passwordCheck'
                 onChange={onChangeHandler}
@@ -238,33 +239,88 @@ const SignUp = () => {
 
                   }  
               </ErrorMessageWrap>
-
-            </FlexInput>
+            </FlexInput4>
             <SignupButton onClick={onSubmitHandler}>회원가입</SignupButton>
           </InputBox>
-      </SignupBox>
-      <LoginBox>
+          <LoginBox>
         {" "}
         이미 계정이 있으신가요?{" "}
         <span onClick={() => navigate("/signin")}>로그인</span>
       </LoginBox>
+      </SignupBox>
+
     </SignupContainer>
   );
 };
 
 export default SignUp;
 
+
+const DuplicateCheckEmail = styled.button`
+position:absolute;
+width:70px;
+right:10px;
+top:19px;
+border: 1px solid #929292;
+border-radius: 4px;
+background: #FAFAFA;
+color:#929292;
+&:focus {
+  outline: 1px solid #ADADAD;
+}
+
+`
+const DuplicateCheckNick = styled.button`
+position:absolute;
+width:70px;
+right:10px;
+top:19px;
+border: 1px solid #929292;
+border-radius: 4px;
+background: #FAFAFA;
+color:#929292;
+&:focus {
+  outline: 1px solid #ADADAD;
+}
+
+`
+
+
+const LoGoSignUp = styled.span`
+margin-left:40px;
+color:#ED9071;
+`
+const LoGoSignUp1 = styled.span`
+margin-left:30px;
+color:#ED9071;
+font-weight:500;
+font-size:30px;
+`
+
 const Green = styled.div`
 color:green;
+font-size:12px;
+margin-bottom: 5px;
 `
 
 const ErrorMessageWrap =styled.div`
-margin:4px;
 color:#ef0000;
-font-size:6px;
+font-size:12px;
+margin-bottom: 5px;
 `
 
-const FlexInput = styled.span``
+const FlexInput = styled.span`
+position:relative;
+`
+const FlexInput2 = styled.span`
+position:relative;
+`
+const FlexInput3 = styled.span`
+
+`
+const FlexInput4 = styled.span`
+
+`
 
 const SignupContainer = styled.div`
   width: 100%;
@@ -273,17 +329,18 @@ const SignupContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  
 `;
 
 const SignupBox = styled.form`
   background-color: white;
   width: 350px;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 36px;
+  margin-bottom:0px;
+
 `;
 
 const InputBox = styled.div`
@@ -292,14 +349,54 @@ const InputBox = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position:relative
 `;
 
 const Input = styled.input`
-  border: none;
 
+  border: 1px solid #929292;
   width: 250px;
   height: 40px;
-  margin-bottom: 8px;
+  margin-bottom:5px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #FAFAFA;
+  &:focus {
+    outline: 1px solid #ADADAD;
+  }
+`;
+const Input2 = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom:10px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #FAFAFA;
+  &:focus {
+    outline: 1px solid #ADADAD;
+  }
+`;
+const Input3 = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom:10px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #FAFAFA;
+  &:focus {
+    outline: 1px solid #ADADAD;
+  }
+`;
+const Input4 = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom:10px;
   padding: 10px;
   font-size: 12px;
   border-radius: 4px;
@@ -310,25 +407,22 @@ const Input = styled.input`
 `;
 
 const SignupButton = styled.button`
-
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  width: 250px;
-  height: 30px;
-  margin-top: 40px;
-  cursor: pointer;
-  &:disabled {
-    background-color: #B2DFFC;
-  }
+font-size:18px;
+color: white;
+border: none;
+border-radius: 3px;
+font-weight: bold;
+width: 270px;
+height: 40px;
+margin-top: 10px;
+margin-bottom: 20px;
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+cursor: pointer;
+background-color: #ED9071;
 `;
 
 const LogoBox = styled.div`
   width: 175px;
-  height: 51px;
-  margin-top: 36px;
-  margin-bottom: 12px;
   svg {
     width: 100%;
     height: 100%;
@@ -347,15 +441,7 @@ const SignupText = styled.div`
 
 const LoginBox = styled.div`
   background-color: white;
-  width: 350px;
-  padding: 20px;
-
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   span {
-
     margin-left: 4px;
     font-weight: bold;
     // 버튼 누르면 손모양 나오게 하는 마우스 커서

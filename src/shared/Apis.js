@@ -5,14 +5,14 @@ const cookies = new Cookies()
 
 const noToken = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: "http://54.180.92.242:8080",
+  baseURL: "http://15.164.229.198:8080", 
   //process.env.REACT_APP_URL,
   withCredentials: true,
 })
 
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL:"http://54.180.92.242:8080", 
+  baseURL:"http://15.164.229.198:8080", 
   //process.env.REACT_APP_URL,
   headers: {
     Access_Token:
@@ -26,7 +26,7 @@ const token = axios.create({
 const file = axios.create({
   
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL:"http://54.180.92.242:8080", 
+  baseURL:"http://15.164.229.198:8080",
   //process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
@@ -40,16 +40,20 @@ const file = axios.create({
 
 export const Apis = {
   // 회원가입
-  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),
+  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),//`/auth/signup` 도운님것. 이것 4개만 auth임 도운님서버로 옮길때 주의
   // 이메일 중복확인
-  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),
+  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),//`/auth/idCheck` 도운님것.
   //닉네임체크
-  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),
+  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),//`/auth/nicknameCheck` 도운님것.
   // 로그인
-  loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
+  loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),//`/auth/login` 도운님것.
 
   // 소셜 로그인 - 카카오
-  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
+  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
+  //createRoom----------------------------------------------------------------
+  CreateRoom: (createRoom) => token.post(`/api/room`, createRoom),//`/auth/login` 도운님것.
+
+
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),

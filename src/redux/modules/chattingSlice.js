@@ -1,12 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Apis from "../../shared/Apis";
+
 
 // const URI = {
 //   BASE: process.env.REACT_APP_BASE_URI,
 // };
 const initialState = {
   // URI: `${URI.BASE}`,
-  chatList: [],
+  createRoom: [],
+  chatList:[],
   chatTrueFalse:false,
   isLoading: false,
   roomId: null,
@@ -16,14 +19,9 @@ export const __CreateRoom = createAsyncThunk(
   "/chat/__CreateRoom",
   async (payload, thunkAPI) => {
     try {
-
-      console.log("페이로드뭐들어오는지",payload)
-      await axios.post("http://54.180.92.242:8080/api/room",payload,
-      {
-      Access_Token:localStorage.getItem("Access_Token") 
-      },
-      ).then((res) => {
-        console.log(res)
+      await Apis.CreateRoom(payload)
+      .then((res) => {
+        console.log("레스레스레스",res)
         return thunkAPI.fulfillWithValue(res.data);
       })
     } catch (error) {
@@ -31,6 +29,26 @@ export const __CreateRoom = createAsyncThunk(
     }
   }
 );
+
+export const __getinitialChatList = createAsyncThunk(
+  "/chat/__getinitialChatList",
+  async (payload, thunkAPI) => {
+    try {
+
+      const response = await axios.get(`http://15.164.229.198:8080/api/${payload}`, {
+        headers: {
+          Authorization: localStorage.getItem("Access-Token"),
+        },
+      });
+      console.log("리스폰스",response)
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+//CreateRoom: (createRoom) => token.post(`/api/room`, createRoom)
 
 
 
@@ -89,9 +107,20 @@ const chatSlice = createSlice({
     },
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chatList = action.payload;
+      state.createRoom = action.payload;
     },
     [__CreateRoom.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.err = action.payload;
+    },
+    [__getinitialChatList.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getinitialChatList.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.chatList = action.payload;
+    },
+    [__getinitialChatList.rejected]: (state, action) => {
       state.isLoading = false;
       state.err = action.payload;
     },

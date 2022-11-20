@@ -17,7 +17,7 @@ const Detail = () => {
 
 
   const onClickChatting = (post) =>{
-    console.log("포스트에 뭐찍히지",post)
+    // console.log("포스트에 뭐찍히지",post)
 
     dispatch(__CreateRoom({
       postId:post.id,

@@ -3,13 +3,29 @@ import "./Modal.css";
 import styled from "styled-components";
 import { useSelector,useDispatch  } from "react-redux";
 //import { IoMdHome, IoLogoGithub } from "react-icons/io";
-import AddPage from "./AddPage";
 import postChat from "../../../redux/modules/chattingSlice";
-
+import { trueChat,clearChat } from "../../../redux/modules/chattingSlice";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
+  
+  const dispatch = useDispatch();
   const count = useSelector((state) => state.chatting.chatTrueFalse)
+  const [WriteTrue,setWriteTrue ] =useState ({
+    mode:false
+  })
+  const onClickButton = (e) => {
+    e.preventDefault()
+    setModal(!modal);
+    setWriteTrue(WriteTrue.mode=true)
+    dispatch(trueChat(WriteTrue))
+
+    //false로 바뀐다.
+    }
+
+    
+
+    //true값 넘겨주기 =>modal색깔 그린 
   console.log("유즈셀렉",count)
   //count가 true일때 이제 visible moddal창 
   //true일때 색깔바뀌는것만 하기 창닫는거 말고.
@@ -19,6 +35,7 @@ export default function Modal() {
   };
   if(modal) {
     document.body.classList.add('active-modal')
+    
   } else{
     document.body.classList.remove('active-modal')
   }
@@ -32,17 +49,15 @@ export default function Modal() {
       }
       {/* 모달창 승인버튼 green OR black */}
 
-      {modal && ( 
+      {
+      modal && ( 
         <div className="modal">
           <div onClick={toggleModal} className="overlay">
           </div>
           <div className="modal-content">
-            <AddPage/>
-
-            {/* <button className="close-modal" onClick={toggleModal}>
-              CLOSE
-            </button> */}
-            
+            <p>수락해줘~</p>
+          <button onClick={onClickButton}>수락</button>
+          <button onClick={toggleModal}>취소</button>
           </div>
         </div>
       )}
