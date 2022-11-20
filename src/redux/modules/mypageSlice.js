@@ -17,7 +17,7 @@ const initialState = {
       title: "",
       content: "",
       price: "",
-      categoryName: "",
+      category: "",
       state: "",
       local: "",
       date: "",
@@ -134,9 +134,10 @@ export const __getMyPet = createAsyncThunk(
 export const __addMyPet = createAsyncThunk(
   "mypage/__addMyPet",
   async (payload, thunkAPI) => {
-    console.log("addMyPet", payload)
+    console.log("add 반려동물", payload)
     try {
       const response = await Apis.postMyPetAX(payload)
+      console.log("add 반려동물 응답", response)
       return thunkAPI.fulfillWithValue(response.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -187,7 +188,8 @@ const mypageSlice = createSlice({
     [__putMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.myPost = action.payload;
+      // state.myPost = action.payload;
+      state.myPost.response.push(action.payload.data)
       
     },
     [__putMyPost.rejected]: (state, action) => {

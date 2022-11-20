@@ -54,7 +54,8 @@ const EditDetail = () => {
 
   setMyPost("")
 
-  const myPostData = {
+    const myPostData = {
+    "id": myPost.id,
     "title": myPost.title,
     "content": myPost.content,
     "categoryName": myPost.categoryName,
@@ -75,7 +76,8 @@ const EditDetail = () => {
     console.log("폼데이터", formData);
     
   // API 날리기
-  dispatch(__putMyPost(formData));
+    dispatch(__putMyPost(formData));
+    window.alert("게시글이 수정되었습니다!");
 }
 
   return (
@@ -106,7 +108,7 @@ const EditDetail = () => {
             onChange={uploadHandle}
             ref={imgRef}
           />
-          <button
+          <ImgUpload
             type="button"
             onClick={() => {
               imgRef.current.click();
@@ -114,10 +116,10 @@ const EditDetail = () => {
           >
             <img
               src={photoIMG}
-              style={{ width: "200px", marginTop: "10px" }}
+              style={{ width: "60px" }}
               alt=""
             />
-          </button>
+          </ImgUpload>
         </label>
       </div>
 
@@ -186,21 +188,34 @@ const EditDetail = () => {
         />
       </div>
 
-      <button onClick={writeSubmit}>수정완료</button>
-      <button
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        취소
-      </button>
+      <button onClick={writeSubmit}>저장</button>
     </div>
   );
 }
 export default EditDetail;
 
-const ImgPreview = styled.div`
-  width: 200px;
-  height: 200px;
-  
+const ImgUpload = styled.button`
+  background-color: yellowgreen;
+  margin: 10px 0 10px 100px;
 `
+
+const ImgPreview = styled.div`
+  width: 270px;
+  height: 170px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  border: 1px solid #E2E2E2;
+  border-radius: 10px;
+
+  margin: 0 auto 10px;
+  
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+`;

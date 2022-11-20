@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
-import PetInfo from "../components/features/PetInfo";
 import User from "../img/user.png";
-import MyContent from "../components/features/MyContent";
+import AddPetInfo from "../components/features/AddPetInfo"
 import Mytab from "../components/features/mypageTab";
+import useModal from "../components/modal/useModal";
+import Modal from "../components/modal/modal";
+import AddUserPic from "../components/features/AddUserPic";
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
@@ -22,7 +24,7 @@ const MyPage = () => {
   const myPic = useSelector((state) => state.mypage.myPic);
   const myPets = useSelector((state) => [state.mypage.myPets]);
 
-  console.log("kkk", all);
+  console.log("전체 셀렉터", all);
 
   console.log("셀렉터post", post);
   console.log("셀렉터myInfo", myInfo);
@@ -30,7 +32,27 @@ const MyPage = () => {
   console.log("셀렉터myPic", myPic);
   console.log("셀렉터myPets", myPets);
 
-  
+  const [modalOption, showModal] = useModal();
+
+    const onClickPic = useCallback(() => {
+      showModal(
+        true,
+        "프로필 사진 변경",
+        () => console.log("모달 on"),
+        null,
+        <AddUserPic />
+      )
+    }, [modalOption])
+
+  const onClickPet = useCallback(() => {
+    showModal(
+      true,
+      "반려동물 정보 등록",
+      () => console.log("모달 ON"),
+      null,
+      <AddPetInfo />
+    );
+  }, [modalOption]);
 
   // 마이페이지 회원정보 조회
   useEffect(() => {
@@ -50,15 +72,24 @@ const MyPage = () => {
   return (
     <Layouts>
       <div className="user-info">
-        <UserImg src={myInfo.userImage === "" ? myInfo.userImage : User} alt="pic" />
+        <UserImg
+          src={myInfo.userImage === "" ? myInfo.userImage : User}
+          alt="pic"
+        />
+        <button onClick={onClickPic}>프로필사진 변경</button>
+        <Modal modalOption={modalOption} />
 
         <div>
           <h1>{myInfo.nickname}</h1>
+          <div>
+            <button onClick={onClickPet}>반려동물 등록</button>
+            <Modal modalOption={modalOption} />
+          </div>
         </div>
       </div>
 
       <div>
-        <Mytab/>
+        <Mytab />
       </div>
 
       {/* 내가 쓴 게시글 여러개 붙이기 - myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}] */}

@@ -18,7 +18,7 @@ const MyContent = ({ myPost }) => {
   const onClickModal = useCallback(() => {
     showModal(
       true,
-      "안녕하세요",
+      "게시글 수정하기",
       () => console.log("모달 ON"),
       null,
       <EditDetail/>
@@ -29,7 +29,7 @@ const MyContent = ({ myPost }) => {
   const onDeleteMyPost = (id) => {
     dispatch(__deleteMyPost(id));
     window.confirm("해당 게시글을 삭제하시겠습니까?");
-    // window.location.reload();
+    window.location.reload();
   };
 
   // 내가 쓴 글 조회

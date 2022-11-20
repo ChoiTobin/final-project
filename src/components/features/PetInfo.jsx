@@ -47,7 +47,7 @@ const PetInfo = ({ myPets }) => {
             return (
               <Pet className="pet-info" key={myPet.petId}>
                 <div>
-                  <h3>{myPet.categoryName}</h3>
+                  <h3>{myPet.category}</h3>
                   <span>{myPet.name}</span>
                 </div>
 

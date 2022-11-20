@@ -27,7 +27,7 @@ const EditPetInfo = () => {
     console.log("마이펫 디스패치", myPet);
     dispatch(__putMyPet(myPet));
     window.alert("반려동물 정보수정이 완료되었습니다!");
-    navigate("/mypage");
+    // navigate("/mypage");
   };
 
   return (
@@ -47,8 +47,8 @@ const EditPetInfo = () => {
         <div>
           <label>반려동물 종류 : &nbsp;</label>
           <select
-            name="categoryName"
-            value={myPet.categoryName}
+            name="category"
+            value={myPet.category}
             onChange={onChangePetInfo}
           >
             <option value="">전체</option>
