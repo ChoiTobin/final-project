@@ -40,8 +40,11 @@ const KakaoLogin = () => {
 
     return (
     <div>
+        
+            
+
+        <Img onClick={()=>alert("준비중 입니다.")} src={require("../../img/naver.png")} alt="네이버 로그인 버튼"  />
         <a id="kakao-login-btn" onClick={handleLogin}>
-            <Img src={require("../../img/naver.png")}  />
             <Img2 src={require("../../img/kakao.png")}alt="카카오 로그인 버튼" />
         </a>       
         <PtagColorOnly>또는</PtagColorOnly>
@@ -57,6 +60,7 @@ const Img = styled.img`
   width:45px;
   height:43px;
   box-shadow: 2px 2px 6px gray;
+  margin-right:20px;
 
   background-color:green;
 `
@@ -64,7 +68,7 @@ const Img2 = styled.img`
 width:45px;
 height:43px;
 box-shadow: 2px 2px 6px gray;
-margin-left:20px;
+
 background-color:green;
 `
 
