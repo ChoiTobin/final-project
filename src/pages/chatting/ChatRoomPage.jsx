@@ -25,7 +25,6 @@ function ChatRoomPage() {
 
   const sock = new SockJS("http://43.200.179.166:8080/ws/chat");
   let subscription;
-
   const ws = webstomp.over(sock);
 
   const Access_Token = localStorage.getItem("Access_Token");
@@ -46,6 +45,7 @@ function ChatRoomPage() {
 
   useEffect(() => {
     wsConnectSubscribe()
+    
     dispatch(__getinitialChatList(postId));
    
     // waitForConnection(ws, );
@@ -79,8 +79,7 @@ function ChatRoomPage() {
   };
 
 
-
-
+ 
   function wsConnectSubscribe() {
     try {
       ws.connect(
@@ -89,6 +88,7 @@ function ChatRoomPage() {
           ws.subscribe(
             `/room/${postId}`,
             function (response) {
+
               console.log("어떻게나올수있지?",response);
               const data = JSON.parse(response.body);
               console.log("뭔값나올까?",data)
@@ -105,6 +105,9 @@ function ChatRoomPage() {
     } catch (error) {
     }
   }
+
+
+
   // function waitForConnection(ws, callback = () => {}) {
   //   setTimeout(
   //     function () {
@@ -143,6 +146,7 @@ function ChatRoomPage() {
   //     console.log(ws.ws.readyState);
   //   }
   // }
+
 
 const inputHandler = (e) =>{
   setChatBody(e.target.value)
