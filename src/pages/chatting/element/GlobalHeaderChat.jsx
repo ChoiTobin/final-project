@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 //mport { ReactComponent as ArrowBackIcon } from "../../assets/icons/arrow_back_ios.svg";
@@ -77,15 +77,17 @@ const ExitButton = styled.button`
   border: none;
   border-radius: 0.4rem;
   @media (min-width: 1280px) {
-    /* Desktop */
+
     width: 9.3rem;
   }
   @media (min-width: 768px) and (max-width: 1280px) {
-    /* Tablet */
+
     width: 9.3rem;
   }
   @media (max-width: 767px) {
-    /* Mobile */
+
     width: 8rem;
   }
 `;
+
+*/

@@ -5,17 +5,16 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { __CreateRoom } from "../../redux/modules/chattingSlice";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import Modal from "./modalfolder/Modal";
+import Modal from "./Chattmodalfolder/Modal";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-
+//import GlobalHeaderChat from "./element/GlobalHeaderChat";
 import { postChat, clearChat } from "../../redux/modules/chattingSlice";
-import GlobalHeaderChat from "./element/GlobalHeaderChat";
 import { v4 as uuidv4 } from "uuid";
 import { set } from "react-hook-form";
 import moment from "moment";
 import ChatSubmitBox from "./ChatSubmitBox";
 import ChatCard from "./ChatCard";
-
+import '../../App.css';
 function ChatRoomPage() {
   const dispatch = useDispatch();
   const {id}  = useParams()
@@ -147,161 +146,91 @@ const onSubmitHandler = (event) =>{
 
    console.log("쳇 리스트",chatList)
 return (
-    <>
-      <input onChange={inputHandler}></input>
-      <button onClick={onSubmitHandler}>버튼</button>
-
-    {/* <div>
-      <body>
-        <header>
-          <span>
-          1
-          </span>
-          <span> 
-              <span>하잇</span>
-              <span>30분전 접속</span>
-          </span>
-          <Modal>        
-          </Modal>
-        </header>
-        <middle>
-            <span>사진</span>
-            <span>
-              <span>모집중</span>
-              <span>12,000원</span>
-            </span>
-            <span>저와 산책같이...</span>
-        </middle>
-        <footer>
-            <div>2022년 11월 1일</div>
-            <div>대화배열로 뿌리기 맵 id값으로필터 왼쪽으로 css</div>
-            <div>대화배열로 뿌리기 맵 id값으로필터 오른쪽으로 css색깔</div>
-            <input>
-            </input>
-        </footer>
-
-      </body>
-    </div> */}
-      {/* <GlobalHeaderChat />
-      <StChatRoomPage>
-        <StChatListContainer ref={listRef}>
-          {chatList.map((chat) => {
-            const convertToDate = new Date(chat.createdAt);
-            console.log(convertToDate);
-            moment.locale("ko");
-            if (
-              prevDate.current < convertToDate.getDate() ||
-              prevDate.current == null
-            ) {
-              prevDate.current = convertToDate.getDate();
-              return (
-                <>
-                  <p key={chat.chatId}>{moment(convertToDate).format("LL")}</p>
-                  <ChatCardWrapper
-                    key={chat.chatId}
-                    author={
-                      chat.memberId === parseInt(postId)
-                        ? "me"
-                        : "friend"
-                    }
-                  >
-                    <ChatCard
-                      author={
-                        chat.memberId === parseInt(postId)
-                          ? "me"
-                          : "friend"
-                      }
-                      body={chat.content}
-                      createdAt={
-                        moment
-                        (convertToDate).format("LT")}
-                      nickname={chat.nickname}
-                    />
-                  </ChatCardWrapper>
-                </>
-              );
-            } else {
-              prevDate.current = convertToDate.getDate();
-              return (
-                <ChatCardWrapper
-                  key={chat.chatId}
-                  author={
-                    chat.memberId === parseInt(postId) ? "me" : "friend"
-                  }
-                >
-                  <ChatCard
-                    author={
-                      chat.memberId === parseInt(postId)
-                        ? "me"
-                        : "friend"
-                    }
-                    body={chat.content}
-                    createdAt={
-                      moment
-                      (convertToDate).format("LT")}
-                    nickname={chat.nickname}
-                  />
-                </ChatCardWrapper>
-              );
-            }
-          })}
-        </StChatListContainer>
-        <ChatSubmitBox
-          sock={sock}
-          ws={ws}
-          room={room}
-          Access_Token={Access_Token}
-          memberId={postId}
-        />
-      </StChatRoomPage> */}
-    </>
+        <LoginContainer>
+                <Header>
+                     <div>
+                      <img style={{width:20}} src={require("../chatting/chattingImg/pngwing.png")}/>
+                      </div>
+                     
+                     <div><p>닉네임</p>
+                     <span>30분</span>
+                     </div>
+                     <Modal/>
+                </Header>
+                <Section>
+                    <Profile>사진</Profile>
+                    <TextBox>
+                      <P>
+                        모집중
+                        <span>제목이들어갑니다.</span>
+                      </P>
+                      <p>12,000원</p>
+                    </TextBox>
+                </Section>
+                <span>날짜</span>
+                <Chating>
+                  여기는 채팅이 들어옵니다.
+                </Chating>
+                
+                <Chatput>
+                    <input onChange={inputHandler}></input>
+                    <button onClick={onSubmitHandler}>버튼</button>
+                </Chatput>  
+        </LoginContainer>
   );
 }
 
-const StChatRoomPage = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
+
+
+const LoginContainer = styled.div`
+  width:360px;
+  height:100vh;
+  background-color:#FAF7F0;
+
 `;
 
-// display: flex;
-// flex-direction: column-reverse;
-const StChatListContainer = styled.div`
-  width: 100vw;
-  padding: 6rem 1rem;
-  display: flex;
-  overflow-y: scroll;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column-reverse;
-  p {
-    align-self: center;
-    margin-top: 20px;
-    width: 60%;
-    background-color: #ffffff88;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    padding: 2px 0;
-    letter-spacing: 0.2rem;
-    display: flex;
-  }
-`;
-const ChatCardWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  ${({ author }) => {
-    switch (author === "me") {
-      case true:
-        return css`
-          justify-content: flex-end;
-        `;
-      default:
-        return css`
-          justify-content: flex-start;
-        `;
-    }
-  }}
-`;
+const Header = styled.div`
+  background-color:#65647C
+  width:360px;
+  height:50px;
+  display:flex;
+  justify-content: space-between;
+`
+
+const Section = styled.div`
+  width:360px;
+  height:60px;
+  display:flex;
+  margin-top:10px;
+  padding-left: 10px;
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+`
+const P = styled.p`
+
+`
+const Chatput = styled.div`
+  background-color:#BA94D1;
+`
+
+const Profile = styled.div`
+  width:50px;
+  height:50px;
+  border-radius:10px;
+  background-color:#BCCEF8;
+  text-align:center;
+  line-height:50px;
+`
+const Chating = styled.div`
+  height:400px;
+  over-flow:hidden;
+  background-color:#FFECEF;
+  text-align:center;
+  line-height:400px;
+  
+
+`
+const TextBox = styled.div`
+
+`
 export default ChatRoomPage;

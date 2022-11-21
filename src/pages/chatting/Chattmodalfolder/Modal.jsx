@@ -52,12 +52,19 @@ export default function Modal() {
       {
       modal && ( 
         <div className="modal">
-          <div onClick={toggleModal} className="overlay">
-          </div>
+            <div onClick={toggleModal} className="overlay">
+            </div>
           <div className="modal-content">
-            <p>수락해줘~</p>
-          <button onClick={onClickButton}>수락</button>
-          <button onClick={toggleModal}>취소</button>
+            <div className="modaltwo">
+              <div className="content">
+                <span  className="pink">'서폿구책'</span>님의
+                <span className="pink">'저와 산서폿'</span>
+                <br/>를 수락하시겠습니까?
+              </div>
+            </div>
+
+            <button className="falseButton" onClick={toggleModal}>취소</button>
+            <button className="trueButton" onClick={onClickButton}>수락</button>
           </div>
         </div>
       )}
