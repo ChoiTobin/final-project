@@ -34,10 +34,10 @@ export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
   async (payload, thunkAPI) => {
     try {
-
-      const response = await axios.get(`http://15.164.229.198:8080/api/${payload}`, {
+      
+      const response = await axios.get(`http://43.200.179.166:8080/api/${payload}`, {
         headers: {
-          Authorization: localStorage.getItem("Access-Token"),
+          Access_Token: localStorage.getItem("Access_Token"),
         },
       });
       console.log("리스폰스",response)

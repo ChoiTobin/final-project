@@ -43,9 +43,18 @@ export default function Modal() {
     <>
       {
       count== true?
-      <Himg2 onClick={toggleModal} src={require("../chattingImg/free-icon-checkmark-outline-54346.png")}/>
+      <>
+      <P>
+        <Himg2 onClick={toggleModal} src={require("../chattingImg/20221121_141959.png")}/>
+        <Span>완료</Span>
+      </P> 
+    </>
+      
         :
-      <Himg onClick={toggleModal} src={require("../chattingImg/free-icon-checkmark-outline-54346.png")}/>
+        <P>
+          <Himg onClick={toggleModal} src={require("../chattingImg/20221121_141505.png")}/>
+          <Span>수락</Span>
+        </P>
       }
       {/* 모달창 승인버튼 green OR black */}
 
@@ -71,20 +80,30 @@ export default function Modal() {
     </>
   );
 }
+const Span = styled.span`
+margin-left:1px;
+font-size:10px;
+font-weight:600;
+`
+const P = styled.span`
+display:flex;
+width:60px;
+height:60px;
+flex-direction:column;
+margin-top:5px;
+`
 const Himg2 = styled.img`  
   width:26px;
   height:26px;
-  margin:0;
-  padding:0;
-  margin-left:20px;
+  margin-right:20px;
+
   background-color:green;
 `
 const Himg = styled.img`  
   width:26px;
   height:26px;
-  margin:0;
-  padding:0;
-  margin-left:20px;
+  margin-right:20px;
+
   background-color:#303030
 `
 const Button = styled. button`

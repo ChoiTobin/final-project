@@ -5,14 +5,14 @@ const cookies = new Cookies()
 
 const noToken = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: "http://15.164.229.198:8080", 
+  baseURL: "http://43.200.179.166:8080", 
   //process.env.REACT_APP_URL,
   withCredentials: true,
 })
 
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL:"http://15.164.229.198:8080", 
+  baseURL:"http://43.200.179.166:8080", 
   //process.env.REACT_APP_URL,
   headers: {
     Access_Token:
@@ -26,7 +26,7 @@ const token = axios.create({
 const file = axios.create({
   
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL:"http://15.164.229.198:8080",
+  baseURL:"http://43.200.179.166:8080",
   //process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",

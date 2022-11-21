@@ -16,23 +16,39 @@ import ChatSubmitBox from "./ChatSubmitBox";
 import ChatCard from "./ChatCard";
 import '../../App.css';
 function ChatRoomPage() {
-  const dispatch = useDispatch();
-  const {id}  = useParams()
-  const navigate = useNavigate();
 
+  const {id}  = useParams()
+
+
+//http://todayleave.blogspot.com/2016/01/stompjs-2.html =>에러해결
+
+
+  const sock = new SockJS("http://43.200.179.166:8080/ws/chat");
+  let subscription;
+
+  const ws = webstomp.over(sock);
+
+  const Access_Token = localStorage.getItem("Access_Token");
+  const loginMemberId = localStorage.getItem("user-nickname");
+
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const stompClient = useRef(null);
+  const prevDate = useRef(0);
+  const listRef = useRef();
 
   const chatList = useSelector((state) => state.chatting.chatList);
 
-  const sock = new SockJS("http://15.164.229.198:8080/ws/chat");
-  const ws = webstomp.over(sock);
-  const loginMemberId = localStorage.getItem("user-nickname");
-  let postId = id
-  const Access_Token = localStorage.getItem("Access-Token");
+  let postId = Number(id)
 
 
   useEffect(() => {
+    wsConnectSubscribe()
     dispatch(__getinitialChatList(postId));
-    waitForConnection(ws, wsConnectSubscribe());
+   
+    // waitForConnection(ws, );
     // makeRoom();
   }, []);
   
@@ -54,31 +70,30 @@ function ChatRoomPage() {
 
   const [chatBody, setChatBody] = useState("");
   const content = {
-    message:chatBody,
-      sender:localStorage.getItem('user-nickname')
+    sender:localStorage.getItem('user-nickname'),
+    message:chatBody
+
     };
-
-
-
   let headers = { 
     Access_Token: localStorage.getItem('Access_Token')
   };
 
-  wsConnectSubscribe()
+
 
 
   function wsConnectSubscribe() {
     try {
       ws.connect(
-        headers,
-        () => {
-          let num = 0;
-          const chatroom = ws.subscribe(
+        headers,function(frame) {
+          console.log("프레임",frame)
+          ws.subscribe(
             `/room/${postId}`,
-            function (frame) {
-              console.log("어떻게나올수있지?",frame);
-              const data = JSON.parse(frame.body);
+            function (response) {
+              console.log("어떻게나올수있지?",response);
+              const data = JSON.parse(response.body);
+              console.log("뭔값나올까?",data)
               const roomId = data.roomInfoId;
+              let num = 0;
               num = roomId;
               setRoom(num);
               console.log(num);
@@ -90,20 +105,20 @@ function ChatRoomPage() {
     } catch (error) {
     }
   }
-  function waitForConnection(ws, callback = () => {}) {
-    setTimeout(
-      function () {
-        // 연결되었을 때 콜백함수 실행
-        if (ws.ws.readyState === 1) {
-          callback();
-          // 연결이 안 되었으면 재호출
-        } else {
-          waitForConnection(ws, callback);
-        }
-      },
-      1 // 밀리초 간격으로 실행
-    );
-  }
+  // function waitForConnection(ws, callback = () => {}) {
+  //   setTimeout(
+  //     function () {
+  //       // 연결되었을 때 콜백함수 실행
+  //       if (ws.ws.readyState === 1) {
+  //         callback();
+  //         // 연결이 안 되었으면 재호출
+  //       } else {
+  //         waitForConnection(ws, callback);
+  //       }
+  //     },
+  //     1 // 밀리초 간격으로 실행
+  //   );
+  // }
 
 
   // function makeRoom() {
@@ -140,34 +155,37 @@ const onSubmitHandler = (event) =>{
             {
               Access_Token: localStorage.getItem("Access_Token")
             },
+            
          )
-       console.log("여기에?",ws) 
+       //console.log("여기에?",ws) 
    }
 
-   console.log("쳇 리스트",chatList)
+   //console.log("쳇 리스트",chatList)
 return (
         <LoginContainer>
                 <Header>
                      <div>
-                      <img style={{width:20}} src={require("../chatting/chattingImg/pngwing.png")}/>
+                      <Img src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
                      
-                     <div><p>닉네임</p>
-                     <span>30분</span>
+                     <div>
+                      <Nickname>닉네임</Nickname>
+                      <Time>30분 전 접속</Time>
                      </div>
                      <Modal/>
                 </Header>
                 <Section>
-                    <Profile>사진</Profile>
+                    <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>
                     <TextBox>
                       <P>
-                        모집중
-                        <span>제목이들어갑니다.</span>
+                        <OrangeSpan>모집 중</OrangeSpan>
+                        <Span></Span>
+                        <Title>제목이들어갑제목이들어갑제목이들어갑제목이들어갑제목이들어갑제목이들어갑니다.</Title>
                       </P>
-                      <p>12,000원</p>
+                      <Money>12,000원</Money>
                     </TextBox>
                 </Section>
-                <span>날짜</span>
+                  <DivAt>날짜</DivAt>
                 <Chating>
                   여기는 채팅이 들어옵니다.
                 </Chating>
@@ -179,8 +197,60 @@ return (
         </LoginContainer>
   );
 }
+const DivAt = styled.div`
+margin-top:10px;
+text-align:center;
+color:#787878;
+font-size:12px;
+`
+const Money = styled.p`
+font-weight:bold;
+
+`
+const Title = styled.span`
+width: 200px;
+overflow:hidden; 
+text-overflow:ellipsis;
+white-space:nowrap; 
+display:inline-block;
+font-weight:bold;
+font-size:12px;
 
 
+`
+const Span= styled.span`
+width:30px;
+
+margin-left:10px;
+`
+const OrangeSpan = styled.span`
+color:#ED9071;
+font-weight:bold;
+
+
+`
+const Img = styled.img`
+margin-top:6px;
+height:25px;
+width:25px;
+margin-left:10px;
+
+`
+const Img2 = styled.img`
+
+height:33px;
+width:30px;
+
+`
+
+const Time = styled.span`
+font-size:6px;
+`
+const Nickname = styled.p`
+margin-left:5px;
+font-weight:bold;
+font-size:15px;
+`
 
 const LoginContainer = styled.div`
   width:360px;
@@ -190,6 +260,7 @@ const LoginContainer = styled.div`
 `;
 
 const Header = styled.div`
+  border-bottom:1px solid #ED9071;
   background-color:#65647C
   width:360px;
   height:50px;
@@ -204,9 +275,10 @@ const Section = styled.div`
   margin-top:10px;
   padding-left: 10px;
   border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;
+  border-bottom:1px solid #ED9071;
 `
 const P = styled.p`
+
 
 `
 const Chatput = styled.div`
@@ -214,12 +286,15 @@ const Chatput = styled.div`
 `
 
 const Profile = styled.div`
+  margin-top:5px;
+  margin-right:5px;
   width:50px;
   height:50px;
   border-radius:10px;
-  background-color:#BCCEF8;
+
   text-align:center;
   line-height:50px;
+
 `
 const Chating = styled.div`
   height:400px;
