@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 // yarn add react-hook-form
 // yarn add react-is
 import { set } from "react-hook-form";
-import moment from "moment";
+// import moment from "moment";
 import ChatSubmitBox from "./ChatSubmitBox";
 import ChatCard from "./ChatCard";
 import '../../App.css';
@@ -142,22 +142,22 @@ const onSubmitHandler = (event) =>{
             {
               Access_Token: localStorage.getItem("Access_Token")
             },
-         )
-       console.log("여기에?",ws) 
-   }
+        )
+      console.log("여기에?",ws) 
+  }
 
-   console.log("쳇 리스트",chatList)
+  console.log("쳇 리스트",chatList)
 return (
         <LoginContainer>
                 <Header>
-                     <div>
+                    <div>
                       <img style={{width:20}} src={require("../chatting/chattingImg/pngwing.png")}/>
                       </div>
-                     
-                     <div><p>닉네임</p>
-                     <span>30분</span>
-                     </div>
-                     <Modal/>
+                    
+                    <div><p>닉네임</p>
+                    <span>30분</span>
+                    </div>
+                    <Modal/>
                 </Header>
                 <Section>
                     <Profile>사진</Profile>
@@ -192,9 +192,9 @@ const LoginContainer = styled.div`
 `;
 
 const Header = styled.div`
-  background-color:#65647C
-  width:360px;
-  height:50px;
+  background-color:#65647C;
+  width: 360px;
+  height: 50px;
   display:flex;
   justify-content: space-between;
 `
@@ -224,8 +224,8 @@ const Profile = styled.div`
   line-height:50px;
 `
 const Chating = styled.div`
-  height:400px;
-  over-flow:hidden;
+  height: 400px;
+  overflow: hidden;
   background-color:#FFECEF;
   text-align:center;
   line-height:400px;

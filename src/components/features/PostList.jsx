@@ -1,30 +1,66 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-// yarn add react-intersection-observer
 import { useInView } from "react-intersection-observer";
-import { __getPostTime } from "../../redux/modules/postSlice";
+import {
+  __getDetail,
+  __getPostTime,
+  __deletePost,
+} from "../../redux/modules/postSlice";
 
-const PostList = () => {
+const PostList = ({ searchposts, posts }) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.post);
-  // console.log("포스츠",posts)
+
+  const [page, setPage] = useState(0); //페이지수
+  const [size, setSize] = useState([]); //리스트수
+  const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView();
+
+  /**  서버에서 아이템을 가지고 오는 함수 */
+  const getItems = useCallback(async () => {
+    dispatch(__getPostTime(page));
+  }, [page]);
+
+  // `getItems` 가 바뀔 때 마다 함수 실행
+  useEffect(() => {
+    getItems();
+    setSize(posts);
+    // console.log("size", size)
+  }, [getItems]);
 
   useEffect(() => {
-    dispatch(__getPostTime());
-  }, [dispatch]);
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading && size !== posts) {
+      setPage((prevState) => prevState + 1);
+      // console.log("페이지",page)
+    }
+  }, [inView, loading]);
 
   return (
     <>
-      <Layouts>
-        {posts.response !== undefined &&
-          posts.response.map((post) => {
+      {searchposts && searchposts.Length !== 0
+        ? searchposts.map((post) => {
+            return (
+              <div key={post.id}>
+                <ul>
+                  <li>
+                    {post.state},{post.title}
+                  </li>
+                  <li>{post.content}</li>
+                  <li>{post.category}</li>
+                  <li>{post.price}원</li>
+                  <li>{post.date}</li>
+                  <li>{post.local}</li>
+                  <li>{post.createdAt}</li>
+                </ul>
+              </div>
+            );
+          })
+        : posts.map((post) => {
             // if (post.length !== 0)
             return (
-              <Content
+              <div
                 onClick={() => {
                   navigator(`/Detail/${post.id}`);
                 }}
@@ -34,32 +70,20 @@ const PostList = () => {
                   <li>
                     {post.state},{post.title}
                   </li>
-                  {/* <img src={post.imgs[0]} alt="#" /> */}
                   <li>{post.content}</li>
                   <li>{post.category}</li>
                   <li>{post.price}원</li>
                   <li>{post.date}</li>
                   <li>{post.local}</li>
                   <li>{post.createdAt}</li>
+                  <li>{post.nickname}</li>
                 </ul>
-              </Content>
+              </div>
             );
           })}
-      </Layouts>
+      <div ref={ref}></div>
     </>
   );
 };
 export default PostList;
-// onClick={()=>{navigator(`/Detail/${post.postId}`)}}
-
-const Layouts = styled.div`
-  width: 360px;
-  max-height: 640px;
-  margin: auto;
-  overflow: auto;
-  /* background-color: lightpink; */
-`;
-
-const Content = styled.div`
-  cursor: pointer;
-`;
+//
