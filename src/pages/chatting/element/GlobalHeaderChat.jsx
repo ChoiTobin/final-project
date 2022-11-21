@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 //mport { ReactComponent as ArrowBackIcon } from "../../assets/icons/arrow_back_ios.svg";
 //import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
+import Modal from "../modalfolder/Modal";
 
 const GlobalHeaderChat = () => {
   const navigate = useNavigate();
 
-  const member = localStorage.getItem("user-info");
-  const obj = JSON.parse(member);
-  const nickname = obj.nickname;
+  const member = localStorage.getItem("user-nickname");
+  const obj = member
+  //JSON.parse(member);
+  const nickname = obj
 
   return (
     <NavbarWrapper>
@@ -20,6 +22,10 @@ const GlobalHeaderChat = () => {
         </NavItem>
         <NavItem></NavItem>
         <NavItem>
+          <div>승락버튼
+              <Modal></Modal>
+
+          </div>
           <ExitButton>나가기</ExitButton>
         </NavItem>
       </Navbar>
@@ -71,15 +77,17 @@ const ExitButton = styled.button`
   border: none;
   border-radius: 0.4rem;
   @media (min-width: 1280px) {
-    /* Desktop */
+
     width: 9.3rem;
   }
   @media (min-width: 768px) and (max-width: 1280px) {
-    /* Tablet */
+
     width: 9.3rem;
   }
   @media (max-width: 767px) {
-    /* Mobile */
+
     width: 8rem;
   }
 `;
+
+*/

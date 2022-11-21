@@ -5,27 +5,30 @@ import styled, { css } from "styled-components";
 
 // 채팅 메시지 컴포넌트
 const ChatCard = (frame) => {
+  
   const author = frame.author;
   const nickname = frame.nickname;
   const createdAt = frame.createdAt;
   const body = frame.body;
 
   return (
-    <STchatCardWrapper>
-      {author === "friend" && (
-        <StUserBox>
-          <UserImgBox>
-            <div />
-          </UserImgBox>
-        </StUserBox>
-      )}
-      {author === "me" && <span>{createdAt}</span>}
-      <STcontentWrapper author={author}>
-        {author === "friend" && <h3>{nickname}</h3>}
-        <STchatCard author={author}>{body}</STchatCard>
-      </STcontentWrapper>
-      {author === "friend" && <span>{createdAt}</span>}
-    </STchatCardWrapper>
+    <>
+      <STchatCardWrapper>
+        {author === "friend" && (
+          <StUserBox>
+            <UserImgBox>
+            </UserImgBox>
+          </StUserBox>
+        )}
+        {author === "me" && <span>{createdAt}</span>}
+        <STcontentWrapper author={author}>
+          {author === "friend" && <h3>{nickname}</h3>}
+          <STchatCard author={author}>{body}</STchatCard>
+        </STcontentWrapper>
+        {author === "friend" && <span>{createdAt}</span>}
+      
+      </STchatCardWrapper>
+   </>
   );
 };
 

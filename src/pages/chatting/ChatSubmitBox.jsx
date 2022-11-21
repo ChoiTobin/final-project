@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 //import { ReactComponent as SendIcon } from "../../img";
 
 // 채팅방 메시지 보내기 컴포넌트
-function ChatSubmitBox({ sock, room, ws, token, memberId }) {
+function ChatSubmitBox({ sock, room, ws, Access_Token, memberId }) {
   const [chatBody, setChatBody] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ function ChatSubmitBox({ sock, room, ws, token, memberId }) {
     // ws.subscribe(`sub/chat/room/${room}`, {}, { token: token });
     // 해당하는 채팅방에 메시지 보내기
     ws.send(`/pub/chat/room/${room}`, JSON.stringify(content), {
-      token: token,
+      Access_Token: Access_Token,
     });
     setChatBody("");
   };

@@ -14,7 +14,6 @@ const Home = () => {
         <Footer/>
       </Layout>
     </HomePage>
-    
   )
 }
 

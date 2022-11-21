@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
-
+import styled from "styled-components";
 
 
 
 const KakaoLogin = () => {
     const REST_API_KEY = process.env.REACT_APP_API_KAKAO_ID
     const REDIRECT_URI = process.env.REACT_APP_API_URL
-    //console.log(REDIRECT_URI,REST_API_KEY,"확인")
+    console.log(REDIRECT_URI,REST_API_KEY,"확인")
 
 
     // const location = useLocation();
@@ -40,14 +40,38 @@ const KakaoLogin = () => {
 
     return (
     <div>
+        
+            
+
+        <Img onClick={()=>alert("준비중 입니다.")} src={require("../../img/naver.png")} alt="네이버 로그인 버튼"  />
         <a id="kakao-login-btn" onClick={handleLogin}>
-            <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-            alt="카카오 로그인 버튼" />
-        </a>
-        <p id="token-result"></p>
+            <Img2 src={require("../../img/kakao.png")}alt="카카오 로그인 버튼" />
+        </a>       
+        <PtagColorOnly>또는</PtagColorOnly>
+        {/* <p id="token-result"></p> */}
     </div>
+    
     )
 }
+const PtagColorOnly = styled.p`
+color:  #929292
+`
+const Img = styled.img`  
+  width:45px;
+  height:43px;
+  box-shadow: 2px 2px 6px gray;
+  margin-right:20px;
+
+  background-color:green;
+`
+const Img2 = styled.img`  
+width:45px;
+height:43px;
+box-shadow: 2px 2px 6px gray;
+
+background-color:green;
+`
 
 
 export default KakaoLogin
+

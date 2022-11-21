@@ -13,6 +13,7 @@ import ChatRoomPage from "../pages/chatting/ChatRoomPage";
 // 추가
 import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
+import ChatCard from "../pages/chatting/ChatCard";
 
 const Router = () => {
   return (
@@ -28,7 +29,9 @@ const Router = () => {
       {/* 추가 */}
       <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
       <Route path='/MainLogin' element={<MainLogin />} />
-        <Route path="/ChatRoomPage" element={<ChatRoomPage />} />
+      <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
+    
+
       </Routes>
     </BrowserRouter>
   );
