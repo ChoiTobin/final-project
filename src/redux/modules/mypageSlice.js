@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import Apis from "../../shared/Apis"
 
 // post{id}, myInfo{id, nickname, userImage}, myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}],
-// myPic{userImage}, myPets: [{petId, name, age, categoryName}, {""}, {""}]
+// myPic{userImage}, myPets: [{id, name, age, categoryName}, {""}, {""}]
 const initialState = {
   post: {id: 0,},
   myInfo: {
@@ -27,10 +27,10 @@ const initialState = {
   myPic: {},
   myPets: [
     {
-      petId: 0,
+      id: 0,
       name: "",
       age: "",
-      categoryName: "",
+      category: "",
     },
   ],
   isLoading: false,
@@ -123,7 +123,7 @@ export const __getMyPet = createAsyncThunk(
     try {
       const response = await Apis.getMyPetAX()
       console.log("반려동물 정보", response);
-      return thunkAPI.fulfillWithValue(response.data)
+      return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -138,7 +138,7 @@ export const __addMyPet = createAsyncThunk(
     try {
       const response = await Apis.postMyPetAX(payload)
       console.log("add 반려동물 응답", response)
-      return thunkAPI.fulfillWithValue(response.data)
+      return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -168,7 +168,7 @@ export const __deleteMyPet = createAsyncThunk(
     try {
       const response = Apis.deleteMyPetAX(payload)
       console.log("응답하라 오바", response);
-      return thunkAPI.fulfillWithValue(response.data)
+      return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       // alert(error.response)
       return thunkAPI.rejectWithValue(error)
@@ -254,7 +254,7 @@ const mypageSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    // 마이페이지 반려동물 정보 조회 - myPets: [{petId, name, age, categoryName}, {""}, {""}]
+    // 마이페이지 반려동물 정보 조회 - myPets: [{id, name, age, categoryName}, {""}, {""}]
     [__getMyPet.pending]: (state) => {
       state.isLoading = true;
     },
@@ -269,7 +269,7 @@ const mypageSlice = createSlice({
       state.isSuccess = false;
       state.error = action.payload;
     },
-    // 마이페이지 반려동물 정보 작성 - myPets: [{petId, name, age, categoryName}, {""}, {""}]
+    // 마이페이지 반려동물 정보 작성 - myPets: [{, name, age, categoryName}, {""}, {""}]
     [__addMyPet.pending]: (state) => {
       state.isLoading = true;
     },
@@ -284,7 +284,7 @@ const mypageSlice = createSlice({
       state.isSuccess = false;
       state.error = action.payload;
     },
-    // 마이페이지 반려동물 정보 수정 - myPets: [{petId, name, age, categoryName}, {""}, {""}]
+    // 마이페이지 반려동물 정보 수정 - myPets: [{id, name, age, categoryName}, {""}, {""}]
     [__putMyPet.pending]: (state) => {
       state.isLoading = true;
     },
@@ -292,7 +292,7 @@ const mypageSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
       const indexId = state.myPets.findIndex((myPets) => {
-        if (myPets.petId === action.payload.petId) {
+        if (myPets.id === action.payload.id) {
           return true;
         }
         return false;
@@ -305,14 +305,14 @@ const mypageSlice = createSlice({
       state.isSuccess = false;
       state.error = action.payload;
     },
-    // 마이페이지 반려동물 정보 삭제 - myPets: [{petId, name, age, categoryName}, {""}, {""}]
+    // 마이페이지 반려동물 정보 삭제 - myPets: [{id, name, age, categoryName}, {""}, {""}]
     [__deleteMyPet.pending]: (state) => {
       state.isLoading = true;
     },
     [__deleteMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.myPets = state.myPets.filter((myPets) => myPets.petId !== action.petId)
+      state.myPets = state.myPets.filter((myPets) => myPets.id !== action.id)
     },
     [__deleteMyPet.rejected]: (state, action) => {
       state.isLoading = false;

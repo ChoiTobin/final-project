@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { __addMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 등록
-// myPets: [{petId, name, age, categoryName}, {""}, {""}]
+// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const ProfileEdit = () => {
   const [myPet, setMyPet] = useState("");

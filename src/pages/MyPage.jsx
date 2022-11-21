@@ -12,7 +12,7 @@ import AddUserPic from "../components/features/AddUserPic";
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 // post{id}, myInfo{id, nickname, userImage}, myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}],
-// myPic{userImage}, myPets: [{petId, name, age, categoryName}, {""}, {""}]
+// myPic{userImage}, myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const MyPage = () => {
   const myInfo = useSelector((state) => state.mypage.myInfo);
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPic = useSelector((state) => state.mypage.myPic);
-  const myPets = useSelector((state) => [state.mypage.myPets]);
+  const myPets = useSelector((state) => [state.mypage.myPets.data]);
 
   console.log("전체 셀렉터", all);
 
@@ -96,7 +96,7 @@ const MyPage = () => {
       {/* <MyContent myPost={myPosts} /> */}
 
       {/* <br /> */}
-      {/* 반려동물 정보 여러개 붙이기 - myPets: [{petId, name, age, categoryName}, {""}, {""}] */}
+      {/* 반려동물 정보 여러개 붙이기 - myPets: [{id, name, age, categoryName}, {""}, {""}] */}
       {/* <div>
         <PetInfo myPets={myPets} />
       </div> */}

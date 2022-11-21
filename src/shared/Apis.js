@@ -71,11 +71,11 @@ export const Apis = {
   // 마이페이지 반려동물 정보 조회
   getMyPetAX: () => token.get(`api/mypage/pet`),
   // 마이페이지 반려동물 정보 작성
-  postMyPetAX: (payload) => token.get(`api/mypage/pet`, payload),
+  postMyPetAX: (payload) => token.post(`api/mypage/pet`, payload),
   // 마이페이지 반려동물 정보 수정
-  putMyPetAX: (petId, payload) => token.get(`api/mypage/pet/${petId}`, payload),
+  putMyPetAX: (payload) => token.put(`api/mypage/pet/${payload.id}`, payload),
   // 마이페이지 반려동물 정보 삭제
-  deleteMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
+  deleteMyPetAX: (id) => token.delete(`api/mypage/pet/${id}`),
 
   // 다른회원 마이페이지 정보 조회
   getUserInfoAX: (email) => noToken.get(`api/users/${email}`),
