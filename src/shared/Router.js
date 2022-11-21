@@ -6,13 +6,13 @@ import SignUp from "../pages/SignUp";
 import Form from "../components/features/Form";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
+import PostList from "../components/features/PostList";
 import ChatRoomPage from "../pages/chatting/ChatRoomPage";
 
 
 // 추가
 import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
-import ChatCard from "../pages/chatting/ChatCard";
 
 const Router = () => {
   return (
@@ -24,13 +24,11 @@ const Router = () => {
         <Route path="/form" element={<Form />} />
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
-        <Route path="/content" element={<Content/>}/>
+        <Route path="/postlist" element={<PostList/>}/>
       {/* 추가 */}
       <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
       <Route path='/MainLogin' element={<MainLogin />} />
-      <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
-    
-
+        <Route path="/ChatRoomPage" element={<ChatRoomPage />} />
       </Routes>
     </BrowserRouter>
   );

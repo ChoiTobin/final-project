@@ -5,15 +5,13 @@ const cookies = new Cookies()
 
 const noToken = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: "http://15.164.229.198:8080", 
-  //process.env.REACT_APP_URL,
+  baseURL: process.env.REACT_APP_URL,
   withCredentials: true,
 })
 
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL:"http://15.164.229.198:8080", 
-  //process.env.REACT_APP_URL,
+  baseURL: process.env.REACT_APP_URL,
   headers: {
     Access_Token:
       localStorage.getItem("Access_Token") === undefined
@@ -24,10 +22,8 @@ const token = axios.create({
 })
 
 const file = axios.create({
-  
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL:"http://15.164.229.198:8080",
-  //process.env.REACT_APP_URL,
+  baseURL: process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
     Access_Token:
@@ -40,21 +36,17 @@ const file = axios.create({
 
 export const Apis = {
   // 회원가입
-  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),//`/auth/signup` 도운님것. 이것 4개만 auth임 도운님서버로 옮길때 주의
+  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),
   // 이메일 중복확인
-  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),//`/auth/idCheck` 도운님것.
+  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),
   //닉네임체크
-  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),//`/auth/nicknameCheck` 도운님것.
+  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),
   // 로그인
-  loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),//`/auth/login` 도운님것.
+  loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
 
   // 소셜 로그인 - 카카오
-  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
-  //createRoom----------------------------------------------------------------
-  CreateRoom: (createRoom) => token.post(`/api/room`, createRoom),//`/auth/login` 도운님것.
+  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
 
-
-  
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
@@ -63,8 +55,6 @@ export const Apis = {
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
-  // getPostTimeAX: () => token.get(`/api/posts?&size=5&page=0`),
-  // getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload}`),
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
@@ -95,7 +85,7 @@ export const Apis = {
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
   // 게시글 검색 - 특정 단어 포함 게시글 조회
-  getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
+  getKeywordAX: (searchKeyword) => token.get(`/api/search/?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
   getFilterAX: (categoryKeyword) => token.get(`/api/filter&category=${categoryKeyword}`),
   // 무한스크롤
