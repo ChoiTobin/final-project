@@ -1609,9 +1609,9 @@
   "version" "2.11.6"
 
 "@react-aria/ssr@^3.2.0":
-  "integrity" "sha512-yNqUDuOVZIUGP81R87BJVi/ZUZp/nYOBXbPsRe7oltJOfErQZD+UezMpw4vM2KRz18cURffvmC8tJ6JTeyDtaQ=="
-  "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.3.0.tgz"
-  "version" "3.3.0"
+  "integrity" "sha512-qzuGk14/fUyUAoW/EBwgFcuMkVNXJVGlezTgZ1HovpCZ+p9844E7MUFHE7CuzFzPEIkVeqhBNIoIu+VJJ8YCOA=="
+  "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.4.0.tgz"
+  "version" "3.4.0"
   dependencies:
     "@babel/runtime" "^7.6.2"
 
@@ -7967,7 +7967,7 @@
     "regenerator-runtime" "^0.13.9"
     "whatwg-fetch" "^3.6.2"
 
-"react-bootstrap@^2.5.0":
+"react-bootstrap@^2.6.0":
   "integrity" "sha512-WnDgN6PR8WZKo2Og5J8EafFi4BsABjc96lNuMNfksrgiPDCw18/woWQCNhAeHFZQWTQ/PijkOrQ9ncTWwO//AA=="
   "resolved" "https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-2.6.0.tgz"
   "version" "2.6.0"

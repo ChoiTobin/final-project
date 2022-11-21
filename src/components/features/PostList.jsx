@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'	
 import { useInView } from "react-intersection-observer"
 import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
-
+import styled from "styled-components";
+import Carousel from 'react-bootstrap/Carousel';
 const PostList = ({searchposts,posts}) => {	
   const navigator = useNavigate();	
   const dispatch = useDispatch()	
@@ -34,42 +35,132 @@ const PostList = ({searchposts,posts}) => {
   }, [inView, loading])
 
   return (	
-      <>	
+      <>
+        <Carousel >
+          <Carousel.Item style={{
+          width: "100%",
+          height: "100%",
+        }}>
+            <Img
+              className="d-block w-100"
+              // src="holder.js/800x400?text=First slide&bg=373940"
+              src={require("../../img/big.png")}
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item style={{
+          width: "100%",
+          height: "100%",
+        }}>
+            <Img
+              className="d-block w-100"
+              // src="holder.js/800x400?text=First slide&bg=373940"
+              src={require("../../img/big.png")}
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item style={{
+          width: "100%",
+          height: "100%",
+        }}>
+            <Img
+              className="d-block w-100"
+              // src="holder.js/800x400?text=First slide&bg=373940"
+              src={require("../../img/big.png")}
+              alt="First slide"
+            />
+          </Carousel.Item>
+      </Carousel>
+    <Listmap>
         {	searchposts && searchposts.Length  !== 0 ? searchposts.map((post)=>{
           return(	
-            <div key={post.id}>	
-              <ul>	
-                <li>{post.state},{post.title}</li>
-                <li>{post.content}</li>
-                <li>{post.category}</li>
-                <li>{post.price}원</li>		
-                <li>{post.date}</li>		
-                <li>{post.local}</li>		
-                <li>{post.createdAt}</li>	
-              </ul>	
-            </div>	
+            <ListBox onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>
+              <Strong>{post.category}</Strong>
+              <P>{post.state}<Span>{post.title}</Span></P>
+              <p>{post.date}</p>
+              <PriceBox><p>{post.price}</p></PriceBox>
+            </ListBox>	
           )
         }) :
             posts.map((post) =>  {	
               // if (post.length !== 0)	
               return(	
-                  <div onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>	
-                    <ul>	
-                      <li>{post.state},{post.title}</li>
-                      <li>{post.content}</li>
-                      <li>{post.category}</li>
-                      <li>{post.price}원</li>		
-                      <li>{post.date}</li>		
-                      <li>{post.local}</li>		
-                      <li>{post.createdAt}</li>	
-                      <li>{post.nickname}</li>	
-                    </ul>	
-                  </div>	
+                <ListBox onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>
+                  <Div1>
+                    <Flex1> 
+                      <Strong>{post.category}</Strong>
+                      <P>{post.state}<Span>{post.title}</Span></P>
+                    </Flex1>
+                    <Flex2>
+                      <img src={require("../../img/Vector5.png")} />
+                    </Flex2> 
+                  </Div1>
+                  <Div1>
+                    <Flex1> 
+                      <p>{post.date}</p>
+                    </Flex1>
+                    <Flex2>
+                    <PriceBox><p>{post.price}</p></PriceBox>
+                    </Flex2> 
+                  </Div1>
+                
+                
+                
+              </ListBox>
           )	
         })}
         <div ref={ref}></div>
+        </Listmap>
       </>	
   )	
 }	
 export default PostList ;	
-// 
+
+const Img = styled.img`
+  object-fit: contain;
+`
+const ListBox = styled.div`
+  // padding:20px 30px;
+  background-color: #D6E4E5;
+`
+const Strong = styled.strong`
+  font-size:14px;
+`
+const Div1 = styled.div`
+  display:flex;
+  justify-content:space-between;
+`
+const Flex1 = styled.div`
+
+`
+const Flex2 = styled.div`
+  margin-top:5px;
+`
+const Listmap = styled.div`
+  width: 360px;
+  max-height: 640px;
+  margin: auto;
+  overflow: auto;
+  /* background-color: lightpink; */
+`
+const P = styled.p`
+  color:#ed9071;
+  font-weight:600;
+  font-size:18px;
+`
+const Span = styled.span`
+  color:#000;
+  margin-left:10px;
+  font-weight:500;
+  font-size:16px;
+`
+const PriceBox = styled.div`
+  width:100px;
+  height:36px;
+  font-size:20px;
+  font-weight:600;
+  color:#fff;
+  text-align:center;
+  line-height:36px;
+  background-color:#ed9071;
+`

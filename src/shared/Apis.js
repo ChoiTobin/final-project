@@ -56,7 +56,7 @@ export const Apis = {
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
   // getPostTimeAX: () => token.get(`/api/posts?&page=0&size=5`),
-  getPostTimeAX: (payload) => token.get(`/api/posts?size=5&page=${payload}`),
+  getPostTimeAX: (payload) => token.get(`/api/posts?size=6&page=${payload}`),
   // getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
   getDetailAX: (postId) => token.get(`/api/posts/${postId}`),
@@ -69,7 +69,7 @@ export const Apis = {
   getMyPostAX: (pageCount) => token.get(`/api/mypage/posts?page=${pageCount}`),
   // 마이페이지 프로필 이미지 업로드
   postMyImgAX: (payload) => file.post(`api/mypage/image`, payload),
-
+  
   // 마이페이지 반려동물 정보 조회
   getMyPetAX: () => token.get(`api/mypage/pet`),
   // 마이페이지 반려동물 정보 작성

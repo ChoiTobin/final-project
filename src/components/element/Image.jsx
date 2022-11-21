@@ -20,7 +20,7 @@ const Image = () => {
       setImgFile(img)
     }
   }
-
+  
   const onPost = (event) => {
     event.preventDefault()
     const formData = new FormData()
