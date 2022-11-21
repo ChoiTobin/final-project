@@ -4,14 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import styled from "styled-components";
 import postSlice, { __getDetail } from"../redux/modules/postSlice"
 import { Carousel } from "react-bootstrap";
 import bootstrap from 'bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 const Detail = () => {
   const navigator = useNavigate();
-  const dispatch = useDispatch();
   const {id}  = useParams()
   const dispatch = useDispatch()	
   const post = useSelector((state)=>state.post.post)
@@ -29,11 +27,11 @@ const Detail = () => {
   const onClickChatting = (post) =>{
     // console.log("포스트에 뭐찍히지",post)
 
-    dispatch(__CreateRoom({
-      postId:post.id,
-      postTitle:post.title,
-    }));
-    navigator(`/ChatRoomPage/${post.id}`);
+    // dispatch(__CreateRoom({
+    //   postId:post.id,
+    //   postTitle:post.title,
+    // }));
+    // navigator(`/ChatRoomPage/${post.id}`);
     
 
   }
