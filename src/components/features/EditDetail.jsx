@@ -1,30 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import regex from "../../../shared/regex";
-import ValidInput from "../../element/ValidBtnInput";
-import useImgUpload from "../../hooks/useImgUpload";
-import photoIMG from "../../../img/photoIMG.png"
-import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { __putMyPost } from "../../../redux/modules/mypageSlice";
 import { useNavigate } from "react-router-dom";
+import Carousel from "react-bootstrap/Carousel";
+import useImgUpload from "../hooks/useImgUpload";
+import upload from "../../img/upload.png";
+import { __putMyPost } from "../../redux/modules/mypageSlice";
 
-const Form = ({ post }) => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [selected, setSelected] = useState("all");
-  const sizes = ["all", "small", "medium", "big"];
-  const types = ["전체", "소형", "중형", "대형"];
-  const options = sizes.map((size) => {
-    return <option value={size}>{types}</option>;
-  });
+// 내가 쓴 게시글 수정 및 삭제
+// post{id}
+// myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
+
+const EditDetail = () => {
+  const [myPost, setMyPost] = useState({
+    imgs:[""],
+    category: "",
+    title: "",
+    price: "",
+    local: "",
+    content: "",
+  })
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onChangeSelect = (event) => {
-    setSelected(event.target.value);
+
+  const onChangePost = (event) => {
+    const { name, value } = event.target;
+    setMyPost({ ...myPost, [name]: value })
   };
+
+  console.log("온체인지 포스트", myPost);
 
   // 이미지 업로드 훅
   const [files, filesUrls, uploadHandle] = useImgUpload(5);
@@ -34,65 +40,61 @@ const Form = ({ post }) => {
 
   // submit
   const writeSubmit = () => {
-    // request로 날릴 formData
-    const formData = new FormData();
+    
+  // request로 날릴 formData
+  const formData = new FormData();
 
-    // FormData에 파일 담기
-    if (files.length > 0) {
-      files.forEach((file) => {
-        formData.append("images", file);
-      })
-    } else {
-      formData.append("images", null)
-    }
-
-    // 이미지와 함께 formData에 보낼 input onChange value
-    if (post.category === "") {
-      alert("종류를 선택해주세요")
-      return
-    }
-    if (post.title === "") {
-      alert("제목을 입력해주세요")
-      return
-    }
-    if (post.price === "") {
-      alert("가격을 입력해주세요")
-      return
-    }
-    if (post.local === "") {
-      alert("위치를 선택해주세요")
-      return
-    }
-    if (post.content === "") {
-      alert("내용을 입력해주세요")
-      return
+  // FormData에 파일 담기
+  if (files.length > 0) {
+    files.forEach((file) => {
+      console.log("이미지 파일 올라가나", file);
+      formData.append("postImg", file);
+    })
+  } else {
+    formData.append("postImg", null)
     }
 
-    // formData에 작성한 데이터 넣기
-    formData.append("post", JSON.stringify(post));
+  setMyPost("")
 
-    // API 날리기
+    const myPostData = {
+    "id": myPost.id,
+    "title": myPost.title,
+    "content": myPost.content,
+    "category": myPost.category,
+    "price": parseInt(myPost.price),
+    "local": myPost.local,
+    }
+    
+    console.log("전체내용", myPostData);
+    console.log("이미지들", filesUrls);
+
+  formData.append("mypostImg", filesUrls);
+
+  // formData에 작성한 데이터 넣기
+  formData.append("post", new Blob([JSON.stringify(myPostData)], {
+    type: "application/json"
+  }));
+
+    console.log("폼데이터", formData);
+    
+  // API 날리기
     dispatch(__putMyPost(formData));
-  }
-
-  
+    window.alert("게시글이 수정되었습니다!");
+}
 
   return (
     <div>
       <div>
-        <label>종류</label>
-        <select onChange={onChangeSelect}>{options}</select>
+        <label htmlFor="text">종류</label>
+        <select onChange={onChangePost} name="category" value={myPost.category}>
+          <option defaultValue="all">전체</option>
+          <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
+          <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
+          <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
+        </select>
       </div>
       <div>
         <label htmlFor="imgFile">
-          {/* 이미지 미리보기 Preview */}
-          {filesUrls.map((val, i) => {
-            return (
-              <img src={val} alt="업로드 사진 미리보기" key={i} />
-            )
-          })}
-
-
           {/* 이미지 업로더 */}
           <input
             type="file"
@@ -104,55 +106,60 @@ const Form = ({ post }) => {
             onChange={uploadHandle}
             ref={imgRef}
           />
-          <button
+          <ImgUpload
             type="button"
             onClick={() => {
               imgRef.current.click();
             }}
           >
-            <img
-              src={photoIMG}
-              style={{ width: "200px", marginTop: "10px" }}
-              alt=""
-            />
-          </button>
+            <img src={upload} style={{ width: "60px" }} alt="" />
+          </ImgUpload>
         </label>
-        <span>
-          * 이미지는 640X640에 최적화 되어 있습니다 <br />
-          - 이미지를 클릭할 경우 원본 이미지를 확인할 수 있습니다. <br />
-          - 이미지를 클릭 후 이동하여 등록순서를 변경할 수 있습니다. <br />
-          - 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. <br />
-          - 최대 지원 사이즈인 640 X 640으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M)
-        </span>
       </div>
 
+      <ImgPreview>
+        {/* 이미지 미리보기 Preview */}
+        {filesUrls.map((imgs, id) => {
+          return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
+        })}
+        {/* <Carousel fade>
+          {filesUrls.map((img) => {
+            return (
+              <Carousel.Item key={img.id}>
+                <img style={{ width: "270px" }} src={img ? img : ""} alt="" />
+              </Carousel.Item>
+            );
+          })}
+        </Carousel> */}
+      </ImgPreview>
+
       <div>
-        <label>제목</label>
-        <ValidInput
-          label="제목"
-          value={title}
-          setValue={setTitle}
-          maxValue={30}
-          regexCheck={regex.title}
-          defaultText="제목을 입력해주세요"
-          successText="통과"
-          errorText="제목은 30자 이내로 작성해야 합니다"
+        <label htmlFor="text">제목</label>
+        <input
+          type="text"
+          name="title"
+          value={myPost.title}
+          maxLength={30}
+          onChange={onChangePost}
+          placeholder="제목을 입력해주세요"
         />
       </div>
 
       <div>
-        <span>가격</span>
+        <label htmlFor="text">가격</label>
         <input
-          type="number"
-          value={selected}
-          onChange={onChangeSelect}
+          type="text"
+          name="price"
+          value={myPost.price}
+          onChange={onChangePost}
           placeholder="예) 20000원"
         />
       </div>
 
       <div>
-        <span>위치</span>
-        <select>
+        <label htmlFor="text">위치</label>
+        <select onChange={onChangePost} name="local" value={myPost.local}>
+          <option defaultValue="">---지역을 선택해주세요---</option>
           <option value="강원도">강원도</option>
           <option value="경기도">경기도</option>
           <option value="경상남도">경상남도</option>
@@ -172,21 +179,53 @@ const Form = ({ post }) => {
       </div>
 
       <div>
-        <label>내용</label>
-        <ValidInput
-          label="내용"
-          value={body}
-          setValue={setBody}
-          regexCheck={regex.body}
-          defaultText="내용을 입력해주세요"
-          successText="통과"
-          errorText="내용은 200자 이내로 작성해야 합니다."
+        <label htmlFor="text">내용</label>
+        <input
+          type="text"
+          name="content"
+          value={myPost.content}
+          maxLength={200}
+          onChange={onChangePost}
+          placeholder="내용을 입력해주세요"
+          style={{ minHeight: "100px" }}
         />
       </div>
 
-      <button onClick={writeSubmit}>수정완료</button>
-      <button onClick={() => {navigate(-1)}}>취소</button>
+      <button onClick={writeSubmit}>저장</button>
     </div>
   );
 }
-export default Form;
+export default EditDetail;
+
+const ImgUpload = styled.button`
+  background-color: yellowgreen;
+  margin: 10px 0 10px 100px;
+  border: none;
+  border-radius: 10px;
+  img {
+    align-items: center;
+    justify-content: center;
+    /* margin: 10px 0 0 10px; */
+  }
+`;
+
+const ImgPreview = styled.div`
+  width: 270px;
+  height: 170px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  border: 1px solid #E2E2E2;
+  border-radius: 10px;
+
+  margin: 0 auto 10px;
+  
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+`;

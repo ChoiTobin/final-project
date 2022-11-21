@@ -58,13 +58,13 @@ const Post = () => {
     setConimal("")
 
     const data = {
-       "title" : conimal.title,
-       "content" : conimal.content,
-       "category" : conimal.category,
-       "price" : parseInt(conimal.price), // 문자string을 숫자로 변환해서 보내야할때 parseInt로 감싸서 보내주면된다.
-       "state" : "진행중",
-       "local" : conimal.local,
-       "date" : conimal.date
+      "title" : conimal.title,
+      "content" : conimal.content,
+      "category" : conimal.category,
+      "price" : parseInt(conimal.price), // 문자string을 숫자로 변환해서 보내야할때 parseInt로 감싸서 보내주면된다.
+      "state" : "진행중",
+      "local" : conimal.local,
+      "date" : conimal.date
     }
     console.log("데이터",data)
     console.log("img",fileUrls)
@@ -204,3 +204,10 @@ background: #fff;
 cursor: pointer;
 margin-top:12px;
 `
+const Layouts = styled.div`
+  width: 95%;
+  max-width: 360px;
+  height: 640px;
+  margin: auto;
+  /* background-color: lightpink; */
+`;

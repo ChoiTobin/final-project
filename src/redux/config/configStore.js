@@ -16,7 +16,7 @@ const store = configureStore({
     post,
     search,
     account,
-    chatting
+    chatting,
   },
   
   //dev tool을 개발 환경에서만 설정

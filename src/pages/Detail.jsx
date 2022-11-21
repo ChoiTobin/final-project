@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -11,14 +12,8 @@ import Carousel from 'react-bootstrap/Carousel';
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
-  const dispatch = useDispatch()	
-  const post = useSelector((state)=>state.post.post)
-  // console.log("post",post)	
-  
-  useEffect(() => {	
-    dispatch(__getDetail(id));	
-  }, [dispatch]);	
-  
+  const posts = useSelector((state) => state.post.post)	
+  console.log("@detail",posts);
   const onClickMove = () => {
     navigator(-1);
   };

@@ -1,42 +1,82 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __getMyPage } from "../../redux/modules/mypageSlice";
+import { __deleteMyPet, __getMyPet } from "../../redux/modules/mypageSlice";
+import Modal from "../modal/modal";
+import useModal from "../modal/useModal";
+import EditPetInfo from "./EditPetInfo";
 
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
+// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
-const Profile = ({ mypage }) => {
-  // 여기에 있는 마이페이지 프로필에 담기는 정보들을 props로 다른 컴포넌트에 전달한다. (자식이 부모한테)
-  // 받는(다른) 컴포넌트에서는 import해서 사용한다.
-
+const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
+  
+  console.log("형태가 뭐야 대체", myPets);
+  console.log("길이가 나오나", myPets.length);
 
-  // GET으로 리스트에 붙일 마이페이지 정보들을 받아와서 브라우저에 뿌려준다.
+  const [modalOption, showModal] = useModal();
+
+  const onClickModal = useCallback(() => {
+    showModal(
+      true,
+      "반려동물 정보 수정",
+      () => console.log("모달 on"),
+      null,
+      <EditPetInfo/>
+    )
+  }, [modalOption])
+
+
+  // 나의 반려동물 삭제
+  const onDeleteMyPet = (id) => {
+    dispatch(__deleteMyPet(id));
+    window.alert("반려동물 정보를 삭제하시겠습니까?");
+    window.location.reload();
+  };
+
+  // 반려동물 정보 조회
   useEffect(() => {
-    dispatch(__getMyPage());
-  }, [dispatch]);
+    dispatch(__getMyPet());
+  }, []);
 
   return (
-    <div>
-      <PetInfo className="pet-info">
-        <div>
-          <h3>{mypage.catecory}</h3>
-          <span>{mypage.name}</span>
-        </div>
+    <>
+      <Layout>
+        {myPets !== undefined &&
+        myPets.map((pet) => {
+          if (pet.length !== 0) {
+            return (
+              <div key={pet.id}>
+                <div>
+                  <span>{pet.category}</span>
+                  <span>{pet.name}</span>
+                </div>
+                <div>
+                  <span> {pet.age}살</span>
+                </div>
+                {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
+                <button onClick={onClickModal}>수정하기</button>
+                <Modal modalOption={modalOption} />
 
-        <div>
-          <span> {mypage.age}</span>
-        </div>
-      </PetInfo>
-    </div>
+                <button onClick={() => onDeleteMyPet(pet.id)}>삭제하기</button>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </Layout>
+      
+    </>
   );
 };
 
-export default Profile;
+export default PetInfo;
 
-const PetInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+const Layout = styled.div`
+  /* background-color: cornflowerblue; */
+  min-height: 150px;
+  max-height: 200px;
+  overflow: auto;
 `;

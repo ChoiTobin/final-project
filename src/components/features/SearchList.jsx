@@ -10,21 +10,21 @@ const Content = () => {
   // const searchposts = useSelector((state) => state.post.post.response)
   // const {posts} = useSelector((state)=>state.post)
   //검색
-  const [ getSearch , setGetSearch ] = useState({search:""});
+  const [getSearch, setGetSearch] = useState({ search: "" });
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setGetSearch({...getSearch,[name]: value,});
+    setGetSearch({ ...getSearch, [name]: value });
   };
-  
+
   //키워드검색 #제목 #내용 #지역
-  const onClickSearch = () =>{ 
-    if (getSearch.search.trim() === "" )  {
+  const onClickSearch = () => {
+    if (getSearch.search.trim() === "") {
       return alert("내용을 입력해주세요.");
-    } 
+    }
     dispatch(__getKeyword(getSearch.search));
-  }
-  // useEffect(() => {	
-  //   dispatch(__getPostTime());	
+  };
+  // useEffect(() => {
+  //   dispatch(__getPostTime());
   // }, [dispatch])
 
   const onClickAll = () =>{ //전체검색
@@ -32,16 +32,16 @@ const Content = () => {
   }
   
   // 카테고리검색
-  const onClickBig = () =>{ 
+  const onClickBig = () => {
     dispatch(__getCategory("대형"));
-  } 
-  const onClickMiddle = () =>{ 
+  };
+  const onClickMiddle = () => {
     dispatch(__getCategory("중형"));
-  } 
-  const onClickSmall = () =>{ 
+  };
+  const onClickSmall = () => {
     dispatch(__getCategory("소형"));
-  } 
-  
+  };
+
   return (
       <div>
         <InputBox>

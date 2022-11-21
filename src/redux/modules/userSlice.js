@@ -47,8 +47,8 @@ export const __kakaoLogin = (code) => {
     //post가 아닌 get으로 보낸다.
     // `http://{서버주소}?code=${code}`
           .then((res) => {
-            console.log("토큰",res)
-              if(res.data.status ===200){
+            console.log("response", res);
+              if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
               localStorage.setItem("Access_Token", Access_Token);
 

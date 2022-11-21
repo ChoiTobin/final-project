@@ -46,12 +46,12 @@ export const Apis = {
 
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
-  
+
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
   // 게시글 수정
-  putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload.content),
+  putPostAX: (id,payload) => file.put(`/api/posts/${id}`, payload),
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
@@ -59,26 +59,26 @@ export const Apis = {
   getPostTimeAX: (payload) => token.get(`/api/posts?size=6&page=${payload}`),
   // getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
-  getDetailAX: (postId) => token.get(`/api/posts/${postId}`),
+  getDetailAX: (id) => token.get(`/api/posts/${id}`),
   // 게시글 진행 상테 수정
-  getStateAX: (postId) => token.put(`/api/posts/${postId}/state`),
-  
+  getStateAX: (id) => token.put(`/api/posts/${id}/state`),
+
   // 마이페이지 조회
   getMyPageAX: () => token.get(`/api/mypage`),
   // 마이페이지 내 게시글 조회
-  getMyPostAX: (pageCount) => token.get(`/api/mypage/posts?page=${pageCount}`),
+  getMyPostAX: () => token.get(`/api/mypage/posts`),
   // 마이페이지 프로필 이미지 업로드
   postMyImgAX: (payload) => file.post(`api/mypage/image`, payload),
   
   // 마이페이지 반려동물 정보 조회
   getMyPetAX: () => token.get(`api/mypage/pet`),
   // 마이페이지 반려동물 정보 작성
-  postMyPetAX: () => token.get(`api/mypage/pet`),
+  postMyPetAX: (payload) => token.post(`api/mypage/pet`, payload),
   // 마이페이지 반려동물 정보 수정
-  putMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
+  putMyPetAX: (payload) => token.put(`api/mypage/pet/${payload.id}`, payload),
   // 마이페이지 반려동물 정보 삭제
-  deleteMyPetAX: (petId) => token.get(`api/mypage/pet/${petId}`),
-  
+  deleteMyPetAX: (id) => token.delete(`api/mypage/pet/${id}`),
+
   // 다른회원 마이페이지 정보 조회
   getUserInfoAX: (email) => noToken.get(`api/users/${email}`),
   // 다른회원 마이페이지 반려동물 정보 조회
@@ -87,8 +87,10 @@ export const Apis = {
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
   // 게시글 검색 - 특정 단어 포함 게시글 조회
-  getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
+  getKeywordAX: (searchKeyword) => token.get(`/api/search/?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
-  getFilterAX: (categoryKeyword) => token.get(`/api/filter?category=${categoryKeyword}`),
+  getFilterAX: (categoryKeyword) => token.get(`/api/filter&category=${categoryKeyword}`),
+  // 무한스크롤
+  getScrollAX: (infinitescroll) => token.get(`/api/posts?&size=1&page=1${infinitescroll}`)
 }
 export default Apis
