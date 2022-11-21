@@ -6,6 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/KakaoLogin";
 import { useLocation } from "react-router-dom";
+import Kakao from "../img/kakao.svg"
+import Naver from "../img/naver.svg"
+
+
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,8 +54,13 @@ const SignIn = () => {
     <div>
       <LoginContainer>
         <Wrap>
+          
           <div>
             <LoginBox>
+              <div style={{ display: "flex", flexDirection: "row"}}>
+                <img src={Kakao} alt=""/>
+                <img src={Naver} alt=""/>
+              </div>
               <Input
                 placeholder='사용자 이메일'
                 type='text'

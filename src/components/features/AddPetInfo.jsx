@@ -10,6 +10,8 @@ const ProfileEdit = () => {
   const [myPet, setMyPet] = useState("");
   const dispatch = useDispatch();
 
+  const myPets = useSelector((state) => state.mypage.myPets)
+
   // 프로필 등록 - 반려동물 정보(이름, 나이, 종류)
   const onChangePetInfo = (event) => {
     const { name, value } = event.target;
@@ -33,7 +35,7 @@ const ProfileEdit = () => {
     }
     console.log("우리강아지 페이로드", myPet);
     dispatch(__addMyPet(myPet));
-    // window.location.reload("/mypage");
+    window.location.reload("/mypage");
   };
 
   return (

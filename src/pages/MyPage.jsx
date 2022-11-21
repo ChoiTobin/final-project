@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import User from "../img/user.png";
 import AddPetInfo from "../components/features/AddPetInfo"
-import Mytab from "../components/features/mypageTab";
+import Mytab from "../components/features/MypageTab";
 import useModal from "../components/modal/useModal";
 import Modal from "../components/modal/modal";
 import AddUserPic from "../components/features/AddUserPic";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
@@ -22,7 +24,7 @@ const MyPage = () => {
   const myInfo = useSelector((state) => state.mypage.myInfo);
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPic = useSelector((state) => state.mypage.myPic);
-  const myPets = useSelector((state) => [state.mypage.myPets.data]);
+  const myPets = useSelector((state) => state.mypage.myPets);
 
   console.log("전체 셀렉터", all);
 
@@ -71,6 +73,7 @@ const MyPage = () => {
 
   return (
     <Layouts>
+      <Header/>
       <div className="user-info">
         <UserImg
           src={myInfo.userImage === "" ? myInfo.userImage : User}
@@ -100,6 +103,7 @@ const MyPage = () => {
       {/* <div>
         <PetInfo myPets={myPets} />
       </div> */}
+      <Footer/>
     </Layouts>
   );
 };

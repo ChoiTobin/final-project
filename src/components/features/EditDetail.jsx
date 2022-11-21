@@ -2,8 +2,9 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Carousel from "react-bootstrap/Carousel";
 import useImgUpload from "../hooks/useImgUpload";
-import photoIMG from "../../img/photoIMG.png"
+import upload from "../../img/upload.png";
 import { __putMyPost } from "../../redux/modules/mypageSlice";
 
 // 내가 쓴 게시글 수정 및 삭제
@@ -12,7 +13,8 @@ import { __putMyPost } from "../../redux/modules/mypageSlice";
 
 const EditDetail = () => {
   const [myPost, setMyPost] = useState({
-    categoryName: "",
+    imgs:[""],
+    category: "",
     title: "",
     price: "",
     local: "",
@@ -58,7 +60,7 @@ const EditDetail = () => {
     "id": myPost.id,
     "title": myPost.title,
     "content": myPost.content,
-    "categoryName": myPost.categoryName,
+    "category": myPost.category,
     "price": parseInt(myPost.price),
     "local": myPost.local,
     }
@@ -84,12 +86,8 @@ const EditDetail = () => {
     <div>
       <div>
         <label htmlFor="text">종류</label>
-        <select
-          onChange={onChangePost}
-          name="categoryName"
-          value={myPost.categoryName}
-        >
-          <option defaultValue="">전체</option>
+        <select onChange={onChangePost} name="category" value={myPost.category}>
+          <option defaultValue="all">전체</option>
           <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
           <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
           <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
@@ -114,11 +112,7 @@ const EditDetail = () => {
               imgRef.current.click();
             }}
           >
-            <img
-              src={photoIMG}
-              style={{ width: "60px" }}
-              alt=""
-            />
+            <img src={upload} style={{ width: "60px" }} alt="" />
           </ImgUpload>
         </label>
       </div>
@@ -128,6 +122,15 @@ const EditDetail = () => {
         {filesUrls.map((imgs, id) => {
           return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
         })}
+        {/* <Carousel fade>
+          {filesUrls.map((img) => {
+            return (
+              <Carousel.Item key={img.id}>
+                <img style={{ width: "270px" }} src={img ? img : ""} alt="" />
+              </Carousel.Item>
+            );
+          })}
+        </Carousel> */}
       </ImgPreview>
 
       <div>
@@ -197,7 +200,14 @@ export default EditDetail;
 const ImgUpload = styled.button`
   background-color: yellowgreen;
   margin: 10px 0 10px 100px;
-`
+  border: none;
+  border-radius: 10px;
+  img {
+    align-items: center;
+    justify-content: center;
+    /* margin: 10px 0 0 10px; */
+  }
+`;
 
 const ImgPreview = styled.div`
   width: 270px;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useImgUpload from "../hooks/useImgUpload";
+import upload from "../../img/upload.png"
 import User from "../../img/user.png"
 import { __postMyImg } from "../../redux/modules/mypageSlice";
 
@@ -81,8 +82,8 @@ const AddUserPic = () => {
             }}
           >
             <img
-              src={User}
-              style={{ width: "100px", height: "100px", borderRadius: "100%" }}
+              src={upload}
+              style={{ width: "100px" }}
               alt=""
             />
           </ImgUpload>
@@ -105,8 +106,15 @@ const AddUserPic = () => {
 export default AddUserPic;
 
 const ImgUpload = styled.button`
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
   margin: 10px 0 10px 100px;
+  border: none;
+  border-radius: 10px;
+  img {
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 0 10px;
+  }
 `;
 
 const ImgPreview = styled.div`

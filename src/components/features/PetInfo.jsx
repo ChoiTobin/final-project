@@ -32,7 +32,7 @@ const PetInfo = ({ myPets }) => {
   const onDeleteMyPet = (id) => {
     dispatch(__deleteMyPet(id));
     window.alert("반려동물 정보를 삭제하시겠습니까?");
-    // window.location.reload();
+    window.location.reload();
   };
 
   // 반려동물 정보 조회
@@ -42,31 +42,41 @@ const PetInfo = ({ myPets }) => {
 
   return (
     <>
-      {myPets !== undefined &&
-        myPets.map((item) => {
-          if (item.length !== 0) {
+      <Layout>
+        {myPets !== undefined &&
+        myPets.map((pet) => {
+          if (pet.length !== 0) {
             return (
-              <div key={item.id}>
+              <div key={pet.id}>
                 <div>
-                  <span>{item.category}</span>
-                  <span>{item.name}</span>
+                  <span>{pet.category}</span>
+                  <span>{pet.name}</span>
                 </div>
                 <div>
-                  <span> {item.age}</span>
+                  <span> {pet.age}살</span>
                 </div>
                 {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
                 <button onClick={onClickModal}>수정하기</button>
                 <Modal modalOption={modalOption} />
 
-                <button onClick={() => onDeleteMyPet(item.id)}>삭제하기</button>
+                <button onClick={() => onDeleteMyPet(pet.id)}>삭제하기</button>
               </div>
             );
           } else {
             return null;
           }
         })}
+      </Layout>
+      
     </>
   );
 };
 
 export default PetInfo;
+
+const Layout = styled.div`
+  /* background-color: cornflowerblue; */
+  min-height: 150px;
+  max-height: 200px;
+  overflow: auto;
+`;

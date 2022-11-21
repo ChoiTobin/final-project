@@ -150,7 +150,7 @@ export const __addMyPet = createAsyncThunk(
 export const __putMyPet = createAsyncThunk(
   "mypage/__putMyPet",
   async (payload, thunkAPI) => {
-    console.log("putMyPet", payload)
+    console.log("수정 페이로드 들어오나", payload)
     try {
       const response = await Apis.putMyPetAX(payload)
       console.log(response, "반려동물 수정 완료")

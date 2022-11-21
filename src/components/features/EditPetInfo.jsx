@@ -51,7 +51,7 @@ const EditPetInfo = () => {
             value={myPet.category}
             onChange={onChangePetInfo}
           >
-            <option default value="">전체</option>
+            <option default value="all">전체</option>
             <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
             <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
             <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
