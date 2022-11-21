@@ -5,7 +5,6 @@ import Footer from "../components/Layout/Footer";
 import Content from "../components/features/Content";
 
 const Home = () => {
-
   return (
     <HomePage>
       <Layout>
