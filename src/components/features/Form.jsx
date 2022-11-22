@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router';
 import styled from "styled-components"
 import useImgUpload from '../hooks/useImgUpload'
 import { __addPost } from "../../redux/modules/postSlice";	
-import { $CombinedState } from 'redux';
 import { ButtonGroup } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
 import upload from "../../img/upload.png";
 
 const Post = () => {
-  const navigate = useNavigate
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [conimal , setConimal] = useState({
     title:"",
@@ -143,7 +142,7 @@ const Post = () => {
         <input type="hidden" name="state" value="진행중" onChange={onChangeHandler} />
       </Form>
       <ButtonGroup>
-        <FormBtn1>취소하기</FormBtn1>
+        <FormBtn1 onClick={() => navigate(-1)}>취소하기</FormBtn1>
         <FormBtn2 onClick={writeSubmit}>업로드</FormBtn2>
       </ButtonGroup>
     </>
@@ -152,28 +151,25 @@ const Post = () => {
 
 export default Post;
 const ImgUpload = styled.button`
-  margin: 10px 0 10px 100px;
   border: none;
   border-radius: 10px;
+  margin:13px 0;
+  border:1px solid #666;
   img {
     align-items: center;
     justify-content: center;
     /* margin: 10px 0 0 10px; */
   }
-`;
-
+`
 const Form = styled.div`
   width:95%;
-  max-width:360px;    
-  width:500px;
+  max-width:360px;   
   display:flex;
   flex-direction:column;
 `
 const Img = styled.img`
   object-fit: contain;
 `
-
-// 버튼 누르면 손모양 나오게 하는 마우스 커서
 const FormBtn1 = styled.button`
   display:block;
   border:none;
@@ -219,6 +215,7 @@ const Select2 = styled.select`
   text-indent:8px;
 `
 const InputImg = styled.input`
+display:none;
 height: 40px;
 background: #fff;
 cursor: pointer;

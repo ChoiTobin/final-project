@@ -6,36 +6,24 @@ import { __putPost } from "./mypageSlice";
 const initialState = {	
   isLoading: false,	
   post: {},	
-  posts:[], //공배열로 바꿔야함
+  // posts:[], //공배열로 바꿔야함
   error: null,	
 }
 
 // 게시글 전체 조회	
-// export const __getPostTime = createAsyncThunk(	
-//   "api/posts/getPost",	
-//   async (payload, thunkAPI) => {	
-//     try {	
-//       const response = await Apis.getPostTimeAX(payload)	
-//       return thunkAPI.fulfillWithValue(response.data);	
-//     } catch (error) {	
-//       return thunkAPI.rejectWithValue(error);	
-//     }	
-//   }	
-// )
-
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
-  async (payload, thunkAPI) => {	
-    console.log("페이로드야",payload)
+  async (payload, thunkAPI) => {
+    // console.log("페이로드야",payload)	
     try {	
-      const response = await Apis.getPostTimeAX(payload)
-      console.log("전체클릭",response.data)
+      const response = await Apis.getPostTimeAX(payload)	
+      console.log("전체조회",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
-)	
+)
 
 // 게시글 상세 조회	
 export const __getDetail = createAsyncThunk(	
@@ -121,9 +109,9 @@ const postSlice = createSlice({
       // console.log("페이로드야",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
-      // state.post.response = action.payload.data;
-      console.log("pay",action.payload.data)
-      state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
+      state.post.response = action.payload.data;
+      // console.log("pay",action.payload.data)
+      // state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	

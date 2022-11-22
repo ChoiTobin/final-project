@@ -44,24 +44,37 @@ const Detail = () => {
           </Carousel>
           {/* {post.imgs} */}
         <ItemBox>
-          <Text style={{fontWeight:600 , fontSize:16 }}>
+          <Span style={{fontSize:24,fontWeight:590}}>{post.price}원</Span>
+          <Text style={{fontWeight:600 , fontSize:20 }}>
             <Title>
-              <Span>{post.state}</Span>
-              {post.title} 
+              {post.state}
+              <span style={{marginLeft:6,fontWeight:500}}>{post.title} </span>
             </Title>
-            <div style={{fontSize:14}} >{post.nickname}</div>
+            <div style={{fontSize:14}}>{post.nickname}</div>
           </Text>
           <Text style={{fontSize:14}}>
-            <div>{post.date}</div>
-            <div>{post.createdAt}</div>
+            <div style={{marginTop:10}}>
+              <img style={{marginRight:5}} src={require("../img/calender.png")} alt=""  />{post.date}
+              <img style={{width:11,marginRight:5,marginLeft:10}} src={require("../img/markup.png")} alt=""  />{post.local}
+            </div>
+            <div style={{marginTop:10}}>{post.createdAt}시간</div>
           </Text>
-          <div>
-            {post.content}
-          </div>
-          <div>
-          </div>
         </ItemBox>
-        <Button type='button' onClick={() => onClickMove()}>이전버튼</Button>
+        <ContentBox>
+          {/* {post.content} */}
+          <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
+          진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움
+        </ContentBox>
+        <ProfileBox>
+          <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
+          <Profilename>
+            <div>
+              닉네임
+              
+            </div>⭐⭐⭐⭐⭐
+          </Profilename>
+        </ProfileBox>
+        <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
       </Container>
   )
 }
@@ -74,10 +87,18 @@ const Container = styled.div `
 const ItemBox = styled.div`
   border-bottom: 1px solid #ED9071;
   border-top: 1px solid #ED9071;
-  margin:20px 0; 
   padding: 20px 10px;
 `
-
+const ContentBox = styled.div`
+  border-bottom: 1px solid #ED9071;
+  padding: 20px 10px
+`
+const ProfileBox = styled.div`
+  display:flex; 
+  border-bottom: 1px solid #ED9071;
+  padding: 20px 10px
+  
+`
 const Text = styled.div`
   display:flex;
   justify-content:space-between;
@@ -94,12 +115,21 @@ const Button = styled.button`
   height:60px;
   font-size: 16px;
   font-weight:bold;
+  color:#fff;
   box-sizing: border-box;
   background-color:#ED9071;
   cursor:pointer;
+  margin-top:20px;
 `
 const Img = styled.img`
   object-fit: cover;
   width:360px;
   height:200px;
+`
+const Userimg = styled.img`
+  width:50px;
+`
+const Profilename = styled.div`
+  display:flex;
+  flex-direction:column;
 `

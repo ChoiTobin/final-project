@@ -1,25 +1,21 @@
 ul,li{
   width:360px;
   list-style: none;
+  justify-content:center;
 }
 li{ 
-  margin:10px 0;
+  
   text-align: center;
   line-height: 36px;
-  width:90px;
+  width:60px;
   height:36px;
   border:none;
   background-color:#ddd;
   border-radius:30px;
   font-weight:600;
 }
-/* li:hover{ 
-  
-    background-color:#ED9071;
-    color:#fff;
-  
+
+h1,h2,h3,h4,h5,h6,p,span,strong{
+  margin:0;
+  padding:0;
 }
-li:first-child:hover{
-  background-color:#ED9071;
-  color:#fff;
-} */
