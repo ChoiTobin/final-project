@@ -76,7 +76,7 @@ export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
     try {
-      console.log("찍히는지",payload)
+
       const res = await Apis.signupAX(payload)
       .then((response)=>{
         // if(response.status ==200){

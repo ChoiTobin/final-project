@@ -17,8 +17,6 @@ const Detail = () => {
 
 
   const onClickChatting = (post) =>{
-    // console.log("포스트에 뭐찍히지",post)
-
     dispatch(__CreateRoom({
       postId:post.id,
       postTitle:post.title,
@@ -34,7 +32,6 @@ const Detail = () => {
         {
           posts.response.map((post) => (post.id === Number(id) ) && (
             <div key={post.id}>
-                {/* <img src={post.imgs[0]} alt="#" /> */}
                 <p><strong>{post.state}</strong>{post.title}</p>
                 <p>{post.date}</p>
                 <p>{post.content}</p>

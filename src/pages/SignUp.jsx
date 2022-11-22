@@ -268,13 +268,12 @@ color:#929292;
 &:focus {
   outline: 1px solid #ADADAD;
 }
-
 `
 const DuplicateCheckNick = styled.button`
 position:absolute;
 width:70px;
 right:10px;
-top:19px;
+top:20px;
 border: 1px solid #929292;
 border-radius: 4px;
 background: #FAFAFA;
@@ -282,7 +281,6 @@ color:#929292;
 &:focus {
   outline: 1px solid #ADADAD;
 }
-
 `
 
 
@@ -316,10 +314,8 @@ const FlexInput2 = styled.span`
 position:relative;
 `
 const FlexInput3 = styled.span`
-
 `
 const FlexInput4 = styled.span`
-
 `
 
 const SignupContainer = styled.div`
@@ -340,7 +336,6 @@ const SignupBox = styled.form`
   align-items: center;
   flex-direction: column;
   margin-bottom:0px;
-
 `;
 
 const InputBox = styled.div`
@@ -353,7 +348,6 @@ const InputBox = styled.div`
 `;
 
 const Input = styled.input`
-
   border: 1px solid #929292;
   width: 250px;
   height: 40px;
@@ -435,7 +429,6 @@ const SignupText = styled.div`
   font-size: 17px;
   line-height: 20px;
   font-weight: bold;
-
 `;
 
 

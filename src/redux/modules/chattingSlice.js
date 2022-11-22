@@ -10,6 +10,7 @@ const initialState = {
   // URI: `${URI.BASE}`,
   createRoom: [],
   chatList:[],
+  ListReducer:{},
   chatTrueFalse:false,
   isLoading: false,
   roomId: null,
@@ -35,7 +36,7 @@ export const __getinitialChatList = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       
-      const response = await axios.get(`http://43.200.179.166:8080/api/${payload}`, {
+      const response = await axios.get(`https://wepungsan.kro.kr/${payload}`, {
         headers: {
           Access_Token: localStorage.getItem("Access_Token"),
         },
@@ -48,43 +49,6 @@ export const __getinitialChatList = createAsyncThunk(
   }
 );
 
-//CreateRoom: (createRoom) => token.post(`/api/room`, createRoom)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const __getinitialChatList = createAsyncThunk(
-//   "/chat/__getinitialChatList",
-//   async (payload, thunkAPI) => {
-//     try {
-
-//       const response = await axios.get(`https://wepungsan.kro.kr/room/${payload}`, {
-//         headers: {
-//           Access_Token: localStorage.getItem("Access_Token"),
-//         },
-//       });
-//       return thunkAPI.fulfillWithValue(response.data);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
 const chatSlice = createSlice({
   name: "chatting",
   initialState,
@@ -99,6 +63,10 @@ const chatSlice = createSlice({
     },
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
+    },
+    listReducer:(state, action) => {
+      state.ListReducer = action.payload
+      console.log(action.payload,"어케들어오는지")
     },
   },
   extraReducers: {
@@ -127,6 +95,6 @@ const chatSlice = createSlice({
   },
 });
 
-export const { postChat, clearChat,trueChat } = chatSlice.actions;
+export const { postChat, clearChat,trueChat,listReducer } = chatSlice.actions;
 
 export default chatSlice.reducer;
