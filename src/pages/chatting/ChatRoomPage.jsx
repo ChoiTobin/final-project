@@ -67,7 +67,7 @@ const inputHandler = (e) =>{
 
 const onSubmitHandler = (event) =>{
   //event.preventDefault()
-  if (chatBody.trim() === "") {
+  if (chatBody=== "") {
     return alert("내용을 입력해주세요.");
     }
   ws.send(
@@ -81,9 +81,7 @@ const onSubmitHandler = (event) =>{
 
 }
 const appKeyPress = (e) => {
-  if (chatBody.trim() === "") {
-    return alert("내용을 입력해주세요.");
-    }
+  
   if (e.key === 'Enter') {
     onSubmitHandler()
     setChatBody("")
@@ -91,9 +89,18 @@ const appKeyPress = (e) => {
   }
 }
 
+const scrollRef= useRef();
 
-
-
+useEffect(() => {
+  if (scrollRef) {
+    scrollRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  }
+}, [listReducer]);
+//채팅창 치면 맨 밑으로 내려감.
 
 
 
@@ -123,7 +130,7 @@ return (
                     </TextBox>
                 </Section>
                   <DivAt>날짜</DivAt> 
-                  <OverFlow >
+                  <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
                       { chatList !== undefined &&
                         chatList.map((item,i)=>{
                           return(
@@ -147,6 +154,7 @@ return (
                         }
                           )
                       } 
+                      <div ref={scrollRef}></div>
                   </OverFlow >
                 <Chatput>
 
@@ -172,7 +180,7 @@ const Chatput = styled.div`
 const Input =styled.input`
 width:100%;
 height:30px;
-
+outline:none;
 text-indent:8px;
 border:2px solid #ED9071;;
 border-radius:30px;
