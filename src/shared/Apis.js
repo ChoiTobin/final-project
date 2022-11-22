@@ -51,14 +51,14 @@ export const Apis = {
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
   // 게시글 수정
-  putPostAX: (id,payload) => file.put(`/api/posts/${id}`, payload),
+  putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload),
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
-  // 게시글 진행 상테 수정
+  // 게시글 진행 상태 수정
   getStateAX: (id) => token.put(`/api/posts/${id}/state`),
 
   // 마이페이지 조회

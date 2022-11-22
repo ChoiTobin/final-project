@@ -14,7 +14,7 @@ const AddUserPic = () => {
   const navigate = useNavigate();
 
   // 이미지 업로드 훅
-  const [files, filesUrls, uploadHandle] = useImgUpload(5);
+  const [files, filesUrls, uploadHandle] = useImgUpload(1);
 
   // 이미지 업로드 인풋돔 선택 훅
   const imgRef = useRef();

@@ -122,15 +122,7 @@ const EditDetail = () => {
         {filesUrls.map((imgs, id) => {
           return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
         })}
-        {/* <Carousel fade>
-          {filesUrls.map((img) => {
-            return (
-              <Carousel.Item key={img.id}>
-                <img style={{ width: "270px" }} src={img ? img : ""} alt="" />
-              </Carousel.Item>
-            );
-          })}
-        </Carousel> */}
+        
       </ImgPreview>
 
       <div>
@@ -198,7 +190,7 @@ const EditDetail = () => {
 export default EditDetail;
 
 const ImgUpload = styled.button`
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
   margin: 10px 0 10px 100px;
   border: none;
   border-radius: 10px;
