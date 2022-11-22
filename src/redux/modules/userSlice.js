@@ -138,6 +138,8 @@ export const __userLogin = createAsyncThunk(
           window.location.replace('/home');
           alert(response.data.message)
           
+        }else{
+          alert(response.data.message)
         }
         return thunkAPI.fulfillWithValue(response.data)
       })
