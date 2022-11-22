@@ -34,6 +34,8 @@ const MyPage = () => {
   console.log("셀렉터myPic", myPic);
   console.log("셀렉터myPets", myPets);
 
+  console.log("프사 이미지 가져오나", myInfo.userImage);
+
   const [modalOption, showModal] = useModal();
 
     const onClickPic = useCallback(() => {
@@ -76,7 +78,8 @@ const MyPage = () => {
       <Header/>
       <div className="user-info">
         <UserImg
-          src={myInfo.userImage === "" ? myInfo.userImage : User}
+          // src={myInfo.userImage}
+          src={myInfo.userImage !== "" ? myInfo.userImage : User}
           alt="pic"
         />
         <button onClick={onClickPic}>프로필사진 변경</button>
