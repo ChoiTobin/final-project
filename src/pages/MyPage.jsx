@@ -114,11 +114,11 @@ const MyPage = () => {
 export default MyPage;
 
 const Layouts = styled.div`
-  width: 95%;
   max-width: 360px;
-  height: 640px;
+  min-height: 510px;
+  height: 514px;
   margin: auto;
-  background-color: lightpink;
+  background-color: #F6F0EE;
 `;
 
 const UserImg = styled.img`

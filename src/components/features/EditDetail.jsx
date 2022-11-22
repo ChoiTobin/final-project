@@ -13,74 +13,80 @@ import { __putMyPost } from "../../redux/modules/mypageSlice";
 
 const EditDetail = () => {
   const [myPost, setMyPost] = useState({
-    imgs:[""],
+    imgs: [""],
     category: "",
     title: "",
     price: "",
     local: "",
     content: "",
-  })
+  });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const onChangePost = (event) => {
     const { name, value } = event.target;
-    setMyPost({ ...myPost, [name]: value })
+    setMyPost({ ...myPost, [name]: value });
   };
 
   console.log("온체인지 포스트", myPost);
 
+  // 1개당 5MB, 전체 10MB
+  //limitCount 파일갯수제한
+  //isComp 압축 여부 true :이미지 압축 , false:이미지 압축안함
+  //imgMaxSize 압축 최대 크기 기본값 1mb
+  //imgMaxWidthHeight 압축 이미지 최대 width,height 기본값1920px
   // 이미지 업로드 훅
-  const [files, filesUrls, uploadHandle] = useImgUpload(5);
+  const [files, filesUrls, uploadHandle] = useImgUpload(5, true, 0.3, 1000);
 
   // 이미지 업로드 인풋돔 선택 훅
   const imgRef = useRef();
 
   // submit
   const writeSubmit = () => {
-    
-  // request로 날릴 formData
-  const formData = new FormData();
+    // request로 날릴 formData
+    const formData = new FormData();
 
-  // FormData에 파일 담기
-  if (files.length > 0) {
-    files.forEach((file) => {
-      console.log("이미지 파일 올라가나", file);
-      formData.append("postImg", file);
-    })
-  } else {
-    formData.append("postImg", null)
+    // FormData에 파일 담기
+    if (files.length > 0) {
+      files.forEach((file) => {
+        console.log("이미지 파일 올라가나", file);
+        formData.append("postImg", file);
+      });
+    } else {
+      formData.append("postImg", null);
     }
 
-  setMyPost("")
+    setMyPost("");
 
     const myPostData = {
-    "id": myPost.id,
-    "title": myPost.title,
-    "content": myPost.content,
-    "category": myPost.category,
-    "price": parseInt(myPost.price),
-    "local": myPost.local,
-    }
-    
+      id: myPost.id,
+      title: myPost.title,
+      content: myPost.content,
+      category: myPost.category,
+      price: parseInt(myPost.price),
+      local: myPost.local,
+    };
+
     console.log("전체내용", myPostData);
     console.log("이미지들", filesUrls);
 
-  formData.append("mypostImg", filesUrls);
+    formData.append("mypostImg", filesUrls);
 
-  // formData에 작성한 데이터 넣기
-  formData.append("post", new Blob([JSON.stringify(myPostData)], {
-    type: "application/json"
-  }));
+    // formData에 작성한 데이터 넣기
+    formData.append(
+      "post",
+      new Blob([JSON.stringify(myPostData)], {
+        type: "application/json",
+      })
+    );
 
     console.log("폼데이터", formData);
-    
-  // API 날리기
+
+    // API 날리기
     dispatch(__putMyPost(formData));
     window.alert("게시글이 수정되었습니다!");
-}
+  };
 
   return (
     <div>
@@ -122,7 +128,6 @@ const EditDetail = () => {
         {filesUrls.map((imgs, id) => {
           return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
         })}
-        
       </ImgPreview>
 
       <div>

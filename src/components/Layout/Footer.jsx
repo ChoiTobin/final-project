@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Back } from "../../img/arrow_back.svg";
-import { ReactComponent as Chat } from "../../img/chat.svg";
-import { ReactComponent as Home } from "../../img/home.svg";
-import { ReactComponent as Write } from "../../img/edit_square.svg";
-import { ReactComponent as Mypage } from "../../img/account_circle.svg";
+import { ReactComponent as HomeColor } from "../../img/home-f.svg";
+import { ReactComponent as HomeMono } from "../../img/home-fo.svg";
+import { ReactComponent as ChatColor } from "../../img/chat-f.svg";
+import { ReactComponent as ChatMono } from "../../img/chat-fo.svg";
+import { ReactComponent as WriteColor } from "../../img/write-f.svg";
+import { ReactComponent as WriteMono } from "../../img/write-fo.svg";
+import { ReactComponent as MypageColor } from "../../img/mypage-f.svg";
+import { ReactComponent as MypageMono } from "../../img/mypage-fo.svg";
 import { useNavigate } from 'react-router-dom/dist';
 
 const Footer = () => {
-
+  const [color, setColor] = useState(false)
   const navigate = useNavigate();
-  const onClickBack = () => {
-    navigate(-1);
-  };
 
   const onClickChat = () => {
-    navigate(`/chat`);
+    navigate(`/ChatRoomPage`);
   };
 
   const onClickHome = () => {
@@ -32,11 +32,16 @@ const Footer = () => {
 
   return (
     <Layout>
-      <Back onClick={() => onClickBack()}/>
+      <HomeMono onClick={onClickHome} />
+      <ChatMono onClick={onClickChat}/>
+      <WriteMono onClick={onClickWrite} />
+      <MypageMono onClick={onClickMy} />
+      
+      {/* <Back onClick={() => onClickBack()}/>
       <Chat onClick={() => onClickChat()}/>
       <Home onClick={() => onClickHome()} />
       <Write onClick={() => onClickWrite()}/>
-      <Mypage onClick={() => onClickMy()}/>
+      <Mypage onClick={() => onClickMy()}/> */}
     </Layout>
   )
 }
@@ -44,11 +49,14 @@ const Footer = () => {
 export default Footer;
 
 const Layout = styled.div`
+  height: 55.7px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin: auto;
-  gap: 30px;
+  gap: 58px;
   cursor: pointer;
+
+  border: 1px solid #ED9071;
 `;

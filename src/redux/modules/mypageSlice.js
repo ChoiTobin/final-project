@@ -104,6 +104,7 @@ export const __postMyImg = createAsyncThunk(
   "mypage/__postMyImg",
   async (payload, thunkAPI) => {
     try {
+      console.log("프사이미지 페이로드", payload);
       await Apis.postMyImgAX(payload)
         .then((response) => {
           console.log("프사 res", response);
@@ -248,7 +249,8 @@ const mypageSlice = createSlice({
     [__postMyImg.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.myPic = action.payload;
+      // state.myPic = action.payload;
+      state.myPic = [...state.post, {...action.payload}]
     },
     [__postMyImg.rejected]: (state, action) => {
       state.isLoading = false;

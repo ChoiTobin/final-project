@@ -13,52 +13,78 @@ const AddUserPic = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // 이미지 업로드 훅
-  const [files, filesUrls, uploadHandle] = useImgUpload(1);
+  const [imageUrl, setImageUrl] = useState(null)
+  const [imgFile, setImgFile] = useState("")
+  const imgRef = useRef()
 
-  // 이미지 업로드 인풋돔 선택 훅
-  const imgRef = useRef();
+  const onChangeImage = () => {
+    const reader = new FileReader()
 
-  // submit
-  const writeSubmit = () => {
-    // request로 날릴 formData
-    const formData = new FormData();
-
-    // FormData에 파일 담기
-    if (files.length > 0) {
-      files.forEach((file) => {
-        console.log("프사 파일 올라가나", file);
-        formData.append("postImg", file);
-      });
-    } else {
-      formData.append("postImg", null);
+    const img = imgRef.current.files[0]
+    reader.readAsDataURL(img)
+    reader.onloadend = () => {
+      setImageUrl(reader.result)
+      setImgFile(img)
     }
+  }
 
-    setMyPhoto("");
+  const onPost = (event) => {
+    event.preventDefault()
+    const formData = new FormData()
 
-    const myPhotoData = {
-      title: myPhoto.title,
-    };
+    formData.append("userImage", imgFile)
+    for (let value of formData.values()) {
+      console.log("폼데이터 value", value)
+    }
+    dispatch(__postMyImg(formData))
+  }
 
-    console.log("프로필사진", filesUrls);
+  // // 이미지 업로드 훅
+  // const [files, filesUrls, uploadHandle] = useImgUpload(1);
 
-    formData.append("myImg", filesUrls);
+  // // 이미지 업로드 인풋돔 선택 훅
+  // const imgRef = useRef();
 
-    // formData에 작성한 데이터 넣기
-    formData.append(
-      "post",
-      new Blob([JSON.stringify(myPhotoData)], {
-        type: "application/json",
-      })
-    );
+  // // submit
+  // const writeSubmit = () => {
+  //   // request로 날릴 formData
+  //   const formData = new FormData();
 
-    console.log("폼데이터", formData);
+  //   // FormData에 파일 담기
+  //   if (files.length > 0) {
+  //     files.forEach((file) => {
+  //       console.log("프사 파일 올라가나", file);
+  //       formData.append("postImg", file);
+  //     });
+  //   } else {
+  //     formData.append("postImg", null);
+  //   }
 
-    // API 날리기
-    dispatch(__postMyImg(formData));
-    window.alert("프로필 사진이 수정되었습니다!");
-    navigate("/mypage");
-  };
+  //   setMyPhoto("");
+
+  //   // const myPhotoData = {
+  //   //   title: myPhoto.title,
+  //   // };
+
+  //   console.log("프로필사진", filesUrls);
+
+  //   formData.append("userImg", filesUrls);
+
+  //   formData에 작성한 데이터 넣기
+  //   formData.append(
+  //     "post",
+  //     new Blob([JSON.stringify(myPhotoData)], {
+  //       type: "application/json",
+  //     })
+  //   );
+
+  //   console.log("폼데이터", formData);
+
+  //   // API 날리기
+  //   dispatch(__postMyImg(formData));
+  //   window.alert("프로필 사진이 수정되었습니다!");
+  //   navigate("/mypage");
+  // };
 
   return (
     <div>
@@ -72,7 +98,7 @@ const AddUserPic = () => {
             id="imgFile"
             name="imgFile"
             multiple
-            onChange={uploadHandle}
+            onChange={onChangeImage}
             ref={imgRef}
           />
           <ImgUpload
@@ -92,12 +118,13 @@ const AddUserPic = () => {
 
       <ImgPreview>
         {/* 이미지 미리보기 Preview */}
-        {filesUrls.map((imgs, id) => {
+        {/* {filesUrls.map((imgs, id) => {
           return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
-        })}
+        })} */}
+        {imageUrl}
       </ImgPreview>
       <div>
-        <button onClick={writeSubmit}>저장</button>
+        <button onClick={onPost}>저장</button>
       </div>
     </div>
   );

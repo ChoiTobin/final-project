@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
-const useCarousel = ({value}) => {
+const useCarousel = ({ value }) => {
   return (
     <Carousel variant="dark" style={{ width: "30px" }}>
       {value !== undefined &&
@@ -22,6 +22,6 @@ const useCarousel = ({value}) => {
       </Carousel.Item> */}
     </Carousel>
   );
-}
+};
 
 export default useCarousel;
