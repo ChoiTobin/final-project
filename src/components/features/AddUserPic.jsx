@@ -8,8 +8,6 @@ import User from "../../img/user.png"
 import { __postMyImg } from "../../redux/modules/mypageSlice";
 
 const AddUserPic = () => {
-  const [myPhoto, setMyPhoto] = useState("")
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,6 +24,7 @@ const AddUserPic = () => {
       setImageUrl(reader.result)
       setImgFile(img)
     }
+    console.log("이미지 프사", img);
   }
 
   const onPost = (event) => {
@@ -107,11 +106,7 @@ const AddUserPic = () => {
               imgRef.current.click();
             }}
           >
-            <img
-              src={upload}
-              style={{ width: "100px" }}
-              alt=""
-            />
+            <img src={upload} style={{ width: "100px" }} alt="" />
           </ImgUpload>
         </label>
       </div>
@@ -121,7 +116,8 @@ const AddUserPic = () => {
         {/* {filesUrls.map((imgs, id) => {
           return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
         })} */}
-        {imageUrl}
+        <img src={imageUrl} alt="" />
+        {/* {imageUrl} */}
       </ImgPreview>
       <div>
         <button onClick={onPost}>저장</button>

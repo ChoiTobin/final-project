@@ -79,8 +79,8 @@ const MyPage = () => {
       <div className="user-info">
         <UserImg
           // src={myInfo.userImage}
-          src={myInfo.userImage !== "" ? myInfo.userImage : User}
-          alt="pic"
+          src={myInfo.userImage !== undefined ? myInfo.userImage : User}
+          alt="myPic"
         />
         <button onClick={onClickPic}>프로필사진 변경</button>
         <Modal modalOption={modalOption} />
