@@ -8,6 +8,8 @@ import { $CombinedState } from 'redux';
 import { ButtonGroup } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
+import upload from "../../img/upload.png";
+
 const Post = () => {
   const navigate = useNavigate
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ const Post = () => {
   };
   
   //여기서부터 이미지훅
-  const [files, fileUrls, onChangeImage] = useImgUpload(5);
+  const [files, fileUrls, onChangeImage] = useImgUpload(5, true, 0.3, 1000);
   //이미지 업로드 인풋돔 선택 훅
   const imgRef = useRef();
   //submit
@@ -79,19 +81,21 @@ const Post = () => {
   return (
     <>
       <Form>
-      <label htmlFor="imgFile" />
-        <div className="preview">
-            <Carousel fade>
-                  {
-                    fileUrls.map((img) => {
-                      return (
-                        <Carousel.Item key={img.id}>            
-                          <img style={{width:'550px'}} src={img ? img : ""} />  
-                        </Carousel.Item>)
+        <label htmlFor="imgFile" />
+            <Carousel fade >
+                {
+                  fileUrls.map((img) => {
+                    return (
+                      <Carousel.Item key={img.id} 
+                      style={{
+                        height: "166px",
+                        objectFit: "contain",
+                      }}>            
+                        <Img style={{width:'550px'}} src={img ? img : ""} />  
+                      </Carousel.Item>)
                     })
-                  }
+                }
             </Carousel>
-        </div>
         <InputImg type="File" 
           id="imgFile"
           name="imgFile"
@@ -100,6 +104,14 @@ const Post = () => {
           ref={imgRef} 
           multiple 
         />
+        <ImgUpload
+            type="button"
+            onClick={() => {
+              imgRef.current.click();
+            }}
+          >
+            <img src={upload} style={{ width: "60px" }} alt="" />
+        </ImgUpload>
         <Select name="category" value={conimal.category || ""} onChange={onChangeHandler} required>
             <option value="대형">대형- 15kg초과, 1m초과</option>
             <option value="중형">중형- 10kg초과, 80cm초과</option>
@@ -139,6 +151,16 @@ const Post = () => {
 }
 
 export default Post;
+const ImgUpload = styled.button`
+  margin: 10px 0 10px 100px;
+  border: none;
+  border-radius: 10px;
+  img {
+    align-items: center;
+    justify-content: center;
+    /* margin: 10px 0 0 10px; */
+  }
+`;
 
 const Form = styled.div`
   width:95%;
@@ -148,9 +170,7 @@ const Form = styled.div`
   flex-direction:column;
 `
 const Img = styled.img`
-  width:360px;
-  height:360px;
-  background-size:cover;
+  object-fit: contain;
 `
 
 // 버튼 누르면 손모양 나오게 하는 마우스 커서
@@ -202,12 +222,11 @@ const InputImg = styled.input`
 height: 40px;
 background: #fff;
 cursor: pointer;
-margin-top:12px;
 `
 const Layouts = styled.div`
   width: 95%;
   max-width: 360px;
-  height: 640px;
+  height: 640px; 
   margin: auto;
   /* background-color: lightpink; */
 `;

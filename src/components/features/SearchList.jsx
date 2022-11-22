@@ -5,19 +5,21 @@ import styled from "styled-components";
 import { ButtonGroup } from "react-bootstrap";
 import '../../App.css';
 
-const Content = () => {
+const Content = (props) => {
   const dispatch = useDispatch()
   // const searchposts = useSelector((state) => state.post.post.response)
   // const {posts} = useSelector((state)=>state.post)
+
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setGetSearch({ ...getSearch, [name]: value });
   };
-
+  
   //키워드검색 #제목 #내용 #지역
   const onClickSearch = () => {
+    
     if (getSearch.search.trim() === "") {
       return alert("내용을 입력해주세요.");
     }
@@ -26,11 +28,15 @@ const Content = () => {
   // useEffect(() => {
   //   dispatch(__getPostTime());
   // }, [dispatch])
-
-  const onClickAll = () =>{ //전체검색
-    dispatch(__getPostTime());
-  }
   
+  const onClickAll = () =>{ //전체검색
+    props.setState(0)
+    console.log("vmfka",props.state)
+    // dispatch(__getPostTime(state));
+  }
+  //문제 온클릭했을때 셋이되기전에 겟을 먼저한다
+  
+
   // 카테고리검색
   const onClickBig = () => {
     dispatch(__getCategory("대형"));

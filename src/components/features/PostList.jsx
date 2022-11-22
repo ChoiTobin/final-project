@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom'	
 import { useDispatch, useSelector } from 'react-redux'	
 import { useInView } from "react-intersection-observer"
+import SearchList from "../../components/features/SearchList"
 import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
 import styled from "styled-components";
 import Carousel from 'react-bootstrap/Carousel';
@@ -36,6 +37,7 @@ const PostList = ({searchposts,posts}) => {
 
   return (	
       <>
+        <SearchList  state={page} setState={setPage} />
         <Carousel >
           <Carousel.Item style={{
           width: "100%",
@@ -75,11 +77,24 @@ const PostList = ({searchposts,posts}) => {
         {	searchposts && searchposts.Length  !== 0 ? searchposts.map((post)=>{
           return(	
             <ListBox onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>
-              <Strong>{post.category}</Strong>
-              <P>{post.state}<Span>{post.title}</Span></P>
-              <p>{post.date}</p>
-              <PriceBox><p>{post.price}</p></PriceBox>
-            </ListBox>	
+                  <Div1>
+                    <Flex1> 
+                      <Strong>{post.category}</Strong>
+                      <P>{post.state}<Span>{post.title}</Span></P>
+                    </Flex1>
+                    <Flex2>
+                      <img src={require("../../img/Vector5.png")} />
+                    </Flex2> 
+                  </Div1>
+                  <Div1>
+                    <Flex1> 
+                      <p>{post.date}</p>
+                    </Flex1>
+                    <Flex2>
+                    <PriceBox><p>{post.price}원</p></PriceBox>
+                    </Flex2> 
+                  </Div1>
+              </ListBox>
           )
         }) :
             posts.map((post) =>  {	
@@ -100,12 +115,9 @@ const PostList = ({searchposts,posts}) => {
                       <p>{post.date}</p>
                     </Flex1>
                     <Flex2>
-                    <PriceBox><p>{post.price}</p></PriceBox>
+                    <PriceBox><p>{post.price}원</p></PriceBox>
                     </Flex2> 
                   </Div1>
-                
-                
-                
               </ListBox>
           )	
         })}
@@ -121,7 +133,8 @@ const Img = styled.img`
 `
 const ListBox = styled.div`
   // padding:20px 30px;
-  background-color: #D6E4E5;
+  background-color: #fff;
+  padding:20px;
 `
 const Strong = styled.strong`
   font-size:14px;
