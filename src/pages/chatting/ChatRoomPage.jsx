@@ -7,14 +7,20 @@ import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import Modal from "./Chattmodalfolder/Modal";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
+import {ListReducer} from "../../redux/modules/chattingSlice"
 import '../../App.css';
+import {v4 as uuidv4} from 'uuid';
+
 function ChatRoomPage() {
   const {id}  = useParams()
+  const navigate = useNavigate();
 
   const sock = new SockJS("https://wepungsan.kro.kr/ws/chat");
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chatting.chatList);
+  const listReducer = useSelector((state) => state.chatting.listReducer);
+  console.log("리스트뿌렷",listReducer)
   let postId = Number(id)
 
   useEffect(() => {
@@ -23,9 +29,6 @@ function ChatRoomPage() {
     dispatch(__getinitialChatList(postId));
 
   }, []);
-  
-
-
 
   const [chatBody, setChatBody] = useState("");
   const content = {
@@ -42,47 +45,64 @@ function ChatRoomPage() {
   function wsConnectSubscribe() {
     try {
       ws.connect(
-        headers,function(frame) {
-          console.log("프레임",frame)
+        headers,(frame) => {
           ws.subscribe(
             `/sub/${postId}`,
-            function (response) {
-              console.log("어떻게나올수있지?",response);
-              const data = JSON.parse(response.body);
-
-            });
+             (response) => {
+              let data = JSON.parse(response.body)
+              console.log("데이타",data)
+              dispatch(ListReducer(data))
+            }
+            );
         },
-        [dispatch]
+
       );
     } catch (error) {
     }
   }
-
-
-
-
 const inputHandler = (e) =>{
   setChatBody(e.target.value)
+ 
 }
+
 const onSubmitHandler = (event) =>{
-  event.preventDefault()
+  //event.preventDefault()
+  if (chatBody.trim() === "") {
+    return alert("내용을 입력해주세요.");
+    }
   ws.send(
     `/pub/${postId}`,
     JSON.stringify(content),
             {
               Access_Token: localStorage.getItem("Access_Token")
             },
-            
-         )
+      setChatBody("")     
+        )
 
-   }
+}
+const appKeyPress = (e) => {
+  if (chatBody.trim() === "") {
+    return alert("내용을 입력해주세요.");
+    }
+  if (e.key === 'Enter') {
+    onSubmitHandler()
+    setChatBody("")
+    
+  }
+}
+
+
+
+
+
+
 
 
 return (
         <LoginContainer>
                 <Header>
                      <div>
-                      <Img src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
+                      <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
                      
                      <div>
@@ -102,18 +122,98 @@ return (
                       <Money>12,000원</Money>
                     </TextBox>
                 </Section>
-                  <DivAt>날짜</DivAt>
-                <Chating>
-                  여기는 채팅이 들어옵니다.
-                </Chating>
-                
+                  <DivAt>날짜</DivAt> 
+                  <OverFlow >
+                      { chatList !== undefined &&
+                        chatList.map((item,i)=>{
+                          return(
+                          
+                          localStorage.getItem('user-nickname') == item.sender ?  
+                          <TextBox key={i}><Colorspan ><span>{item.message}</span></Colorspan></TextBox>
+                        :
+                        <TextBox key={uuidv4()}><Colorspan2 ><span>{item.message}</span></Colorspan2></TextBox>
+                        
+                          )
+                        })
+                      }
+                      { listReducer !== undefined &&
+                        listReducer.map((item,i)=>{
+                          return (
+                            localStorage.getItem('user-nickname') == item.sender ?  
+                          <TextBox key={i}><Colorspan><span>{item.message}</span></Colorspan></TextBox>
+                          :
+                          <TextBox key={uuidv4()}><Colorspan2 ><span>{item.message}</span></Colorspan2></TextBox>
+                          )
+                        }
+                          )
+                      } 
+                  </OverFlow >
                 <Chatput>
-                    <input onChange={inputHandler}></input>
-                    <button onClick={onSubmitHandler}>버튼</button>
-                </Chatput>  
+
+                    <Input value={chatBody}  onKeyPress={appKeyPress}  onChange={inputHandler}></Input>
+                    <ArrowImg  onSubmit={appKeyPress} onClick={onSubmitHandler} src={require("../chatting/chattingImg/iconSand.png")}></ArrowImg>
+                </Chatput>   
         </LoginContainer>
   );
 }
+const ArrowImg =styled.img`
+position:absolute;
+top:10px;
+right:6px;
+border:none;
+width:13px;
+height:15px;
+background-color:white;
+`
+const Chatput = styled.div`
+  border-radius:20%;
+  position:relative;
+  `
+const Input =styled.input`
+width:100%;
+height:30px;
+
+text-indent:8px;
+border:2px solid #ED9071;;
+border-radius:30px;
+
+`
+const Colorspan2 = styled.span`
+background:gray;
+color:black;
+padding:7px;
+box-sizing: border-box;
+border-radius: 15px;
+border:1px solid white;
+font-size:13px;
+break-all;
+float: left; 
+word-break: break-all;
+`
+
+
+const TextBox = styled.div`
+height:30px;
+padding:4px;
+
+`
+
+const Colorspan = styled.span`
+background:#ED9071;
+float: right;
+color:black;
+padding:7px;
+box-sizing: border-box;
+border-radius: 15px;
+font-size:13px;
+
+word-break:break-all;
+`
+
+const OverFlow = styled.div`
+overflow:auto;
+height:480px;
+`
 const DivAt = styled.div`
 margin-top:10px;
 text-align:center;
@@ -161,8 +261,9 @@ font-size:15px;
 `
 
 const LoginContainer = styled.div`
-  width:360px;
-  height:100vh;
+  width:340px;
+  margin: 0 auto;
+  height:100%;
   background-color:#FAF7F0;
 `;
 
@@ -186,9 +287,7 @@ const Section = styled.div`
 `
 const P = styled.p`
 `
-const Chatput = styled.div`
-  background-color:#BA94D1;
-`
+
 
 const Profile = styled.div`
   margin-top:5px;
@@ -207,6 +306,5 @@ const Chating = styled.div`
   line-height:400px;
   
 `
-const TextBox = styled.div`
-`
+
 export default ChatRoomPage;

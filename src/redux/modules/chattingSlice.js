@@ -10,7 +10,7 @@ const initialState = {
   // URI: `${URI.BASE}`,
   createRoom: [],
   chatList:[],
-  ListReducer:{},
+  listReducer:[],
   chatTrueFalse:false,
   isLoading: false,
   roomId: null,
@@ -64,10 +64,12 @@ const chatSlice = createSlice({
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
     },
-    listReducer:(state, action) => {
-      state.ListReducer = action.payload
-      console.log(action.payload,"어케들어오는지")
+ 
+    ListReducer: (state, action) => {
+      state.listReducer.push(action.payload)
+ 
     },
+
   },
   extraReducers: {
     [__CreateRoom.pending]: (state, action) => {
@@ -95,6 +97,6 @@ const chatSlice = createSlice({
   },
 });
 
-export const { postChat, clearChat,trueChat,listReducer } = chatSlice.actions;
+export const { postChat, clearChat,trueChat,ListReducer } = chatSlice.actions;
 
 export default chatSlice.reducer;
