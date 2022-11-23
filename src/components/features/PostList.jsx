@@ -34,29 +34,35 @@ const PostList = () => {
                 key={post.id}
               >
                 <Body className="wrap">
-                  <Top className="top">
-                    <TopLeft className="top-left">
-                      <div style={{fontSize: "10px"}}>{post.category}</div>
-                      <div className="title">
-                        <span style={{fontWeight: "590", color: "#FD9071"}}>{post.state}</span>
-                        <span>{post.title}</span>
-                      </div>
-                      <span>{post.createdAt}</span>
-                    </TopLeft>
-                    <TopRight className="top-right">
-                      <ColorArrow/>
-                    </TopRight>
-                  </Top>
+                  <Text>
+                    <Top className="top">
+                      <TopLeft className="top-left">
+                        <div style={{ fontSize: "10px" }}>{post.category}</div>
+                        <div className="title">
+                          <span style={{ fontWeight: "590", color: "#FD9071" }}>
+                            {post.state}
+                          </span>
+                          &nbsp;
+                          <span>{post.title}</span>
+                        </div>
+                        <span style={{ fontSize: "9px", fontWeight: "thin" }}>
+                          {post.createdAt}
+                        </span>
+                      </TopLeft>
+                    </Top>
 
-                  <Down className="down">
-                    <DownLeft className="left">
-                      <span><Date/> {post.date}</span>
-                      <span><Place/> {post.local}</span>
-                    </DownLeft>
-                    <DownRight className="right">
-                      {post.price}
-                    </DownRight>
-                  </Down>
+                    <Down className="down">
+                      <DownLeft className="left">
+                        <span>
+                          <Date /> {post.date}
+                        </span>
+                        <span>
+                          <Place /> {post.local}
+                        </span>
+                      </DownLeft>
+                      <DownRight className="right">{post.price}원</DownRight>
+                    </Down>
+                  </Text>
                 </Body>
               </Content>
             );
@@ -73,8 +79,25 @@ const Layouts = styled.div`
   min-height: 370px;
   max-height: 375px;
   margin: auto;
-  overflow: auto;
-  /* background-color: lightpink; */
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #D8D8D8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
 `;
 
 const Content = styled.div`
@@ -87,6 +110,13 @@ const Body = styled.div`
   height: 100.53px;
   margin: 9px auto 10.47px;
   padding-top: 15px;
+`;
+
+const Text = styled.div`
+  /* background-color: lightgray; */
+  width: 317.36px;
+  height: 72.23px;
+  margin: auto;
 `;
 
 const Top = styled.div`
@@ -105,21 +135,21 @@ const Top = styled.div`
 
 const TopLeft = styled.div`
   /* background-color: lightblue; */
-  width: 162px;
-  height: 46px;
+  width: 300px;
+  height: 44.78px;
+  font-family: "SFPro", sans-serif;
+  font-weight: bold;
   font-size: 12px;
-`;
-
-const TopRight = styled.div`
-  /* background-color: cornflowerblue; */
-  width: 8px;
-  height: 17px
+  line-height: 16.24px;
 `;
 
 const Down = styled.div`
   /* background-color: lightcoral; */
   width: 317.9px;
   height: 27.95px;
+
+  font-family: "SFPro", sans-serif;
+  font-weight: medium;
 
   display: flex;
   flex-direction: row;
@@ -134,21 +164,26 @@ const DownLeft = styled.div`
   width: 150px;
   height: 17px;
 
+  font-family: "SFPro", sans-serif;
+  font-weight: 540;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: 10px;
   gap: 8px;
+  margin-top: 9.87px;
 `;
 
 const DownRight = styled.div`
-  background-color: #ED9071;
+  background-color: #ed9071;
   width: 83.9px;
   height: 27.95px;
   line-height: 19px;
   border-radius: 2px;
 
+  font-family: "SFPro", sans-serif;
   font-size: 16px;
   font-weight: 590;
   color: #fff;

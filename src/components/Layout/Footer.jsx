@@ -58,5 +58,5 @@ const Layout = styled.div`
   gap: 58px;
   cursor: pointer;
 
-  border: 1px solid #ED9071;
+  /* border: 1px solid #ED9071; */
 `;

@@ -36,7 +36,7 @@ const Layout = styled.div`
   margin: auto;
   gap: 116px;
 
-  border: 1px solid #ed9071;
+  /* border: 1px solid #ed9071; */
 `;
 
 const Logo = styled.img`

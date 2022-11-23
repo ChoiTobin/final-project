@@ -1,13 +1,34 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body, html {
+  font-family: 'SFPro', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@font-face {
+    font-family: 'SFProBlack';
+    src: local('SFProBlack'), url(${SFProBlack}) format('opentype');
+    font-weight: black;
+  }
+  @font-face {
+    font-family: 'SFProBold';
+    src: local('SFProBold'), url(${SFProBold}) format('opentype');
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: 'SFProHeavy';
+    src: local('SFProHeavy'), url(${SFProHeavy}) format('opentype');
+    font-weight: x-large;
+  }
+  @font-face {
+    font-family: 'SFProLight';
+    src: local('SFProLight'), url(${SFProLight}) format('opentype');
+    font-weight: thin;
+  }
+  @font-face {
+    font-family: 'SFProMedium';
+    src: local('SFProMedium'), url(${SFProMedium}) format('opentype');
+    font-weight: initial;
+  }
+  @font-face {
+    font-family: 'SFProSemiBold';
+    src: local('SFProSemiBold'), url(${SFProSemiBold}) format('opentype');
+    font-weight: medium;
+  }

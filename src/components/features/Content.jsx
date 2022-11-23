@@ -126,8 +126,9 @@ const Category = styled.button`
   /* left: 20px; */
   /* top: 108px; */
 
-  font-size: 16px;
-  font-weight: 700;
+  font-family: "SFPro", sans-serif;
+  font-size: 14px;
+  font-weight: 550;
 
   background: #ed9071;
   border-radius: 15px;
