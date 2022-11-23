@@ -2,39 +2,44 @@ import styled, { css } from "styled-components";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { __CreateRoom } from "../../redux/modules/chattingSlice";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import Modal from "./Chattmodalfolder/Modal";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import {ListReducer} from "../../redux/modules/chattingSlice"
+
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
 
 function ChatRoomPage() {
   const {id}  = useParams()
   const navigate = useNavigate();
-
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chatting.chatList);
   const listReducer = useSelector((state) => state.chatting.listReducer);
+
+
+
+
   let postId = Number(id)
 
   useEffect(() => {
     wsConnectSubscribe()
-    
     dispatch(__getinitialChatList(postId));
 
   }, []);
 
   const [chatBody, setChatBody] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
   const content = {
     sender:localStorage.getItem('user-nickname'),
     message:chatBody
 
+
     };
+
   let headers = { 
     Access_Token: localStorage.getItem('Access_Token')
   };
@@ -49,8 +54,9 @@ function ChatRoomPage() {
             `/sub/${postId}`,
              (response) => {
               let data = JSON.parse(response.body)
-
               dispatch(ListReducer(data))
+
+              
             }
             );
         },
@@ -59,6 +65,13 @@ function ChatRoomPage() {
     } catch (error) {
     }
   }
+
+
+
+
+
+
+
 
 
   function waitForConnection(ws, callback) {
@@ -85,7 +98,7 @@ function ChatRoomPage() {
 
 const onSubmitHandler = (event) =>{
   //event.preventDefault()
-  if (chatBody=== "") {
+  if (chatBody=== "" || chatBody === " ") {
     return alert("내용을 입력해주세요.");
     }
     waitForConnection(ws,function() {   
@@ -96,7 +109,7 @@ const onSubmitHandler = (event) =>{
               Access_Token: localStorage.getItem("Access_Token")
             },
       setChatBody("")     
-           )})
+          )})
 
 }
 const appKeyPress = (e) => {
@@ -124,6 +137,7 @@ useEffect(() => {
 
 
 
+
 return (
         <LoginContainer>
                 <Header>
@@ -132,7 +146,7 @@ return (
                       </div>
                      
                      <div>
-                      <Nickname>닉네임</Nickname>
+                      <Nickname>{chatList.postNickname}</Nickname>
                       <Time>30분 전 접속</Time>
                      </div>
                      <Modal/>
@@ -143,15 +157,15 @@ return (
                       <P>
                         <OrangeSpan>모집 중</OrangeSpan>
                         <Span></Span>
-                        <Title>제목이들어갑제목이들어갑제목이들어갑제목이들어갑제목이들어갑제목이들어갑니다.</Title>
+                        <Title>{chatList.title}</Title>
                       </P>
                       <Money>12,000원</Money>
                     </TextBox>
                 </Section>
                   <DivAt>날짜</DivAt> 
                   <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
-                      { chatList !== undefined &&
-                        chatList.map((item,i)=>{
+                      { chatList.chats !== undefined && chatList.chats !== null &&
+                        chatList.chats.map((item,i)=>{
                           return(
                           
                           localStorage.getItem('user-nickname') == item.sender ?  
@@ -206,7 +220,7 @@ border-radius:30px;
 
 `
 const Colorspan2 = styled.span`
-background:gray;
+background:#d8d8d8;
 color:black;
 padding:7px;
 box-sizing: border-box;
@@ -222,6 +236,7 @@ word-break: break-all;
 const TextBox = styled.div`
 height:30px;
 padding:4px;
+background:#F6F0EE;
 
 `
 
@@ -257,6 +272,7 @@ margin-top:10px;
 text-align:center;
 color:#787878;
 font-size:12px;
+background:#f6f0ee
 `
 const Money = styled.p`
 font-weight:bold;
@@ -302,16 +318,18 @@ const LoginContainer = styled.div`
   width:340px;
   margin: 0 auto;
   height:100%;
-  background-color:#FAF7F0;
+  background-color:#F6F0EE;
+  
 `;
 
 const Header = styled.div`
   border-bottom:1px solid #ED9071;
-  background-color:#65647C
-  width:360px;
+  background:#f6f0ee;
+  width:340px;
   height:50px;
   display:flex;
   justify-content: space-between;
+ 
 `
 
 const Section = styled.div`
@@ -320,6 +338,7 @@ const Section = styled.div`
   display:flex;
   margin-top:10px;
   padding-left: 10px;
+  background:#f6f0ee;
   border-bottom:1px solid #ED9071;
 `
 const P = styled.p`

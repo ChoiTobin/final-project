@@ -22,9 +22,8 @@ const Detail = () => {
       postTitle:post.title,
     }));
     navigator(`/ChatRoomPage/${post.id}`);
-    
-
   }
+
   
   return (
       <>
@@ -38,7 +37,12 @@ const Detail = () => {
                 <p>{post.price}</p>
                 <p>{post.createdAt}</p>
                 <button onClick={()=>onClickChatting(post)}>채팅하고</button>
-            </div>
+                {/* { 
+                  post.nickname == localStorage.getItem("user-nickname")  ?
+                  null:
+                <button onClick={()=>onClickChatting(post)}>채팅하고</button>
+              } */}
+                </div>
           )
           )
         }

@@ -20,11 +20,13 @@ export const __CreateRoom = createAsyncThunk(
   "/chat/__CreateRoom",
   async (payload, thunkAPI) => {
     try {
-      await Apis.CreateRoom(payload)
-      .then((res) => {
-        //console.log("res",res)
-        return thunkAPI.fulfillWithValue(res.data);
-      })
+      const response = await Apis.CreateRoom(payload)
+      // .then((res) => {
+      //   console.log("resRESRES",res)
+
+      // })
+      
+      return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -35,14 +37,15 @@ export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
   async (payload, thunkAPI) => {
     try {
-      
-      const response = await axios.get(`${process.env.REACT_APP_URL}/${payload}`, {
+
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/room/${payload}`
+        , {
         headers: {
           Access_Token: localStorage.getItem("Access_Token"),
         },
-      });
-      //console.log("리스폰스",response)
-      return thunkAPI.fulfillWithValue(response.data);
+      })
+      return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -90,6 +93,7 @@ const chatSlice = createSlice({
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.chatList = action.payload;
+    
     },
     [__getinitialChatList.rejected]: (state, action) => {
       state.isLoading = false;
