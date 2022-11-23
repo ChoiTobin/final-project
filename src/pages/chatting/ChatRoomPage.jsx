@@ -60,7 +60,25 @@ function ChatRoomPage() {
     } catch (error) {
     }
   }
-const inputHandler = (e) =>{
+
+
+  function waitForConnection(ws, callback) {
+    setTimeout(
+        function () {
+            // 연결되었을 때 콜백함수 실행
+            if (ws.ws.readyState === 1) {
+                callback();
+                // 연결이 안 되었으면 재호출
+            } else {
+                waitForConnection(ws, callback);
+            }
+        },
+        1 // 밀리초 간격으로 실행
+    );
+}
+//stomp에러 해결 https://chanhyukpark-tech.github.io/reactjs/react-web-socket-trouble-shooting/ 참고 typescript사용의 필요성..
+
+  const inputHandler = (e) =>{
   setChatBody(e.target.value)
  
 }
@@ -70,6 +88,7 @@ const onSubmitHandler = (event) =>{
   if (chatBody=== "") {
     return alert("내용을 입력해주세요.");
     }
+    waitForConnection(ws,function() {   
   ws.send(
     `/pub/${postId}`,
     JSON.stringify(content),
@@ -77,7 +96,7 @@ const onSubmitHandler = (event) =>{
               Access_Token: localStorage.getItem("Access_Token")
             },
       setChatBody("")     
-        )
+           )})
 
 }
 const appKeyPress = (e) => {
