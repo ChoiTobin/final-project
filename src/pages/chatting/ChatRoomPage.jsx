@@ -20,7 +20,6 @@ function ChatRoomPage() {
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chatting.chatList);
   const listReducer = useSelector((state) => state.chatting.listReducer);
-  console.log("리스트뿌렷",listReducer)
   let postId = Number(id)
 
   useEffect(() => {
@@ -50,7 +49,7 @@ function ChatRoomPage() {
             `/sub/${postId}`,
              (response) => {
               let data = JSON.parse(response.body)
-              console.log("데이타",data)
+
               dispatch(ListReducer(data))
             }
             );
@@ -76,7 +75,8 @@ function ChatRoomPage() {
         1 // 밀리초 간격으로 실행
     );
 }
-//stomp에러 해결 https://chanhyukpark-tech.github.io/reactjs/react-web-socket-trouble-shooting/ 참고 typescript사용의 필요성..
+//stomp 메시지 에러 waitForConnection함수로 해결
+
 
   const inputHandler = (e) =>{
   setChatBody(e.target.value)
@@ -107,7 +107,7 @@ const appKeyPress = (e) => {
     
   }
 }
-
+//enter시 메시지 보냄
 const scrollRef= useRef();
 
 useEffect(() => {
@@ -240,6 +240,17 @@ word-break:break-all;
 const OverFlow = styled.div`
 overflow:auto;
 height:480px;
+::-webkit-scrollbar {
+  width: 1vw;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 42%, 0.49);
+  border-radius: 7px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
 `
 const DivAt = styled.div`
 margin-top:10px;
@@ -304,12 +315,11 @@ const Header = styled.div`
 `
 
 const Section = styled.div`
-  width:360px;
+  width:330px;
   height:60px;
   display:flex;
   margin-top:10px;
   padding-left: 10px;
-  border-top:1px solid #ddd;
   border-bottom:1px solid #ED9071;
 `
 const P = styled.p`

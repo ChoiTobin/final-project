@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn"
 import Form from "../components/features/Form";
-import Content from "../components/features/Content";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
 import PostList from "../components/features/PostList";
@@ -14,7 +13,7 @@ import ChatRoomPage from "../pages/chatting/ChatRoomPage";
 // 추가
 import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
-import ChatCard from "../pages/chatting/ChatCard";
+
 
 const Router = () => {
   return (
