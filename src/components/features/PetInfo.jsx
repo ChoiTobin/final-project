@@ -87,8 +87,8 @@ export default PetInfo;
 
 const Layout = styled.div`
   /* background-color: cornflowerblue; */
-  min-height: 195px;
-  max-height: 200px;
+  min-height: 225px;
+  max-height: 226px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
