@@ -28,6 +28,7 @@ const Header = () => {
 export default Header;
 
 const Layout = styled.div`
+  /* background-color: #F6F0EE; */
   height: 70px;
   display: flex;
   flex-direction: row;

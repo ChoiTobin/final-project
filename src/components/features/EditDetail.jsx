@@ -37,7 +37,7 @@ const EditDetail = () => {
   //imgMaxSize 압축 최대 크기 기본값 1mb
   //imgMaxWidthHeight 압축 이미지 최대 width,height 기본값1920px
   // 이미지 업로드 훅
-  const [files, filesUrls, uploadHandle] = useImgUpload(5, true, 0.3, 1000);
+  const [imgs, imgUrls, uploadHandle] = useImgUpload(5, true, 0.3, 1000);
 
   // 이미지 업로드 인풋돔 선택 훅
   const imgRef = useRef();
@@ -48,8 +48,8 @@ const EditDetail = () => {
     const formData = new FormData();
 
     // FormData에 파일 담기
-    if (files.length > 0) {
-      files.forEach((file) => {
+    if (imgs.length > 0) {
+      imgs.forEach((file) => {
         console.log("이미지 파일 올라가나", file);
         formData.append("postImg", file);
       });
@@ -69,9 +69,9 @@ const EditDetail = () => {
     };
 
     console.log("전체내용", myPostData);
-    console.log("이미지들", filesUrls);
+    console.log("이미지들", imgUrls);
 
-    formData.append("mypostImg", filesUrls);
+    formData.append("imgs", imgUrls);
 
     // formData에 작성한 데이터 넣기
     formData.append(
@@ -125,7 +125,7 @@ const EditDetail = () => {
 
       <ImgPreview>
         {/* 이미지 미리보기 Preview */}
-        {filesUrls.map((imgs, id) => {
+        {imgUrls.map((imgs, id) => {
           return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
         })}
       </ImgPreview>

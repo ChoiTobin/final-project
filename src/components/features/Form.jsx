@@ -7,6 +7,7 @@ import { __addPost } from "../../redux/modules/postSlice";
 import { $CombinedState } from 'redux';
 import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
+import upload from "../../img/upload.png";
 
 const Post = () => {
   const navigate = useNavigate
@@ -86,92 +87,193 @@ const Post = () => {
   return (
     <>
       <Layouts>
-        <Header/>
+        <Header />
         <Form>
-        <label htmlFor="imgFile" />
-          <div className="preview">
-                {/*previews map쓸곳*/
-                  fileUrls.map((val, i) => {
-                    return (
-                      <Img src={val} alt="image" key={i} />
-                    )
-                  })
-                }
-            </div>
-            <input type="File" 
+          <div>
+            <label htmlFor="imgFile" />
+            <Preview className="preview">
+              {
+                /*previews map쓸곳*/
+                fileUrls.map((val, i) => {
+                  return <Img src={val} alt="image" key={i} />;
+                })
+              }
+            </Preview>
+
+            <input
+              type="File"
               id="imgFile"
               name="imgFile"
-              accept="image/*" 
+              accept="image/*"
+              style={{ display: "none" }}
               onChange={onChangeImage}
-              ref={imgRef} 
-              multiple 
+              ref={imgRef}
+              multiple
             />
-            <label htmlFor="text">제목</label>
-            <input type="text" maxLength={30} name="title" value={conimal.title || ""} onChange={onChangeHandler} placeholder="제목"/> 
-            <label htmlFor="text">금액</label>
-            <input type="text" name="price" value={conimal.price || ""} onChange={onChangeHandler} placeholder="희망금액"/>
-            <label htmlFor="text">내용</label>
-          <input type="text" maxLength={200} name="content" value={conimal.content || ""} onChange={onChangeHandler} placeholder="내용" style={{ minHeight: "100px"}} />
-            <select name="category" value={conimal.category || ""} onChange={onChangeHandler} >
-                <option default value='반려동물 크기를 정해주세요'>반려동물 크기를 정해주세요</option>
-                <option value="대형">대형</option>
-                <option value="중형">중형</option>
-                <option value="소형">소형</option>
-            </select>
-            <select name="local" value={conimal.local || ""} onChange={onChangeHandler} >
-                <option default value='지역을 선택해주세요'>지역을 선택해주세요</option>
-                <option value='서울특별시'>서울특별시</option>
-                <option value='강원도'>강원도</option>
-                <option value='경기도'>경기도</option>
-                <option value='경상남도'>경상남도</option>
-                <option value='경상북도'>경상북도</option>
-                <option value='광주광역시'>광주광역시</option>
-                <option value='대구광역시'>대구광역시</option>
-                <option value='대전광역시'>대전광역시</option>
-                <option value='부산광역시'>부산광역시</option>
-                <option value='울산광역시'>울산광역시</option>
-                <option value='인천광역시'>인천광역시</option>
-                <option value='전라남도'>전라남도</option>
-                <option value='전라북도'>전라북도</option>
-                <option value='충청남도'>충청남도</option>
-                <option value='충청북도'>충청북도</option>
-            </select>
-            <input type="date"  name="date" value={conimal.date || ""} onChange={onChangeHandler} />
-            <input type="hidden" name="state" value="진행중" onChange={onChangeHandler} />
-          </Form>
-          <div>
-            <FormBtn onClick={writeSubmit}>작성하기</FormBtn>
-            <FormBtn>취소하기</FormBtn>
+
+            <ImgUpload
+              type="button"
+              onClick={() => {
+                imgRef.current.click();
+              }}
+            >
+              <img src={upload} style={{ width: "30px" }} alt="" />
+            </ImgUpload>
+          </div>
+
+          <label htmlFor="text">제목</label>
+          <input
+            type="text"
+            maxLength={30}
+            name="title"
+            value={conimal.title || ""}
+            onChange={onChangeHandler}
+            placeholder="제목"
+          />
+          <label htmlFor="text">금액</label>
+          <input
+            type="text"
+            name="price"
+            value={conimal.price || ""}
+            onChange={onChangeHandler}
+            placeholder="희망금액"
+          />
+          <label htmlFor="text">내용</label>
+          <input
+            type="text"
+            maxLength={200}
+            name="content"
+            value={conimal.content || ""}
+            onChange={onChangeHandler}
+            placeholder="내용"
+            style={{ minHeight: "100px" }}
+          />
+          <select
+            name="category"
+            value={conimal.category || ""}
+            onChange={onChangeHandler}
+          >
+            <option default value="반려동물 크기를 정해주세요">
+              반려동물 크기를 정해주세요
+            </option>
+            <option value="대형">대형</option>
+            <option value="중형">중형</option>
+            <option value="소형">소형</option>
+          </select>
+          <select
+            name="local"
+            value={conimal.local || ""}
+            onChange={onChangeHandler}
+          >
+            <option default value="지역을 선택해주세요">
+              지역을 선택해주세요
+            </option>
+            <option value="서울특별시">서울특별시</option>
+            <option value="강원도">강원도</option>
+            <option value="경기도">경기도</option>
+            <option value="경상남도">경상남도</option>
+            <option value="경상북도">경상북도</option>
+            <option value="광주광역시">광주광역시</option>
+            <option value="대구광역시">대구광역시</option>
+            <option value="대전광역시">대전광역시</option>
+            <option value="부산광역시">부산광역시</option>
+            <option value="울산광역시">울산광역시</option>
+            <option value="인천광역시">인천광역시</option>
+            <option value="전라남도">전라남도</option>
+            <option value="전라북도">전라북도</option>
+            <option value="충청남도">충청남도</option>
+            <option value="충청북도">충청북도</option>
+          </select>
+          <input
+            type="date"
+            name="date"
+            value={conimal.date || ""}
+            onChange={onChangeHandler}
+          />
+          <input
+            type="hidden"
+            name="state"
+            value="진행중"
+            onChange={onChangeHandler}
+          />
+        </Form>
+        <div>
+          <FormBtn onClick={writeSubmit}>작성하기</FormBtn>
+          <FormBtn>취소하기</FormBtn>
         </div>
-        <Footer/>
       </Layouts>
-      
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Post;
 
+
+const Layouts = styled.div`
+  width: 360px;
+  min-height: 514px;
+  height: 514.3px;
+  background-color: #f6f0ee;
+  margin: auto;
+  /* background-color: lightpink; */
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
+
 const Form = styled.div`
-  // width:375px;
-  width:500px;
-  display:flex;
-  flex-direction:column;
-`
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  width: 318px;
+  margin: 40.34px auto 0;
+
+`;
+
+const Preview = styled.div`
+  width: 318px;
+  height: 166px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  
+`;
+
+const ImgUpload = styled.button`
+  /* background-color: yellowgreen; */
+  width: 317px;
+  height: 53.97px;
+  border: none;
+  border-radius: 5px;
+  img {
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
 const Img = styled.img`
-  width:100px;
-  height:100px;
-  background-size:cover;
-`
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+`;
 
 // 버튼 누르면 손모양 나오게 하는 마우스 커서
 const FormBtn = styled.button`
   cursor: pointer;
-`
-const Layouts = styled.div`
-  width: 95%;
-  max-width: 360px;
-  height: 640px;
-  margin: auto;
-  /* background-color: lightpink; */
 `;

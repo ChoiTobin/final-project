@@ -249,8 +249,9 @@ const mypageSlice = createSlice({
     [__postMyImg.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      // state.myPic = action.payload;
-      state.myPic = [...state.post, {...action.payload}]
+      console.log("프사 이미지는", action.payload);
+      state.myPic = action.payload;
+      // state.myPic = [...state.post, {...action.payload}]
     },
     [__postMyImg.rejected]: (state, action) => {
       state.isLoading = false;
