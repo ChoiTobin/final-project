@@ -26,7 +26,6 @@ export default function Modal() {
     
 
     //true값 넘겨주기 =>modal색깔 그린 
-  console.log("유즈셀렉",count)
   //count가 true일때 이제 visible moddal창 
   //true일때 색깔바뀌는것만 하기 창닫는거 말고.
   const toggleModal = () => {

@@ -38,10 +38,10 @@ const Content = () => {
   const onClickBig = () =>{ //대형검색
     const data = posts.response.filter((item)=> item.category === "대형" )
     dispatch(__getCategory(data));
-    console.log("데이터",data)
+
   } 
     
-  console.log("페이",posts)
+
   // console.log("d",solt[0]) //전체조회가 딱 한번밖에 안된다. //대형을누르면 한번더 랜더링 해야한다.
   // https://wepungsan.kro.kr/api/filter?category=대형
   return (

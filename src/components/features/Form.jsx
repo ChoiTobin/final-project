@@ -68,8 +68,7 @@ const Post = () => {
       "local" : conimal.local,
       "date" : conimal.date
     }
-    console.log("데이터",data)
-    console.log("img",fileUrls)
+
     //폼 데이터에 글작성 데이터 넣기
     formData.append("postImg",fileUrls);
     formData.append("postRequestDto", new Blob([JSON.stringify(data)], {

@@ -13,8 +13,8 @@ import { __deleteMyPet } from "../redux/modules/mypageSlice";
 const MyPage = (props) => {
   const mypage = useSelector((state) => state.mypage.mypage);
   const mypost = useSelector((state) => state.mypage.mypost);
-  console.log("마이페이지 정보", mypage);
-  console.log("내가쓴 글 정보", mypost);
+  //console.log("마이페이지 정보", mypage);
+  //console.log("내가쓴 글 정보", mypost);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

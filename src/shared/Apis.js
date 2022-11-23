@@ -40,19 +40,19 @@ const file = axios.create({
 
 export const Apis = {
   // 회원가입
-  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),//`/auth/signup` 도운님것. 이것 4개만 auth임 도운님서버로 옮길때 주의
+  signupAX: (signupInfo) => noToken.post(`/auth/signup`, signupInfo),
   // 이메일 중복확인
-  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),//`/auth/idCheck` 도운님것.
+  usernameAX: (userid) => noToken.post(`/auth/idCheck`, userid),
   //닉네임체크
-  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),//`/auth/nicknameCheck` 도운님것.
+  nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),
   // 로그인
-  loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),//`/auth/login` 도운님것.
-
+  loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
-  //createRoom----------------------------------------------------------------
-  CreateRoom: (createRoom) => token.post(`/room`, createRoom),//`/auth/login` 도운님것.
 
+  //createRoom----------------------------------------------------------------
+  CreateRoom: (createRoom) => token.post(`/room`, createRoom),
+  
 
   
   // 게시글 작성

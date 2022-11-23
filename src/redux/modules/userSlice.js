@@ -129,7 +129,7 @@ export const __userLogin = createAsyncThunk(
     try {
       await Apis.loginAX(payload)
       .then((response)=>{
-        console.log(response.data)
+        //console.log(response.data)
         if (response.data.status === 200) {
           //setCookie represh token 받기 
           localStorage.setItem("Access_Token", response.headers.access_token)

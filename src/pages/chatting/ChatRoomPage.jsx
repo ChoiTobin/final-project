@@ -15,7 +15,7 @@ function ChatRoomPage() {
   const {id}  = useParams()
   const navigate = useNavigate();
 
-  const sock = new SockJS("https://wepungsan.kro.kr/ws/chat");
+  const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chatting.chatList);

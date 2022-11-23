@@ -26,7 +26,7 @@ export const __getPostTime = createAsyncThunk(
   "api/posts/getPost",	
   async (payload, thunkAPI) => {	
     try {	
-      console.log("payload",payload)
+      //console.log("payload",payload)
       const response = await Apis.getPostTimeAX(payload)
       // const curSize = payload * 5;
       // return thunkAPI.fulfillWithValue(response.data.slice((curSize - 5), curSize));	
@@ -59,7 +59,7 @@ export const __addPost = createAsyncThunk(
     try {	
       
       const response = await Apis.postFileAX(payload)	
-      console.log("게시글작성완료",response)
+      //console.log("게시글작성완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -100,7 +100,7 @@ export const __getCategory = createAsyncThunk(
     // console.log("이건페이로드",payload)
     try {	
       const response = await Apis.getFilterAX(payload)	
-      console.log("카테고리검색완료",response)
+      //console.log("카테고리검색완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	

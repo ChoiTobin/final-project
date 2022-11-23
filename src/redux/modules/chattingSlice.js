@@ -22,7 +22,7 @@ export const __CreateRoom = createAsyncThunk(
     try {
       await Apis.CreateRoom(payload)
       .then((res) => {
-        console.log("레스레스레스",res)
+        //console.log("res",res)
         return thunkAPI.fulfillWithValue(res.data);
       })
     } catch (error) {
@@ -36,18 +36,19 @@ export const __getinitialChatList = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       
-      const response = await axios.get(`https://wepungsan.kro.kr/${payload}`, {
+      const response = await axios.get(`${process.env.REACT_APP_URL}/${payload}`, {
         headers: {
           Access_Token: localStorage.getItem("Access_Token"),
         },
       });
-      console.log("리스폰스",response)
+      //console.log("리스폰스",response)
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
+
 
 const chatSlice = createSlice({
   name: "chatting",
