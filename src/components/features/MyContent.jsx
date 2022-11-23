@@ -91,8 +91,8 @@ export default MyContent;
 
 const Layout = styled.div`
   /* background-color: cornflowerblue; */
-  min-height: 150px;
-  max-height: 200px;
+  min-height: 243px;
+  max-height: 243.56px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */

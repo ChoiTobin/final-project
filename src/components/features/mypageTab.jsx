@@ -58,6 +58,7 @@ const TabMain = styled.ul`
   align-items: center;
   justify-content: center;
   gap: 22px;
+  margin-top: 15.67px;
 `;
 
 const TabTitle = styled.div`

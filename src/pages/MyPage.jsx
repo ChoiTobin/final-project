@@ -12,6 +12,7 @@ import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Kakao } from "../img/kakao.svg";
+import { ReactComponent as Banner } from "../img/banner.svg";
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
@@ -95,7 +96,13 @@ const MyPage = () => {
                 </span>
                 <Kakao style={{ width: "22.87px", height: "21.08px" }} />
               </UserInfo>
-              <span style={{ fontSize: "15px", color: "#989593", marginBottom: "12.02px"}}>
+              <span
+                style={{
+                  fontSize: "15px",
+                  color: "#989593",
+                  marginBottom: "12.02px",
+                }}
+              >
                 평점: ⭐⭐⭐⭐⭐
               </span>
             </Account>
@@ -104,18 +111,33 @@ const MyPage = () => {
               onClick={() => {
                 navigate(`/signout`);
               }}
-              style={{ backgroundColor: "#D8D8D8" }}
+              style={{
+                color: "#B9B9B9",
+                border: "1px solid #B9B9B9",
+                borderRadius: "1px",
+              }}
             >
               로그아웃
             </button>
-            <button onClick={onClickPic} style={{ backgroundColor: "#565656" }}>
+            <button
+              onClick={onClickPic}
+              style={{
+                color: "#6C6C6C",
+                border: "1px solid #6C6C6C",
+                borderRadius: "1px",
+              }}
+            >
               사진수정
             </button>
             <Modal modalOption={modalOption} />
             <div>
               <button
                 onClick={onClickPet}
-                style={{ backgroundColor: "#ED9071" }}
+                style={{
+                  color: "#ED9071",
+                  border: "1px solid #ED9071",
+                  borderRadius: "1px",
+                }}
               >
                 반려동물 등록
               </button>
@@ -123,6 +145,9 @@ const MyPage = () => {
             </div>
           </Info>
         </Title>
+        <Ad>
+          <Banner />
+        </Ad>
 
         <div></div>
       </div>
@@ -148,8 +173,7 @@ export default MyPage;
 
 const Layouts = styled.div`
   max-width: 360px;
-  min-height: 514.3px;
-  height: 550px;
+  height: 640px;
   margin: auto;
   background-color: #F6F0EE;
 `;
@@ -161,13 +185,13 @@ const Title = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 45.82px auto 57.13px;
+  margin: 45.82px auto 30.5px;
   gap: 10px;
 `;
 
 const UserImg = styled.img`
-  width: 135.18px;
-  height: 135.18px;
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
 
   display: flex;
@@ -228,4 +252,11 @@ const UserInfo = styled.div`
 
 const AddPet = styled.div`
   
-`
+`;
+
+const Ad = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
