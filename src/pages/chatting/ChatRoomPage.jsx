@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import ChatSubmitBox from "./ChatSubmitBox";
-import ChatCard from "./ChatCard";
+// import ChatSubmitBox from "./ChatSubmitBox";
+// import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-import {ListReducer} from "../../redux/modules/chattingSlice"
+import { ListReducer } from "../../redux/modules/chattingSlice"
+import Modal from "./Chattmodalfolder/Modal"
 
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
@@ -104,7 +104,7 @@ function ChatRoomPage() {
 
   const inputHandler = (e) =>{
   setChatBody(e.target.value)
- 
+
 }
 
 const onSubmitHandler = (event) =>{
@@ -152,15 +152,15 @@ useEffect(() => {
 return (
         <LoginContainer>
                 <Header>
-                     <div>
+                    <div>
                       <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
-                     
-                     <div>
+                    
+                    <div>
                       <Nickname>{chatList.postNickname}</Nickname>
                       <Time>30분 전 접속</Time>
-                     </div>
-                     <Modal/>
+                    </div>
+                    <Modal/>
                 </Header>
                 <Section>
                     <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>

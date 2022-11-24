@@ -291,33 +291,3 @@ const InputImg = styled.input`
   font-weight:600;
   background-color:#ED9071;
 `
-
-const Input = styled.input`
-  height:36px;
-  margin-bottom:12px;
-  text-indent:8px;
-`
-const Input2 = styled.input`
-  height:36px;
-  margin-bottom:12px;
-  text-indent:5px;
-`
-
-const Select = styled.select`
-  margin-bottom:12px;
-  border-radius:30px;
-  height:36px;
-  text-align:center;
-`
-const Select2 = styled.select`
-  margin-bottom:12px;
-  height:36px;
-  text-indent:8px;
-`
-const InputImg = styled.input`
-height: 40px;
-background: #fff;
-cursor: pointer;
-`
-
-

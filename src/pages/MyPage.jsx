@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import User from "../img/user.png";
 import AddPetInfo from "../components/features/AddPetInfo"
-import Mytab from "../components/features/MypageTab";
+import Mytab from "../components/features/mypageTab";
 import useModal from "../components/modal/useModal";
 import Modal from "../components/modal/modal";
 import AddUserPic from "../components/features/AddUserPic";

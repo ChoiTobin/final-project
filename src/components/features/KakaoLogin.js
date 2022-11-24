@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
-
-
-
+import { useNavigate, useLocation } from 'react-router-dom';
+import Img from "../../img/NAVERLOGO.png";
 
 const KakaoLogin = () => {
     const REST_API_KEY = process.env.REACT_APP_API_KAKAO_ID
