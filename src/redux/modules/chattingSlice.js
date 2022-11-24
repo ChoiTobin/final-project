@@ -24,7 +24,7 @@ export const __CreateRoom = createAsyncThunk(
 
       window.localStorage.setItem("roomId",response.data.data.roomId)
       console.log("실행시점확인 roomID들어오는 시점")
-      window.location.reload(payload)
+      window.location.reload()
 
       
     
@@ -35,18 +35,18 @@ export const __CreateRoom = createAsyncThunk(
   }
 );
 
-// export const __getRoomList = createAsyncThunk(
-//   "/chat/__getRoomList",
-//   async (payload, thunkAPI) => {
-//     try {
-//       const response = await Apis.getRoomList()
-//       console.log("리스폰스",response)
-//       return thunkAPI.fulfillWithValue(response.data.data);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
+export const __getRoomList = createAsyncThunk(
+  "/chat/__getRoomList",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await Apis.getRoomList()
+      console.log("리스폰스",response)
+      return thunkAPI.fulfillWithValue(response.data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 
 
@@ -58,15 +58,20 @@ export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
   async (payload, thunkAPI) => {
     try {
+      let params = payload.postId
+      let body = payload.roomId
+      
       const response = await axios.get(
-        `${process.env.REACT_APP_URL}/room/${payload}`
-        , {
+        `${process.env.REACT_APP_URL}/room/${params}`,body,
+        {
         headers: {
           Access_Token: localStorage.getItem("Access_Token"),
         },
   
       }
+      
       )
+      console.log("무슨값zzzzz?",response)
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -111,17 +116,17 @@ const chatSlice = createSlice({
       state.isLoading = false;
       state.err = action.payload;
     },
-    // [__getRoomList.pending]: (state, action) => {
-    //   state.isLoading = true;
-    // },
-    // [__getRoomList.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.roomList = action.payload;
-    // },
-    // [__getRoomList.rejected]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.err = action.payload;
-    // },
+    [__getRoomList.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getRoomList.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.roomList = action.payload;
+    },
+    [__getRoomList.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.err = action.payload;
+    },
     [__getinitialChatList.pending]: (state, action) => {
       state.isLoading = true;
     },

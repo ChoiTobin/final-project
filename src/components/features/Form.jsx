@@ -74,7 +74,8 @@ const Post = () => {
       type: "application/json"
     }));
     dispatch(__addPost(formData));	  
-    }
+  console.log("이게가는지?",formData)  
+  }
     
   return (
     <Bg>

@@ -53,7 +53,7 @@ const AddUserPic = () => {
     // FormData에 파일 담기
     if (userImage.length > 0) {
       userImage.forEach((file) => {
-        console.log("프사 파일 올라가나", file);
+
         formData.append("userImg", file);
       });
     } else {
@@ -66,7 +66,7 @@ const AddUserPic = () => {
     //   title: myPhoto.title,
     // };
 
-    console.log("프로필사진", imgsUrls);
+   
 
     formData.append("userImg", imgsUrls);
 
@@ -78,7 +78,6 @@ const AddUserPic = () => {
     //   })
     // );
 
-    console.log("폼데이터", formData);
 
     // API 날리기
     dispatch(__postMyImg(formData));

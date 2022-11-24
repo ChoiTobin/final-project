@@ -30,7 +30,7 @@ const EditDetail = () => {
     setMyPost({ ...myPost, [name]: value });
   };
 
-  console.log("온체인지 포스트", myPost);
+
 
   // 1개당 5MB, 전체 10MB
   //limitCount 파일갯수제한
@@ -51,14 +51,14 @@ const EditDetail = () => {
     // FormData에 파일 담기
     if (imgs.length > 0) {
       imgs.forEach((file) => {
-        console.log("이미지 파일 올라가나", file);
+
         formData.append("imgs", file);
       });
     } else {
       formData.append("imgs", null);
     }
 
-    console.log("폼데이터에 이미지 넣기", formData);
+
     // setMyPost("");
 
     const myPostData = {
@@ -70,8 +70,7 @@ const EditDetail = () => {
       local: myPost.local,
     };
 
-    console.log("전체내용", myPostData);
-    console.log("이미지들", imgUrls);
+
 
     formData.append("imgs", imgUrls);
 
@@ -83,7 +82,6 @@ const EditDetail = () => {
       })
     );
 
-    console.log("폼데이터 글 넣어서 디스패치", formData);
 
     // API 날리기
     dispatch(__putMyPost(formData));

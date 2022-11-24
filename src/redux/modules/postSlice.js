@@ -17,7 +17,6 @@ export const __getPostTime = createAsyncThunk(
     // console.log("페이로드야",payload)	
     try {	
       const response = await Apis.getPostTimeAX(payload)	
-      console.log("전체조회",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -29,10 +28,8 @@ export const __getPostTime = createAsyncThunk(
 export const __getDetail = createAsyncThunk(	
   "api/post/getDetail",	
   async (payload, thunkAPI) => {	
-    console.log("상세조회payload",payload)	
     try {	
       const response = await Apis.getDetailAX(payload)
-      console.log("상세조회payload2",response.data)	
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -125,9 +122,7 @@ const postSlice = createSlice({
     [__getDetail.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      console.log("제발하나만들어와라",action.payload)
       state.post = action.payload.data;	
-      console.log("제발하나만들어와라2",state.post)
     },	
     [__getDetail.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -139,7 +134,6 @@ const postSlice = createSlice({
       state.isLoading = false;	
     },	
     [__addPost.fulfilled]: (state, action) => {	
-      console.log("이난",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
       // state.post.response.push(action.payload.data)	
