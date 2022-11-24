@@ -16,8 +16,7 @@ import { ReactComponent as Delete } from "../../img/delete.svg";
 const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
   
-  console.log("형태가 뭐야 대체", myPets);
-  console.log("길이가 나오나", myPets.length);
+
 
   const [modalOption, showModal] = useModal();
 

@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
+import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import postSlice, { __getDetail } from"../redux/modules/postSlice"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
+import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
 // import FullHTML from '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
@@ -23,11 +27,23 @@ const Detail = () => {
     navigator(-1);
     
   };
+  const onClickChatting = (post) =>{
+
+    dispatch(__CreateRoom({
+      postId:post.id,
+      postTitle:post.title,
+    }));
+    
+    navigator(`/ChatRoomPage/${post.id}`);
+
+  }
+
   
   return (
-    <Bg>
+    <Layout>
+      <Header/>
       <Container style={{margin:" 0 auto",marginTop:"20px"}}>
-        <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POST</p>
+        
         <Overflow>
         <Carousel fade >
         {post.imgs !== undefined &&
@@ -82,13 +98,15 @@ const Detail = () => {
           </Profilename>
         </ProfileBox>
         <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
+        <Button onClick={()=>onClickChatting(post)}>채팅하기</Button>
         {/* { 
           post.nickname == localStorage.getItem("user-nickname")  ?
           null:
           <button onClick={()=>onClickChatting(post)}>채팅하기</button>
         } */}
       </Container>
-      </Bg>
+      <Footer/>
+    </Layout>
   )
 }
 
@@ -106,7 +124,7 @@ const Overflow = styled.div`
 const Container = styled.div `
   width:95%;
   max-width:360px;
-  height:514.25px;
+
   background-color:#f6f0ee;
 `
 const ItemBox = styled.div`

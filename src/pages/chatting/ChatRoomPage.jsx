@@ -46,7 +46,7 @@ function ChatRoomPage() {
     wsConnectSubscribe()
     dispatch(__getinitialChatList(roomId));
 
-    console.log("roomid가 들어와서 get요청되는부분")
+
   }, []);
 
 
@@ -159,8 +159,8 @@ return (
                      <div>
                       <Nickname>{chatList.postNickname}</Nickname>
                       <Time>30분 전 접속</Time>
-                     </div>
-                     <Modal/>
+                    </div>
+                    <Modal/>
                 </Header>
                 <Section>
                     <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>
@@ -169,8 +169,9 @@ return (
                         <OrangeSpan>{chatList.state}</OrangeSpan>
                         <Span></Span>
                         <Title>{chatList.title}</Title>
+                        <Money>{chatList.price}원</Money>
                       </P>
-                      <Money>{chatList.price}원</Money>
+                     
                     </TextBox>
                 </Section>
                   <DivAt>날짜</DivAt> 
@@ -182,7 +183,7 @@ return (
                           localStorage.getItem('user-nickname') == item.sender ?  
                         <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
                         :
-                        <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
+                        <TextBox key={uuidv4}><Colorspan2>{item.message}</Colorspan2></TextBox>
                         
                           )
                         })
@@ -193,7 +194,7 @@ return (
                             localStorage.getItem('user-nickname') == item.sender ?  
                           <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
                           :
-                          <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
+                          <TextBox key={uuidv4}><Colorspan2>{item.message}</Colorspan2></TextBox>
                           )
                         }
                           )
@@ -240,7 +241,6 @@ const Colorspan2 = styled.div`
 background:#F6F0EE;
 color:black;
 padding:6px;
-
 border-radius: 7px;
 font-size:12px;
 display:flex;
@@ -248,6 +248,7 @@ flex-direction:left;
 text-align:left;
 width:170px;
 margin-bottom:3px;
+float:right;
 
 
 `
@@ -270,17 +271,15 @@ margin-bottom:3px;
 const TextBox = styled.div`
 padding:4px;
 background:#F6F0EE;
-min-height:33.26px;
+min-height:20.26px;
 width:318.82px;
-
-
 `
 
 
 
 const OverFlow = styled.div`
 overflow:auto;
-height:480px;
+height:460px;
 ::-webkit-scrollbar {
   width: 1vw;
 }
@@ -301,6 +300,7 @@ font-size:12px;
 background:#f6f0ee
 `
 const Money = styled.p`
+
 font-weight:bold;
 `
 const Title = styled.span`
@@ -333,9 +333,10 @@ width:30px;
 
 const Time = styled.span`
 font-size:6px;
+margin-left:95px;
 `
 const Nickname = styled.p`
-margin-left:5px;
+margin-left:105px;
 font-weight:bold;
 font-size:15px;
 `
@@ -351,21 +352,23 @@ const LoginContainer = styled.div`
 const Header = styled.div`
   border-bottom:1px solid #ED9071;
   background:#f6f0ee;
-  width:340px;
-  height:50px;
+  width:100%;
+  height:70px;
   display:flex;
-  justify-content: space-between;
+  margin-top:40px;
+  
  
 `
 
 const Section = styled.div`
-  width:330px;
-  height:60px;
+width:100%;
+  height:70px;
   display:flex;
   margin-top:10px;
   padding-left: 10px;
   background:#f6f0ee;
   border-bottom:1px solid #ED9071;
+  
 `
 const P = styled.p`
 `

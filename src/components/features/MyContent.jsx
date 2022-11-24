@@ -15,7 +15,7 @@ import { ReactComponent as Delete } from "../../img/delete.svg";
 const MyContent = ({ myPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  console.log("들어올까요", { myPost });
+
 
   const [modalOption, showModal] = useModal();
 

@@ -22,7 +22,7 @@ const ProfileEdit = () => {
   };
   
 
-  console.log("우리강아지", myPet);
+
 
   const onAddMyPets = (event) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ const ProfileEdit = () => {
     ) {
       return alert("모든 항목을 입력해주세요!");
     }
-    console.log("우리강아지 페이로드", myPet);
+  
     dispatch(__addMyPet(myPet));
     window.location.reload("/mypage");
   };

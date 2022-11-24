@@ -63,7 +63,7 @@ const useImgUpload = (limitCount = 0, isComp = false, imgMaxSize = 1, imgMaxWidt
                         reader.readAsDataURL(res); //reader에게 file을 먼저 읽힘
                     })
                     .catch((error) => {
-                        console.log("파일 압축 실패", error);
+
                     })
             } else {
                 //이미지 파일 담기

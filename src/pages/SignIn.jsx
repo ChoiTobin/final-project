@@ -1,40 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __userLogin } from "../redux/modules/userSlice";
-import Logo from "../img/pet.png";
-import { ReactComponent as Naver } from "../img/naver.svg";
-import { ReactComponent as Kakao } from "../img/kakao.svg";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/KakaoLogin";
-
-const Login = () => {
+import { useLocation } from "react-router-dom";
+const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const account = useSelector((state) => state.account);
-
   const initialState = {
     email: "",
     password: "",
   };
-
   const [login, setLogin] = useState(initialState);
   const [IdValid, setIdValid] = useState(false);
   const [PwValid, setPwValid] = useState(false);
-
   const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setLogin({ ...login, [name]: value });
-
-    const regexId =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
-
-    if (regexId.test(login.email)) {
+    const {name, value} = event.target
+    setLogin({...login, [name] : value})
+    
+    const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+    
+    if(regexId.test(login.email)){
       setIdValid(true);
     } else {
       setIdValid(false);
     }
-
     const regexPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
     if (regexPw.test(login.password)) {
       setPwValid(true);
@@ -42,231 +35,209 @@ const Login = () => {
       setPwValid(false);
     }
   };
-
-  // 유효성검사 red 체크
+  //유효성검사 red 체크
   const onSubmitHandler = (event) => {
-    event.preventDefault();
-    const obj = {
+    event.preventDefault()
+    const obj = 
+    {
       email: login.email,
       password: login.password,
     };
     dispatch(__userLogin(obj));
-    // navigate('/postList')
+    //navigate('/postlist')
   };
-
   return (
-    <Layout>
-      <LogoPic src={Logo} alt="logo"/>
-
-      <div>
-        <Title>LOGIN</Title>
-
-        <Social>
-          <Naver/>
-          <Kakao/>
-        </Social>
-
-        <OR>또는</OR>
-
-        <div>
+    <div>
+      <LoginContainer>
+        <Wrap>
           <div>
-            <Input
-              type="text"
-              name="email"
-              value={login.email}
-              onChange={onChangeHandler}
-              placeholder="이메일"
-            />
-            <span>
-              {!IdValid
-                ? !IdValid &&
-                  login.email.length > 0 && (
-                    <Red>올바른 아이디를 입력해주세요</Red>
-                  )
-                : IdValid &&
-                  login.email.length > 0 && <Green>올바른 아이디 형식입니다</Green>}
-            </span>
+            <LoginBox>
+              <img src={require("../img/LogoImg.png")} width="90px" height="70px"/>
+                <LogoLogin>LOGIN</LogoLogin>
+                <KakaoLogin/>
+                <Input
+                  placeholder='아이디'
+                  type='text'
+                  name='email'
+                  value={login.email}
+                  onChange={onChangeHandler}
+                />
+                <ErrorMessageWrap>
+                {
+                  !IdValid ?
+
+                !IdValid && login.email.length > 0 && 
+                (
+                <Red>올바른 아이디를 입력해주세요.</Red>
+                )
+                :
+                IdValid && login.email.length > 0 && 
+                (
+                <Green>올바른 아이디 형식입니다.</Green>
+                )
+                }  
+                </ErrorMessageWrap>
+                <Input
+                  placeholder="비밀번호"
+                  type="password"
+                  name="password"
+                  value={login.password}
+                  onChange={onChangeHandler}
+                />
+                <ErrorMessageWrap>
+                  {!PwValid
+                    ? !PwValid &&
+                      login.password.length > 0 && (
+                        <Red>영문,숫자,특수문자 포함 8자 이상 입력해주세요</Red>
+                      )
+                    : PwValid &&
+                      login.password.length > 0 && (
+                        <Green>올바른 비밀번호 형식입니다.</Green>
+                      )}
+                </ErrorMessageWrap>
+                <LoginButton onClick={onSubmitHandler}>
+                  로그인
+                </LoginButton>
+                <SignButton onClick={() => navigate("/signup")}>
+                  회원가입
+                </SignButton>
+            </LoginBox>
+      
+              <p id="token-result"></p>
           </div>
-
-          <div>
-            <Input
-              type="password"
-              name="password"
-              value={login.password}
-              onChange={onChangeHandler}
-              placeholder="비밀번호"
-            />
-            <span>
-              {!PwValid
-                ? !PwValid &&
-                  login.password.length > 0 && (
-                    <Red>영문, 숫자, 특수문자 포함 8자 이상 입력해 주세요</Red>
-                  )
-                : PwValid &&
-                  login.password.length > 0 && (
-                    <Green>올바른 비밀번호 형식입니다</Green>
-                  )}
-            </span>
-          </div>
-        </div>
-        
-
-        <LoginBtn onClick={onSubmitHandler}>로그인</LoginBtn>
-        <hr style={{color: "#C4C1C0"}}/>
-
-        <div>
-          {/* <span>계정이 없으신가요?</span> */}
-          <SignupBtn onClick={() => navigate("/signup")}>가입하기</SignupBtn>
-        </div>
-        <p id="token-result" />
-        {/* <KakaoLogin /> */}
-      </div>
-    </Layout>
+        </Wrap>
+      </LoginContainer>
+    </div>
   );
 };
 
-export default Login;
 
-const Layout = styled.div`
-  width: 360px;
-  min-height: 635px;
-  height: 640px;
+export default SignIn;
+const LogoLogin = styled.span`
+color:#ED9071;
+font-size:30px;
+margin-bottom:50px;
 
-  background-color: #f6f0ee;
-  margin: auto;
-  padding-top: 20px;
-`;
-
-const LogoPic = styled.img`
-  width: 60px;
-  height: 60px;
-  margin: auto;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 `
-
-const Title = styled.span`
-  font-size: 32px;
-  color: #ed9071;
-  margin: 5.19px auto 0;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  font-family: "SFPro", sans-serif;
-  font-weight: medium;
+const Red = styled.div`
+color: #ef0000;
+font-size:12px;
+text-align:left;
+width:270px;
+padding:5px;
 `;
 
-const Social = styled.div`
-  width: 117.99px;
-  height: 44.52px;
+const Green = styled.div`
+  color: green;
+  font-size:12px;
+  text-align:left;
+  width:270px;
+  padding:5px;
 
+
+`;
+/*const Green2 = styled.div`
+  color: green;
+  font-size:12px;
+  margin-bottom: 5px;
+  margin-right:100px;
+  margin-top:5px;
+`;
+*/
+
+const ErrorMessageWrap = styled.div`
+  color:#ef0000;
+
+
+  `;
+/*const ErrorMessageWrap2 = styled.div`
+  color:#ef0000;
+  font-size:12px;
+  margin-right:20px;
+  margin-top:5px;
+  margin-bottom: 5px;
+
+  `;
+  */
+const LoginContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-
-  margin: 39.66px auto 0;
-  gap: 19.72px;
+  height: 100vh;
 `;
-
-const OR = styled.span`
-  color: #787878;
-  font-size: 16px;
-
+const Wrap = styled.div`
   display: flex;
-  flex-direction: row;
+`;
+const LoginBox = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  margin: 14px auto 4px;
-  font-family: "SFPro", sans-serif;
+  width: 350px;
+  /* margin: 0 auto; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-
 const Input = styled.input`
-  width: 320px;
-  height: 50px;
-  background-color: transparent;
   border: 1px solid #929292;
-  border-radius: 3px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  margin: 9px auto 9px;
-  padding-left: 14.69px;
-
-  font-family: "SFPro", sans-serif;
-  font-weight: medium;
-
-  ::placeholder {
-    font-size: 18px;
-    color: #787878;
-    font-family: "SFPro", sans-serif;
+  width: 260px;
+  height: 40px;
+  font-size: 12px;
+  border-radius: 2px;
+  padding:10px;
+  background: #FAFAFA;
+  &:focus {
+    outline: 1px solid #ADADAD;
   }
+  border-radius:3px;
 `;
-
-
-const Red = styled.span`
-  color: #fd6e7f;
-  font-size: 10px;
-  font-weight: bold;
-  margin: 9px 0 0 20px;
-  font-family: "SFPro", sans-serif;
-  font-weight: medium;
+const LoginButton = styled.button`
+font-size:18px;
+color: white;
+border: none;
+border-radius: 3px;
+font-weight: bold;
+width: 253px;
+height: 40px;
+margin-top: 30px;
+margin-bottom: 70px;
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+cursor: pointer;
+background-color: #ED9071;
 `;
-
-const Green = styled.span`
-  color: #4db173;
-  font-size: 10px;
-  font-weight: bold;
-  margin: 9px 0 9px 20px;
-  font-family: "SFPro", sans-serif;
-  font-weight: medium;
-`;
-
-const LoginBtn = styled.button`
-  width: 320px;
-  height: 50px;
-
-  font-size: 20px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #ed9071;
-  border: none;
-  border-radius: 3px;
-
-  margin: 22.58px auto 34.21px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SignupBtn = styled.button`
-  width: 320px;
-  height: 50px;
-
-  font-size: 20px;
-  font-weight: 600;
-  color: #fff;
+const SignButton = styled.button`
+font-size:18px;
+color: white;
+border: none;
+border-radius: 3px;
+font-weight: bold;
+width: 253px;
+height: 40px;
+margin-top: 10px;
+margin-bottom: 20px;
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+cursor: pointer;
   background-color: #838383;
-  border: none;
-  border-radius: 3px;
-
-  margin: 22.58px auto 34.21px;
+`;
+const SignupBox = styled.div`
+  background-color: white;
+  width: 350px;
+  height: 80px;
+  border: 1px solid #eee;
+  margin-top: 20px;
+  /* margin: 0 auto; */
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-
-  font-family: "SFPro", sans-serif;
-  font-weight: medium;
+  align-items: center;
+`;
+const LogoBox = styled.div`
+  width: 175px;
+  height: 51px;
+  margin-bottom: 36px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
