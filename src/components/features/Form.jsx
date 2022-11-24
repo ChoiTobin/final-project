@@ -8,6 +8,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
 import upload from "../../img/upload.png";
+
 const Post = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +26,6 @@ const Post = () => {
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setConimal({...conimal,[name]: value,});
-    
   };
   
   //여기서부터 이미지훅
@@ -167,6 +167,7 @@ const Post = () => {
 }
 
 export default Post;
+
 const Buttongroup = styled.div`
   display : flex;
   margin-top:14px;
@@ -319,5 +320,3 @@ height: 40px;
 background: #fff;
 cursor: pointer;
 `
-
-
