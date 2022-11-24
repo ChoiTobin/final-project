@@ -31,11 +31,11 @@ const PostList = () => {
                 </Div1>
                 <Div1>
                   <Flex1> 
-                  <Strong style={{fontWeight:500}}><img style={{marginRight:5}} src={require("../../img/calender.png")} alt="" />{post.date}</Strong>
-                  <Strong style={{fontWeight:500,marginLeft:10}}><img style={{width:11,marginRight:5}} src={require("../../img/markup.png")} alt="" />{post.local}</Strong>
+                    <Strong style={{fontWeight:500}}><img style={{marginRight:5}} src={require("../../img/calender.png")} alt="" />{post.date}</Strong>
+                    <Strong style={{fontWeight:500,marginLeft:10}}><img style={{width:11,marginRight:5}} src={require("../../img/markup.png")} alt="" />{post.local}</Strong>
                   </Flex1>
                   <Flex2>
-                    <PriceBox><p>{post.price}원</p></PriceBox>
+                    <PriceBox><p>{post.price.toLocaleString('ko-KR')}원</p></PriceBox>
                   </Flex2> 
                 </Div1>
               </ListBox >
@@ -68,10 +68,13 @@ const Flex2 = styled.div`
 `
 const Listmap = styled.div`
   width: 360px;
-  max-height: 640px;
+  max-height: 440px;
   margin: auto;
   overflow: auto;
   /* background-color: lightpink; */
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 const Text1 = styled.p`
   color:#ed9071;

@@ -7,7 +7,7 @@ import styled from "styled-components";
 import postSlice, { __getDetail } from"../redux/modules/postSlice"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
-
+// import FullHTML from '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
@@ -24,11 +24,10 @@ const Detail = () => {
   };
   
   return (
-
-      <Container style={{
-        margin:" 0 auto",
-        marginTop:"20px"
-      }}>
+    <Bg>
+      <Container style={{margin:" 0 auto",marginTop:"20px"}}>
+        <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POST</p>
+        <Overflow>
         <Carousel fade >
         {post.imgs !== undefined &&
             post.imgs.map((pic) => {
@@ -42,15 +41,19 @@ const Detail = () => {
             })
           }
           </Carousel>
-          {/* {post.imgs} */}
         <ItemBox>
-          <Span style={{fontSize:24,fontWeight:590}}>{post.price}원</Span>
+          <Span style={{fontSize:24,fontWeight:590}}>
+            { post.price !== undefined && (
+              <>
+                {post.price.toLocaleString('ko-KR')}원
+              </>
+            )}
+          </Span>
           <Text style={{fontWeight:600 , fontSize:20 }}>
             <Title>
               {post.state}
               <span style={{marginLeft:6,fontWeight:500}}>{post.title} </span>
             </Title>
-            <div style={{fontSize:14}}>{post.nickname}</div>
           </Text>
           <Text style={{fontSize:14}}>
             <div style={{marginTop:10}}>
@@ -61,28 +64,49 @@ const Detail = () => {
           </Text>
         </ItemBox>
         <ContentBox>
-          {/* {post.content} */}
           <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
-          진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움진돗개 두 마리를 동시에 산책하고 싶어서 도움
+          {post.content}진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
+              금액의 경우 협의 가능합니다.
+              가능한 빠른 연락 부탁드리며
+              노쇼 하지 않으실 분들만 찾습니다!
+
+              진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
         </ContentBox>
+        </Overflow>
         <ProfileBox>
           <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
           <Profilename>
-            <div>
-              닉네임
-              
-            </div>⭐⭐⭐⭐⭐
+            <div style={{marginLeft:10}} >{post.nickname}</div>
+            <div style={{marginLeft:10}}>⭐⭐⭐⭐⭐</div>
           </Profilename>
         </ProfileBox>
         <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
+        {/* { 
+          post.nickname == localStorage.getItem("user-nickname")  ?
+          null:
+          <button onClick={()=>onClickChatting(post)}>채팅하기</button>
+        } */}
       </Container>
+      </Bg>
   )
 }
 
 export default Detail ;
+const Bg = styled.div`
+`
+const Overflow = styled.div`
+  // background-color:#ED9071;
+  overflow: auto;
+  height:411px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
 const Container = styled.div `
   width:95%;
   max-width:360px;
+  height:514.25px;
+  background-color:#f6f0ee;
 `
 const ItemBox = styled.div`
   border-bottom: 1px solid #ED9071;

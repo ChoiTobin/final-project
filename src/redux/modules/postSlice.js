@@ -139,11 +139,12 @@ const postSlice = createSlice({
       state.isLoading = false;	
     },	
     [__addPost.fulfilled]: (state, action) => {	
-      // console.log("이난",action.payload)
+      console.log("이난",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
       // state.post.response.push(action.payload.data)	
       state.posts = action.payload
+      // window.location.replace("/home")
     },	
     [__addPost.rejected]: (state, action) => {	
       state.isLoading = false;	

@@ -33,13 +33,12 @@ const Content = () => {
     }
   }
   
+  
   const onClickAll = () =>{ //전체검색
     // props.setState(0)
     // console.log("vmfka",props.state)
     dispatch(__getPostTime());//문제 온클릭했을때 셋이되기전에 겟을 먼저한다
   }
-  
-  
   const onClickBig = () => {
     dispatch(__getCategory("대형",));
   };
@@ -49,7 +48,7 @@ const Content = () => {
   const onClickSmall = () => {
     dispatch(__getCategory("소형"));
   };
-
+  
   return (
       <SearchListWrap>
         <InputBox>
@@ -121,6 +120,7 @@ const Carouselwrap = styled.div`
 const Input = styled.input`
   position:relative;
   border:none;
+  outline: none;
   border:1px solid #666;
   border-radius:30px;
   width:95%;
