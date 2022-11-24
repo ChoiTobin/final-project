@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import ChatSubmitBox from "./ChatSubmitBox";
-import ChatCard from "./ChatCard";
+// import ChatSubmitBox from "./ChatSubmitBox";
+// import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import { ListReduce } from "../../redux/modules/chattingSlice";
 
