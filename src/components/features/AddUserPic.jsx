@@ -11,34 +11,6 @@ const AddUserPic = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [imageUrl, setImageUrl] = useState(null)
-  // const [imgFile, setImgFile] = useState("")
-  // const imgRef = useRef()
-
-  // const onChangeImage = () => {
-  //   const reader = new FileReader()
-
-  //   const img = imgRef.current.files[0]
-  //   reader.readAsDataURL(img)
-  //   reader.onloadend = () => {
-  //     setImageUrl(reader.result)
-  //     setImgFile(img)
-  //   }
-  //   console.log("이미지 프사", img);
-  // }
-
-  // const onPost = (event) => {
-  //   event.preventDefault()
-  //   const formData = new FormData()
-
-  //   console.log("이미지 올라갈까요 제발", imgFile);
-  //   formData.append("userImage", imgFile)
-  //   for (let value of formData.values()) {
-  //     console.log("폼데이터 value", value)
-  //   }
-  //   dispatch(__postMyImg(formData))
-  // }
-
   // 이미지 업로드 훅
   const [userImage, imgsUrls, uploadHandle] = useImgUpload(1);
 
@@ -60,25 +32,7 @@ const AddUserPic = () => {
       formData.append("userImg", null);
     }
 
-    // setMyPhoto("");
-
-    // const myPhotoData = {
-    //   title: myPhoto.title,
-    // };
-
-    console.log("프로필사진", imgsUrls);
-
     formData.append("userImg", imgsUrls);
-
-    // formData에 작성한 데이터 넣기
-    // formData.append(
-    //   "post",
-    //   new Blob([JSON.stringify(myPhotoData)], {
-    //     type: "application/json",
-    //   })
-    // );
-
-    console.log("폼데이터", formData);
 
     // API 날리기
     dispatch(__postMyImg(formData));
@@ -114,9 +68,6 @@ const AddUserPic = () => {
 
       <ImgPreview>
         {/* 이미지 미리보기 Preview */}
-        {/* {filesUrls.map((imgs, id) => {
-          return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
-        })} */}
         <img src={imgsUrls} alt="" />
         {/* {imageUrl} */}
       </ImgPreview>
