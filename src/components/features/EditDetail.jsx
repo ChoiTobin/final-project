@@ -9,8 +9,6 @@ import { ReactComponent as Photo } from "../../img/photo.svg";
 import { __putMyPost } from "../../redux/modules/mypageSlice";
 
 // 내가 쓴 게시글 수정 및 삭제
-// post{id}
-// myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
 
 const EditDetail = () => {
   const [myPost, setMyPost] = useState({
@@ -29,21 +27,13 @@ const EditDetail = () => {
     const { name, value } = event.target;
     setMyPost({ ...myPost, [name]: value });
   };
-
-  console.log("온체인지 포스트", myPost);
-
-  // 1개당 5MB, 전체 10MB
-  //limitCount 파일갯수제한
-  //isComp 압축 여부 true :이미지 압축 , false:이미지 압축안함
-  //imgMaxSize 압축 최대 크기 기본값 1mb
-  //imgMaxWidthHeight 압축 이미지 최대 width,height 기본값1920px
+  
   // 이미지 업로드 훅
   const [imgs, imgUrls, uploadHandle] = useImgUpload(5, true, 0.3, 1000);
 
   // 이미지 업로드 인풋돔 선택 훅
   const imgRef = useRef();
 
-  // submit
   const writeSubmit = () => {
     // request로 날릴 formData
     const formData = new FormData();
@@ -51,15 +41,11 @@ const EditDetail = () => {
     // FormData에 파일 담기
     if (imgs.length > 0) {
       imgs.forEach((file) => {
-        console.log("이미지 파일 올라가나", file);
         formData.append("imgs", file);
       });
     } else {
       formData.append("imgs", null);
     }
-
-    console.log("폼데이터에 이미지 넣기", formData);
-    // setMyPost("");
 
     const myPostData = {
       id: myPost.id,
@@ -70,9 +56,6 @@ const EditDetail = () => {
       local: myPost.local,
     };
 
-    console.log("전체내용", myPostData);
-    console.log("이미지들", imgUrls);
-
     formData.append("imgs", imgUrls);
 
     // formData에 작성한 데이터 넣기
@@ -82,8 +65,6 @@ const EditDetail = () => {
         type: "application/json",
       })
     );
-
-    console.log("폼데이터 글 넣어서 디스패치", formData);
 
     // API 날리기
     dispatch(__putMyPost(formData));
