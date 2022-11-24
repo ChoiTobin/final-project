@@ -15,6 +15,32 @@ const Content = () => {
   const posts = useSelector((state)=>state.post.post)	
   // const searchposts = useSelector((state) => state.post.post.response)
   
+  //검색
+  const [getSearch, setGetSearch] = useState({ search: "" });
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setGetSearch({ ...getSearch, [name]: value });
+  };
+
+  //키워드검색 #제목 #내용 #지역
+  const onClickSearch = () => {
+    if (getSearch.search.trim() === "") {
+      return alert("내용을 입력해주세요.");
+    }
+    dispatch(__getKeyword(getSearch.search));
+  };
+
+  const onClickAll = () => {
+    //전체검색
+    dispatch(__getPostTime());
+  };
+
+  const onClickBig = () => {
+    //대형검색
+    const data = posts.response.filter((item) => item.category === "대형");
+    dispatch(__getCategory(data));
+  };
+  
   return (
     <Layout>
       <Header />
