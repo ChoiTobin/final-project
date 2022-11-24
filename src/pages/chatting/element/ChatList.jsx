@@ -4,22 +4,20 @@
 // import { useNavigate, useParams, useLocation } from "react-router-dom";
 // import {__getRoomList} from "../../../redux/modules/chattingSlice"
 // import {v4 as uuidv4} from 'uuid';
+
 // const ChatList = () => {
 //     // const {id}  = useParams()
 //     const navigate = useNavigate();
 //     const dispatch = useDispatch();
 //     const navigator = useNavigate();
 //     const chatList = useSelector((state) => state.chatting.roomList);
-//     console.log("첼리스트",chatList)
 
 //     useEffect(() => {
-
 //         dispatch(__getRoomList());
 //       }, []);
 // const onClickChatting = (item) => {
 
 //   navigator(`/ChatRoomPage/${item.id}`);
-
 
 // }
 
