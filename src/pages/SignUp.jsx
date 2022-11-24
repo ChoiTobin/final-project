@@ -120,20 +120,6 @@ const SignUp = () => {
     window.location.replace("/SignIn")
     }
   }
-  
-    // useEffect(() => {
-      
-    //   if(account.statusCode === 200){
-    //     alert("회원가입이 완료되었습니다.")
-    //     setJoin({
-    //       email : "",
-    //       nickname: "",
-    //       password: "",
-    //       passwordCheck: "",
-    //     })
-    //       window.location.replace("/SignIn")
-    //   }
-    // },[account])
 
   return (
     <SignupContainer>
@@ -281,8 +267,6 @@ color:#929292;
   outline: 1px solid #ADADAD;
 }
 `
-
-
 const LoGoSignUp = styled.span`
 margin-left:40px;
 color:#ED9071;
@@ -303,7 +287,6 @@ margin:4px;
 color:#ef0000;
 font-size:6px;
 `
-
 const FlexInput = styled.span`
 position:relative;
 `
@@ -314,7 +297,6 @@ const FlexInput3 = styled.span`
 `
 const FlexInput4 = styled.span`
 `
-
 const SignupContainer = styled.div`
   width: 100%;
   height: 100vh;
