@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Modal.css";
 import styled from "styled-components";
 import { useSelector,useDispatch  } from "react-redux";
-//import { IoMdHome, IoLogoGithub } from "react-icons/io";
 import postChat from "../../../redux/modules/chattingSlice";
 import { trueChat,clearChat } from "../../../redux/modules/chattingSlice";
 
@@ -19,11 +18,8 @@ export default function Modal() {
     setModal(!modal);
     setWriteTrue(WriteTrue.mode=true)
     dispatch(trueChat(WriteTrue))
-
     //false로 바뀐다.
     }
-
-    
 
     //true값 넘겨주기 =>modal색깔 그린 
   //count가 true일때 이제 visible moddal창 
@@ -79,11 +75,13 @@ export default function Modal() {
     </>
   );
 }
+
 const Span = styled.span`
 margin-left:1px;
 font-size:10px;
 font-weight:600;
 `
+
 const P = styled.span`
 display:flex;
 width:60px;
@@ -91,25 +89,27 @@ height:60px;
 flex-direction:column;
 margin-top:5px;
 `
+
 const Himg2 = styled.img`  
   width:26px;
   height:26px;
   margin-right:20px;
-
   background-color:green;
 `
+
 const Himg = styled.img`  
   width:26px;
   height:26px;
   margin-right:20px;
-
   background-color:#303030
 `
+
 const Button = styled. button`
   width:0px;
   border:none;
   background:transparent;
 `
+
 const HeadRight2 = styled.button`
 font-size: 0.9rem;
 width: 30px;
