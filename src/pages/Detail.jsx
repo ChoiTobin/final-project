@@ -17,7 +17,7 @@ const Detail = () => {
   const {id}  = useParams()
   const dispatch = useDispatch()	
   const post = useSelector((state)=>state.post.post)
-  // console.log("post",post)	
+   console.log("post",post)	
   
   useEffect(() => {	
     dispatch(__getDetail(id));	
@@ -32,6 +32,7 @@ const Detail = () => {
     dispatch(__CreateRoom({
       postId:post.id,
       postTitle:post.title,
+      postNickName:post.nickname,
     }));
     
     navigator(`/ChatRoomPage/${post.id}`);
@@ -98,12 +99,12 @@ const Detail = () => {
           </Profilename>
         </ProfileBox>
         <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
-        <Button onClick={()=>onClickChatting(post)}>채팅하기</Button>
-        {/* { 
+        {/* <Button onClick={()=>onClickChatting(post)}>채팅하기</Button> */}
+        { 
           post.nickname == localStorage.getItem("user-nickname")  ?
           null:
-          <button onClick={()=>onClickChatting(post)}>채팅하기</button>
-        } */}
+          <Button onClick={()=>onClickChatting(post)}>채팅하기</Button>
+        }
       </Container>
       <Footer/>
     </Layout>

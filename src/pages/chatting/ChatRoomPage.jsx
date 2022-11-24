@@ -44,7 +44,11 @@ function ChatRoomPage() {
   useEffect(() => {
 
     wsConnectSubscribe()
-    dispatch(__getinitialChatList(roomId));
+    dispatch(__getinitialChatList({
+      postId:postId,
+      roomId:1
+  }));
+    console.log("roomId",roomId)
 
 
   }, []);
