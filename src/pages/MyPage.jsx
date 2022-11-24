@@ -62,7 +62,7 @@ const MyPage = () => {
       <AddPetInfo />
     );
   }, [modalOption]);
-  
+
   // 마이페이지 회원정보 조회
   useEffect(() => {
     dispatch(__getMyPage());
