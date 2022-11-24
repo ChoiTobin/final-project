@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import list from "../modules/listSlice";
 import mypage from "../modules/mypageSlice";
 import post from "../modules/postSlice";
 import search from "../modules/searchSlice";
@@ -11,7 +10,6 @@ import chatting from "../modules/chattingSlice";
 const store = configureStore({
     
   reducer: {
-    list,
     mypage,
     post,
     search,
