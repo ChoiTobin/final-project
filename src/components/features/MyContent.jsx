@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { __deleteMyPost, __getMyPost } from "../../redux/modules/mypageSlice";
 import Modal from "../modal/modal";
 import useModal from "../modal/useModal";
@@ -18,7 +19,7 @@ const MyContent = ({ myPost }) => {
   const onClickModal = useCallback(() => {
     showModal(
       true,
-      "안녕하세요",
+      "게시글 수정하기",
       () => console.log("모달 ON"),
       null,
       <EditDetail/>
@@ -29,7 +30,7 @@ const MyContent = ({ myPost }) => {
   const onDeleteMyPost = (id) => {
     dispatch(__deleteMyPost(id));
     window.confirm("해당 게시글을 삭제하시겠습니까?");
-    // window.location.reload();
+    window.location.reload();
   };
 
   // 내가 쓴 글 조회
@@ -39,18 +40,22 @@ const MyContent = ({ myPost }) => {
 
   return (
     <>
-      {myPost !== undefined &&
+      <Layout>
+        {myPost !== undefined &&
         myPost.map((post) => {
           if (myPost.length !== 0) {
             return (
               <div key={post.id}>
-                <div className="top-line">
+                <Title
+                  className="top-line"
+                  onClick={() => {navigate(`/Detail/${post.id}`)}}
+                >
                   <span>{post.state}</span>
                   <span>{post.title}</span>
                   <div>
                     <span>{post.date}</span>
                   </div>
-                </div>
+                </Title>
 
                 <div className="bottom-line">
                   <span>{post.createdAt}</span>
@@ -68,8 +73,21 @@ const MyContent = ({ myPost }) => {
             return null;
           }
         })}
+      </Layout>
+      
     </>
   );
 }
 
 export default MyContent;
+
+const Layout = styled.div`
+  /* background-color: cornflowerblue; */
+  min-height: 150px;
+  max-height: 200px;
+  overflow: auto;
+`
+
+const Title = styled.div`
+  cursor: pointer;
+`

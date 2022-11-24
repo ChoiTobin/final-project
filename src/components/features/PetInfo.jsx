@@ -7,19 +7,20 @@ import useModal from "../modal/useModal";
 import EditPetInfo from "./EditPetInfo";
 
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
-// myPets: [{petId, name, age, categoryName}, {""}, {""}]
+// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
   
   console.log("형태가 뭐야 대체", myPets);
+  console.log("길이가 나오나", myPets.length);
 
   const [modalOption, showModal] = useModal();
 
   const onClickModal = useCallback(() => {
     showModal(
       true,
-      "안녕하세요",
+      "반려동물 정보 수정",
       () => console.log("모달 on"),
       null,
       <EditPetInfo/>
@@ -28,58 +29,54 @@ const PetInfo = ({ myPets }) => {
 
 
   // 나의 반려동물 삭제
-  const onDeleteMyPet = (petId) => {
-    dispatch(__deleteMyPet(petId));
+  const onDeleteMyPet = (id) => {
+    dispatch(__deleteMyPet(id));
     window.alert("반려동물 정보를 삭제하시겠습니까?");
-    // window.location.reload();
+    window.location.reload();
   };
 
   // 반려동물 정보 조회
   useEffect(() => {
     dispatch(__getMyPet());
-  }, [dispatch]);
+  }, []);
 
   return (
-    <div>
-      {myPets !== undefined &&
-        myPets.map((myPet) => {
-          if (myPet !== "") {
+    <>
+      <Layout>
+        {myPets !== undefined &&
+        myPets.map((pet) => {
+          if (pet.length !== 0) {
             return (
-              <Pet className="pet-info" key={myPet.petId}>
+              <div key={pet.id}>
                 <div>
-                  <h3>{myPet.categoryName}</h3>
-                  <span>{myPet.name}</span>
+                  <span>{pet.category}</span>
+                  <span>{pet.name}</span>
                 </div>
-
                 <div>
-                  <span> {myPet.age}</span>
+                  <span> {pet.age}살</span>
                 </div>
                 {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
                 <button onClick={onClickModal}>수정하기</button>
-                <Modal modalOption={modalOption}/>
+                <Modal modalOption={modalOption} />
 
-                <button onClick={() => onDeleteMyPet(myPet.petId)}>
-                  삭제하기
-                </button>
-              </Pet>
-            );
-          } else {
-            return (
-              <div>
-                <h3>반려동물을 등록해보세요</h3>
+                <button onClick={() => onDeleteMyPet(pet.id)}>삭제하기</button>
               </div>
             );
+          } else {
+            return null;
           }
         })}
-    </div>
+      </Layout>
+      
+    </>
   );
 };
 
 export default PetInfo;
 
-const Pet = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+const Layout = styled.div`
+  /* background-color: cornflowerblue; */
+  min-height: 150px;
+  max-height: 200px;
+  overflow: auto;
 `;

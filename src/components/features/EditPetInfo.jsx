@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom/dist";
 import { __putMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 수정
-// myPets: [{petId, name, age, categoryName}, {""}, {""}]
+// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const EditPetInfo = () => {
   const [myPet, setMyPet] = useState("");
@@ -27,7 +27,7 @@ const EditPetInfo = () => {
     console.log("마이펫 디스패치", myPet);
     dispatch(__putMyPet(myPet));
     window.alert("반려동물 정보수정이 완료되었습니다!");
-    navigate("/mypage");
+    // navigate("/mypage");
   };
 
   return (
@@ -47,11 +47,11 @@ const EditPetInfo = () => {
         <div>
           <label>반려동물 종류 : &nbsp;</label>
           <select
-            name="categoryName"
-            value={myPet.categoryName}
+            name="category"
+            value={myPet.category}
             onChange={onChangePetInfo}
           >
-            <option value="">전체</option>
+            <option default value="all">전체</option>
             <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
             <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
             <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
