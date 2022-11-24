@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom/dist";
 import { __putMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 수정
-// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const EditPetInfo = () => {
   const [myPet, setMyPet] = useState("");
@@ -15,7 +14,6 @@ const EditPetInfo = () => {
   // 프로필 등록 - 반려동물 정보(이름, 나이, 종류)
   const onChangePetInfo = (event) => {
     const { name, value } = event.target;
-    console.log("온체인지 펫", event.target);
     setMyPet({
       ...myPet,
       [name]: value,
@@ -24,9 +22,7 @@ const EditPetInfo = () => {
 
   // 프로필 수정 - 반려동물 정보(이름, 나이, 종류)
   const onUpdateMyPets = () => {
-    console.log("마이펫 디스패치", myPet);
     dispatch(__putMyPet(myPet));
-    window.alert("반려동물 정보수정이 완료되었습니다!");
     // navigate("/mypage");
   };
 
