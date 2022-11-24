@@ -1,45 +1,27 @@
 import React, { useCallback, useEffect } from "react";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
-import User from "../img/user.png";
+
+import Modal from "../components/modal/modal";
+import useModal from "../components/modal/useModal";
 import AddPetInfo from "../components/features/AddPetInfo"
 import Mytab from "../components/features/MypageTab";
-import useModal from "../components/modal/useModal";
-import Modal from "../components/modal/modal";
 import AddUserPic from "../components/features/AddUserPic";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
-import { useNavigate } from "react-router-dom";
+
+import styled from "styled-components";
+import User from "../img/user.png";
 import { ReactComponent as Kakao } from "../img/kakao.svg";
 import { ReactComponent as Banner } from "../img/banner.svg";
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
-// post{id}, myInfo{id, nickname, userImage}, myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}],
-// myPic{userImage}, myPets: [{id, name, age, categoryName}, {""}, {""}]
-
 const MyPage = () => {
   const dispatch = useDispatch();
-
-  const all = useSelector((state) => state.mypage);
-  const post = useSelector((state) => state.mypage.post);
-  const myInfo = useSelector((state) => state.mypage.myInfo);
-  const myPosts = useSelector((state) => state.mypage.myPost);
-  const myPic = useSelector((state) => state.mypage.myPic);
-  const myPets = useSelector((state) => state.mypage.myPets);
-
-  console.log("전체 셀렉터", all);
-
-  console.log("셀렉터post", post);
-  console.log("셀렉터myInfo", myInfo);
-  console.log("셀렉터myPosts", myPosts);
-  console.log("셀렉터myPic", myPic);
-  console.log("셀렉터myPets", myPets);
-
-  console.log("프사 이미지 가져오나", myInfo.userImage);
-
   const navigate = useNavigate();
+  const myInfo = useSelector((state) => state.mypage.myInfo);
 
   const [modalOption, showModal] = useModal();
 
@@ -155,15 +137,6 @@ const MyPage = () => {
       <div>
         <Mytab />
       </div>
-
-      {/* 내가 쓴 게시글 여러개 붙이기 - myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}] */}
-      {/* <MyContent myPost={myPosts} /> */}
-
-      {/* <br /> */}
-      {/* 반려동물 정보 여러개 붙이기 - myPets: [{id, name, age, categoryName}, {""}, {""}] */}
-      {/* <div>
-        <PetInfo myPets={myPets} />
-      </div> */}
       <Footer />
     </Layouts>
   );
