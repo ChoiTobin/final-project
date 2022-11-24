@@ -79,7 +79,7 @@ const Post = () => {
   return (
     <Bg>
       <Form>
-      <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POST</p>
+      <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POSTs</p>
         <label htmlFor="imgFile" />
             <Carousel fade >
                 { 
