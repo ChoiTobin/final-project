@@ -43,6 +43,7 @@ export const __putMyPost = createAsyncThunk(
   "posts/__putPost",
   async (payload, thunkAPI) => {
     try {
+      console.log("게시글 수정 페이로드", payload);
       const response = await Apis.putPostAX(payload)
       console.log("putPost 수정수정", response)
       return thunkAPI.fulfillWithValue(response.data);
@@ -104,6 +105,7 @@ export const __postMyImg = createAsyncThunk(
   "mypage/__postMyImg",
   async (payload, thunkAPI) => {
     try {
+      console.log("프사이미지 페이로드", payload);
       await Apis.postMyImgAX(payload)
         .then((response) => {
           console.log("프사 res", response);
@@ -153,7 +155,7 @@ export const __putMyPet = createAsyncThunk(
     console.log("수정 페이로드 들어오나", payload)
     try {
       const response = await Apis.putMyPetAX(payload)
-      console.log(response, "반려동물 수정 완료")
+      console.log(response, "반려동물 수정 리스폰스")
           return thunkAPI.fulfillWithValue(payload)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -188,6 +190,7 @@ const mypageSlice = createSlice({
     [__putMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("게시글 수정 스토어 페이로드", action.payload);
       // state.myPost = action.payload;
       state.myPost.response.push(action.payload.data)
       
@@ -248,7 +251,9 @@ const mypageSlice = createSlice({
     [__postMyImg.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("프사 이미지는", action.payload);
       state.myPic = action.payload;
+      // state.myPic = [...state.post, {...action.payload}]
     },
     [__postMyImg.rejected]: (state, action) => {
       state.isLoading = false;

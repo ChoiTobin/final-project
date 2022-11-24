@@ -18,7 +18,6 @@ export default Home ;
 
 const HomePage = styled.div`
   /* width: 90%; */
-  max-width: 1440px;
+  max-width: 100vw;
   margin: auto;
-  background-color: #b5cefd;
 `

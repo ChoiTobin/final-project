@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./redux/config/configStore";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+// 글로벌 폰트
+import GlobalFont from './fonts/globalFont';
+// import "./index.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // yarn add react-is
@@ -13,6 +16,7 @@ root.render(
     <>
     <BrowserRouter />
     <Provider store={store}>
+      <GlobalFont/>
         <App />
     </Provider>
     </>

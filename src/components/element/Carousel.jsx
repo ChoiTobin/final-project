@@ -2,7 +2,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 const DarkVariantExample = () => {
   return (
-    <Carousel variant="dark" style={{width: "30px"}}>
+    <Carousel variant="dark" style={{ width: "30px" }}>
       <Carousel.Item>
         <img
           className="d-block w-100"
@@ -40,6 +40,6 @@ const DarkVariantExample = () => {
       </Carousel.Item>
     </Carousel>
   );
-}
+};
 
 export default DarkVariantExample;

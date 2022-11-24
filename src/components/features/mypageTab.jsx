@@ -12,6 +12,7 @@ export default function Mytab() {
 
   const tabClickHandler = (index) => {
     setActiveIndex(index);
+    
   };
 
   const tabContArr = [
@@ -35,11 +36,11 @@ export default function Mytab() {
 
   return (
     <div>
-      <ul className="tab is-boxed">
+      <TabMain className="tab is-boxed">
         {tabContArr.map((section, index) => {
           return section.tabTitle
         })}
-      </ul>
+      </TabMain>
       <div>
         {tabContArr[activeIndex].tabCont}
       </div>
@@ -47,6 +48,33 @@ export default function Mytab() {
   )
 }
 
-const TabTitle = styled.li`
+
+const TabMain = styled.ul`
+  height: 49px;
+  border-top: 1px solid #f1b5a2;
+  border-bottom: 1px solid #f1b5a2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 15.67px;
+`;
+
+const TabTitle = styled.div`
   cursor: pointer;
-`
+
+  width: 135px;
+  height: 23.13px;
+  color: #ED9071;
+  font-family: "SFPro";
+  font-weight: 800;
+  font-size: 12px;
+  border: 1px solid #ed9071;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
