@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { __addMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 등록
-// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const ProfileEdit = () => {
   const [myPet, setMyPet] = useState("");
@@ -20,9 +19,6 @@ const ProfileEdit = () => {
       [name]: value,
     });
   };
-  
-
-  console.log("우리강아지", myPet);
 
   const onAddMyPets = (event) => {
     event.preventDefault();
@@ -33,7 +29,6 @@ const ProfileEdit = () => {
     ) {
       return alert("모든 항목을 입력해주세요!");
     }
-    console.log("우리강아지 페이로드", myPet);
     dispatch(__addMyPet(myPet));
     window.location.reload("/mypage");
   };
