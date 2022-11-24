@@ -13,15 +13,19 @@ const Detail = () => {
   const posts = useSelector((state)=>state.post.post)	
   const onClickMove = () => {
     navigator(-1);
+    
   };
 
 
   const onClickChatting = (post) =>{
+    console.log("온클릭",post.id,post.title)
     dispatch(__CreateRoom({
       postId:post.id,
       postTitle:post.title,
     }));
+    
     navigator(`/ChatRoomPage/${post.id}`);
+    console.log("room 생성및 입장")
   }
 
   
@@ -36,6 +40,7 @@ const Detail = () => {
                 <p>{post.content}</p>
                 <p>{post.price}</p>
                 <p>{post.createdAt}</p>
+                {/* <button onClick={()=>onClickChatting(post)}>채팅하고</button> */}
                 <button onClick={()=>onClickChatting(post)}>채팅하고</button>
                 {/* { 
                   post.nickname == localStorage.getItem("user-nickname")  ?

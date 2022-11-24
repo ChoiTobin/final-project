@@ -52,7 +52,7 @@ export const Apis = {
 
   //createRoom----------------------------------------------------------------
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
-  
+  // getRoomList: () => token.get(`/roomList`),
 
   
   // 게시글 작성

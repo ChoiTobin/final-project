@@ -11,7 +11,9 @@ import {ListReducer} from "../../redux/modules/chattingSlice"
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
 
+
 function ChatRoomPage() {
+  const roomId = localStorage.getItem("roomId")
   const {id}  = useParams()
   const navigate = useNavigate();
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
@@ -20,43 +22,52 @@ function ChatRoomPage() {
   const chatList = useSelector((state) => state.chatting.chatList);
   const listReducer = useSelector((state) => state.chatting.listReducer);
 
-
-
+  // if(roomId !== undefined || null){} 
+  //민재님이랑 얘기하기 실행시점의 문제 때문에 안되는것 같다.....하 ....
 
   let postId = Number(id)
 
-  useEffect(() => {
-    wsConnectSubscribe()
-    dispatch(__getinitialChatList(postId));
 
+
+
+
+
+//이방법써보기 useEffect를 function으로 감싸서 roomId가 undefinde인경우.
+
+
+  useEffect(() => {
+
+    wsConnectSubscribe()
+    dispatch(__getinitialChatList(roomId));
+
+    console.log("roomid가 들어와서 get요청되는부분")
   }, []);
 
+
+
+
+
   const [chatBody, setChatBody] = useState("");
-  const [createdAt, setCreatedAt] = useState("");
+
+
   const content = {
     sender:localStorage.getItem('user-nickname'),
     message:chatBody
-
-
     };
 
   let headers = { 
     Access_Token: localStorage.getItem('Access_Token')
   };
 
-
- 
   function wsConnectSubscribe() {
     try {
       ws.connect(
         headers,(frame) => {
           ws.subscribe(
-            `/sub/${postId}`,
-             (response) => {
+            `/sub/${roomId}`,
+            (response) => {
               let data = JSON.parse(response.body)
               dispatch(ListReducer(data))
-
-              
             }
             );
         },
@@ -66,13 +77,7 @@ function ChatRoomPage() {
     }
   }
 
-
-
-
-
-
-
-
+  
 
   function waitForConnection(ws, callback) {
     setTimeout(
@@ -103,7 +108,7 @@ const onSubmitHandler = (event) =>{
     }
     waitForConnection(ws,function() {   
   ws.send(
-    `/pub/${postId}`,
+    `/pub/${roomId}`,
     JSON.stringify(content),
             {
               Access_Token: localStorage.getItem("Access_Token")
@@ -155,23 +160,23 @@ return (
                     <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>
                     <TextBox>
                       <P>
-                        <OrangeSpan>모집 중</OrangeSpan>
+                        <OrangeSpan>{chatList.state}</OrangeSpan>
                         <Span></Span>
                         <Title>{chatList.title}</Title>
                       </P>
-                      <Money>12,000원</Money>
+                      <Money>{chatList.price}원</Money>
                     </TextBox>
                 </Section>
                   <DivAt>날짜</DivAt> 
                   <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
-                      { chatList.chats !== undefined && chatList.chats !== null &&
-                        chatList.chats.map((item,i)=>{
+                      { chatList.chatList !== undefined && chatList.chatList !== null &&
+                        chatList.chatList.map((item,i)=>{
                           return(
                           
                           localStorage.getItem('user-nickname') == item.sender ?  
-                          <TextBox key={i}><Colorspan ><span>{item.message}</span></Colorspan></TextBox>
+                        <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
                         :
-                        <TextBox key={uuidv4()}><Colorspan2 ><span>{item.message}</span></Colorspan2></TextBox>
+                        <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
                         
                           )
                         })
@@ -180,9 +185,9 @@ return (
                         listReducer.map((item,i)=>{
                           return (
                             localStorage.getItem('user-nickname') == item.sender ?  
-                          <TextBox key={i}><Colorspan><span>{item.message}</span></Colorspan></TextBox>
+                          <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
                           :
-                          <TextBox key={uuidv4()}><Colorspan2 ><span>{item.message}</span></Colorspan2></TextBox>
+                          <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
                           )
                         }
                           )
@@ -191,12 +196,13 @@ return (
                   </OverFlow >
                 <Chatput>
 
-                    <Input value={chatBody}  onKeyPress={appKeyPress}  onChange={inputHandler}></Input>
+                    <Input  value={chatBody}  onKeyPress={appKeyPress}  onChange={inputHandler}></Input>
                     <ArrowImg  onSubmit={appKeyPress} onClick={onSubmitHandler} src={require("../chatting/chattingImg/iconSand.png")}></ArrowImg>
                 </Chatput>   
         </LoginContainer>
   );
 }
+
 const ArrowImg =styled.img`
 position:absolute;
 top:10px;
@@ -215,42 +221,56 @@ width:100%;
 height:30px;
 outline:none;
 text-indent:8px;
-border:2px solid #ED9071;;
+border:2px solid #ED9071;
 border-radius:30px;
+display: inline-block;
+font-weight: lighter;
+font-size: 12px;
+max-width: calc(100% - 32px);
+min-width: 50px;
 
 `
-const Colorspan2 = styled.span`
-background:#d8d8d8;
+const Colorspan2 = styled.div`
+background:#F6F0EE;
 color:black;
-padding:7px;
-box-sizing: border-box;
-border-radius: 15px;
-border:1px solid white;
-font-size:13px;
-break-all;
-float: left; 
-word-break: break-all;
-`
+padding:6px;
 
+border-radius: 7px;
+font-size:12px;
+display:flex;
+flex-direction:left;
+text-align:left;
+width:170px;
+margin-bottom:3px;
+
+
+`
+const Colorspan = styled.div`
+background:#ED9071;
+color:black;
+padding:8px;
+box-sizing: border-box;
+border-radius: 7px;
+font-size:12px;
+display:flex;
+text-align:left;
+width:150px;
+margin-bottom:3px;
+
+
+
+`
 
 const TextBox = styled.div`
-height:30px;
 padding:4px;
 background:#F6F0EE;
+min-height:33.26px;
+width:318.82px;
+
 
 `
 
-const Colorspan = styled.span`
-background:#ED9071;
-float: right;
-color:black;
-padding:7px;
-box-sizing: border-box;
-border-radius: 15px;
-font-size:13px;
 
-word-break:break-all;
-`
 
 const OverFlow = styled.div`
 overflow:auto;

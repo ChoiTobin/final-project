@@ -9,6 +9,7 @@ import Apis from "../../shared/Apis";
 const initialState = {
   // URI: `${URI.BASE}`,
   createRoom: [],
+  roomList:[],
   chatList:[],
   listReducer:[],
   chatTrueFalse:false,
@@ -21,11 +22,13 @@ export const __CreateRoom = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.CreateRoom(payload)
-      // .then((res) => {
-      //   console.log("resRESRES",res)
 
-      // })
+      window.localStorage.setItem("roomId",response.data.data.roomId)
+      console.log("실행시점확인 roomID들어오는 시점")
+      window.location.reload(payload)
+
       
+    
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -33,18 +36,38 @@ export const __CreateRoom = createAsyncThunk(
   }
 );
 
+// export const __getRoomList = createAsyncThunk(
+//   "/chat/__getRoomList",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const response = await Apis.getRoomList()
+//       console.log("리스폰스",response)
+//       return thunkAPI.fulfillWithValue(response.data.data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+
+
+
+
+
+
 export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
   async (payload, thunkAPI) => {
     try {
-
       const response = await axios.get(
         `${process.env.REACT_APP_URL}/room/${payload}`
         , {
         headers: {
           Access_Token: localStorage.getItem("Access_Token"),
         },
-      })
+  
+      }
+      )
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -75,6 +98,9 @@ const chatSlice = createSlice({
     },
 
   },
+
+
+
   extraReducers: {
     [__CreateRoom.pending]: (state, action) => {
       state.isLoading = true;
@@ -82,11 +108,23 @@ const chatSlice = createSlice({
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.createRoom = action.payload;
+      // console.log("풀필드",action.payload,state.createRoom)
     },
     [__CreateRoom.rejected]: (state, action) => {
       state.isLoading = false;
       state.err = action.payload;
     },
+    // [__getRoomList.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
+    // [__getRoomList.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.roomList = action.payload;
+    // },
+    // [__getRoomList.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.err = action.payload;
+    // },
     [__getinitialChatList.pending]: (state, action) => {
       state.isLoading = true;
     },
