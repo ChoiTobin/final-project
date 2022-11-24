@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
-import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn"
+import SignUp from "../pages/SignUp";
 import Form from "../components/features/Form";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";

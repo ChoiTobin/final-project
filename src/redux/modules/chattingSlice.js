@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import Apis from "../../shared/Apis";
 
+const URI = {
+  BASE: process.env.REACT_APP_BASE_URI,
+};
 
-// const URI = {
-//   BASE: process.env.REACT_APP_BASE_URI,
-// };
 const initialState = {
   // URI: `${URI.BASE}`,
   createRoom: [],
@@ -77,13 +76,11 @@ export const __getinitialChatList = createAsyncThunk(
 
 
 const chatSlice = createSlice({
-  name: "chatting",
+  name: "chatSlice",
   initialState,
   reducers: {
     postChat: (state, action) => {
-      //state.chatList=action.payload;
       state.chatList.unshift(action.payload);
-      //console.log("디스패치확인",state.chatList,"디스패치확인2",action.payload.mode)
     },
     clearChat: (state, action) => {
       state.chatList = new Array(0);

@@ -1,7 +1,9 @@
 ```
 final-project
+├─ .gitignore
+├─ .vscode
+│  └─ settings.json
 ├─ db.json
-├─ FolderTree.md
 ├─ package-lock.json
 ├─ package.json
 ├─ public
@@ -19,7 +21,6 @@ final-project
 │  ├─ components
 │  │  ├─ element
 │  │  │  ├─ Button.jsx
-│  │  │  ├─ Chatbox.jsx
 │  │  │  ├─ Grid.js
 │  │  │  ├─ Image.jsx
 │  │  │  ├─ infinityScroll.js
@@ -27,15 +28,21 @@ final-project
 │  │  │  ├─ ValidBtnInput.jsx
 │  │  │  └─ ValidInput.jsx
 │  │  ├─ features
+│  │  │  ├─ AddPetInfo.jsx
+│  │  │  ├─ AddUserPic.jsx
 │  │  │  ├─ Content.jsx
+│  │  │  ├─ EditDetail.jsx
+│  │  │  ├─ EditPetInfo.jsx
 │  │  │  ├─ Form.jsx
-│  │  │  ├─ Form1.jsx
 │  │  │  ├─ KakaoLogin.js
+│  │  │  ├─ MyContent.jsx
+│  │  │  ├─ mypageTab.jsx
 │  │  │  ├─ NaverLogin.js
 │  │  │  ├─ OAuth2RedirectHandler.js
+│  │  │  ├─ PetInfo.jsx
 │  │  │  ├─ PostList.jsx
-│  │  │  ├─ Profile.jsx
-│  │  │  └─ SearchList.jsx
+│  │  │  ├─ SearchList.jsx
+│  │  │  └─ UserInfo.jsx
 │  │  ├─ hooks
 │  │  │  ├─ useImgUpload.jsx
 │  │  │  └─ useInput.jsx
@@ -44,42 +51,36 @@ final-project
 │  │  │  ├─ Header.jsx
 │  │  │  └─ Layout.jsx
 │  │  └─ modal
-│  │     ├─ Modal.jsx
-│  │     ├─ Portal.js
-│  │     └─ Potal.js
+│  │     ├─ modal.js
+│  │     ├─ modalApply.js
+│  │     ├─ modalContainer.js
+│  │     └─ useModal.js
 │  ├─ img
 │  │  ├─ account_circle.svg
 │  │  ├─ add-user.png
-│  │  ├─ add_photo_alternate.svg
-│  │  ├─ approval_delegation.svg
 │  │  ├─ arrow_back.svg
-│  │  ├─ arrow_right.svg
-│  │  ├─ border_color.svg
 │  │  ├─ chat.svg
-│  │  ├─ delete.svg
-│  │  ├─ done.svg
-│  │  ├─ edit.svg
 │  │  ├─ edit_square.svg
-│  │  ├─ expand_less.svg
-│  │  ├─ file_download.svg
-│  │  ├─ file_upload.svg
 │  │  ├─ home.svg
-│  │  ├─ image.svg
-│  │  ├─ login.svg
 │  │  ├─ logout.svg
-│  │  ├─ search.svg
-│  │  ├─ send.svg
+│  │  ├─ online.png
+│  │  ├─ pets.png
+│  │  ├─ photoIMG.png
 │  │  └─ user.png
 │  ├─ index.css
 │  ├─ index.js
 │  ├─ logo.svg
 │  ├─ pages
-│  │  ├─ Chatroom.jsx
+│  │  ├─ chatting
+│  │  │  ├─ ChatCard.jsx
+│  │  │  ├─ ChatRoomPage.jsx
+│  │  │  ├─ ChatSubmitBox.jsx
+│  │  │  └─ element
+│  │  │     └─ GlobalHeaderChat.jsx
 │  │  ├─ Detail.jsx
 │  │  ├─ Home.jsx
 │  │  ├─ MainLogin.jsx
 │  │  ├─ MyPage.jsx
-│  │  ├─ ProfileEdit.jsx
 │  │  ├─ Search.jsx
 │  │  ├─ SignIn.jsx
 │  │  └─ SignUp.jsx
@@ -87,7 +88,7 @@ final-project
 │  │  ├─ config
 │  │  │  └─ configStore.js
 │  │  └─ modules
-│  │     ├─ chatSlice.js
+│  │     ├─ chattingSlice.js
 │  │     ├─ listSlice.js
 │  │     ├─ mypageSlice.js
 │  │     ├─ postSlice.js
@@ -101,5 +102,3 @@ final-project
 │     ├─ regex.js
 │     └─ Router.js
 └─ yarn.lock
-
-```

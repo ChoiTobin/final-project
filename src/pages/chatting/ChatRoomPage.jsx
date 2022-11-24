@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import Modal from "./Chattmodalfolder/Modal";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import ChatSubmitBox from "./ChatSubmitBox";
+import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import {ListReducer} from "../../redux/modules/chattingSlice"
 
@@ -34,7 +36,11 @@ function ChatRoomPage() {
 
 //이방법써보기 useEffect를 function으로 감싸서 roomId가 undefinde인경우.
 
+  // useEffect(() => {
+  //   setChatList2(chatList)
+  // },[setChatList2, chatList])
 
+  // 컴포넌트 마운트시에 소켓 연결 , 채팅방 생성
   useEffect(() => {
 
     wsConnectSubscribe()

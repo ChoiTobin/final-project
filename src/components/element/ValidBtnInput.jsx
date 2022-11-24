@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { Button, TextField } from "@mui/material";
+import styled from "styled-components";
 
 //handleValueCheck는 중복확인을 할 수 있는 api함수를 담아주면 됩니다.
 //isCheck는 부모로부터 중복확인 여부 state 값을 받아온다.
@@ -99,14 +98,14 @@ const Label = styled.span`
   font-size: 18px;
 `;
 
-const Input = styled(TextField)`
+const Input = styled.input`
   width: 100%;
   input {
     width: calc(100% - 110px);
   }
 `;
 
-const CheckBnt = styled(Button)`
+const CheckBnt = styled.button`
   position: absolute;
   right: 0;
   top: 10px;
@@ -118,7 +117,7 @@ const CheckBnt = styled(Button)`
   border-radius: 100px;
 `;
 
-const CheckSuccessBnt = styled(Button)`
+const CheckSuccessBnt = styled.button`
   display: flex;
   align-items: center;
   width: 100px;

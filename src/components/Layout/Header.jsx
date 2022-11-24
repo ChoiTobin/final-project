@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom/dist";
 import styled from "styled-components";
-import { ReactComponent as ArrowBack } from "../../img/arrow_back.svg";
-import { ReactComponent as Logout } from "../../img/logout.svg";
+import { ReactComponent as BackArrow } from "../../img/backarrow.svg";
+import { ReactComponent as Menu } from "../../img/menu.svg";
+import Pet from "../../img/pet.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,13 +17,10 @@ const Header = () => {
   
   return (
     <Layout>
-      <button onClick={() => onClickMove()}>
-        <ArrowBack />
-      </button>
-      <h2 onClick={() => onClickHome()}>Cmung</h2>
-      <button>
-        <Logout />
-      </button>
+        <BackArrow onClick={() => onClickMove()}/>
+      {/* <h2 onClick={() => onClickHome()}>Cmung</h2> */}
+      <Logo src={Pet} alt="logo" onClick={() => onClickHome()} />
+        <Menu/>
     </Layout>
   );
 };
@@ -30,10 +28,19 @@ const Header = () => {
 export default Header;
 
 const Layout = styled.div`
+  /* background-color: #F6F0EE; */
+  height: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin: auto;
-  gap: 90px;
+  gap: 116px;
+
+  /* border: 1px solid #ed9071; */
 `;
+
+const Logo = styled.img`
+  width: 50px;
+  height: 50px;
+`

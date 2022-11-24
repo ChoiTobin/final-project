@@ -4,29 +4,23 @@ import styled from "styled-components";
 import { __getMyPage } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 상단에 나타나는 회원정보
-const UserInfo = ({ mypage }) => {
-  const dispatch = useDispatch();
+// myInfo{id, nickname, userImage}
 
+const UserInfo = ({ myInfo }) => {
+  const dispatch = useDispatch()
+  
   useEffect(() => {
-    dispatch(__getMyPage());
-  }, [dispatch]);
+    dispatch(__getMyPage())
+  }, [])
 
   return (
-    <div>
+    <div key={myInfo.id}>
+      <UserImg>
+        <img src={myInfo.userImage} alt="profile-pic" /></UserImg>
       <div>
-          {/* 등록된 유저이미지가 없으면 기본 이미지를 보여주고, 유저이미지가 있으면 그걸로 보여준다 */}
-          {mypage.UserImg.length === 0 ? (
-            <img src="../../img/user.png" alt="userImg" />
-          ) : (
-            <UserImg src={mypage.UserImg} alt="profile" />
-          )}
+        <h2>{myInfo.nickname}</h2>
+        {/* <UserRate>회원평점 : {myInfo.rank}</UserRate> */}
       </div>
-      <div>
-        <h2>{mypage.nickname}</h2>
-        <UserRate>회원평점 : {mypage.rank}</UserRate>
-      </div>
-      
-
     </div>
   );
 }

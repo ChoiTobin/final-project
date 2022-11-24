@@ -1,42 +1,165 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __getMyPage } from "../../redux/modules/mypageSlice";
+import { __deleteMyPet, __getMyPet } from "../../redux/modules/mypageSlice";
+import Modal from "../modal/modal";
+import useModal from "../modal/useModal";
+import EditPetInfo from "./EditPetInfo";
+import { ReactComponent as DateColor } from "../../img/datecolor.svg";
+import { ReactComponent as Edit } from "../../img/edit.svg";
+import { ReactComponent as Delete } from "../../img/delete.svg";
+
 
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
+// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
-const Profile = ({ mypage }) => {
-  // 여기에 있는 마이페이지 프로필에 담기는 정보들을 props로 다른 컴포넌트에 전달한다. (자식이 부모한테)
-  // 받는(다른) 컴포넌트에서는 import해서 사용한다.
-
+const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
+  
+  console.log("형태가 뭐야 대체", myPets);
+  console.log("길이가 나오나", myPets.length);
 
-  // GET으로 리스트에 붙일 마이페이지 정보들을 받아와서 브라우저에 뿌려준다.
+  const [modalOption, showModal] = useModal();
+
+  const onClickModal = useCallback(() => {
+    showModal(
+      true,
+      "반려동물 정보 수정",
+      () => console.log("모달 on"),
+      null,
+      <EditPetInfo/>
+    )
+  }, [modalOption])
+
+
+  // 나의 반려동물 삭제
+  const onDeleteMyPet = (id) => {
+    dispatch(__deleteMyPet(id));
+    window.alert("반려동물 정보를 삭제하시겠습니까?");
+    window.location.reload();
+  };
+
+  // 반려동물 정보 조회
   useEffect(() => {
-    dispatch(__getMyPage());
-  }, [dispatch]);
+    dispatch(__getMyPet());
+  }, []);
 
   return (
-    <div>
-      <PetInfo className="pet-info">
-        <div>
-          <h3>{mypage.catecory}</h3>
-          <span>{mypage.name}</span>
-        </div>
+    <>
+      <Layout>
+        {myPets !== undefined &&
+        myPets.map((pet) => {
+          if (pet.length !== 0) {
+            return (
+              <Content key={pet.id}>
+                <Main>
+                  <Category>{pet.category}</Category>
+                  <Name>{pet.name}</Name>
+                </Main>
 
-        <div>
-          <span> {mypage.age}</span>
-        </div>
-      </PetInfo>
-    </div>
+                <Down>
+                  <div>
+                  <Age> {pet.age}살</Age>
+                  </div>
+                  <Icon>
+                    {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
+                    <Edit onClick={onClickModal} />
+                    {/* <button onClick={onClickModal}>수정하기</button> */}
+                    <Modal modalOption={modalOption} />
+
+                    <Delete onClick={() => onDeleteMyPet(pet.id)} />
+                    {/* <button onClick={() => onDeleteMyPet(pet.id)}>삭제하기</button> */}
+                  </Icon>
+                </Down>
+              </Content>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </Layout>
+      
+    </>
   );
 };
 
-export default Profile;
+export default PetInfo;
 
-const PetInfo = styled.div`
+const Layout = styled.div`
+  /* background-color: cornflowerblue; */
+  min-height: 225px;
+  max-height: 226px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
+const Content = styled.div`
+  width: 360px;
+  height: 66px;
+  background-color: #fff;
+  align-items: center;
+  border: none;
+  border-radius: 4px;
+  margin: 9px auto 1.59px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 12px 40px 10.59px 38px;
+`;
+
+const Main = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  margin-top: 10px;
+`;
+
+const Category = styled.span`
+  color: #ed9071;
+  font-family: "SFPro", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  margin-right: 7px;
+`;
+
+const Name = styled.span`
+  width: 130px;
+  height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "SFPro", sans-serif;
+  font-size: 15px;
+`;
+
+const Down = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 220px;
+`;
+
+const Age = styled.span`
+  width: 73px;
+  height: 12px;
+  font-family: "SFPro", sans-serif;
+  font-size: 10px;
+  color: "#B0B0B0";
+  margin-top: 10px;
+`;
+
+const Icon = styled.div`
+  gap: 8.31px;
 `;
