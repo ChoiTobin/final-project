@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
-
+import styled from "styled-components"
 
 
 
@@ -29,3 +29,7 @@ const KakaoLogin = () => {
 
 
 export default KakaoLogin
+
+const Img = styled.img`
+
+`

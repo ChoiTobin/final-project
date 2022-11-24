@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'inter';
-    src: local('inter'), url(${inter}) format('truetype');
+    /* src: local('inter'), url(${inter}) format('truetype'); */
     font-style: initial;
 }
 
