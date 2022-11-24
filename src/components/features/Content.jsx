@@ -9,6 +9,7 @@ import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 import { ReactComponent as SearchIcon } from "../../img/search.svg";
 import All from "../../img/all.png"
+
 // 검색
 const Content = () => {
   const posts = useSelector((state)=>state.post.post)	
