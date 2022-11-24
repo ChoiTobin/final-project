@@ -4,15 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ChatSubmitBox from "./ChatSubmitBox";
 import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-import {ListReducer} from "../../redux/modules/chattingSlice"
+import { ListReduce r} from "../../redux/modules/chattingSlice";
 
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
-
 
 function ChatRoomPage() {
   const roomId = localStorage.getItem("roomId")
@@ -25,37 +23,16 @@ function ChatRoomPage() {
   const listReducer = useSelector((state) => state.chatting.listReducer);
 
   // if(roomId !== undefined || null){} 
-  //민재님이랑 얘기하기 실행시점의 문제 때문에 안되는것 같다.....하 ....
-
   let postId = Number(id)
-
-
-
-
-
-
-//이방법써보기 useEffect를 function으로 감싸서 roomId가 undefinde인경우.
-
-  // useEffect(() => {
-  //   setChatList2(chatList)
-  // },[setChatList2, chatList])
 
   // 컴포넌트 마운트시에 소켓 연결 , 채팅방 생성
   useEffect(() => {
 
     wsConnectSubscribe()
     dispatch(__getinitialChatList(roomId));
-
-    console.log("roomid가 들어와서 get요청되는부분")
   }, []);
 
-
-
-
-
   const [chatBody, setChatBody] = useState("");
-
-
   const content = {
     sender:localStorage.getItem('user-nickname'),
     message:chatBody
@@ -82,8 +59,6 @@ function ChatRoomPage() {
     } catch (error) {
     }
   }
-
-  
 
   function waitForConnection(ws, callback) {
     setTimeout(
@@ -123,6 +98,7 @@ const onSubmitHandler = (event) =>{
           )})
 
 }
+
 const appKeyPress = (e) => {
   
   if (e.key === 'Enter') {
@@ -144,10 +120,6 @@ useEffect(() => {
   }
 }, [listReducer]);
 //채팅창 치면 맨 밑으로 내려감.
-
-
-
-
 
 return (
         <LoginContainer>
@@ -234,7 +206,6 @@ font-weight: lighter;
 font-size: 12px;
 max-width: calc(100% - 32px);
 min-width: 50px;
-
 `
 const Colorspan2 = styled.div`
 background:#F6F0EE;
@@ -248,9 +219,8 @@ flex-direction:left;
 text-align:left;
 width:170px;
 margin-bottom:3px;
-
-
 `
+
 const Colorspan = styled.div`
 background:#ED9071;
 color:black;
@@ -262,9 +232,6 @@ display:flex;
 text-align:left;
 width:150px;
 margin-bottom:3px;
-
-
-
 `
 
 const TextBox = styled.div`
@@ -272,11 +239,7 @@ padding:4px;
 background:#F6F0EE;
 min-height:33.26px;
 width:318.82px;
-
-
 `
-
-
 
 const OverFlow = styled.div`
 overflow:auto;
@@ -291,8 +254,8 @@ height:480px;
 ::-webkit-scrollbar {
   display: none;
 }
-
 `
+
 const DivAt = styled.div`
 margin-top:10px;
 text-align:center;
@@ -300,9 +263,11 @@ color:#787878;
 font-size:12px;
 background:#f6f0ee
 `
+
 const Money = styled.p`
 font-weight:bold;
 `
+
 const Title = styled.span`
 width: 200px;
 overflow:hidden; 
@@ -312,20 +277,24 @@ display:inline-block;
 font-weight:bold;
 font-size:12px;
 `
+
 const Span= styled.span`
 width:30px;
 margin-left:10px;
 `
+
 const OrangeSpan = styled.span`
 color:#ED9071;
 font-weight:bold;
 `
+
 const Img = styled.img`
 margin-top:6px;
 height:25px;
 width:25px;
 margin-left:10px;
 `
+
 const Img2 = styled.img`
 height:33px;
 width:30px;
@@ -345,7 +314,6 @@ const LoginContainer = styled.div`
   margin: 0 auto;
   height:100%;
   background-color:#F6F0EE;
-  
 `;
 
 const Header = styled.div`
@@ -355,7 +323,6 @@ const Header = styled.div`
   height:50px;
   display:flex;
   justify-content: space-between;
- 
 `
 
 const Section = styled.div`
@@ -369,7 +336,6 @@ const Section = styled.div`
 `
 const P = styled.p`
 `
-
 
 const Profile = styled.div`
   margin-top:5px;
@@ -386,7 +352,6 @@ const Chating = styled.div`
   background-color:#FFECEF;
   text-align:center;
   line-height:400px;
-  
 `
 
 export default ChatRoomPage;
