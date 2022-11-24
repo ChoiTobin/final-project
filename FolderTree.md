@@ -102,5 +102,3 @@ final-project
 │     ├─ regex.js
 │     └─ Router.js
 └─ yarn.lock
-
-```
