@@ -1,10 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { __userSignUp, __userCheck, __NickCheck } from '../../src/redux/modules/userSlice';
+import styled from "styled-components";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -117,23 +115,9 @@ const SignUp = () => {
     dispatch(__userSignUp(obj))
     if(account.idCheck.status ===200 && account.nickCheck.status === 200 &&obj.password === obj.passwordCheck){
       alert("회원가입이 완료되었습니다.")  
-    window.location.replace("/SignIn")
+    window.location.replace("/")
     }
   }
-  
-    // useEffect(() => {
-      
-    //   if(account.statusCode === 200){
-    //     alert("회원가입이 완료되었습니다.")
-    //     setJoin({
-    //       email : "",
-    //       nickname: "",
-    //       password: "",
-    //       passwordCheck: "",
-    //     })
-    //       window.location.replace("/SignIn")
-    //   }
-    // },[account])
 
   return (
     <SignupContainer>

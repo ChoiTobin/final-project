@@ -4,17 +4,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import useImgUpload from "../hooks/useImgUpload";
-import upload from "../../img/upload.png";
 import { ReactComponent as Photo } from "../../img/photo.svg";
 import { __putMyPost } from "../../redux/modules/mypageSlice";
 
 // 내가 쓴 게시글 수정 및 삭제
-// post{id}
-// myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
 
 const EditDetail = () => {
   const [myPost, setMyPost] = useState({
-    // imgs: [""],
     category: "",
     title: "",
     price: "",
@@ -32,18 +28,12 @@ const EditDetail = () => {
 
   console.log("온체인지 포스트", myPost);
 
-  // 1개당 5MB, 전체 10MB
-  //limitCount 파일갯수제한
-  //isComp 압축 여부 true :이미지 압축 , false:이미지 압축안함
-  //imgMaxSize 압축 최대 크기 기본값 1mb
-  //imgMaxWidthHeight 압축 이미지 최대 width,height 기본값1920px
   // 이미지 업로드 훅
   const [imgs, imgUrls, uploadHandle] = useImgUpload(5, true, 0.3, 1000);
 
   // 이미지 업로드 인풋돔 선택 훅
   const imgRef = useRef();
 
-  // submit
   const writeSubmit = () => {
     // request로 날릴 formData
     const formData = new FormData();
@@ -59,7 +49,6 @@ const EditDetail = () => {
     }
 
     console.log("폼데이터에 이미지 넣기", formData);
-    // setMyPost("");
 
     const myPostData = {
       id: myPost.id,
@@ -226,7 +215,6 @@ const Layouts = styled.div`
   height: 514.3px;
   background-color: #f6f0ee;
   margin: auto;
-  /* background-color: lightpink; */
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -249,7 +237,6 @@ const Layouts = styled.div`
 `;
 
 const Form = styled.div`
-  /* background-color: lightblue; */
   display: flex;
   flex-direction: column;
   width: 318.82px;
@@ -265,7 +252,6 @@ const PicNote = styled.div`
 `;
 
 const ImgUpload = styled.button`
-  /* background-color: yellowgreen; */
   width: 318.5px;
   height: 53.97px;
   border: 1px solid #696969;
@@ -299,7 +285,6 @@ const Content = styled.div`
     border-radius: 3px;
     ::placeholder {
       color: #5e5e5e;
-      /* padding-left: 19.96px; */
       font-size: 16px;
     }
   }
@@ -332,12 +317,6 @@ const Select = styled.div`
       color: #5e5e5e;
     }
   }
-`;
-
-const Img = styled.img`
-  width: 100px;
-  height: 100px;
-  background-size: cover;
 `;
 
 // 버튼 누르면 손모양 나오게 하는 마우스 커서

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import "../../FullHTML.css";
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import postSlice, { __getPostTime, __getKeyword, __getCategory } from "../../redux/modules/postSlice"
+import { __getPostTime, __getKeyword, __getCategory } from "../../redux/modules/postSlice"
 import PostList from "../features/PostList"
 import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 import { ReactComponent as SearchIcon } from "../../img/search.svg";
 import All from "../../img/all.png"
+
 // 검색
 const Content = () => {
   const posts = useSelector((state) => state.post.post);
-  // const searchposts = useSelector((state) => state.post.post.response)
   const dispatch = useDispatch();
 
   //검색
@@ -39,12 +38,7 @@ const Content = () => {
     //대형검색
     const data = posts.response.filter((item) => item.category === "대형");
     dispatch(__getCategory(data));
-    console.log("데이터", data);
   };
-
-  console.log("페이", posts);
-  // console.log("d",solt[0]) //전체조회가 딱 한번밖에 안된다. //대형을누르면 한번더 랜더링 해야한다.
-  // https://wepungsan.kro.kr/api/filter?category=대형
 
   return (
     <Layout>
@@ -56,7 +50,7 @@ const Content = () => {
           defaultValue={getSearch.search || ""}
           onChange={onChangeHandler}
         />
-        {/* <button onClick={onClickSearch}>검색</button> */}
+
         <div onClick={onClickSearch}>
           <SearchIcon />
         </div>
@@ -119,8 +113,6 @@ const Category = styled.button`
 
   width: 79.9px;
   height: 30px;
-  /* left: 20px; */
-  /* top: 108px; */
 
   font-family: "SFPro", sans-serif;
   font-size: 14px;

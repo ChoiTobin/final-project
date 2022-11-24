@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom/dist";
 import { __putMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 수정
-// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const EditPetInfo = () => {
   const [myPet, setMyPet] = useState("");

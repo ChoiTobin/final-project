@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'	
 import { useNavigate } from 'react-router-dom'		
 import { useDispatch, useSelector } from 'react-redux'
-import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
+import { __getPostTime } from"../../redux/modules/postSlice"	
 import styled from "styled-components";
 import '../../App.css';
 
@@ -9,7 +9,6 @@ const PostList = () => {
   const navigator = useNavigate();	
   const dispatch = useDispatch()
   const posts = useSelector((state) => state.post.post.response)
-  // console.log("유즈셀렉",posts)
   useEffect(() => {
     dispatch(
       __getPostTime()
@@ -71,7 +70,6 @@ const Listmap = styled.div`
   max-height: 440px;
   margin: auto;
   overflow: auto;
-  /* background-color: lightpink; */
   ::-webkit-scrollbar {
     display: none;
   }

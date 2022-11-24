@@ -2,12 +2,16 @@ import React, {useState,useRef} from 'react'
 import { useDispatch  } from "react-redux";
 import { useNavigate } from 'react-router';
 import styled from "styled-components"
+
+// React BootStrap Library Import
+import "bootstrap/dist/css/bootstrap.min.css";
+import { ButtonGroup } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+
 import useImgUpload from '../hooks/useImgUpload'
 import { __addPost } from "../../redux/modules/postSlice";	
-import { ButtonGroup } from 'react-bootstrap';
-import "bootstrap/dist/css/bootstrap.min.css";
-import Carousel from 'react-bootstrap/Carousel';
 import upload from "../../img/upload.png";
+
 const Post = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -167,10 +171,7 @@ const Post = () => {
 }
 
 export default Post;
-const Buttongroup = styled.div`
-  display : flex;
-  margin-top:14px;
-`
+
 const One = styled.div`
   display:flex;
   position:relative;
@@ -181,20 +182,6 @@ const P2 = styled.p`
   left:333px;
   top:5px;
   color:#787878;
-`
-const Input4 =styled.input`
-  width:100%;
-  height:36px;
-  text-indent:8px;
-  outline: none;
-  border:1px solid #d8d8d8;
-  border-radius:3px;
-  margin-bottom:12px;
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 `
 const Bg = styled.div`
   width:95%;
@@ -245,7 +232,7 @@ outline: none;
   font-weight:600;
   background-color:#ED9071;
 `
- 
+
 const Input = styled.input`
   height:36px;
   margin-bottom:12px;

@@ -1,17 +1,16 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { __deleteMyPost, __getMyPost } from "../../redux/modules/mypageSlice";
 import Modal from "../modal/modal";
 import useModal from "../modal/useModal";
 import EditDetail from "./EditDetail";
+import styled from "styled-components";
 import { ReactComponent as DateColor } from "../../img/datecolor.svg"
 import { ReactComponent as Edit } from "../../img/edit.svg";
 import { ReactComponent as Delete } from "../../img/delete.svg";
 
 // 내가 쓴 게시글 1개
-// myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
 const MyContent = ({ myPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -65,13 +64,9 @@ const MyContent = ({ myPost }) => {
                   <Icon>
                     {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
                     <Edit onClick={onClickModal}/>
-                    {/* <button onClick={onClickModal}>수정하기</button> */}
                     <Modal modalOption={modalOption} />
 
                     <Delete onClick={() => onDeleteMyPost(post.id)}/>
-                    {/* <button onClick={() => onDeleteMyPost(post.id)}>
-                      삭제하기
-                    </button> */}
                   </Icon>
                 </Down>
                 
@@ -90,7 +85,6 @@ const MyContent = ({ myPost }) => {
 export default MyContent;
 
 const Layout = styled.div`
-  /* background-color: cornflowerblue; */
   min-height: 225px;
   max-height: 226px;
   overflow-x: hidden;

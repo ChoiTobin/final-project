@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { delCookie, getCookie, setCookie } from "../../shared/"
+import { useState, useEffect } from 'react'
+import { setCookie } from "../../shared/"
 
-const NaverLogin = ({ setGetToken, setUserInfo }) => {
+const NaverLogin = () => {
 
     const [user, setUser] = useState(null);
     const { naver } = window

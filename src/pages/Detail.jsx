@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { __getDetail } from "../redux/modules/postSlice";
+import { __CreateRoom } from "../../src/redux/modules/chattingSlice";
+
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import Layout from "../components/Layout/Layout";
+
+// React Bootstrap Library
 import styled from "styled-components";
-import postSlice, { __getDetail } from "../redux/modules/postSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
-import { __CreateRoom } from "../../src/redux/modules/chattingSlice";
+
 // import FullHTML from '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.post);
-  // console.log("post",post)
 
   useEffect(() => {
     dispatch(__getDetail(id));
@@ -27,7 +29,6 @@ const Detail = () => {
     navigator(-1);
   };
   const onClickChatting = (post) => {
-    console.log("온클릭", post.id, post.title);
     dispatch(
       __CreateRoom({
         postId: post.id,
@@ -36,7 +37,6 @@ const Detail = () => {
     );
 
     navigator(`/ChatRoomPage/${post.id}`);
-    console.log("room 생성및 입장");
   };
 
   return (
@@ -127,9 +127,8 @@ const Detail = () => {
 };
 
 export default Detail;
-const Bg = styled.div``;
+
 const Overflow = styled.div`
-  // background-color:#ED9071;
   overflow: auto;
   height: 411px;
   ::-webkit-scrollbar {

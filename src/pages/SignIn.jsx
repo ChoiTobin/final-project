@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __userLogin } from "../redux/modules/userSlice";
+import styled from "styled-components";
 import Logo from "../img/pet.png";
 import { ReactComponent as Naver } from "../img/naver.svg";
 import { ReactComponent as Kakao } from "../img/kakao.svg";

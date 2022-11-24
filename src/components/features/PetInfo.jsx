@@ -1,17 +1,16 @@
 import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __deleteMyPet, __getMyPet } from "../../redux/modules/mypageSlice";
 import Modal from "../modal/modal";
 import useModal from "../modal/useModal";
 import EditPetInfo from "./EditPetInfo";
+import { __deleteMyPet, __getMyPet } from "../../redux/modules/mypageSlice";
 import { ReactComponent as DateColor } from "../../img/datecolor.svg";
 import { ReactComponent as Edit } from "../../img/edit.svg";
 import { ReactComponent as Delete } from "../../img/delete.svg";
 
 
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
-// myPets: [{id, name, age, categoryName}, {""}, {""}]
 
 const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
@@ -64,11 +63,9 @@ const PetInfo = ({ myPets }) => {
                   <Icon>
                     {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
                     <Edit onClick={onClickModal} />
-                    {/* <button onClick={onClickModal}>수정하기</button> */}
                     <Modal modalOption={modalOption} />
 
                     <Delete onClick={() => onDeleteMyPet(pet.id)} />
-                    {/* <button onClick={() => onDeleteMyPet(pet.id)}>삭제하기</button> */}
                   </Icon>
                 </Down>
               </Content>
@@ -86,7 +83,6 @@ const PetInfo = ({ myPets }) => {
 export default PetInfo;
 
 const Layout = styled.div`
-  /* background-color: cornflowerblue; */
   min-height: 225px;
   max-height: 226px;
   overflow-x: hidden;

@@ -49,12 +49,6 @@ export const __CreateRoom = createAsyncThunk(
 //   }
 // );
 
-
-
-
-
-
-
 export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
   async (payload, thunkAPI) => {
@@ -89,15 +83,10 @@ const chatSlice = createSlice({
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
     },
- 
     ListReducer: (state, action) => {
       state.listReducer.push(action.payload)
- 
     },
-
   },
-
-
 
   extraReducers: {
     [__CreateRoom.pending]: (state, action) => {
@@ -139,5 +128,4 @@ const chatSlice = createSlice({
 });
 
 export const { postChat, clearChat,trueChat,ListReducer } = chatSlice.actions;
-
 export default chatSlice.reducer;

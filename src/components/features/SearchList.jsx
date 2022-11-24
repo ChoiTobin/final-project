@@ -1,14 +1,12 @@
-import React, { useEffect , useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import postSlice, { __getPostTime , __getKeyword , __getCategory } from "../../redux/modules/postSlice"
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { __getPostTime , __getKeyword , __getCategory } from "../../redux/modules/postSlice"
 import styled from "styled-components";
-import { ButtonGroup } from "react-bootstrap";
 import '../../App.css';
 import Carousel from 'react-bootstrap/Carousel';
+
 const Content = () => {
   const dispatch = useDispatch()
-  // const searchposts = useSelector((state) => state.post.post.response)
-  // const {posts} = useSelector((state)=>state.post)
 
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
@@ -27,16 +25,11 @@ const Content = () => {
 
   const appKeyPress = (e) => {
     if (e.key === 'Enter') {
-    onClickSearch()
-    // setGetSearch("")
-    
+    onClickSearch()    
     }
   }
-  
-  
+    
   const onClickAll = () =>{ //전체검색
-    // props.setState(0)
-    // console.log("vmfka",props.state)
     dispatch(__getPostTime());//문제 온클릭했을때 셋이되기전에 겟을 먼저한다
   }
   const onClickBig = () => {
@@ -64,7 +57,7 @@ const Content = () => {
         <Carouselwrap>
         <Carousel>
         <Carousel.Item>
-       
+      
         <SlideImg
           src={require("../../img/all.png")}
         />
@@ -143,5 +136,5 @@ const Img = styled.img`
 const SlideImg = styled.img`
   object-fit: cover;
   width:360px;
-  hegith:140px;
+  height:140px;
 `

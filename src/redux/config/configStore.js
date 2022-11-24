@@ -7,7 +7,6 @@ import search from "../modules/searchSlice";
 import account from "../modules/userSlice";
 import chatting from "../modules/chattingSlice";
 
-
 const store = configureStore({
     
   reducer: {

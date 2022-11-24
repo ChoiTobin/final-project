@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Apis from "../../shared/Apis";
-import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";
+import { delCookie } from "../../shared/Cookie";
+
 const initialState = {
   account : [],
   idCheck:[],
@@ -26,7 +27,8 @@ export const __userLogout = createAsyncThunk(
     }
   }
 )
-//tobin전체 로그아웃-----------------------------------------------------------------------
+
+//전체 로그아웃
 // export const __kakaoLogout = createAsyncThunk(
 //   "account/kakaoLogout",
 //   async(payload, thunkAPI) => {
@@ -38,7 +40,8 @@ export const __userLogout = createAsyncThunk(
 //     }
 //   }
 // )
-//tobin카카오톡 로그아웃-----------------------------------------------------------------------
+
+//카카오톡 로그아웃
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       console.log( "카카오 코드",code)
@@ -71,7 +74,7 @@ export const __kakaoLogin = (code) => {
           })
   }
 };
-//tobin카카오톡 로그인-----------------------------------------------------------------------
+//카카오톡 로그인
 export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
@@ -90,7 +93,7 @@ export const  __userSignUp = createAsyncThunk(
     }
   }
 )
-//tobin회원가입------------------------------------------------------------------------
+//회원가입
 export const __userCheck = createAsyncThunk(
   "idCheck/userCheck",
   // login : reducer name, 경로 정해줘야
@@ -106,7 +109,7 @@ export const __userCheck = createAsyncThunk(
     }
   }
 );
-//tobin이메일중복검사------------------------------------------------------------------------
+//이메일중복검사
 export const __NickCheck = createAsyncThunk(
   "account/NickCheck",
   // login : reducer name, 경로 정해줘야
@@ -121,7 +124,7 @@ export const __NickCheck = createAsyncThunk(
     }
   }
 );
-//tobin닉네임 중복검사------------------------------------------------------------------------
+//닉네임 중복검사
 export const __userLogin = createAsyncThunk(
   "account/userLogin",
   // login : reducer name, 경로 정해줘야
@@ -152,7 +155,7 @@ export const __userLogin = createAsyncThunk(
     }
   }
 );
-//tobin로그인------------------------------------------------------------------------
+//로그인
 export const LoginSlice = createSlice({
   name: "account",
   initialState,
@@ -167,56 +170,56 @@ export const LoginSlice = createSlice({
       state.account=action.payload; //
     },
     [__userSignUp.rejected]: (state, action) => {
-      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      state.error = action.payload;
     },
     [__userCheck.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+      state.isLoading = true;
     },
     [__userCheck.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
-      state.idCheck=action.payload; //
+      state.idCheck=action.payload;
     },
     [__userCheck.rejected]: (state, action) => {
-      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      state.error = action.payload;
     },
     [__userLogin.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+      state.isLoading = true;
     },
     [__userLogin.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
       state.account=action.payload; //
     },
     [__userLogin.rejected]: (state, action) => {
-      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      state.error = action.payload;
     },
     [__userLogout.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+      state.isLoading = true;
     },
     [__userLogout.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
       state.account = action.payload; //
     },
     [__NickCheck.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+      state.isLoading = true;
     },
     [__NickCheck.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
       state.nickCheck=action.payload; //
     },
     [__NickCheck.rejected]: (state, action) => {
-      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.isLoading = false;
       state.isSuccess = false;
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
+      state.error = action.payload;
     },
   }
 })

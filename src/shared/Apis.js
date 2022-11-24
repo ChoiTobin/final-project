@@ -49,10 +49,9 @@ export const Apis = {
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
 
-  //createRoom----------------------------------------------------------------
+  //createRoom
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
   // getRoomList: () => token.get(`/roomList`),
-//-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
