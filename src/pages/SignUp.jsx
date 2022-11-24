@@ -254,6 +254,46 @@ const SignUp = () => {
 
 export default SignUp;
 
+
+const DuplicateCheckEmail = styled.button`
+position:absolute;
+width:70px;
+right:10px;
+top:19px;
+border: 1px solid #929292;
+border-radius: 4px;
+background: #FAFAFA;
+color:#929292;
+&:focus {
+  outline: 1px solid #ADADAD;
+}
+`
+const DuplicateCheckNick = styled.button`
+position:absolute;
+width:70px;
+right:10px;
+top:20px;
+border: 1px solid #929292;
+border-radius: 4px;
+background: #FAFAFA;
+color:#929292;
+&:focus {
+  outline: 1px solid #ADADAD;
+}
+`
+
+
+const LoGoSignUp = styled.span`
+margin-left:40px;
+color:#ED9071;
+`
+const LoGoSignUp1 = styled.span`
+margin-left:30px;
+color:#ED9071;
+font-weight:500;
+font-size:30px;
+`
+
 const Green = styled.div`
 color:green;
 `
@@ -264,7 +304,16 @@ color:#ef0000;
 font-size:6px;
 `
 
-const FlexInput = styled.span``
+const FlexInput = styled.span`
+position:relative;
+`
+const FlexInput2 = styled.span`
+position:relative;
+`
+const FlexInput3 = styled.span`
+`
+const FlexInput4 = styled.span`
+`
 
 const SignupContainer = styled.div`
   width: 100%;
@@ -283,7 +332,7 @@ const SignupBox = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 36px;
+  margin-bottom:0px;
 `;
 
 const InputBox = styled.div`
@@ -295,8 +344,7 @@ const InputBox = styled.div`
 `;
 
 const Input = styled.input`
-  border: none;
-
+  border: 1px solid #929292;
   width: 250px;
   height: 40px;
   margin-bottom: 8px;
@@ -341,7 +389,6 @@ const SignupText = styled.div`
   font-size: 17px;
   line-height: 20px;
   font-weight: bold;
-
 `;
 
 
