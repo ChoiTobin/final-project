@@ -1,34 +1,62 @@
-body, html {
-  font-family: 'SFPro', sans-serif;
+// 컴포넌트에 폰트 적용하는 방법 - styled component에서 적용할 때!
+/* export const Layout = styled.div`
+  font-family: let(--font-inter);
+`; */
+
+:root {
+	--font-inter: "inter";
 }
 
 @font-face {
-    font-family: 'SFProBlack';
-    src: local('SFProBlack'), url(${SFProBlack}) format('opentype');
-    font-weight: black;
-  }
-  @font-face {
-    font-family: 'SFProBold';
-    src: local('SFProBold'), url(${SFProBold}) format('opentype');
-    font-weight: bold;
-  }
-  @font-face {
-    font-family: 'SFProHeavy';
-    src: local('SFProHeavy'), url(${SFProHeavy}) format('opentype');
-    font-weight: x-large;
-  }
-  @font-face {
-    font-family: 'SFProLight';
-    src: local('SFProLight'), url(${SFProLight}) format('opentype');
-    font-weight: thin;
-  }
-  @font-face {
-    font-family: 'SFProMedium';
-    src: local('SFProMedium'), url(${SFProMedium}) format('opentype');
-    font-weight: initial;
-  }
-  @font-face {
-    font-family: 'SFProSemiBold';
-    src: local('SFProSemiBold'), url(${SFProSemiBold}) format('opentype');
-    font-weight: medium;
-  }
+	font-family: "inter";
+	src: url("./fonts/Inter-Black.woff");
+  font-weight: 900;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-ExtraBold.woff");
+  font-weight: 800;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-Bold.woff");
+  font-weight: 700;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-SemiBold.woff");
+  font-weight: 600;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-Medium.woff");
+  font-weight: 500;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-Regular.woff");
+  font-weight: 400;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-Light.woff");
+  font-weight: 300;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-ExtraLight.woff");
+  font-weight: 200;
+}
+
+@font-face {
+	font-family: "inter";
+	src: url("./fonts/Inter-Thin.woff");
+  font-weight: 100;
+}
