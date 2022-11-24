@@ -50,14 +50,14 @@ const NaverLogin = ({ setGetToken, setUserInfo }) => {
         }
     const getToken = () => {
         const token = window.location.href.split('=')[1].split('&')[0]
-        console.log("토큰임", token);
+
         // 이후 로컬 스토리지 또는 state에 저장하여 사용하자!   
         // localStorage.setItem('access_token', token)
         // setGetToken(token)
 
         //  이후 로컬 스토리지 또는 state에 저장하여 사용하자!   
         setCookie('access_token', token)
-        console.log("토큰값임", getCookie('access_token'));
+
         }
     // 화면 첫 렌더링이후 바로 실행하기 위해 useEffect 를 사용하였다.
     useEffect(() => {

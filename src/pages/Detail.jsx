@@ -21,6 +21,7 @@ const Detail = () => {
   
   const onClickMove = () => {
     navigator(-1);
+    
   };
   
   return (

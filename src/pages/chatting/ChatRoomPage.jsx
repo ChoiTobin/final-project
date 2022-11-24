@@ -1,49 +1,40 @@
 import styled, { css } from "styled-components";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ChatSubmitBox from "./ChatSubmitBox";
 import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-import { postChat, clearChat } from "../../redux/modules/chattingSlice";
-import GlobalHeaderChat from "./element/GlobalHeaderChat";
-import { v4 as uuidv4 } from "uuid";
-// yarn add react-hook-form
-// yarn add react-is
-import { set } from "react-hook-form";
-//import moment from "moment";
-import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";
+import {ListReducer} from "../../redux/modules/chattingSlice"
+
+import '../../App.css';
+import {v4 as uuidv4} from 'uuid';
+
 
 function ChatRoomPage() {
-  // 소켓 연결
-  const sock = new SockJS("https://3.35.47.137/wss");
-  let subscription;
-  const ws = webstomp.over(sock);
-
-  // access-token
-  const token = getCookie("Access_Token");
-
-  const dispatch = useDispatch();
+  const roomId = localStorage.getItem("roomId")
+  const {id}  = useParams()
   const navigate = useNavigate();
-
-  // stompClient
-  const stompClient = useRef(null);
-  //
-  const prevDate = useRef(0);
-  // 채팅 내역 리스트
-  const listRef = useRef();
+  const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
+  const ws = webstomp.over(sock);
+  const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chatting.chatList);
+  const listReducer = useSelector((state) => state.chatting.listReducer);
 
-  // 방
-  const [room, setRoom] = useState();
+  // if(roomId !== undefined || null){} 
+  //민재님이랑 얘기하기 실행시점의 문제 때문에 안되는것 같다.....하 ....
 
-  const member = localStorage.getItem("user-nickname");
-  const obj = member
-  //JSON.parse{member);
-  const loginMemberId = obj;
-  const itemId = localStorage.getItem("user-userId");
+  let postId = Number(id)
+
+
+
+
+
+
+//이방법써보기 useEffect를 function으로 감싸서 roomId가 undefinde인경우.
 
   // useEffect(() => {
   //   setChatList2(chatList)
@@ -51,264 +42,351 @@ function ChatRoomPage() {
 
   // 컴포넌트 마운트시에 소켓 연결 , 채팅방 생성
   useEffect(() => {
-    dispatch(__getinitialChatList(itemId));
-    waitForConnection(ws, wsConnectSubscribe());
-    makeRoom();
-    return () => {
-      wsDisConnectUnsubscribe();
-    };
+
+    wsConnectSubscribe()
+    dispatch(__getinitialChatList(roomId));
+
+    console.log("roomid가 들어와서 get요청되는부분")
   }, []);
 
-  // useEffect(() => {
-  //   listRef.current.scrollTop = listRef.current.scrollHeight;
-  // }, [chatList]);
 
-  // 웹소켓 연결, 구독
+
+
+
+  const [chatBody, setChatBody] = useState("");
+
+
+  const content = {
+    sender:localStorage.getItem('user-nickname'),
+    message:chatBody
+    };
+
+  let headers = { 
+    Access_Token: localStorage.getItem('Access_Token')
+  };
+
   function wsConnectSubscribe() {
     try {
       ws.connect(
-        {
-          token: token,
-        },
-        () => {
-          // 채팅방 만들기(memberId) -> 방 만드는 사람의 아이디(로그인한 사람의 아이디)
-          // send랑 똑같은 멤버 아이디
-          let num = 0;
-          const chatroom = ws.subscribe(
-            `/sub/room/founder/${loginMemberId}`,
-            function (frame) {
-              console.log(frame);
-              const data = JSON.parse(frame.body);
-              const roomId = data.roomInfoId;
-              num = roomId;
-              setRoom(num);
-              console.log(num);
-              console.log("채팅방 생성");
+        headers,(frame) => {
+          ws.subscribe(
+            `/sub/${roomId}`,
+            (response) => {
+              let data = JSON.parse(response.body)
+              dispatch(ListReducer(data))
             }
-          );
-
-          setTimeout(() => {
-            chatroom.unsubscribe();
-            subscription = ws.subscribe(
-              `/sub/chat/room/${num}`,
-              function (frame) {
-                dispatch(postChat(JSON.parse(frame.body)));
-                console.log(frame);
-              },
-              {
-                token: token,
-              },
-              function (payload) {
-                console.log(payload);
-                ws.disconnect();
-              }
             );
-            return () => {
-              dispatch(clearChat());
-              prevDate.current = null;
-              const headers = { memberId: loginMemberId, room: room };
-              subscription.unsubscribe(headers);
-              ws.current.disconnect();
-            };
-          }, 500);
         },
-        [dispatch]
+
       );
     } catch (error) {
-      console.log(error);
     }
   }
 
-  // 연결해제, 구독해제
-  function wsDisConnectUnsubscribe() {
-    try {
-      ws.disconnect(
-        () => {
-          ws.unsubscribe("sub-0");
-        },
-        { token: token }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
 
-  // 웹소켓이 연결될 때 까지 실행하는 함수
-  function waitForConnection(ws, callback = () => {}) {
+  function waitForConnection(ws, callback) {
     setTimeout(
-      function () {
-        // 연결되었을 때 콜백함수 실행
-        if (ws.ws.readyState === 1) {
-          callback();
-          // 연결이 안 되었으면 재호출
-        } else {
-          waitForConnection(ws, callback);
-        }
-      },
-      1 // 밀리초 간격으로 실행
-    );
-  }
-
-  // 방 생성하기
-  function makeRoom() {
-    try {
-      // token이 없으면 로그인 페이지로 이동
-      if (!token) {
-        alert("토큰이 없습니다. 다시 로그인 해주세요.");
-        navigate("/login");
-      }
-      // 데이터 보내기
-      waitForConnection(ws, function () {
-        // 초대하는 사람의 멤버 아이디
-        // 방을 만드는 사람(로그인한 사람) , 두번째가 초대되는 사람(글 쓴 사람) , 초대되는사람 닉네임
-        // itemId 추가
-        ws.send(
-          `/pub/room/founder/${loginMemberId}`,
-          JSON.stringify({
-            memberId: localStorage.getItem("itemMemberId"),
-            nickname: localStorage.getItem("itemNickname"),
-            itemId: localStorage.getItem("itemId"),
-            title: localStorage.getItem("title"),
-          }),
-          {
-            token: token,
-          }
-        );
-        // 채팅만든 사람의 memberId 방에 들어가있는 리스트
-        // ws.send(`/pub/room/15`, {}, { token: token });
-        // console.log(ws.ws.readyState);
-      });
-    } catch (error) {
-      console.log(error);
-      console.log(ws.ws.readyState);
-    }
-  }
-  useEffect(() => {
-    listRef.current.scrollTop = listRef.current.scrollHeight;
-  }, [chatList]);
-
-  return (
-    <>
-      <GlobalHeaderChat />
-      <StChatRoomPage>
-        <StChatListContainer ref={listRef}>
-          {chatList.map((chat) => {
-            const convertToDate = new Date(chat.createdAt);
-            console.log(convertToDate);
-            //moment.locale("ko");
-            if (
-              prevDate.current < convertToDate.getDate() ||
-              prevDate.current == null
-            ) {
-              prevDate.current = convertToDate.getDate();
-              return (
-                <>
-                  {/* <p key={chat.chatId}>{moment(convertToDate).format("LL")}</p> */}
-                  <ChatCardWrapper
-                    key={chat.chatId}
-                    author={
-                      chat.memberId === parseInt(loginMemberId)
-                        ? "me"
-                        : "friend"
-                    }
-                  >
-                    <ChatCard
-                      author={
-                        chat.memberId === parseInt(loginMemberId)
-                          ? "me"
-                          : "friend"
-                      }
-                      body={chat.content}
-                      createdAt={
-                        //moment
-                        (convertToDate).format("LT")}
-                      nickname={chat.nickname}
-                    />
-                  </ChatCardWrapper>
-                </>
-              );
+        function () {
+            // 연결되었을 때 콜백함수 실행
+            if (ws.ws.readyState === 1) {
+                callback();
+                // 연결이 안 되었으면 재호출
             } else {
-              prevDate.current = convertToDate.getDate();
-              return (
-                <ChatCardWrapper
-                  key={chat.chatId}
-                  author={
-                    chat.memberId === parseInt(loginMemberId) ? "me" : "friend"
-                  }
-                >
-                  <ChatCard
-                    author={
-                      chat.memberId === parseInt(loginMemberId)
-                        ? "me"
-                        : "friend"
-                    }
-                    body={chat.content}
-                    createdAt={
-                      //moment
-                      (convertToDate).format("LT")}
-                    nickname={chat.nickname}
-                  />
-                </ChatCardWrapper>
-              );
+                waitForConnection(ws, callback);
             }
-          })}
-        </StChatListContainer>
-        <ChatSubmitBox
-          sock={sock}
-          ws={ws}
-          room={room}
-          token={token}
-          memberId={loginMemberId}
-        />
-      </StChatRoomPage>
-    </>
+        },
+        1 // 밀리초 간격으로 실행
+    );
+}
+//stomp 메시지 에러 waitForConnection함수로 해결
+
+
+  const inputHandler = (e) =>{
+  setChatBody(e.target.value)
+ 
+}
+
+const onSubmitHandler = (event) =>{
+  //event.preventDefault()
+  if (chatBody=== "" || chatBody === " ") {
+    return alert("내용을 입력해주세요.");
+    }
+    waitForConnection(ws,function() {   
+  ws.send(
+    `/pub/${roomId}`,
+    JSON.stringify(content),
+            {
+              Access_Token: localStorage.getItem("Access_Token")
+            },
+      setChatBody("")     
+          )})
+
+}
+const appKeyPress = (e) => {
+  
+  if (e.key === 'Enter') {
+    onSubmitHandler()
+    setChatBody("")
+    
+  }
+}
+//enter시 메시지 보냄
+const scrollRef= useRef();
+
+useEffect(() => {
+  if (scrollRef) {
+    scrollRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  }
+}, [listReducer]);
+//채팅창 치면 맨 밑으로 내려감.
+
+
+
+
+
+return (
+        <LoginContainer>
+                <Header>
+                     <div>
+                      <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
+                      </div>
+                     
+                     <div>
+                      <Nickname>{chatList.postNickname}</Nickname>
+                      <Time>30분 전 접속</Time>
+                     </div>
+                     <Modal/>
+                </Header>
+                <Section>
+                    <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>
+                    <TextBox>
+                      <P>
+                        <OrangeSpan>{chatList.state}</OrangeSpan>
+                        <Span></Span>
+                        <Title>{chatList.title}</Title>
+                      </P>
+                      <Money>{chatList.price}원</Money>
+                    </TextBox>
+                </Section>
+                  <DivAt>날짜</DivAt> 
+                  <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
+                      { chatList.chatList !== undefined && chatList.chatList !== null &&
+                        chatList.chatList.map((item,i)=>{
+                          return(
+                          
+                          localStorage.getItem('user-nickname') == item.sender ?  
+                        <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
+                        :
+                        <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
+                        
+                          )
+                        })
+                      }
+                      { listReducer !== undefined &&
+                        listReducer.map((item,i)=>{
+                          return (
+                            localStorage.getItem('user-nickname') == item.sender ?  
+                          <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
+                          :
+                          <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
+                          )
+                        }
+                          )
+                      } 
+                      <div ref={scrollRef}></div>
+                  </OverFlow >
+                <Chatput>
+
+                    <Input  value={chatBody}  onKeyPress={appKeyPress}  onChange={inputHandler}></Input>
+                    <ArrowImg  onSubmit={appKeyPress} onClick={onSubmitHandler} src={require("../chatting/chattingImg/iconSand.png")}></ArrowImg>
+                </Chatput>   
+        </LoginContainer>
   );
 }
 
-const StChatRoomPage = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
+const ArrowImg =styled.img`
+position:absolute;
+top:10px;
+right:6px;
+border:none;
+width:13px;
+height:15px;
+background-color:white;
+`
+const Chatput = styled.div`
+  border-radius:20%;
+  position:relative;
+  `
+const Input =styled.input`
+width:100%;
+height:30px;
+outline:none;
+text-indent:8px;
+border:2px solid #ED9071;
+border-radius:30px;
+display: inline-block;
+font-weight: lighter;
+font-size: 12px;
+max-width: calc(100% - 32px);
+min-width: 50px;
+
+`
+const Colorspan2 = styled.div`
+background:#F6F0EE;
+color:black;
+padding:6px;
+
+border-radius: 7px;
+font-size:12px;
+display:flex;
+flex-direction:left;
+text-align:left;
+width:170px;
+margin-bottom:3px;
+
+
+`
+const Colorspan = styled.div`
+background:#ED9071;
+color:black;
+padding:8px;
+box-sizing: border-box;
+border-radius: 7px;
+font-size:12px;
+display:flex;
+text-align:left;
+width:150px;
+margin-bottom:3px;
+
+
+
+`
+
+const TextBox = styled.div`
+padding:4px;
+background:#F6F0EE;
+min-height:33.26px;
+width:318.82px;
+
+
+`
+
+
+
+const OverFlow = styled.div`
+overflow:auto;
+height:480px;
+::-webkit-scrollbar {
+  width: 1vw;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 42%, 0.49);
+  border-radius: 7px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+`
+const DivAt = styled.div`
+margin-top:10px;
+text-align:center;
+color:#787878;
+font-size:12px;
+background:#f6f0ee
+`
+const Money = styled.p`
+font-weight:bold;
+`
+const Title = styled.span`
+width: 200px;
+overflow:hidden; 
+text-overflow:ellipsis;
+white-space:nowrap; 
+display:inline-block;
+font-weight:bold;
+font-size:12px;
+`
+const Span= styled.span`
+width:30px;
+margin-left:10px;
+`
+const OrangeSpan = styled.span`
+color:#ED9071;
+font-weight:bold;
+`
+const Img = styled.img`
+margin-top:6px;
+height:25px;
+width:25px;
+margin-left:10px;
+`
+const Img2 = styled.img`
+height:33px;
+width:30px;
+`
+
+const Time = styled.span`
+font-size:6px;
+`
+const Nickname = styled.p`
+margin-left:5px;
+font-weight:bold;
+font-size:15px;
+`
+
+const LoginContainer = styled.div`
+  width:340px;
+  margin: 0 auto;
+  height:100%;
+  background-color:#F6F0EE;
+  
 `;
 
-// display: flex;
-// flex-direction: column-reverse;
-const StChatListContainer = styled.div`
-  width: 100vw;
-  padding: 6rem 1rem;
-  display: flex;
-  overflow-y: scroll;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column-reverse;
-  p {
-    align-self: center;
-    margin-top: 20px;
-    width: 60%;
-    background-color: #ffffff88;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    padding: 2px 0;
-    letter-spacing: 0.2rem;
-    display: flex;
-  }
-`;
-const ChatCardWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  ${({ author }) => {
-    switch (author === "me") {
-      case true:
-        return css`
-          justify-content: flex-end;
-        `;
-      default:
-        return css`
-          justify-content: flex-start;
-        `;
-    }
-  }}
-`;
+const Header = styled.div`
+  border-bottom:1px solid #ED9071;
+  background:#f6f0ee;
+  width:340px;
+  height:50px;
+  display:flex;
+  justify-content: space-between;
+ 
+`
+
+const Section = styled.div`
+  width:330px;
+  height:60px;
+  display:flex;
+  margin-top:10px;
+  padding-left: 10px;
+  background:#f6f0ee;
+  border-bottom:1px solid #ED9071;
+`
+const P = styled.p`
+`
+
+
+const Profile = styled.div`
+  margin-top:5px;
+  margin-right:5px;
+  width:50px;
+  height:50px;
+  border-radius:10px;
+  text-align:center;
+  line-height:50px;
+`
+const Chating = styled.div`
+  height:400px;
+  over-flow:hidden;
+  background-color:#FFECEF;
+  text-align:center;
+  line-height:400px;
+  
+`
+
 export default ChatRoomPage;

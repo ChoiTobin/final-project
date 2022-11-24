@@ -47,7 +47,7 @@ export const __addPost = createAsyncThunk(
     // console.log("제발페이로드야",payload)
     try {	
       const response = await Apis.postFileAX(payload)	
-      console.log("게시글작성완료",response)
+      //console.log("게시글작성완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -88,7 +88,7 @@ export const __getCategory = createAsyncThunk(
     // console.log("이건페이로드",payload)
     try {	
       const response = await Apis.getFilterAX(payload)	
-      console.log("카테고리검색완료",response)
+      //console.log("카테고리검색완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	

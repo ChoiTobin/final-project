@@ -76,7 +76,7 @@ export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
     try {
-      console.log("찍히는지",payload)
+
       const res = await Apis.signupAX(payload)
       .then((response)=>{
         // if(response.status ==200){
@@ -129,7 +129,7 @@ export const __userLogin = createAsyncThunk(
     try {
       await Apis.loginAX(payload)
       .then((response)=>{
-        console.log(response.data)
+        //console.log(response.data)
         if (response.data.status === 200) {
           //setCookie represh token 받기 
           localStorage.setItem("Access_Token", response.headers.access_token)
@@ -138,6 +138,8 @@ export const __userLogin = createAsyncThunk(
           window.location.replace('/home');
           alert(response.data.message)
           
+        }else{
+          alert(response.data.message)
         }
         return thunkAPI.fulfillWithValue(response.data)
       })

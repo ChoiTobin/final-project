@@ -5,13 +5,15 @@ const cookies = new Cookies()
 
 const noToken = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: process.env.REACT_APP_URL,
+  baseURL: process.env.REACT_APP_URL, 
+  //process.env.REACT_APP_URL,
   withCredentials: true,
 })
 
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: process.env.REACT_APP_URL,
+  baseURL:process.env.REACT_APP_URL, 
+  //process.env.REACT_APP_URL,
   headers: {
     Access_Token:
       localStorage.getItem("Access_Token") === undefined
@@ -23,7 +25,8 @@ const token = axios.create({
 
 const file = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
-  baseURL: process.env.REACT_APP_URL,
+  baseURL:process.env.REACT_APP_URL,
+  //process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
     Access_Token:
@@ -42,10 +45,14 @@ export const Apis = {
   //닉네임체크
   nicknameAX: (nickname) => noToken.post(`/auth/nicknameCheck`,nickname),
   // 로그인
-  loginAX: (loginInfo) => noToken.post(`auth/login`, loginInfo),
-
+  loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),
   // 소셜 로그인 - 카카오
-  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo),
+  loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
+
+  //createRoom----------------------------------------------------------------
+  CreateRoom: (createRoom) => token.post(`/room`, createRoom),
+  // getRoomList: () => token.get(`/roomList`),
+//-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
