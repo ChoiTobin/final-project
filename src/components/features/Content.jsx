@@ -14,6 +14,7 @@ import All from "../../img/all.png"
 const Content = () => {
   const posts = useSelector((state)=>state.post.post)	
   // const searchposts = useSelector((state) => state.post.post.response)
+  const dispatch = useDispatch();
   
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
