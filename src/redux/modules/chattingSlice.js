@@ -16,18 +16,15 @@ const initialState = {
   roomId: null,
   err: null,
 };
+
 export const __CreateRoom = createAsyncThunk(
   "/chat/__CreateRoom",
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.CreateRoom(payload)
-
       window.localStorage.setItem("roomId",response.data.data.roomId)
       console.log("실행시점확인 roomID들어오는 시점")
       window.location.reload(payload)
-
-      
-    
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -40,19 +37,12 @@ export const __CreateRoom = createAsyncThunk(
 //   async (payload, thunkAPI) => {
 //     try {
 //       const response = await Apis.getRoomList()
-//       console.log("리스폰스",response)
 //       return thunkAPI.fulfillWithValue(response.data.data);
 //     } catch (error) {
 //       return thunkAPI.rejectWithValue(error.response.data);
 //     }
 //   }
 // );
-
-
-
-
-
-
 
 export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
@@ -88,10 +78,8 @@ const chatSlice = createSlice({
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
     },
- 
     ListReducer: (state, action) => {
       state.listReducer.push(action.payload)
- 
     },
 
   },
@@ -105,7 +93,6 @@ const chatSlice = createSlice({
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.createRoom = action.payload;
-      // console.log("풀필드",action.payload,state.createRoom)
     },
     [__CreateRoom.rejected]: (state, action) => {
       state.isLoading = false;
