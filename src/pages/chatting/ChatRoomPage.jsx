@@ -8,6 +8,7 @@ import SockJS from "sockjs-client";
 // import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import { ListReducer } from "../../redux/modules/chattingSlice";
+import Modal from "./Chattmodalfolder/Modal"
 
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
