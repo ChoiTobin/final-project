@@ -1,195 +1,107 @@
-import React, { useState } from "react";
+import React, { useEffect } from 'react'	
+import { useNavigate } from 'react-router-dom'		
+import { useDispatch, useSelector } from 'react-redux'
+import { __getDetail, __getPostTime , __deletePost} from"../../redux/modules/postSlice"	
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-// yarn add react-intersection-observer
-import { useInView } from "react-intersection-observer";
-import { __getPostTime } from "../../redux/modules/postSlice";
-import { ReactComponent as Date } from "../../img/date.svg";
-import { ReactComponent as Place } from "../../img/place.svg";
-import { ReactComponent as ColorArrow } from "../../img/colorarrow.svg";
+import '../../App.css';
 
-const PostList = () => {
-  const navigator = useNavigate();
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.post);
-  // console.log("포스츠",posts)
-
+const PostList = () => {	
+  const navigator = useNavigate();	
+  const dispatch = useDispatch()
+  const posts = useSelector((state) => state.post.post.response)
+  // console.log("유즈셀렉",posts)
   useEffect(() => {
-    dispatch(__getPostTime());
+    dispatch(
+      __getPostTime()
+    );
   }, [dispatch]);
+  
+  return (	
+      <Listmap>
+        { posts !== undefined &&
+          posts.map((post) =>  {	
+            return(	
+              <ListBox onClick={()=>{navigator(`/Detail/${post.id}`)}} key={post.id}>
+                <Div1>
+                  <Flex1> 
+                    <Strong>{post.category}</Strong>
+                    <Text1>{post.state}<Span>{post.title}</Span></Text1>
+                    <Text2>{post.createdAt}</Text2>
+                  </Flex1>
+                </Div1>
+                <Div1>
+                  <Flex1> 
+                    <Strong style={{fontWeight:500}}><img style={{marginRight:5}} src={require("../../img/calender.png")} alt="" />{post.date}</Strong>
+                    <Strong style={{fontWeight:500,marginLeft:10}}><img style={{width:11,marginRight:5}} src={require("../../img/markup.png")} alt="" />{post.local}</Strong>
+                  </Flex1>
+                  <Flex2>
+                    <PriceBox><p>{post.price.toLocaleString('ko-KR')}원</p></PriceBox>
+                  </Flex2> 
+                </Div1>
+              </ListBox >
+          )
+        })   
+        }
+      </Listmap>
+  )	
+}	
+export default PostList ;	
 
-  return (
-    <>
-      <Layouts>
-        {posts.response !== undefined &&
-          posts.response.map((post) => {
-            // if (post.length !== 0)
-            return (
-              <Content
-                onClick={() => {
-                  navigator(`/Detail/${post.id}`);
-                }}
-                key={post.id}
-              >
-                <Body className="wrap">
-                  <Text>
-                    <Top className="top">
-                      <TopLeft className="top-left">
-                        <div style={{ fontSize: "10px" }}>{post.category}</div>
-                        <div className="title">
-                          <span style={{ fontWeight: "590", color: "#FD9071" }}>
-                            {post.state}
-                          </span>
-                          &nbsp;
-                          <span>{post.title}</span>
-                        </div>
-                        <span style={{ fontSize: "9px", fontWeight: "thin" }}>
-                          {post.createdAt}
-                        </span>
-                      </TopLeft>
-                    </Top>
-
-                    <Down className="down">
-                      <DownLeft className="left">
-                        <span>
-                          <Date /> {post.date}
-                        </span>
-                        <span>
-                          <Place /> {post.local}
-                        </span>
-                      </DownLeft>
-                      <DownRight className="right">{post.price}원</DownRight>
-                    </Down>
-                  </Text>
-                </Body>
-              </Content>
-            );
-          })}
-      </Layouts>
-    </>
-  );
-};
-export default PostList;
-// onClick={()=>{navigator(`/Detail/${post.postId}`)}}
-
-const Layouts = styled.div`
-  width: 360px;
-  min-height: 370px;
-  max-height: 375px;
-  margin: auto;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* 스크롤바 영역에 대한 설정 */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  /* 스크롤바 막대에 대한 설정 */
-  ::-webkit-scrollbar-thumb {
-    height: 20%;
-    background-color: #D8D8D8;
-    border-radius: 20px;
-  }
-
-  /* 스크롤바 뒷 배경에 대한 설정 */
-  ::-webkit-scrollbar-track {
-    background-color: #f6f0ee;
-  }
-`;
-
-const Content = styled.div`
-  cursor: pointer;
-`;
-
-const Body = styled.div`
+const ListBox = styled.div`
+  position:relative;
   background-color: #fff;
+  padding:19px 14px 19px 14px;
+  margin-top:10px;
+`
+const Strong = styled.strong`
+  font-size:14px;
+`
+const Div1 = styled.div`
+  display:flex;
+  justify-content:space-between;
+`
+const Flex1 = styled.div`
+
+`
+const Flex2 = styled.div`
+  margin-top:5px;
+`
+const Listmap = styled.div`
   width: 360px;
-  height: 100.53px;
-  margin: 9px auto 10.47px;
-  padding-top: 15px;
-`;
-
-const Text = styled.div`
-  /* background-color: lightgray; */
-  width: 317.36px;
-  height: 72.23px;
+  max-height: 440px;
   margin: auto;
-`;
-
-const Top = styled.div`
-  /* background-color: lightgreen; */
-
-  width: 313px;
-  height: 46px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  gap: 143px;
-`;
-
-const TopLeft = styled.div`
-  /* background-color: lightblue; */
-  width: 300px;
-  height: 44.78px;
-  font-family: "SFPro", sans-serif;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 16.24px;
-`;
-
-const Down = styled.div`
-  /* background-color: lightcoral; */
-  width: 317.9px;
-  height: 27.95px;
-
-  font-family: "SFPro", sans-serif;
-  font-weight: medium;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  gap: 84px;
-`;
-
-const DownLeft = styled.div`
-  /* background-color: lightyellow; */
-  width: 150px;
-  height: 17px;
-
-  font-family: "SFPro", sans-serif;
-  font-weight: 540;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  gap: 8px;
-  margin-top: 9.87px;
-`;
-
-const DownRight = styled.div`
-  background-color: #ed9071;
-  width: 83.9px;
-  height: 27.95px;
-  line-height: 19px;
-  border-radius: 2px;
-
-  font-family: "SFPro", sans-serif;
-  font-size: 16px;
-  font-weight: 590;
-  color: #fff;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
+  overflow: auto;
+  /* background-color: lightpink; */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
+const Text1 = styled.p`
+  color:#ed9071;
+  font-weight:600;
+  font-size:18px;
+  margin:0;
+`
+const Text2 = styled.p`
+  font-size:14px;
+  margin:0;
+`
+const Span = styled.span`
+  color:#000;
+  margin-left:10px;
+  font-size:18px;
+`
+const PriceBox = styled.div`
+  position:absolute;
+  left: 230px;
+  top: 77px;
+  width:100px;
+  height:36px;
+  font-size:20px;
+  font-weight:600;
+  color:#fff;
+  text-align:center;
+  line-height:36px;
+  background-color:#ed9071;
+  border-radius:3px;
+`

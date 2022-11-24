@@ -19,15 +19,15 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/" element={<SignIn/>}/>
+        <Route path="/SignIn" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/form" element={<Form />} />
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
       {/* 추가 */}
-      <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
-      <Route path='/MainLogin' element={<MainLogin />} />
+        <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
+        <Route path='/MainLogin' element={<MainLogin />} />
         <Route path="/ChatRoomPage" element={<ChatRoomPage />} />
       </Routes>
     </BrowserRouter>

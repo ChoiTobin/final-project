@@ -5,29 +5,34 @@ import axios from "axios";
 import { __putPost } from "./mypageSlice";	
 const initialState = {	
   isLoading: false,	
-  error: null,	
   post: {},	
+  // posts:[], //공배열로 바꿔야함
+  error: null,	
 }
 
 // 게시글 전체 조회	
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
-  async (payload, thunkAPI) => {	
+  async (payload, thunkAPI) => {
+    // console.log("페이로드야",payload)	
     try {	
       const response = await Apis.getPostTimeAX(payload)	
+      console.log("전체조회",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
-)	
+)
 
 // 게시글 상세 조회	
 export const __getDetail = createAsyncThunk(	
   "api/post/getDetail",	
   async (payload, thunkAPI) => {	
+    console.log("상세조회payload",payload)	
     try {	
-      const response = await Apis.getDetailAX(payload)	
+      const response = await Apis.getDetailAX(payload)
+      console.log("상세조회payload2",response.data)	
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -41,15 +46,14 @@ export const __addPost = createAsyncThunk(
   async (payload, thunkAPI) => {	
     // console.log("제발페이로드야",payload)
     try {	
-      
       const response = await Apis.postFileAX(payload)	
-      console.log("제발리스폰스야",response)
+      console.log("게시글작성완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
-)	
+)
 
 // 게시글 진행 상테 수정	
 export const __editState = createAsyncThunk(	
@@ -81,10 +85,10 @@ export const __getKeyword = createAsyncThunk(
 export const __getCategory = createAsyncThunk(	
   "/api/search/getCategory",	
   async (payload, thunkAPI) => {	
-    console.log("이건페이로드",payload)
+    // console.log("이건페이로드",payload)
     try {	
       const response = await Apis.getFilterAX(payload)	
-      console.log("이건리스폰스",response)
+      console.log("카테고리검색완료",response)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -102,9 +106,12 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostTime.fulfilled]: (state, action) => {	
+      // console.log("페이로드야",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;	
+      state.post.response = action.payload.data;
+      // console.log("pay",action.payload.data)
+      // state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -118,7 +125,9 @@ const postSlice = createSlice({
     [__getDetail.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
+      console.log("제발하나만들어와라",action.payload)
       state.post = action.payload.data;	
+      console.log("제발하나만들어와라2",state.post)
     },	
     [__getDetail.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -130,11 +139,12 @@ const postSlice = createSlice({
       state.isLoading = false;	
     },	
     [__addPost.fulfilled]: (state, action) => {	
-      // console.log("이난",action.payload)
+      console.log("이난",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
       // state.post.response.push(action.payload.data)	
-      state.post = action.payload
+      state.posts = action.payload
+      // window.location.replace("/home")
     },	
     [__addPost.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -148,7 +158,7 @@ const postSlice = createSlice({
     [__editState.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response.push(action.payload.data)	
+      state.post.response.push(...action.payload.data)	
     },	
     [__editState.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -160,7 +170,7 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
-      console.log("검색",action.payload)
+      // console.log("검색",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
       state.post.response = action.payload.data;	
@@ -183,7 +193,7 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
       state.error = action.payload;	
-    },
+    }
   }	
 })	
 export default postSlice.reducer;

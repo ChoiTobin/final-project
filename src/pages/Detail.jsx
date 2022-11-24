@@ -1,54 +1,159 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { __getConimal } from"../redux/modules/postSlice"
-
+import styled from "styled-components";
+import postSlice, { __getDetail } from"../redux/modules/postSlice"
+import "bootstrap/dist/css/bootstrap.min.css";
+import Carousel from 'react-bootstrap/Carousel';
+// import FullHTML from '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
-  const posts = useSelector((state) => state.post.post)	
-  console.log("@detail",posts);
+  const dispatch = useDispatch()	
+  const post = useSelector((state)=>state.post.post)
+  // console.log("post",post)	
+  
+  useEffect(() => {	
+    dispatch(__getDetail(id));	
+  }, [dispatch]);	
+  
   const onClickMove = () => {
     navigator(-1);
   };
   
   return (
-    <>
-      <Layouts>
-        <p>디테일페이지로이동했지롱</p>
-      <BackBtn onClick={() => onClickMove()}>이전버튼</BackBtn>
-        {
-          posts.response.map((post) => (post.id === Number(id) ) && (
-          <>
-            <div key={post.id}>
-                <p>{post.title}</p>
-                <p>{post.content}</p>
-                <p>{post.price}</p>
-                <p>{post.category}</p>
+    <Bg>
+      <Container style={{margin:" 0 auto",marginTop:"20px"}}>
+        <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POST</p>
+        <Overflow>
+        <Carousel fade >
+        {post.imgs !== undefined &&
+            post.imgs.map((pic) => {
+            if (post.imgs.length !== 0) {
+            return (
+            <Carousel.Item>
+            <Img src={pic} alt="postImg" />
+            </Carousel.Item>
+            );
+            }
+            })
+          }
+          </Carousel>
+        <ItemBox>
+          <Span style={{fontSize:24,fontWeight:590}}>
+            { post.price !== undefined && (
+              <>
+                {post.price.toLocaleString('ko-KR')}원
+              </>
+            )}
+          </Span>
+          <Text style={{fontWeight:600 , fontSize:20 }}>
+            <Title>
+              {post.state}
+              <span style={{marginLeft:6,fontWeight:500}}>{post.title} </span>
+            </Title>
+          </Text>
+          <Text style={{fontSize:14}}>
+            <div style={{marginTop:10}}>
+              <img style={{marginRight:5}} src={require("../img/calender.png")} alt=""  />{post.date}
+              <img style={{width:11,marginRight:5,marginLeft:10}} src={require("../img/markup.png")} alt=""  />{post.local}
             </div>
-          </>  
-          )
-          )
-        }
-      </Layouts>
-      
-      </>
+            <div style={{marginTop:10}}>{post.createdAt}시간</div>
+          </Text>
+        </ItemBox>
+        <ContentBox>
+          <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
+          {post.content}진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
+              금액의 경우 협의 가능합니다.
+              가능한 빠른 연락 부탁드리며
+              노쇼 하지 않으실 분들만 찾습니다!
+
+              진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
+        </ContentBox>
+        </Overflow>
+        <ProfileBox>
+          <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
+          <Profilename>
+            <div style={{marginLeft:10}} >{post.nickname}</div>
+            <div style={{marginLeft:10}}>⭐⭐⭐⭐⭐</div>
+          </Profilename>
+        </ProfileBox>
+        <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
+        {/* { 
+          post.nickname == localStorage.getItem("user-nickname")  ?
+          null:
+          <button onClick={()=>onClickChatting(post)}>채팅하기</button>
+        } */}
+      </Container>
+      </Bg>
   )
 }
 
-export default Detail;
-
-const Layouts = styled.div`
-  width: 360px;
-  max-height: 640px;
-  margin: auto;
+export default Detail ;
+const Bg = styled.div`
+`
+const Overflow = styled.div`
+  // background-color:#ED9071;
   overflow: auto;
-  /* background-color: lightpink; */
-`;
+  height:411px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
+const Container = styled.div `
+  width:95%;
+  max-width:360px;
+  height:514.25px;
+  background-color:#f6f0ee;
+`
+const ItemBox = styled.div`
+  border-bottom: 1px solid #ED9071;
+  border-top: 1px solid #ED9071;
+  padding: 20px 10px;
+`
+const ContentBox = styled.div`
+  border-bottom: 1px solid #ED9071;
+  padding: 20px 10px
+`
+const ProfileBox = styled.div`
+  display:flex; 
+  border-bottom: 1px solid #ED9071;
+  padding: 20px 10px
+  
+`
+const Text = styled.div`
+  display:flex;
+  justify-content:space-between;
+`
+const Span = styled.span `
+  color:#ED9071;
+`
+const Title = styled.div`
 
-const BackBtn = styled.button`
-  cursor: pointer;
+`
+const Button = styled.button`
+  width:100%;
+  border:none;
+  height:60px;
+  font-size: 16px;
+  font-weight:bold;
+  color:#fff;
+  box-sizing: border-box;
+  background-color:#ED9071;
+  cursor:pointer;
+  margin-top:20px;
+`
+const Img = styled.img`
+  object-fit: cover;
+  width:360px;
+  height:200px;
+`
+const Userimg = styled.img`
+  width:50px;
+`
+const Profilename = styled.div`
+  display:flex;
+  flex-direction:column;
 `
