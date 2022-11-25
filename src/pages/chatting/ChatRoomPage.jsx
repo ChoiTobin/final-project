@@ -10,54 +10,56 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import {ListReducer} from "../../redux/modules/chattingSlice"
 
+
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
 
 
 function ChatRoomPage() {
+  
   const roomId = localStorage.getItem("roomId")
   const {id}  = useParams()
   const navigate = useNavigate();
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
+  
+  const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
-  const listReducer = useSelector((state) => state.chatting.listReducer);
 
-  // if(roomId !== undefined || null){} 
-  //민재님이랑 얘기하기 실행시점의 문제 때문에 안되는것 같다.....하 ....
+  console.log("빈배열????????",listReducer)
 
   let postId = Number(id)
 
 
 
-
-
-
-//이방법써보기 useEffect를 function으로 감싸서 roomId가 undefinde인경우.
-
-  // useEffect(() => {
-  //   setChatList2(chatList)
-  // },[setChatList2, chatList])
-
-  // 컴포넌트 마운트시에 소켓 연결 , 채팅방 생성
+  //onSubmitHandler
   useEffect(() => {
-
-    wsConnectSubscribe()
+    
+  
     dispatch(__getinitialChatList({
+  
       postId:postId,
       roomId:1
-  }));
-    console.log("roomId",roomId)
-
-
+    }));
+  
+  
   }, []);
-
-
+  
+  
+  useEffect(() => {
+  
+  
+    wsConnectSubscribe()
+    
+  
+  }, [chatList.roomId]);
+  
 
 
 
   const [chatBody, setChatBody] = useState("");
+
 
 
   const content = {
@@ -70,21 +72,31 @@ function ChatRoomPage() {
   };
 
   function wsConnectSubscribe() {
+
     try {
+    
       ws.connect(
         headers,(frame) => {
+
           ws.subscribe(
-            `/sub/${roomId}`,
+            `/sub/${
+              chatList.roomId
+          }`,
             (response) => {
+              console.log("제발되라!!!!",response)
               let data = JSON.parse(response.body)
               dispatch(ListReducer(data))
             }
+          
             );
+
         },
 
       );
+  
     } catch (error) {
     }
+
   }
 
   
@@ -93,6 +105,7 @@ function ChatRoomPage() {
     setTimeout(
         function () {
             // 연결되었을 때 콜백함수 실행
+            
             if (ws.ws.readyState === 1) {
                 callback();
                 // 연결이 안 되었으면 재호출
@@ -108,7 +121,7 @@ function ChatRoomPage() {
 
   const inputHandler = (e) =>{
   setChatBody(e.target.value)
- 
+
 }
 
 const onSubmitHandler = (event) =>{
@@ -118,7 +131,7 @@ const onSubmitHandler = (event) =>{
     }
     waitForConnection(ws,function() {   
   ws.send(
-    `/pub/${roomId}`,
+    `/pub/${chatList.roomId}`,
     JSON.stringify(content),
             {
               Access_Token: localStorage.getItem("Access_Token")
@@ -167,42 +180,46 @@ return (
                     <Modal/>
                 </Header>
                 <Section>
-                    <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>
+                    <Profile><Img2>{chatList.postImg}</Img2></Profile>
                     <TextBox>
-                      <P>
+    
                         <OrangeSpan>{chatList.state}</OrangeSpan>
                         <Span></Span>
                         <Title>{chatList.title}</Title>
                         <Money>{chatList.price}원</Money>
-                      </P>
+
                      
                     </TextBox>
                 </Section>
-                  <DivAt>날짜</DivAt> 
+                  <DivAt>날짜 오늘</DivAt> 
                   <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
+
+                      
                       { chatList.chatList !== undefined && chatList.chatList !== null &&
-                        chatList.chatList.map((item,i)=>{
+                       chatList.chatList.map((item,i)=>{
                           return(
                           
                           localStorage.getItem('user-nickname') == item.sender ?  
-                        <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
+                        <TextBox key={uuidv4()}><Colorspan>{item.message}</Colorspan></TextBox>
                         :
-                        <TextBox key={uuidv4}><Colorspan2>{item.message}</Colorspan2></TextBox>
+                        <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
                         
                           )
                         })
                       }
-                      { listReducer !== undefined &&
-                        listReducer.map((item,i)=>{
+
+                      { listReducer.chatList !== undefined && listReducer.chatList !== null &&
+                        listReducer.chatList.map((item,i)=>{
                           return (
                             localStorage.getItem('user-nickname') == item.sender ?  
-                          <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
+                          <TextBox key={uuidv4()}><Colorspan>{item.message}</Colorspan></TextBox>
                           :
-                          <TextBox key={uuidv4}><Colorspan2>{item.message}</Colorspan2></TextBox>
+                          <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
                           )
                         }
                           )
                       } 
+
                       <div ref={scrollRef}></div>
                   </OverFlow >
                 <Chatput>
@@ -242,7 +259,7 @@ min-width: 50px;
 
 `
 const Colorspan2 = styled.div`
-background:#F6F0EE;
+background:gray;
 color:black;
 padding:6px;
 border-radius: 7px;
@@ -373,8 +390,6 @@ width:100%;
   background:#f6f0ee;
   border-bottom:1px solid #ED9071;
   
-`
-const P = styled.p`
 `
 
 

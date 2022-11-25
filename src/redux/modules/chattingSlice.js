@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Apis from "../../shared/Apis"
+import { current } from "@reduxjs/toolkit"
+
 const URI = {
   BASE: process.env.REACT_APP_BASE_URI,
 };
@@ -10,6 +12,7 @@ const initialState = {
   createRoom: [],
   roomList:[],
   chatList:[],
+  chatList2:[],
   listReducer:[],
   chatTrueFalse:false,
   isLoading: false,
@@ -21,13 +24,7 @@ export const __CreateRoom = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.CreateRoom(payload)
-
-      window.localStorage.setItem("roomId",response.data.data.roomId)
-      console.log("실행시점확인 roomID들어오는 시점")
-      window.location.reload()
-
       
-    
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -40,7 +37,7 @@ export const __getRoomList = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getRoomList()
-      console.log("리스폰스",response)
+      
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -58,23 +55,12 @@ export const __getinitialChatList = createAsyncThunk(
   "/chat/__getinitialChatList",
   async (payload, thunkAPI) => {
     try {
-      let params = payload.postId
-      let body = payload.roomId
-      
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}/room/${params}`,body,
-        {
-        headers: {
-          Access_Token: localStorage.getItem("Access_Token"),
-        },
-  
-      }
-      
-      )
-      console.log("무슨값zzzzz?",response)
+
+      const response = await Apis.getRoomList(payload)
+
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.response.data.data);
     }
   }
 );
@@ -95,7 +81,12 @@ const chatSlice = createSlice({
     },
  
     ListReducer: (state, action) => {
-      state.listReducer.push(action.payload)
+      // console.log("하하하",action.payload,"hahahaha",current(state))
+      const chatting = state.chatList
+      console.log("눈물",state.chatList.chatList)
+      //state.chatList.chatList.push(action.payload)
+      state.chatList.chatList.push(action.payload)
+
  
     },
 
@@ -132,7 +123,9 @@ const chatSlice = createSlice({
     },
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chatList = action.payload;
+      
+      state.chatList = action.payload[0];
+      
     
     },
     [__getinitialChatList.rejected]: (state, action) => {

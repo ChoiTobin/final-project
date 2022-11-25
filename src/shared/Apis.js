@@ -52,6 +52,10 @@ export const Apis = {
   //createRoom----------------------------------------------------------------
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
   getRoomList: () => token.get(`/roomList`),
+  getinitialChatList: (getInitialList) => token.get(`/room`,getInitialList),
+
+
+
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
