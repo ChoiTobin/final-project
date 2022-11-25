@@ -245,6 +245,7 @@ const DuplicateCheckEmail = styled.button`
   position: absolute;
   width: 75px;
   font-size: 15px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   right: 10px;
   top: 7px;
   border: 1px solid #929292;
@@ -259,6 +260,7 @@ const DuplicateCheckNick = styled.button`
   position: absolute;
   width: 75px;
   font-size: 15px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   right: 10px;
   top: 7px;
   border: 1px solid #929292;
@@ -277,17 +279,20 @@ const LoGoSignUp = styled.span`
 const LoGoSignUp1 = styled.span`
   margin-left: 30px;
   color: #ed9071;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-weight: 500;
   font-size: 30px;
 `;
 
 const Green = styled.div`
   color: green;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   margin-bottom: 5px;
 `;
 
 const ErrorMessageWrap = styled.div`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   color: #ef0000;
   font-size: 12px;
   margin-bottom: 5px;
@@ -336,6 +341,7 @@ const Input = styled.input`
   height: 40px;
   margin-bottom: 5px;
   padding: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   border-radius: 4px;
   background: #fafafa;
@@ -349,6 +355,7 @@ const Input2 = styled.input`
   height: 40px;
   margin-bottom: 10px;
   padding: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   border-radius: 4px;
   background: #fafafa;
@@ -362,6 +369,7 @@ const Input3 = styled.input`
   height: 40px;
   margin-bottom: 10px;
   padding: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   border-radius: 4px;
   background: #fafafa;
@@ -375,6 +383,7 @@ const Input4 = styled.input`
   height: 40px;
   margin-bottom: 10px;
   padding: 10px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   border-radius: 4px;
   background: #fafafa;
@@ -384,6 +393,7 @@ const Input4 = styled.input`
 `;
 
 const SignupButton = styled.button`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 18px;
   color: white;
   border: none;
@@ -409,6 +419,7 @@ const LogoBox = styled.div`
 const SignupText = styled.div`
   width: 200px;
   text-align: center;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 17px;
   line-height: 20px;
   font-weight: bold;
@@ -418,6 +429,7 @@ const LoginBox = styled.div`
   background-color: white;
   span {
     margin-left: 4px;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: bold;
     // 버튼 누르면 손모양 나오게 하는 마우스 커서
     cursor: pointer;

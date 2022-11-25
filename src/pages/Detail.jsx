@@ -167,6 +167,7 @@ const Button = styled.button`
   width: 100%;
   border: none;
   height: 60px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 16px;
   font-weight: bold;
   color: #fff;

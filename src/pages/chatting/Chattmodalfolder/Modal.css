@@ -44,34 +44,37 @@ body.active-modal {
     margin-top: 30px;
     color: #ED9071;
     width: 80px;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 600;
-    overflow:hidden; 
-    text-overflow:ellipsis;
-    white-space:nowrap; 
-    display:inline-block;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    display: inline-block;
 
   }
   .pink2{
     width: 110px;
     color: #ED9071;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 600;
-    overflow:hidden; 
-    text-overflow:ellipsis;
-    white-space:nowrap; 
-    display:inline-block;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    display: inline-block;
   }
   
   .content{
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 600;
     height: 180px;
     text-align: center;
     font-size: 13px;
   }
   .falseButton{
-    width:130px;
-    height:40px;
-    border:none;
-    background-color: #545454;
+    width: 130px;
+    height: 40px;
+    border: none;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 800;
     border-radius: 0 0 0px 10px;
     color:#fff;
@@ -81,8 +84,9 @@ body.active-modal {
     width:130px;
     height: 40px;
     background-color: none;
-    border:none;
+    border: none;
     background-color: #ED9071;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 800;
     border-radius: 0 0 10px 0;
   }

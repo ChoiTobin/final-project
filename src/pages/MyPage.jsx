@@ -190,7 +190,7 @@ const Info = styled.div`
     justify-content: center;
 
     color: #fff;
-    font-family: "SFPro", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 3.9px;
@@ -214,7 +214,7 @@ const UserInfo = styled.div`
   align-items: center;
 
   span {
-    font-family: 'SFPro', sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-weight: 700;
   }
 `;

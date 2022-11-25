@@ -112,11 +112,13 @@ const SignIn = () => {
 export default SignIn;
 const LogoLogin = styled.span`
   color: #ed9071;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 30px;
   margin-bottom: 50px;
 `;
 const Red = styled.div`
   color: #ef0000;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   text-align: left;
   width: 270px;
@@ -125,6 +127,7 @@ const Red = styled.div`
 
 const Green = styled.div`
   color: green;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   text-align: left;
   width: 270px;
@@ -163,6 +166,7 @@ const Input = styled.input`
   border: 1px solid #929292;
   width: 250px;
   height: 40px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 12px;
   border-radius: 2px;
   padding: 10px;
@@ -178,6 +182,7 @@ const LoginButton = styled.button`
   color: white;
   border: none;
   border-radius: 3px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-weight: bold;
   width: 253px;
   height: 40px;
@@ -189,6 +194,7 @@ const LoginButton = styled.button`
 `;
 
 const SignButton = styled.button`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 18px;
   color: white;
   border: none;

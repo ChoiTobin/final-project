@@ -114,7 +114,7 @@ const Category = styled.button`
   width: 79.9px;
   height: 30px;
 
-  font-family: "SFPro", sans-serif;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 14px;
   font-weight: 550;
 

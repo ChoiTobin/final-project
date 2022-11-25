@@ -101,6 +101,7 @@ const Container = styled.div`
 const Label = styled.span`
   color: #878787;
   font-size: 18px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
 `;
 
 const Input = styled(TextField)`
@@ -133,5 +134,6 @@ const CheckSuccessBnt = styled(Button)`
   top: 10px;
   border: 1px solid #6b95ff;
   font-size: 16px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   border-radius: 100px;
 `;

@@ -66,8 +66,8 @@ const TabTitle = styled.div`
 
   width: 135px;
   height: 23.13px;
-  color: #ED9071;
-  font-family: "SFPro";
+  color: #ed9071;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-weight: 800;
   font-size: 12px;
   border: 1px solid #ed9071;

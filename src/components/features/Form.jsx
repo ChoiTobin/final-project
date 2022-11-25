@@ -211,16 +211,17 @@ const Img = styled.img`
   object-fit: contain;
 `
 const FormBtn1 = styled.button`
-  display:block;
-  border:none;
-  width:180px;
-  height:50px;
+  display: block;
+  border: none;
+  width: 180px;
+  height: 50px;
   cursor: pointer;
-  font-size:18px;
-  font-weight:600;
-  background-color:#838383;
-  color:#fff;
-`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #838383;
+  color: #fff;
+`;
 const FormBtn2 = styled.button`
 outline: none;
   display:block;

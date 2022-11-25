@@ -95,18 +95,19 @@ const Buttongroup = styled.div`
   z-index:1;
   margin-left:12px;
 `
-const Button =styled.button`
-  width:84px;
-  height:36px;
-  border:none;
-  background-color:#ddd;
-  border-radius:30px;
-  font-weight:600;
-  :hover{
-    background-color:#ED9071;
-    color:#fff;
+const Button = styled.button`
+  width: 84px;
+  height: 36px;
+  border: none;
+  background-color: #ddd;
+  border-radius: 30px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 600;
+  :hover {
+    background-color: #ed9071;
+    color: #fff;
   }
-`
+`;
 const Carouselwrap = styled.div`
   
 `

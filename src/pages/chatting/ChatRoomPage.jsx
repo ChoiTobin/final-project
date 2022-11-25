@@ -210,62 +210,60 @@ return (
 }
 
 const ArrowImg =styled.img`
-position:absolute;
-top:10px;
-right:6px;
-border:none;
-width:13px;
-height:15px;
-background-color:white;
+position: absolute;
+top: 10px;
+right: 6px;
+border: none;
+width: 13px;
+height: 15px;
+background-color: white;
 `
 const Chatput = styled.div`
   border-radius:20%;
-  position:relative;
+  position: relative;
   `
-const Input =styled.input`
-width:100%;
-height:30px;
-outline:none;
-text-indent:8px;
-border:2px solid #ED9071;
-border-radius:30px;
-display: inline-block;
-font-weight: lighter;
-font-size: 12px;
-max-width: calc(100% - 32px);
-min-width: 50px;
-
-`
+const Input = styled.input`
+  width: 100%;
+  height: 30px;
+  outline: none;
+  text-indent: 8px;
+  border: 2px solid #ed9071;
+  border-radius: 30px;
+  display: inline-block;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: lighter;
+  font-size: 12px;
+  max-width: calc(100% - 32px);
+  min-width: 50px;
+`;
 const Colorspan2 = styled.div`
-background:#F6F0EE;
-color:black;
-padding:6px;
+  background:#F6F0EE;
+  color: black;
+  padding:6px;
 
-border-radius: 7px;
-font-size:12px;
-display:flex;
-flex-direction:left;
-text-align:left;
-width:170px;
-margin-bottom:3px;
+  border-radius: 7px;
+  font-size:12px;
+  display: flex;
+  flex-direction: left;
+  text-align: left;
+  width:170px;
+  margin-bottom:3px;
 
 
 `
 const Colorspan = styled.div`
-background:#ED9071;
-color:black;
-padding:8px;
-box-sizing: border-box;
-border-radius: 7px;
-font-size:12px;
-display:flex;
-text-align:left;
-width:150px;
-margin-bottom:3px;
-
-
-
-`
+  background: #ed9071;
+  color: black;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: left;
+  width: 150px;
+  margin-bottom: 3px;
+`;
 
 const TextBox = styled.div`
 padding:4px;
@@ -279,8 +277,8 @@ width:318.82px;
 
 
 const OverFlow = styled.div`
-overflow:auto;
-height:480px;
+overflow: auto;
+height: 480px;
 ::-webkit-scrollbar {
   width: 1vw;
 }
@@ -294,74 +292,78 @@ height:480px;
 
 `
 const DivAt = styled.div`
-margin-top:10px;
-text-align:center;
-color:#787878;
-font-size:12px;
-background:#f6f0ee
-`
+  margin-top: 10px;
+  text-align: center;
+  color: #787878;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 12px;
+  background: #f6f0ee;
+`;
 const Money = styled.p`
-font-weight:bold;
+font-weight: bold;
 `
 const Title = styled.span`
-width: 200px;
-overflow:hidden; 
-text-overflow:ellipsis;
-white-space:nowrap; 
-display:inline-block;
-font-weight:bold;
-font-size:12px;
-`
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+`;
 const Span= styled.span`
-width:30px;
-margin-left:10px;
+  width: 30px;
+  margin-left:10px;
 `
 const OrangeSpan = styled.span`
-color:#ED9071;
-font-weight:bold;
-`
+  color: #ed9071;
+  font-weight: bold;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+`;
 const Img = styled.img`
-margin-top:6px;
-height:25px;
-width:25px;
-margin-left:10px;
+  margin-top: 6px;
+  height: 25px;
+  width: 25px;
+  margin-left: 10px;
 `
 const Img2 = styled.img`
-height:33px;
-width:30px;
+  height: 33px;
+  width: 30px;
 `
 
 const Time = styled.span`
-font-size:6px;
-`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 6px;
+`;
 const Nickname = styled.p`
-margin-left:5px;
-font-weight:bold;
-font-size:15px;
-`
+  margin-left: 5px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+`;
 
 const LoginContainer = styled.div`
-  width:340px;
+  width: 340px;
   margin: 0 auto;
-  height:100%;
+  height: 100%;
   background-color:#F6F0EE;
   
 `;
 
 const Header = styled.div`
-  border-bottom:1px solid #ED9071;
+  border-bottom: 1px solid #ED9071;
   background:#f6f0ee;
-  width:340px;
-  height:50px;
-  display:flex;
+  width: 340px;
+  height: 50px;
+  display: flex;
   justify-content: space-between;
- 
 `
 
 const Section = styled.div`
-  width:330px;
-  height:60px;
-  display:flex;
+  width: 330px;
+  height: 60px;
+  display: flex;
   margin-top:10px;
   padding-left: 10px;
   background:#f6f0ee;
@@ -372,20 +374,20 @@ const P = styled.p`
 
 
 const Profile = styled.div`
-  margin-top:5px;
-  margin-right:5px;
-  width:50px;
-  height:50px;
-  border-radius:10px;
-  text-align:center;
-  line-height:50px;
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
 `
 const Chating = styled.div`
-  height:400px;
-  over-flow:hidden;
-  background-color:#FFECEF;
-  text-align:center;
-  line-height:400px;
+  height: 400px;
+  overflow: hidden;
+  background-color: #FFECEF;
+  text-align: center;
+  line-height: 400px;
   
 `
 

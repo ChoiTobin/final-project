@@ -80,50 +80,52 @@ export default function Modal() {
   );
 }
 const Span = styled.span`
-margin-left:1px;
-font-size:10px;
-font-weight:600;
-`
+  margin-left: 1px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+`;
 const P = styled.span`
-display:flex;
-width:60px;
-height:60px;
-flex-direction:column;
-margin-top:5px;
+display: flex;
+width: 60px;
+height: 60px;
+flex-direction: column;
+margin-top: 5px;
 `
 const Himg2 = styled.img`  
-  width:26px;
-  height:26px;
-  margin-right:20px;
+  width: 26px;
+  height: 26px;
+  margin-right: 20px;
 
   background-color:green;
 `
 const Himg = styled.img`  
-  width:26px;
-  height:26px;
-  margin-right:20px;
+  width: 26px;
+  height: 26px;
+  margin-right: 20px;
 
-  background-color:#303030
+  background-color: #303030
 `
 const Button = styled. button`
   width:0px;
-  border:none;
-  background:transparent;
+  border: none;
+  background: transparent;
 `
 const HeadRight2 = styled.button`
-font-size: 0.9rem;
-width: 30px;
-height: 40px;
-color: #00251a;
-border: 0;
-cursor: pointer;
-font-weight: 600;
-background-color: transparent;
-justify-content: center;
-.head-ico {
-  font-size: 1.6rem;
-  margin: 5px;
-  color: white;
+  font-size: 0.9rem;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  width: 30px;
+  height: 40px;
+  color: #00251a;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
   background-color: transparent;
-}
-`
+  justify-content: center;
+  .head-ico {
+    font-size: 1.6rem;
+    margin: 5px;
+    color: white;
+    background-color: transparent;
+  }
+`;

@@ -95,6 +95,7 @@ const Container = styled.div`
 
 const Label = styled.span`
   color: #878787;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 18px;
 `;
 
@@ -111,8 +112,10 @@ const CheckBnt = styled.button`
   top: 10px;
   width: 100px;
   height: 40px;
-  border: ${({ isOnCheck }) => (isOnCheck ? "1px solid #ff7775;" : "1px solid #d9d9d9")};
+  border: ${({ isOnCheck }) =>
+    isOnCheck ? "1px solid #ff7775;" : "1px solid #d9d9d9"};
   color: ${({ isOnCheck }) => (isOnCheck ? "#FF7775" : "#3C3C3C")};
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 16px;
   border-radius: 100px;
 `;
@@ -126,6 +129,7 @@ const CheckSuccessBnt = styled.button`
   right: 0;
   top: 10px;
   border: 1px solid #6b95ff;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 16px;
   border-radius: 100px;
 `;

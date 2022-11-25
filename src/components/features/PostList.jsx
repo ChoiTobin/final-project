@@ -53,8 +53,9 @@ const ListBox = styled.div`
   margin-top:10px;
 `
 const Strong = styled.strong`
-  font-size:14px;
-`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 14px;
+`;
 const Div1 = styled.div`
   display:flex;
   justify-content:space-between;
