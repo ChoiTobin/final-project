@@ -42,7 +42,11 @@ function ChatRoomPage() {
       postId:postId,
       roomId:1
     }));
-  
+    
+    return () => {
+      onbeforeunloda()
+      
+    };
   
   }, []);
   
@@ -51,6 +55,11 @@ function ChatRoomPage() {
   
   
     wsConnectSubscribe()
+    
+    return () => {
+      onbeforeunloda()
+      
+    };
     
   
   }, [chatList.roomId]);
@@ -71,13 +80,14 @@ function ChatRoomPage() {
     Access_Token: localStorage.getItem('Access_Token')
   };
 
-  function wsConnectSubscribe() {
 
+
+
+
+  function wsConnectSubscribe() {
     try {
-    
       ws.connect(
         headers,(frame) => {
-
           ws.subscribe(
             `/sub/${
               chatList.roomId
@@ -86,19 +96,17 @@ function ChatRoomPage() {
               console.log("제발되라!!!!",response)
               let data = JSON.parse(response.body)
               dispatch(ListReducer(data))
+              
+              
+              
             }
-          
             );
-
         },
-
       );
-  
     } catch (error) {
     }
 
   }
-
   
 
   function waitForConnection(ws, callback) {
@@ -108,6 +116,7 @@ function ChatRoomPage() {
             
             if (ws.ws.readyState === 1) {
                 callback();
+
                 // 연결이 안 되었으면 재호출
             } else {
                 waitForConnection(ws, callback);
@@ -117,6 +126,24 @@ function ChatRoomPage() {
     );
 }
 //stomp 메시지 에러 waitForConnection함수로 해결
+
+
+const onbeforeunloda = () =>{
+
+  try {
+    ws.disconnect(
+      ()=>{
+        ws.unsubscribe("sub-0");
+        clearTimeout(waitForConnection);
+      },
+    
+    {Access_Token: localStorage.getItem('Access_Token')}
+)
+    }catch (e){
+      console.log("연결구독해체 에러",e)
+  }
+}
+
 
 
   const inputHandler = (e) =>{
