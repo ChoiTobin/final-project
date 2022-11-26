@@ -26,7 +26,6 @@ const PetInfo = ({ myPets }) => {
       "반려동물 정보 수정",
       () => console.log("모달 on"),
       null,
-      <EditPetInfo/>
     )
   }, [modalOption])
 

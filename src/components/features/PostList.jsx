@@ -30,8 +30,8 @@ const PostList = () => {
                 </Div1>
                 <Div1>
                   <Flex1> 
-                    <Strong style={{fontWeight:500}}><img style={{marginRight:5}} src={require("../../img/calender.png")} alt="" />{post.date}</Strong>
-                    <Strong style={{fontWeight:500,marginLeft:10}}><img style={{width:11,marginRight:5}} src={require("../../img/markup.png")} alt="" />{post.local}</Strong>
+                    <Strong style={{fontWeight:400}}><img style={{marginRight:5}} src={require("../../img/calender.png")} alt="" />{post.date}</Strong>
+                    <Strong style={{fontWeight:400,marginLeft:10}}><img style={{width:11,marginRight:5}} src={require("../../img/markup.png")} alt="" />{post.local}</Strong>
                   </Flex1>
                   <Flex2>
                     <PriceBox><p>{post.price.toLocaleString('ko-KR')}원</p></PriceBox>
@@ -50,11 +50,11 @@ const ListBox = styled.div`
   position:relative;
   background-color: #fff;
   padding:19px 14px 19px 14px;
-  margin-top:10px;
+  margin-top: 10px;
 `
 const Strong = styled.strong`
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 `;
 const Div1 = styled.div`
   display:flex;
@@ -76,11 +76,12 @@ const Listmap = styled.div`
   }
 `
 const Text1 = styled.p`
-  color:#ed9071;
-  font-weight:600;
-  font-size:18px;
-  margin:0;
-`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  color: #ed9071;
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0;
+`;
 const Text2 = styled.p`
   font-size:14px;
   margin:0;
@@ -89,6 +90,7 @@ const Span = styled.span`
   color:#000;
   margin-left:10px;
   font-size:18px;
+  font-weight: 500;
 `
 const PriceBox = styled.div`
   position:absolute;

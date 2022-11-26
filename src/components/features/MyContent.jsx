@@ -9,24 +9,13 @@ import styled from "styled-components";
 import { ReactComponent as DateColor } from "../../img/datecolor.svg"
 import { ReactComponent as Edit } from "../../img/edit.svg";
 import { ReactComponent as Delete } from "../../img/delete.svg";
+import { ReactComponent as Dates } from "../../img/date.svg";
 
 // 내가 쓴 게시글 1개
 const MyContent = ({ myPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   console.log("들어올까요", { myPost });
-
-  const [modalOption, showModal] = useModal();
-
-  const onClickModal = useCallback(() => {
-    showModal(
-      true,
-      "게시글 수정하기",
-      () => console.log("모달 ON"),
-      null,
-      <EditDetail/>
-    )
-  }, [modalOption])
 
   // 내가 쓴 글 삭제
   const onDeleteMyPost = (id) => {
@@ -60,11 +49,10 @@ const MyContent = ({ myPost }) => {
                 </Main>
 
                 <Down className="bottom-line">
-                  <CreatedAt>{post.createdAt}</CreatedAt>
+                  <CreatedAt><Dates/>{post.createdAt}</CreatedAt>
                   <Icon>
                     {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
-                    <Edit onClick={onClickModal}/>
-                    <Modal modalOption={modalOption} />
+                    <Edit/>
 
                     <Delete onClick={() => onDeleteMyPost(post.id)}/>
                   </Icon>
@@ -114,7 +102,7 @@ const Content = styled.div`
   border-radius: 4px;
   margin: 9px auto 1.59px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 12px 40px 10.59px 38px;
+  padding: 14px 27.14px 14.68px 32.29px;
 `;
 
 const Main = styled.div`
@@ -126,28 +114,35 @@ const Main = styled.div`
 const State = styled.span`
   color: #ed9071;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 15px;
-  font-weight: 900;
+  font-size: 14px;
+  font-weight: 510;
+  line-height: 16.71px;
   margin-right: 7px;
 `;
 
 const Title = styled.span`
-  width: 130px;
-  height: 18px;
+  width: 160px;
+  height: 17px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.71px;
+  /* text-align: center; */
 `;
 
 const Date = styled.span`
-  width: 75px;
+  width: 38.5px;
   height: 12px;
   font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 400;
   font-size: 10px;
+  line-height: 11.93px;
   color: "#ED9071";
-  margin-left: 19px;
+  /* margin-left: 19px; */
+  gap: 3.94px
 `;
 
 const Down = styled.div`

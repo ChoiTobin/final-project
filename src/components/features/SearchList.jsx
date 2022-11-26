@@ -45,7 +45,7 @@ const Content = () => {
   return (
       <SearchListWrap>
         <InputBox>
-          <Input onKeyPress={appKeyPress} type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler}  />
+        <Input onKeyPress={appKeyPress} type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler} />
           <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../img/search.png")} />
         </InputBox>
         <Buttongroup>
@@ -96,13 +96,15 @@ const Buttongroup = styled.div`
   margin-left:12px;
 `
 const Button = styled.button`
-  width: 84px;
-  height: 36px;
+  width: 79.9px;
+  height: 26px;
   border: none;
   background-color: #ddd;
-  border-radius: 30px;
+  border-radius: 15px;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
   :hover {
     background-color: #ed9071;
     color: #fff;
@@ -126,6 +128,7 @@ const Input = styled.input`
 
 const InputBox = styled.div`
   position:relative;
+  align-items: center;
   margin-bottom:40px;
 `
 const Img = styled.img`

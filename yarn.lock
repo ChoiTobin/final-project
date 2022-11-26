@@ -7829,7 +7829,7 @@ react-app-polyfill@^3.0.0:
 
 react-bootstrap@^2.6.0:
   version "2.6.0"
-  resolved "https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-2.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.6.0.tgz#bd125889cc9d2bbd7c89334a7c54980ff0a65b94"
   integrity sha512-WnDgN6PR8WZKo2Og5J8EafFi4BsABjc96lNuMNfksrgiPDCw18/woWQCNhAeHFZQWTQ/PijkOrQ9ncTWwO//AA==
   dependencies:
     "@babel/runtime" "^7.17.2"

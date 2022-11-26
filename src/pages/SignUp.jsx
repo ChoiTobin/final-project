@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __userSignUp, __userCheck, __NickCheck } from "../../src/redux/modules/userSlice";
+import { ReactComponent as Logo } from "../img/logoImg.svg";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -122,32 +123,31 @@ const SignUp = () => {
   return (
     <SignupContainer>
       <SignupBox onSubmit={onSubmitHandler}>
+        <Logo
+          style={{
+            width: "58.75px",
+            height: "44.43px",
+            margin: "36.84px auto 18.68px",
+          }}
+        />
         <LogoBox>
-          <LoGoSignUp>
-            <img
-              src={require("../img/LogoImg.png")}
-              width="90px"
-              height="70px"
-              alt=""
-            />
-          </LoGoSignUp>
           <LoGoSignUp1>SIGN UP</LoGoSignUp1>
         </LogoBox>
         <InputBox>
-          <FlexInput>
-            <Input
+          <Insert>
+            <InputTop
               name="email"
               placeholder="아이디"
               onChange={onChangeHandler}
             />
-            <DuplicateCheckEmail
+            <CheckBtn
               type="button"
               onClick={() => {
                 dispatch(__userCheck({ email: join.email }));
               }}
             >
               중복확인
-            </DuplicateCheckEmail>
+            </CheckBtn>
             <ErrorMessageWrap>
               {!IdValid
                 ? !IdValid &&
@@ -157,21 +157,21 @@ const SignUp = () => {
                     <Green>올바른 이메일 형식 입니다.</Green>
                   )}
             </ErrorMessageWrap>
-          </FlexInput>
-          <FlexInput2>
-            <Input2
+          </Insert>
+          <Insert>
+            <InputTop
               name="nickname"
               placeholder="닉네임"
               onChange={onChangeHandler}
-            ></Input2>
-            <DuplicateCheckNick
+            />
+            <CheckBtn
               type="button"
               onClick={() => {
                 dispatch(__NickCheck({ nickname: join.nickname }));
               }}
             >
               중복확인
-            </DuplicateCheckNick>
+            </CheckBtn>
             <ErrorMessageWrap>
               {!nickValid
                 ? !nickValid &&
@@ -183,9 +183,9 @@ const SignUp = () => {
                     <Green>올바른 닉네임 형식 입니다.</Green>
                   )}
             </ErrorMessageWrap>
-          </FlexInput2>
-          <FlexInput3>
-            <Input3
+          </Insert>
+          <Insert>
+            <InputDown
               placeholder="비밀번호"
               type="password"
               name="password"
@@ -202,37 +202,40 @@ const SignUp = () => {
                     <Green>사용 가능한 비밀번호 입니다.</Green>
                   )}
             </ErrorMessageWrap>
-          </FlexInput3>
-          <FlexInput4>
-            <Input4
+          </Insert>
+          <Insert>
+            <InputDown
               placeholder="비밀번호 확인"
               type="password"
               name="passwordCheck"
               onChange={onChangeHandler}
             />
             <ErrorMessageWrap>
-              {!PwCValid
-                ? !PwCValid &&
-                  join.passwordCheck.length > 0 && (
-                    <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
-                  )
-                : PwCValid &&
-                  join.passwordCheck.length > 0 &&
-                  (join.passwordCheck === join.password ? (
-                    <Green>사용 가능한 비밀번호 입니다.</Green>
-                  ) : (
-                    <div>비밀번호가 일치하지 않습니다.</div>
-                  ))
-                  //위에 비밀번호와 일치하는지 대조.
+              {
+                !PwCValid
+                  ? !PwCValid &&
+                    join.passwordCheck.length > 0 && (
+                      <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
+                    )
+                  : PwCValid &&
+                    join.passwordCheck.length > 0 &&
+                    (join.passwordCheck === join.password ? (
+                      <Green>사용 가능한 비밀번호 입니다.</Green>
+                    ) : (
+                      <div>비밀번호가 일치하지 않습니다.</div>
+                    ))
+                //위에 비밀번호와 일치하는지 대조.
               }
             </ErrorMessageWrap>
-          </FlexInput4>
+          </Insert>
           <SignupButton onClick={onSubmitHandler}>회원가입</SignupButton>
         </InputBox>
         <LoginBox>
           {" "}
           이미 계정이 있으신가요?{" "}
-          <span onClick={() => navigate("/")}>로그인</span>
+          <span onClick={() => navigate("/")}>
+            <span style={{ color: "#FD6E7F" }}>로그인</span>
+          </span>
         </LoginBox>
       </SignupBox>
     </SignupContainer>
@@ -241,47 +244,135 @@ const SignUp = () => {
 
 export default SignUp;
 
-const DuplicateCheckEmail = styled.button`
-  position: absolute;
-  width: 75px;
-  font-size: 15px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  right: 10px;
-  top: 7px;
-  border: 1px solid #929292;
-  border-radius: 4px;
-  background: #fafafa;
-  color: #929292;
-  &:focus {
-    outline: 1px solid #adadad;
-  }
+const SignupContainer = styled.div`
+  width: 360px;
+  height: 640px;
+  background-color: #F6F0EE;
+  margin: auto;
 `;
-const DuplicateCheckNick = styled.button`
-  position: absolute;
-  width: 75px;
-  font-size: 15px;
+
+const SignupBox = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const LoGoSignUp1 = styled.span`
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  right: 10px;
-  top: 7px;
-  border: 1px solid #929292;
-  border-radius: 4px;
-  background: #fafafa;
-  color: #929292;
-  &:focus {
-    outline: 1px solid #adadad;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38.19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const InputBox = styled.div`
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-direction: column;
+`;
+
+const InputTop = styled.input`
+  width: 320px;
+  height: 50px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 12px;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 14.69px;
+  margin: 9px -16.12px 9px 0px;
+  z-index: 0;
+  ::placeholder {
+    color: #787878;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19.09px;
   }
 `;
 
-const LoGoSignUp = styled.span`
-  margin-left: 40px;
-  color: #ed9071;
-`;
-const LoGoSignUp1 = styled.span`
-  margin-left: 30px;
-  color: #ed9071;
+const InputDown = styled.input`
+  width: 320px;
+  height: 50px;
   font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 12px;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 14.69px;
+  margin: 9px auto 9px;
+  ::placeholder {
+    color: #787878;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19.09px;
+  }
+`;
+
+const Insert = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const SignupButton = styled.button`
+  width: 320px;
+  height: 50px;
+  margin: 24.41px auto 20px;
+  border: none;
+  border-radius: 3px;
+  color: #FFF;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 20px;
   font-weight: 500;
-  font-size: 30px;
+  line-height: 23.87px;
+  
+  // 버튼 누르면 손모양 나오게 하는 마우스 커서
+  cursor: pointer;
+  background-color: #ed9071;
+`;
+
+const LogoBox = styled.div`
+  width: 175px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const LoginBox = styled.div`
+  span {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-weight: bold;
+    // 버튼 누르면 손모양 나오게 하는 마우스 커서
+    cursor: pointer;
+  }
+`;
+
+const CheckBtn = styled.button`
+  width: 60.32px;
+  height: 25px;
+  border: none;
+  border-radius: 3px;
+  background-color: #D9D9D9;
+  color: #7D7D7D;
+  font-family: "Spuqa Han Sans Neo", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.32px;
+  position: relative;
+  z-index: 100;
+  margin-left: -60px;
+  margin-right: 16.12px;
 `;
 
 const Green = styled.div`
@@ -298,140 +389,3 @@ const ErrorMessageWrap = styled.div`
   margin-bottom: 5px;
 `;
 
-const FlexInput = styled.span`
-  position: relative;
-`;
-const FlexInput2 = styled.span`
-  position: relative;
-`;
-const FlexInput3 = styled.span``;
-const FlexInput4 = styled.span``;
-
-const SignupContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const SignupBox = styled.form`
-  background-color: white;
-  width: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 0px;
-`;
-
-const InputBox = styled.div`
-  margin-top: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-`;
-
-const Input = styled.input`
-  border: 1px solid #929292;
-  width: 250px;
-  height: 40px;
-  margin-bottom: 5px;
-  padding: 10px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 12px;
-  border-radius: 4px;
-  background: #fafafa;
-  &:focus {
-    outline: 1px solid #adadad;
-  }
-`;
-const Input2 = styled.input`
-  border: 1px solid #929292;
-  width: 250px;
-  height: 40px;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 12px;
-  border-radius: 4px;
-  background: #fafafa;
-  &:focus {
-    outline: 1px solid #adadad;
-  }
-`;
-const Input3 = styled.input`
-  border: 1px solid #929292;
-  width: 250px;
-  height: 40px;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 12px;
-  border-radius: 4px;
-  background: #fafafa;
-  &:focus {
-    outline: 1px solid #adadad;
-  }
-`;
-const Input4 = styled.input`
-  border: 1px solid #929292;
-  width: 250px;
-  height: 40px;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 12px;
-  border-radius: 4px;
-  background: #fafafa;
-  &:focus {
-    outline: 1px solid #adadad;
-  }
-`;
-
-const SignupButton = styled.button`
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 18px;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  font-weight: bold;
-  width: 253px;
-  height: 40px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  // 버튼 누르면 손모양 나오게 하는 마우스 커서
-  cursor: pointer;
-  background-color: #ed9071;
-`;
-
-const LogoBox = styled.div`
-  width: 175px;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const SignupText = styled.div`
-  width: 200px;
-  text-align: center;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 17px;
-  line-height: 20px;
-  font-weight: bold;
-`;
-
-const LoginBox = styled.div`
-  background-color: white;
-  span {
-    margin-left: 4px;
-    font-family: "Spoqa Han Sans Neo", sans-serif;
-    font-weight: bold;
-    // 버튼 누르면 손모양 나오게 하는 마우스 커서
-    cursor: pointer;
-  }
-`;
