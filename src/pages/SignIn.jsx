@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __userLogin } from "../../src/redux/modules/userSlice";
-import { ReactComponent as Logos } from "../img/logoImg.svg";
-import KakaoLogin from "../components/features/KakaoLogin";
+import { __userLogin } from "../redux/modules/userSlice";
+import KakaoLogin from "../components/features/Login/KakaoLogin";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const account = useSelector((state) => state.account);
   const initialState = {
     email: "",
     password: "",
@@ -57,7 +55,7 @@ const SignIn = () => {
               <LogoBtns>
                 <KakaoLogin />
               </LogoBtns>
-              
+
               <InputBox>
                 <Input
                   placeholder="아이디"
@@ -96,11 +94,9 @@ const SignIn = () => {
                       )}
                 </ErrorMessageWrap>
               </InputBox>
-              
-              
             </LoginBox>
             <LoginButton onClick={onSubmitHandler}>로그인</LoginButton>
-            <Hr/>
+            <Hr />
             <SignButton onClick={() => navigate("/signup")}>
               회원가입
             </SignButton>
@@ -126,7 +122,6 @@ const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: 100vh; */
 `;
 
 const Wrap = styled.div`
@@ -134,7 +129,6 @@ const Wrap = styled.div`
 `;
 
 const LogoLogin = styled.span`
-  /* color: #ed9071; */
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 32px;
   font-weight: 400;
@@ -149,8 +143,7 @@ const LogoBtns = styled.div`
 `;
 const InputBox = styled.div`
   justify-content: left;
-`
-
+`;
 
 const Input = styled.input`
   border: 1px solid #929292;
@@ -172,7 +165,7 @@ const Input = styled.input`
 `;
 
 const Red = styled.div`
-  color: #FD6E7F;
+  color: #fd6e7f;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 10px;
   line-height: 11.93px;
@@ -202,7 +195,6 @@ const LoginBox = styled.div`
   align-items: center;
   justify-content: center;
   width: 350px;
-  /* margin: 0 auto; */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -214,7 +206,7 @@ const LoginButton = styled.button`
   height: 50px;
   border: none;
   border-radius: 3px;
-  background-color: #ED9071;
+  background-color: #ed9071;
   color: #fff;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 20px;
@@ -223,7 +215,7 @@ const LoginButton = styled.button`
 `;
 
 const Hr = styled.hr`
-  border: 1px solid rgba(153,153,153,0.54);
+  border: 1px solid rgba(153, 153, 153, 0.54);
   margin-bottom: 36px;
 `;
 

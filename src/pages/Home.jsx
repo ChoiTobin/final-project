@@ -1,23 +1,20 @@
-import styled from "styled-components"
-import Layout from '../components/Layout/Layout';
-import Content from "../components/features/Content";
+import styled from "styled-components";
+import Layout from "../components/Layout/Layout";
+import Content from "../components/features/Posts/Content";
 
 const Home = () => {
-
   return (
     <HomePage>
       <Layout>
-        <Content/> 
+        <Content />
       </Layout>
     </HomePage>
-    
-  )
-}
+  );
+};
 
-export default Home ;
+export default Home;
 
 const HomePage = styled.div`
-  /* width: 90%; */
   max-width: 100vw;
   margin: auto;
-`
+`;

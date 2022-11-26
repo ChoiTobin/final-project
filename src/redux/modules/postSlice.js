@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Apis from "../../shared/Apis"
-import axios from "axios";
-import { __putPost } from "./mypageSlice";	
+
 const initialState = {	
   isLoading: false,	
   post: {},	

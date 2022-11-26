@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn"
 import SignUp from "../pages/SignUp";
-import Form from "../components/features/Form";
+import Form from "../components/features/Posts/Form";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
-import PostList from "../components/features/PostList";
-import ChatRoomPage from "../pages/chatting/ChatRoomPage";
+import PostList from "../components/features/Posts/PostList";
+import ChatRoomPage from "../pages/ChatRoomPage";
 
-import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
+import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
 
 

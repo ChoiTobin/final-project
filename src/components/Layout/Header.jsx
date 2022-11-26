@@ -10,17 +10,20 @@ const Header = () => {
   const onClickMove = () => {
     navigate(-1);
   };
-  
+
   const onClickHome = () => {
     navigate("/");
   };
-  
+
   return (
     <Layout>
-        <BackArrow onClick={() => onClickMove()}/>
+      <BackArrow onClick={() => onClickMove()} />
       {/* <h2 onClick={() => onClickHome()}>Cmung</h2> */}
-      <Logo onClick={() => onClickHome()} style={{margin: "20.41px -10px 13.59px"}} />
-        <Menu/>
+      <Logo
+        onClick={() => onClickHome()}
+        style={{ margin: "20.41px -10px 13.59px" }}
+      />
+      <Menu />
     </Layout>
   );
 };

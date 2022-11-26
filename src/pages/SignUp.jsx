@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __userSignUp, __userCheck, __NickCheck } from "../../src/redux/modules/userSlice";
+import {
+  __userSignUp,
+  __userCheck,
+  __NickCheck,
+} from "../../src/redux/modules/userSlice";
 import { ReactComponent as Logo } from "../img/logoImg.svg";
 
 const SignUp = () => {
@@ -247,7 +251,7 @@ export default SignUp;
 const SignupContainer = styled.div`
   width: 360px;
   height: 640px;
-  background-color: #F6F0EE;
+  background-color: #f6f0ee;
   margin: auto;
 `;
 
@@ -330,12 +334,12 @@ const SignupButton = styled.button`
   margin: 24.41px auto 20px;
   border: none;
   border-radius: 3px;
-  color: #FFF;
+  color: #fff;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 23.87px;
-  
+
   // 버튼 누르면 손모양 나오게 하는 마우스 커서
   cursor: pointer;
   background-color: #ed9071;
@@ -363,8 +367,8 @@ const CheckBtn = styled.button`
   height: 25px;
   border: none;
   border-radius: 3px;
-  background-color: #D9D9D9;
-  color: #7D7D7D;
+  background-color: #d9d9d9;
+  color: #7d7d7d;
   font-family: "Spuqa Han Sans Neo", sans-serif;
   font-size: 12px;
   font-weight: 400;
@@ -388,4 +392,3 @@ const ErrorMessageWrap = styled.div`
   font-size: 12px;
   margin-bottom: 5px;
 `;
-

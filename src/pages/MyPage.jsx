@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
-import Mytab from "../components/features/mypageTab";
-import AddPetInfo from "../components/features/AddPetInfo"
-import AddUserPic from "../components/features/AddUserPic";
+import {
+  __getMyPage,
+  __getMyPet,
+  __getMyPost,
+} from "../redux/modules/mypageSlice";
+import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import styled from "styled-components";
@@ -13,12 +14,10 @@ import { ReactComponent as Kakao } from "../img/mykakao.svg";
 import { ReactComponent as NoticeArrow } from "../img/notice-arrow.svg";
 import Banner from "../img/banner.png";
 
-
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const myInfo = useSelector((state) => state.mypage.myInfo);
 
   // 마이페이지 회원정보 조회
@@ -91,7 +90,7 @@ const MyPage = () => {
           <button>내 반려동물 정보 등록 및 수정</button>
         </PetBtn>
         <Ad>
-          <img src={Banner} alt="banner"/>
+          <img src={Banner} alt="banner" />
         </Ad>
 
         <div></div>
@@ -111,7 +110,7 @@ const Layouts = styled.div`
   max-width: 360px;
   height: 640px;
   margin: auto;
-  background-color: #F6F0EE;
+  background-color: #f6f0ee;
 `;
 
 const Notice = styled.div`
@@ -177,7 +176,6 @@ const PetBtn = styled.div`
     border: none;
     background-color: transparent;
   }
-  
 `;
 
 const UserImg = styled.img`
