@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __deleteMyPost, __getMyPost } from "../../../redux/modules/mypageSlice";
-import styled from "styled-components";
 import { ReactComponent as DateColor } from "../../../img/datecolor.svg";
 import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";

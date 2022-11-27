@@ -1,0 +1,19 @@
+.MyModal {
+  background: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+}
+
+.MyModal .Content {
+  background-color: #fff;
+  padding: 1rem;
+  width: 400px;
+  height: auto;
+}

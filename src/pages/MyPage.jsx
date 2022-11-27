@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __getMyPage,
-  __getMyPet,
-  __getMyPost,
-} from "../redux/modules/mypageSlice";
+import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -23,17 +19,17 @@ const MyPage = () => {
   // 마이페이지 회원정보 조회
   useEffect(() => {
     dispatch(__getMyPage());
-  }, []);
+  }, [dispatch]);
 
   // 마이페이지 내가 쓴 글 조회
   useEffect(() => {
     dispatch(__getMyPost());
-  }, []);
+  }, [dispatch]);
 
   // 반려동물 정보 조회
   useEffect(() => {
     dispatch(__getMyPet());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layouts>

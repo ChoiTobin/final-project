@@ -6,7 +6,7 @@ import useImgUpload from "../hooks/useImgUpload";
 import upload from "../../img/upload.png";
 import { __postMyImg } from "../../redux/modules/mypageSlice";
 
-const AddUserPic = () => {
+const AddUserPic = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -69,6 +69,7 @@ const AddUserPic = () => {
         <img src={imgsUrls} alt="" />
       </ImgPreview>
       <div>
+        <button onClick={onClose}>취소</button>
         <button onClick={writeSubmit}>저장</button>
       </div>
     </div>

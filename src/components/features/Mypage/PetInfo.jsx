@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { __deleteMyPet, __getMyPet } from "../../../redux/modules/mypageSlice";
 import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";
-
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
 
 const PetInfo = ({ myPets }) => {
@@ -23,7 +22,7 @@ const PetInfo = ({ myPets }) => {
   // 반려동물 정보 조회
   useEffect(() => {
     dispatch(__getMyPet());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom/dist";
 import { __putMyPet } from "../../redux/modules/mypageSlice";
 
 // 마이페이지 반려동물 정보 수정
 
-const EditPetInfo = () => {
+const EditPetInfo = ({ onClose }) => {
   const [myPet, setMyPet] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // 프로필 등록 - 반려동물 정보(이름, 나이, 종류)
   const onChangePetInfo = (event) => {
@@ -72,14 +70,8 @@ const EditPetInfo = () => {
       </div>
       {/* 정보등록 */}
       <PlaceBtn>
+        <button onClick={onClose}>취소</button>
         <button onClick={onUpdateMyPets}>완료</button>
-        <button
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          취소
-        </button>
       </PlaceBtn>
     </Layout>
   );

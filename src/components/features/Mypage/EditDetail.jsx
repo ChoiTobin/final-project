@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import useImgUpload from "../hooks/useImgUpload";
 import { ReactComponent as Photo } from "../../img/photo.svg";
@@ -19,7 +18,6 @@ const EditDetail = () => {
   });
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const onChangePost = (event) => {
     const { name, value } = event.target;
