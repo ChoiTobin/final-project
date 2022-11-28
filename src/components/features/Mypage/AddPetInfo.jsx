@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __addMyPet } from "../../../redux/modules/mypageSlice";
+import "../../element/MyModal.css";
 
 // 마이페이지 반려동물 정보 등록
 
-const ProfileEdit = () => {
+const AddPetInfo = () => {
   const [myPet, setMyPet] = useState("");
   const dispatch = useDispatch();
 
@@ -28,7 +29,10 @@ const ProfileEdit = () => {
   };
 
   return (
-    <Layout>
+    <Layout className="MyModal">
+      <div>
+        
+      </div>
       {/* 등록 누르면 신규 정보 입력, 수정 버튼을 눌렀을 때, 인풋창에 수정하고 싶은 내용을 작성할 수 있는 페이지 */}
       <div className="edit-input">
         <div>
@@ -68,13 +72,14 @@ const ProfileEdit = () => {
       </div>
       {/* 정보등록 */}
       <PlaceBtn>
-        <button onClick={onAddMyPets}>추가하기</button>
-      </PlaceBtn>
+        <button>취소</button>
+        <button onClick={onAddMyPets}>완료</button>
+      </PlaceBtn>   
     </Layout>
   );
 };
 
-export default ProfileEdit;
+export default AddPetInfo;
 
 const Layout = styled.div`
   width: 95%;

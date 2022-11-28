@@ -2,13 +2,14 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import Carousel from "react-bootstrap/Carousel";
-import useImgUpload from "../hooks/useImgUpload";
-import { ReactComponent as Photo } from "../../img/photo.svg";
-import { __putMyPost } from "../../redux/modules/mypageSlice";
+import useImgUpload from "../../hooks/useImgUpload";
+import { ReactComponent as Photo } from "../../../img/photo.svg";
+import { __putMyPost } from "../../../redux/modules/mypageSlice";
+// import "../../element/MyModal.css";
 
 // 내가 쓴 게시글 수정 및 삭제
 
-const EditDetail = () => {
+const EditDetail = ({ onClose }) => {
   const [myPost, setMyPost] = useState({
     category: "",
     title: "",
@@ -78,140 +79,166 @@ const EditDetail = () => {
   };
 
   return (
-    <Layouts>
-      <Form>
-        <div>
-          <label htmlFor="text" />
+    <div>
+      <Layouts>
+        <div className="content">
+          <Form>
+            <Top>
+              <label htmlFor="text" />
+              <span>POST</span>
+            </Top>
+            <div>
+              <label htmlFor="imgFile">
+                <ImgPreview>
+                  {/* 이미지 미리보기 Preview */}
+                  {imgUrls.length !== 0 ? (
+                    imgUrls.map((imgs, id) => {
+                      return (
+                        <img src={imgs} alt="업로드 사진 미리보기" key={id} />
+                      );
+                    })
+                  ) : (
+                    <PicNote>
+                      <Photo /> <span>이미지 미리보기</span>
+                    </PicNote>
+                  )}
+                </ImgPreview>
+                {/* 이미지 업로더 */}
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  accept="image/*"
+                  id="imgFile"
+                  name="imgFile"
+                  multiple
+                  onChange={uploadHandle}
+                  ref={imgRef}
+                />
+                <ImgUpload
+                  type="button"
+                  onClick={() => {
+                    imgRef.current.click();
+                  }}
+                >
+                  <Photo />
+                  <span>&nbsp;사진 업로드</span>
+                </ImgUpload>
+              </label>
+            </div>
+
+            <Content>
+              <Select>
+                <select
+                  onChange={onChangePost}
+                  name="category"
+                  value={myPost.category}
+                >
+                  <option defaultValue="all">크기 선택</option>
+                  <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
+                  <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
+                  <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
+                </select>
+              </Select>
+
+              <div>
+                <label htmlFor="text" />
+                <input
+                  type="text"
+                  name="title"
+                  value={myPost.title}
+                  maxLength={30}
+                  onChange={onChangePost}
+                  placeholder="제목"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="text" />
+                <Price
+                  type="text"
+                  name="price"
+                  value={myPost.price}
+                  onChange={onChangePost}
+                  placeholder="희망 가격"
+                />
+                <Won>원</Won>
+              </div>
+
+              <Select>
+                <label htmlFor="text" />
+                <select
+                  onChange={onChangePost}
+                  name="local"
+                  value={myPost.local}
+                >
+                  <option defaultValue="">위치 선택</option>
+                  <option value="강원도">강원도</option>
+                  <option value="경기도">경기도</option>
+                  <option value="경상남도">경상남도</option>
+                  <option value="경상북도">경상북도</option>
+                  <option value="광주광역시">광주광역시</option>
+                  <option value="대구광역시">대구광역시</option>
+                  <option value="대전광역시">대전광역시</option>
+                  <option value="부산광역시">부산광역시</option>
+                  <option value="서울특별시">서울특별시</option>
+                  <option value="울산광역시">울산광역시</option>
+                  <option value="인천광역시">인천광역시</option>
+                  <option value="전라남도">전라남도</option>
+                  <option value="전라북도">전라북도</option>
+                  <option value="충청남도">충청남도</option>
+                  <option value="충청북도">충청북도</option>
+                </select>
+              </Select>
+
+              <div>
+                <label htmlFor="text" />
+                <Textarea
+                  type="text"
+                  name="content"
+                  value={myPost.content}
+                  maxLength={200}
+                  onChange={onChangePost}
+                  placeholder="내용"
+                  style={{ minHeight: "100px" }}
+                />
+              </div>
+            </Content>
+          </Form>
+
+          {/* <FormBtn
+            onClick={onClose}
+            style={{ backgroundColor: "#838383", color: "#fff" }}
+          >
+            취소
+          </FormBtn>
+          <FormBtn onClick={writeSubmit} style={{ backgroundColor: "#ED9071" }}>
+            저장
+          </FormBtn> */}
         </div>
         <div>
-          <label htmlFor="imgFile">
-            <ImgPreview>
-              {/* 이미지 미리보기 Preview */}
-              {imgUrls.length !== 0 ? (
-                imgUrls.map((imgs, id) => {
-                  return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
-                })
-              ) : (
-                <PicNote>
-                  <Photo /> <span>이미지 미리보기</span>
-                </PicNote>
-              )}
-            </ImgPreview>
-            {/* 이미지 업로더 */}
-            <input
-              type="file"
-              style={{ display: "none" }}
-              accept="image/*"
-              id="imgFile"
-              name="imgFile"
-              multiple
-              onChange={uploadHandle}
-              ref={imgRef}
-            />
-            <ImgUpload
-              type="button"
-              onClick={() => {
-                imgRef.current.click();
-              }}
-            >
-              <Photo />
-              <span>&nbsp;사진 업로드</span>
-            </ImgUpload>
-          </label>
+          <FormBtn
+            onClick={onClose}
+            style={{ backgroundColor: "#838383", color: "#fff" }}
+          >
+            취소
+          </FormBtn>
+          <FormBtn onClick={writeSubmit} style={{ backgroundColor: "#ED9071" }}>
+            저장
+          </FormBtn>
         </div>
-
-        <Content>
-          <Select>
-            <select
-              onChange={onChangePost}
-              name="category"
-              value={myPost.category}
-            >
-              <option defaultValue="all">크기 선택</option>
-              <option value="small">소형 - 6kg 이하 | 20cm 이하</option>
-              <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
-              <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
-            </select>
-          </Select>
-
-          <div>
-            <label htmlFor="text" />
-            <input
-              type="text"
-              name="title"
-              value={myPost.title}
-              maxLength={30}
-              onChange={onChangePost}
-              placeholder="제목"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="text" />
-            <Price
-              type="text"
-              name="price"
-              value={myPost.price}
-              onChange={onChangePost}
-              placeholder="희망 가격"
-            />
-            <Won>원</Won>
-          </div>
-
-          <Select>
-            <label htmlFor="text" />
-            <select onChange={onChangePost} name="local" value={myPost.local}>
-              <option defaultValue="">위치 선택</option>
-              <option value="강원도">강원도</option>
-              <option value="경기도">경기도</option>
-              <option value="경상남도">경상남도</option>
-              <option value="경상북도">경상북도</option>
-              <option value="광주광역시">광주광역시</option>
-              <option value="대구광역시">대구광역시</option>
-              <option value="대전광역시">대전광역시</option>
-              <option value="부산광역시">부산광역시</option>
-              <option value="서울특별시">서울특별시</option>
-              <option value="울산광역시">울산광역시</option>
-              <option value="인천광역시">인천광역시</option>
-              <option value="전라남도">전라남도</option>
-              <option value="전라북도">전라북도</option>
-              <option value="충청남도">충청남도</option>
-              <option value="충청북도">충청북도</option>
-            </select>
-          </Select>
-
-          <div>
-            <label htmlFor="text" />
-            <input
-              type="text"
-              name="content"
-              value={myPost.content}
-              maxLength={200}
-              onChange={onChangePost}
-              placeholder="내용을 입력해주세요"
-              style={{ minHeight: "100px" }}
-            />
-          </div>
-        </Content>
-      </Form>
-
-      <FormBtn style={{ backgroundColor: "#838383", color: "#fff" }}>
-        취소
-      </FormBtn>
-      <FormBtn onClick={writeSubmit} style={{ backgroundColor: "#ED9071" }}>
-        저장
-      </FormBtn>
-    </Layouts>
+        
+      </Layouts>
+    </div>
   );
 };
 export default EditDetail;
 
 const Layouts = styled.div`
-  width: 360px;
+  width: 340px;
   min-height: 514px;
   height: 514.3px;
+  /* background-color: aqua; */
   background-color: #f6f0ee;
-  margin: auto;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -237,7 +264,16 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   width: 318.82px;
-  margin: 40.34px auto 0;
+  margin: 9.7px auto 0;
+`;
+
+const Top = styled.span`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 32px;
+  font-weight: 110;
+  line-height: 38.19px;
+  color: rgba(237, 144, 113, 1);
+  margin-bottom: 12.59px;
 `;
 
 const PicNote = styled.div`
@@ -246,6 +282,13 @@ const PicNote = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 65.33px;
+  span {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: rgba(57,57,57,0.93);
+  }
 `;
 
 const ImgUpload = styled.button`
@@ -263,6 +306,13 @@ const ImgUpload = styled.button`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  span {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: rgba(57, 57, 57, 0.93);
+  }
 `;
 
 const ImgPreview = styled.div`
@@ -274,12 +324,13 @@ const ImgPreview = styled.div`
 
 const Content = styled.div`
   input {
-    width: 295px;
+    width: 318px;
     height: 33.78px;
     margin: 6.115px auto 6.115px;
     padding-left: 19.96px;
     border: 1px solid #929292;
     border-radius: 3px;
+    background-color: rgba(243, 243, 243, 0.64);
     ::placeholder {
       color: #5e5e5e;
       font-family: "Spoqa Han Sans Neo", sans-serif;
@@ -293,10 +344,13 @@ const Price = styled.input`
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+  padding-left: -10px;
+  /* margin-left: -20px; */
 `;
 
 const Won = styled.span`
-  margin-left: -30px;
+  margin-left: -35px;
+  margin-right: 20px;
   color: #787878;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-weight: 300;
@@ -310,12 +364,27 @@ const Select = styled.div`
     border-radius: 3px;
     width: 318px;
     height: 33.78px;
-    padding-left: 19.96px;
+    padding-left: 17px;
+    background-color: rgba(243, 243, 243, 0.64);
     font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
-    ::placeholder {
-      color: #5e5e5e;
-    }
+    color: rgba(94, 94, 94, 1);
+  }
+`;
+
+const Textarea = styled.textarea`
+  margin: 6.115px auto 6.115px;
+  width: 318.82px;
+  height: 148.13px;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  padding: 13.85px 0 0 19.96px;
+  background-color: rgba(243, 243, 243, 0.64);
+  ::placeholder {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    line-height: 19.09px;
+    color: rgba(120, 120, 120, 1);
   }
 `;
 
@@ -323,7 +392,7 @@ const Select = styled.div`
 const FormBtn = styled.button`
   cursor: pointer;
   margin: 8.805px auto 0;
-  width: 177px;
+  width: 167.5px;
   height: 45.16px;
   border: none;
   font-family: "Spoqa Han Sans Neo", sans-serif;

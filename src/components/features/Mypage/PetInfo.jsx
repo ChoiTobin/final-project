@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __deleteMyPet, __getMyPet } from "../../../redux/modules/mypageSlice";
 import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";
+import ModalPortal from "../../element/ModalPortal";
+import EditPetInfo from "../Mypage/EditPetInfo"
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
 
 const PetInfo = ({ myPets }) => {
@@ -17,6 +19,16 @@ const PetInfo = ({ myPets }) => {
     dispatch(__deleteMyPet(id));
     window.alert("반려동물 정보를 삭제하시겠습니까?");
     window.location.reload();
+  };
+
+  const [edit, setEdit] = useState(false);
+
+  const openEditModal = () => {
+    setEdit(true);
+  };
+
+  const closeEditModal = () => {
+    setEdit(false);
   };
 
   // 반려동물 정보 조회
@@ -43,8 +55,12 @@ const PetInfo = ({ myPets }) => {
                     </div>
                     <Icon>
                       {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
-                      <Edit />
-
+                      <Edit onClick={openEditModal} />
+                      {edit && (
+                        <ModalPortal>
+                          <EditPetInfo onClose={closeEditModal}/>
+                        </ModalPortal>
+                        )}
                       <Delete onClick={() => onDeleteMyPet(pet.id)} />
                     </Icon>
                   </Down>
@@ -136,5 +152,5 @@ const Age = styled.span`
 `;
 
 const Icon = styled.div`
-  gap: 8.31px;
+  background-color: yellowgreen;
 `;

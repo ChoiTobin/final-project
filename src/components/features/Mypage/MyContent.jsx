@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,9 @@ import { ReactComponent as DateColor } from "../../../img/datecolor.svg";
 import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";
 import { ReactComponent as Dates } from "../../../img/date.svg";
+import ModalPortal from "../../element/ModalPortal";
+import EditDetail from "./EditDetail";
+import "../../element/MyModal.css";
 
 // 내가 쓴 게시글 1개
 const MyContent = ({ myPost }) => {
@@ -20,6 +23,16 @@ const MyContent = ({ myPost }) => {
     window.confirm("해당 게시글을 삭제하시겠습니까?");
     window.location.reload();
   };
+
+  const [modify, setModify] = useState(false);
+
+  const openModifyModal = () => {
+    setModify(true)
+  }
+
+  const closeModifyModal = () => {
+    setModify(false)
+  }
 
   // 내가 쓴 글 조회
   useEffect(() => {
@@ -42,25 +55,32 @@ const MyContent = ({ myPost }) => {
                   >
                     <State>{post.state}</State>
                     <Title>{post.title}</Title>
-                    <div>
-                      <Date>
-                        <DateColor />
-                        &nbsp;{post.date}
-                      </Date>
-                    </div>
+                    <Icon>
+                      {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
+                      <Edit
+                        onClick={openModifyModal}
+                        style={{ cursor: "pointer" }}
+                      />
+                      {modify && (
+                        <ModalPortal>
+                          <div className="MyModal">
+                            <EditDetail onClose={closeModifyModal} />
+                          </div>
+                        </ModalPortal>
+                      )}
+                      <Delete
+                        onClick={() => onDeleteMyPost(post.id)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </Icon>
                   </Main>
 
                   <Down className="bottom-line">
                     <CreatedAt>
                       <Dates />
-                      {post.createdAt}
+                      &nbsp;{post.date}
+                      <span>{post.createdAt}</span>
                     </CreatedAt>
-                    <Icon>
-                      {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
-                      <Edit />
-
-                      <Delete onClick={() => onDeleteMyPost(post.id)} />
-                    </Icon>
                   </Down>
                 </Content>
               );
@@ -136,33 +156,31 @@ const Title = styled.span`
   /* text-align: center; */
 `;
 
-const Date = styled.span`
-  width: 38.5px;
-  height: 12px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 11.93px;
-  color: "#ED9071";
-  /* margin-left: 19px; */
-  gap: 3.94px;
-`;
-
 const Down = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 168px;
+  gap: 100px;
 `;
 
 const CreatedAt = styled.span`
-  width: 73px;
-  height: 12px;
+  width: 129.49px;
+  height: 12.01px;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 10px;
   color: "#B0B0B0";
   margin-top: 10px;
+  gap: 18.84;
+  span {
+    color: #606060;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 10px;
+    line-height: 11.93px;
+    margin-left: 10px;
+  }
 `;
 
 const Icon = styled.div`
-  gap: 8.31px;
+  gap: 16px;
+  display: flex;
+  flex-direction: row;
 `;

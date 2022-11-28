@@ -8,12 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
 }
 
-.MyModal .Content {
-  background-color: #fff;
+.MyModal .content {
+  background: #f6f0ee;
   padding: 1rem;
-  width: 400px;
+  width: 300px;
   height: auto;
+  margin-left: -6.5px;
 }

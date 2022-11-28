@@ -87,7 +87,6 @@ const Flex2 = styled.div`
   margin-top: 5px;
 `;
 const Listmap = styled.div`
-  background-color: yellowgreen;
   width: 360px;
   max-height: 344.96px;
   margin: auto;
