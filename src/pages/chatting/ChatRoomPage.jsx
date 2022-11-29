@@ -8,11 +8,12 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 // import ChatSubmitBox from "./ChatSubmitBox";
 // import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-import {ListReducer} from "../../redux/modules/chattingSlice"
-
-
+import {ListReducer} from "../../redux/modules/chattingSlice";
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
+import Modal2 from "../chatting/Chattmodalfolder/Modal2";
+
+
 
 
 function ChatRoomPage() {
@@ -27,7 +28,8 @@ function ChatRoomPage() {
   const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
 
-  console.log("빈배열????????",listReducer)
+
+
 
   let postId = Number(id)
 
@@ -42,7 +44,7 @@ function ChatRoomPage() {
       postId:postId,
       roomId:1
     }));
-    
+
     return () => {
       onbeforeunloda()
       
@@ -56,12 +58,13 @@ function ChatRoomPage() {
   
     wsConnectSubscribe()
     
+    
     return () => {
+      console.log("???????")
       onbeforeunloda()
       
     };
-    
-  
+ 
   }, [chatList.roomId]);
   
 
@@ -93,12 +96,10 @@ function ChatRoomPage() {
               chatList.roomId
           }`,
             (response) => {
-              console.log("제발되라!!!!",response)
+              console.log("어떻게 나오는지",response)
               let data = JSON.parse(response.body)
               dispatch(ListReducer(data))
-              
-              
-              
+
             }
             );
         },
@@ -134,7 +135,9 @@ const onbeforeunloda = () =>{
     ws.disconnect(
       ()=>{
         ws.unsubscribe("sub-0");
-        clearTimeout(waitForConnection);
+        clearTimeout(
+          waitForConnection
+          )
       },
     
     {Access_Token: localStorage.getItem('Access_Token')}
@@ -196,20 +199,23 @@ useEffect(() => {
 return (
         <LoginContainer>
                 <Header>
+               
                      <div>
                       <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
-                     
+                      
                      <div>
                       <Nickname>{chatList.postNickname}</Nickname>
-                      <Time>30분 전 접속</Time>
+                      <Time>30분 전 접속 </Time>
+                      
                     </div>
-                    <Modal/>
+                    
+                    <Modal2/>
                 </Header>
                 <Section>
                     <Profile><Img2>{chatList.postImg}</Img2></Profile>
                     <TextBox>
-    
+                        
                         <OrangeSpan>{chatList.state}</OrangeSpan>
                         <Span></Span>
                         <Title>{chatList.title}</Title>
@@ -220,9 +226,8 @@ return (
                 </Section>
                   <DivAt>날짜 오늘</DivAt> 
                   <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
-
                       
-                      { chatList.chatList !== undefined && chatList.chatList !== null &&
+                      {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
                        chatList.chatList.map((item,i)=>{
                           return(
                           
@@ -233,7 +238,7 @@ return (
                         
                           )
                         })
-                      }
+                      } */}
 
                       { listReducer.chatList !== undefined && listReducer.chatList !== null &&
                         listReducer.chatList.map((item,i)=>{
@@ -253,7 +258,7 @@ return (
 
                     <Input  value={chatBody}  onKeyPress={appKeyPress}  onChange={inputHandler}></Input>
                     <ArrowImg  onSubmit={appKeyPress} onClick={onSubmitHandler} src={require("../chatting/chattingImg/iconSand.png")}></ArrowImg>
-                </Chatput>   
+                </Chatput>
         </LoginContainer>
   );
 }
@@ -299,6 +304,8 @@ margin-bottom:3px;
 float:right;
 
 
+overflow:hidden
+
 `
 const Colorspan = styled.div`
 background:#ED9071;
@@ -312,6 +319,7 @@ text-align:left;
 width:150px;
 margin-bottom:3px;
 
+overflow:hidden
 
 
 `

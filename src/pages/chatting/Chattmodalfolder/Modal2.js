@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import "./Modal.css";
 import styled from "styled-components";
+import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
 //import { IoMdHome, IoLogoGithub } from "react-icons/io";
 import postChat from "../../../redux/modules/chattingSlice";
 import { trueChat,clearChat } from "../../../redux/modules/chattingSlice";
 
-export default function Modal() {
+
+
+ function Modal2() {
   const [modal, setModal] = useState(false);
   
   const dispatch = useDispatch();
@@ -14,8 +16,10 @@ export default function Modal() {
   const [WriteTrue,setWriteTrue ] =useState ({
     mode:false
   })
+
   const onClickButton = (e) => {
     e.preventDefault()
+
     setModal(!modal);
     setWriteTrue(WriteTrue.mode=true)
     dispatch(trueChat(WriteTrue))
@@ -31,6 +35,7 @@ export default function Modal() {
   const toggleModal = () => {
     setModal(!modal);
 
+
   };
   if(modal) {
     document.body.classList.add('active-modal')
@@ -43,34 +48,35 @@ export default function Modal() {
       {
       count== true?
       <>
-      <P>
-        <Himg2 onClick={toggleModal} src={require("../chattingImg/20221121_141959.png")}/>
-        <Span>완료</Span>
-      </P> 
-    </>
+        <P>
+          <Himg2 onClick={toggleModal} src={require("../chattingImg/20221121_141959.png")}/>
+          <Span>완료</Span>
+        </P> 
+      </>
       
         :
+       <> 
         <P>
           <Himg onClick={toggleModal} src={require("../chattingImg/20221121_141505.png")}/>
           <Span>수락</Span>
         </P>
+      </>
       }
       {/* 모달창 승인버튼 green OR black */}
 
       {
       modal && ( 
+
         <div className="modal">
-            <div onClick={toggleModal} className="overlay">
-            </div>
+            <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <div className="modaltwo">
+            <div className="modalTwo">
               <div className="content">
                 <span  className="pink">'서폿구책'</span>님의
                 <span className="pink">'저와 산서폿'</span>
                 <br/>를 수락하시겠습니까?
               </div>
             </div>
-
             <button className="falseButton" onClick={toggleModal}>취소</button>
             <button className="trueButton" onClick={onClickButton}>수락</button>
           </div>
@@ -79,6 +85,10 @@ export default function Modal() {
     </>
   );
 }
+
+
+export default Modal2
+
 const Span = styled.span`
 margin-left:1px;
 font-size:10px;

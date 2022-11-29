@@ -1,8 +1,12 @@
 body.active-modal {
     overflow-y: hidden;
+    background: rgba(24, 24, 24, 0.8);
+
   }
+  
 
   .modal {
+    background-color: red;
     position: relative;
     z-index:999;
     top: 0;
@@ -10,6 +14,7 @@ body.active-modal {
     right: 0;
     bottom: 0;
     position: fixed;
+
   }
 
   
@@ -36,7 +41,7 @@ body.active-modal {
     /* padding: 14px 28px; */
     border-radius: 10px;
   }
-  .modaltwo{
+  .modalTwo{
     width: 260px;
     height: 100px;
   }

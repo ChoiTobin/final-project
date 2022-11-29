@@ -12,7 +12,6 @@ const initialState = {
   createRoom: [],
   roomList:[],
   chatList:[],
-  chatList2:[],
   listReducer:[],
   chatTrueFalse:false,
   isLoading: false,
@@ -48,22 +47,22 @@ export const __getRoomList = createAsyncThunk(
 
 
 
-
-
-
 export const __getinitialChatList = createAsyncThunk(
-  "/chat/__getinitialChatList",
+  "/chat/__getInitialChatList",
   async (payload, thunkAPI) => {
     try {
-
-      const response = await Apis.getRoomList(payload)
-
+      console.log("asdasdas페이로드!!",payload)
+      const response = await Apis.getInitialChatList(payload)
+      console.log("보내고나서 실행~~~~~~",response)
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.data);
     }
   }
 );
+
+
+
 
 
 const chatSlice = createSlice({
@@ -83,8 +82,9 @@ const chatSlice = createSlice({
     ListReducer: (state, action) => {
       // console.log("하하하",action.payload,"hahahaha",current(state))
       const chatting = state.chatList
-      console.log("눈물",state.chatList.chatList)
+
       //state.chatList.chatList.push(action.payload)
+      
       state.chatList.chatList.push(action.payload)
 
  
@@ -123,8 +123,8 @@ const chatSlice = createSlice({
     },
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
-      
-      state.chatList = action.payload[0];
+
+      state.chatList = action.payload;
       
     
     },

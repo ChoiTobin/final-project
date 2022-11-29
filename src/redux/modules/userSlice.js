@@ -128,6 +128,7 @@ export const __userLogin = createAsyncThunk(
       .then((response)=>{
         //console.log(response.data)
         if (response.data.status === 200) {
+          console.log("어떤값이들어올까?~~~~~~~~~~~~~~~~~",response)
           //setCookie represh token 받기 
           localStorage.setItem("Access_Token", response.headers.access_token)
           localStorage.setItem("user-nickname", response.data.data.nickname)

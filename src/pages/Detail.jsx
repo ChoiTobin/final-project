@@ -52,7 +52,7 @@ const Detail = () => {
             post.imgs.map((pic) => {
             if (post.imgs.length !== 0) {
             return (
-            <Carousel.Item>
+            <Carousel.Item key={post.imgs.length}>
             <Img src={pic} alt="postImg" />
             </Carousel.Item>
             );

@@ -15,18 +15,24 @@ const ChatList = () => {
     const Room = useSelector((state) => state.chatting.roomList);
 
 
+    
     useEffect(() => {
 
         dispatch(__getRoomList());
       }, []);
+
 const onClickChatting = (item) => {
 
 
   navigator(`/ChatRoomPage/${item.postId}`);
+
   dispatch(__getinitialChatList({
+   
     postId:item.postId,
     roomId:item.roomId,
+    
 }));
+
 
 }
 
@@ -39,8 +45,9 @@ const onClickChatting = (item) => {
              Room.map((item,i)=>{
                return(
                
-                <div key={uuidv4()}>
-                    <span>{}</span>
+                <div key={i}>
+
+                    <span>{item.title}</span>
                     <span>
                         <button onClick={()=>onClickChatting(item)}>
                         {item.postId}번방

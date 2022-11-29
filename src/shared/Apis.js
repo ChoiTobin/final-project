@@ -52,7 +52,7 @@ export const Apis = {
   //createRoom----------------------------------------------------------------
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
   getRoomList: () => token.get(`/roomList`),
-  getinitialChatList: (getInitialList) => token.get(`/room`,getInitialList),
+  getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
 
 
 
