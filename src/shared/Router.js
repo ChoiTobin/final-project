@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import SignIn from "../pages/SignIn"
 import SignUp from "../pages/SignUp";
-import Form from "../components/features/Form";
+import Form from "../components/features/Posts/Form";
 import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
-import PostList from "../components/features/PostList";
-import ChatRoomPage from "../pages/chatting/ChatRoomPage";
+import PostList from "../components/features/Posts/PostList";
+import ChatRoomPage from "../pages/ChatRoomPage";
 import ChatList from "../pages/chatting/element/ChatList";
 import Rating from "../components/features/Rating";
 // import ChatList from "../pages/chatting/element/ChatList";

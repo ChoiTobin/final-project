@@ -1,18 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-// import list from "../modules/listSlice";
-// import search from "../modules/searchSlice";
 import mypage from "../modules/mypageSlice";
 import post from "../modules/postSlice";
 import account from "../modules/userSlice";
 import chatting from "../modules/chattingSlice";
 
-
 const store = configureStore({
     
   reducer: {
-    // list,
-    // search,
     mypage,
     post,
     account,

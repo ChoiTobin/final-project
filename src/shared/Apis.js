@@ -48,9 +48,12 @@ export const Apis = {
   loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
-  
-  //createRoom----------------------------------------------------------------
+
+  //createRoom
+  CreateRoom: (createRoom) => token.post(`/room`, createRoom),
+  // getRoomList: () => token.get(`/roomList`),
   getRoomList: () => token.get(`/roomList`),
+
   getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
   
   // 게시글 작성
