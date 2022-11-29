@@ -3,10 +3,8 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import mypage from "../modules/mypageSlice";
 import post from "../modules/postSlice";
-import search from "../modules/searchSlice";
 import account from "../modules/userSlice";
 import chatting from "../modules/chattingSlice";
-
 
 const store = configureStore({
     
@@ -14,7 +12,6 @@ const store = configureStore({
 
     mypage,
     post,
-    search,
     account,
     chatting,
   },

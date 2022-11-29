@@ -3,31 +3,30 @@ import { useDispatch } from "react-redux";
 import { __addPost } from "../../redux/modules/postSlice";
 
 const Image = () => {
-  const [imgUrl, setImgUrl] = useState(null)
-  const [imgFile, setImgFile] = useState("")
-  const imgRef = useRef()
+  const [imgUrl, setImgUrl] = useState(null);
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef();
 
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   const onChangeImg = () => {
-    const reader = new FileReader()
+    const reader = new FileReader();
 
-    const img = imgRef.current.files[0]
-    reader.readAsDataURL(img)
+    const img = imgRef.current.files[0];
+    reader.readAsDataURL(img);
     reader.onloadend = () => {
-      setImgUrl(reader.result)
-      setImgFile(img)
-    }
-  }
-  
-  const onPost = (event) => {
-    event.preventDefault()
-    const formData = new FormData()
+      setImgUrl(reader.result);
+      setImgFile(img);
+    };
+  };
 
-    formData.append("img", imgFile)
-    dispatch(__addPost(formData))
-  }
+  const onPost = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("img", imgFile);
+    dispatch(__addPost(formData));
+  };
 
   return (
     <div>
@@ -52,6 +51,6 @@ const Image = () => {
       )}
     </div>
   );
-}
+};
 
 export default Image;
