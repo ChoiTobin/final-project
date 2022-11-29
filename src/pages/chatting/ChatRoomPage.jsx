@@ -219,7 +219,7 @@ return (
                       <Time>30분 전 접속 </Time>
                     </div>
                     <span>
-                    <Modal2></Modal2>
+                    {/* 잠시주석 <Modal2></Modal2> */}
                     </span>
                 </Header>
                 <Section>
