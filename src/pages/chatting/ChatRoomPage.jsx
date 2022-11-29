@@ -11,7 +11,7 @@ import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import {ListReducer} from "../../redux/modules/chattingSlice";
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
-import Modal2 from "../chatting/Chattmodalfolder/Modal2";
+
 
 
 
@@ -44,6 +44,7 @@ function ChatRoomPage() {
       postId:postId,
       roomId:1
     }));
+    
 
     return () => {
       onbeforeunloda()
@@ -60,12 +61,15 @@ function ChatRoomPage() {
     
     
     return () => {
-      console.log("???????")
+
       onbeforeunloda()
       
     };
  
   }, [chatList.roomId]);
+  //새로고침 하지 않으면 메시지가 2개로 나오는 issue 떄문에 두번 연결
+  //끊어주지 않으면 또 다시 이전화면 다녀오면 2개 나오는 issue때문에 
+
   
 
 
@@ -85,29 +89,32 @@ function ChatRoomPage() {
 
 
 
-
-
   function wsConnectSubscribe() {
     try {
       ws.connect(
         headers,(frame) => {
+
           ws.subscribe(
             `/sub/${
               chatList.roomId
           }`,
             (response) => {
-              console.log("어떻게 나오는지",response)
+
               let data = JSON.parse(response.body)
               dispatch(ListReducer(data))
 
             }
             );
+
         },
       );
     } catch (error) {
     }
 
   }
+
+
+  
   
 
   function waitForConnection(ws, callback) {
@@ -117,6 +124,7 @@ function ChatRoomPage() {
             
             if (ws.ws.readyState === 1) {
                 callback();
+                
 
                 // 연결이 안 되었으면 재호출
             } else {
@@ -146,6 +154,7 @@ const onbeforeunloda = () =>{
       console.log("연결구독해체 에러",e)
   }
 }
+//채팅 메시지 여러개로 나오는것 구독해체로 해결 
 
 
 
@@ -199,7 +208,7 @@ useEffect(() => {
 return (
         <LoginContainer>
                 <Header>
-               
+
                      <div>
                       <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
@@ -209,8 +218,7 @@ return (
                       <Time>30분 전 접속 </Time>
                       
                     </div>
-                    
-                    <Modal2/>
+
                 </Header>
                 <Section>
                     <Profile><Img2>{chatList.postImg}</Img2></Profile>

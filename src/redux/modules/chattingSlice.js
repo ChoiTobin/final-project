@@ -80,11 +80,6 @@ const chatSlice = createSlice({
     },
  
     ListReducer: (state, action) => {
-      // console.log("하하하",action.payload,"hahahaha",current(state))
-      const chatting = state.chatList
-
-      //state.chatList.chatList.push(action.payload)
-      
       state.chatList.chatList.push(action.payload)
 
  

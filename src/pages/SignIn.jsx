@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/KakaoLogin";
 import { useLocation } from "react-router-dom";
+import Modal2 from "./chatting/Chattmodalfolder/Modal2";
+
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,6 +52,7 @@ const SignIn = () => {
     <div>
       <LoginContainer>
         <Wrap>
+
           <div>
             <LoginBox>
               <img src={require("../img/LogoImg.png")} width="90px" height="70px"/>

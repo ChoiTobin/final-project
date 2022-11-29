@@ -19,7 +19,6 @@ import { trueChat,clearChat } from "../../../redux/modules/chattingSlice";
 
   const onClickButton = (e) => {
     e.preventDefault()
-
     setModal(!modal);
     setWriteTrue(WriteTrue.mode=true)
     dispatch(trueChat(WriteTrue))
@@ -81,7 +80,8 @@ import { trueChat,clearChat } from "../../../redux/modules/chattingSlice";
             <button className="trueButton" onClick={onClickButton}>수락</button>
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 }

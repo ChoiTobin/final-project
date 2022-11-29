@@ -6,7 +6,7 @@ body.active-modal {
   
 
   .modal {
-    background-color: red;
+
     position: relative;
     z-index:999;
     top: 0;

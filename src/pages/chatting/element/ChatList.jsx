@@ -35,12 +35,13 @@ const onClickChatting = (item) => {
 
 
 }
+//들어갈때 get요청
 
 
 
   return (
       <>
-            {  
+            { 
              Room !== undefined && Room !== [] &&
              Room.map((item,i)=>{
                return(
