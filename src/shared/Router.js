@@ -9,7 +9,8 @@ import Detail from "../pages/Detail";
 import PostList from "../components/features/PostList";
 import ChatRoomPage from "../pages/chatting/ChatRoomPage";
 import ChatList from "../pages/chatting/element/ChatList";
-
+import Rating from "../components/features/Rating";
+// import ChatList from "../pages/chatting/element/ChatList";
 // 추가
 import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
@@ -20,12 +21,14 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/Rating" element={<Rating />} />
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/form" element={<Form />} />
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
+        {/* <Route path="/chat" element={<ChatList/>} /> */}
       {/* 추가 */}  
       
       <Route path="/chat" element={<ChatList/>} />

@@ -15,7 +15,7 @@ const Post = () => {
     title:"",
     price:"",
     content:"",
-    category:"크기",
+    category:"크기선택",
     state:"진행중",
     local:"",
     date:"",
@@ -74,13 +74,12 @@ const Post = () => {
       type: "application/json"
     }));
     dispatch(__addPost(formData));	  
-  console.log("이게가는지?",formData)  
+  // console.log("이게가는지?",formData)  
   }
-    
+  
   return (
     <Bg>
       <Form>
-      <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POSTs</p>
         <label htmlFor="imgFile" />
             <Carousel fade >
                 { 
@@ -113,7 +112,7 @@ const Post = () => {
           <img src={upload} style={{ width: "60px" }} alt="" />
         </ImgUpload>
         <Select name="category" value={conimal.category || ""} onChange={onChangeHandler} required>
-            <option default value="크기">크기 선택</option>
+            <option default value="대형">크기 선택</option>
             <option value="대형">대형- 15kg초과</option>
             <option value="중형">중형- 7kg초과</option>
             <option value="소형">소형- 5kg초과</option>
@@ -162,7 +161,6 @@ const Post = () => {
         <FormBtn2 onClick={writeSubmit}>업로드</FormBtn2>
         </ButtonGroup>
       </Form>
-      
     </Bg>
   )
 }
@@ -182,20 +180,6 @@ const P2 = styled.p`
   left:333px;
   top:5px;
   color:#787878;
-`
-const Input4 =styled.input`
-  width:100%;
-  height:36px;
-  text-indent:8px;
-  outline: none;
-  border:1px solid #d8d8d8;
-  border-radius:3px;
-  margin-bottom:12px;
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 `
 const Bg = styled.div`
   width:95%;
