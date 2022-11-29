@@ -14,7 +14,7 @@ export default function Mytab() {
   const tabClickHandler = (index) => {
     setActiveIndex(index);
   };
-
+      //
   const tabContArr = [
     {
       tabTitle: (
