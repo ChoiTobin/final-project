@@ -26,7 +26,7 @@ const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/form" element={<Form />} />
         <Route path="/mypage" element={<MyPage/>}/>
-        <Route path="/detail/:id" element={<Detail/>}/>
+        <Route path="/detail/:id" element={<Detail/>}/>git pu
         <Route path="/postlist" element={<PostList/>}/>
         {/* <Route path="/chat" element={<ChatList/>} /> */}
       {/* 추가 */}  

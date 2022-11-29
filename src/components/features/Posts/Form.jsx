@@ -130,7 +130,6 @@ const Post = () => {
           />
           <P2>원</P2>
         </One>
-
         <Select2  name="local" value={conimal.local || ""} required onChange={onChangeHandler} >
             <option default value='지역을 선택해주세요'>위치</option>
             <option value='서울특별시'>서울특별시</option>
