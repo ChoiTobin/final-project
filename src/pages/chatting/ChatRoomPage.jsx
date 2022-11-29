@@ -221,7 +221,7 @@ return (
                     <span>
                     {/* 잠시주석 <Modal2></Modal2> */}
                     </span>
-                </Header>
+                </Header> 
                 <Section>
                     <Profile><Img2>{chatList.postImg}</Img2></Profile>
                     <TextBox>
