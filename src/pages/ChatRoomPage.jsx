@@ -139,7 +139,7 @@ function ChatRoomPage() {
         {chatList.chatList !== undefined &&
           chatList.chatList !== null &&
           chatList.chatList.map((item, i) => {
-            return localStorage.getItem("user-nickname") == item.sender ? (
+            return localStorage.getItem("user-nickname") === item.sender ? (
               <TextBox key={i}>
                 <Colorspan>{item.message}</Colorspan>
               </TextBox>
@@ -151,7 +151,7 @@ function ChatRoomPage() {
           })}
         {listReducer !== undefined &&
           listReducer.map((item, i) => {
-            return localStorage.getItem("user-nickname") == item.sender ? (
+            return localStorage.getItem("user-nickname") === item.sender ? (
               <TextBox key={i}>
                 <Colorspan>{item.message}</Colorspan>
               </TextBox>

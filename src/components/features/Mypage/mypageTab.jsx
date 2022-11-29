@@ -8,6 +8,9 @@ export default function Mytab() {
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPets = useSelector((state) => state.mypage.myPets);
 
+  console.log("포스트들어와라", myPosts);
+  console.log("동물들도 들어와", myPets);
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {

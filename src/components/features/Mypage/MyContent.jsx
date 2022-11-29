@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __deleteMyPost, __getMyPost } from "../../../redux/modules/mypageSlice";
-import { ReactComponent as DateColor } from "../../../img/datecolor.svg";
 import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";
 import { ReactComponent as Dates } from "../../../img/date.svg";
@@ -47,41 +46,51 @@ const MyContent = ({ myPost }) => {
             if (myPost.length !== 0) {
               return (
                 <Content key={post.id}>
-                  <Main
-                    className="top-line"
-                    onClick={() => {
-                      navigate(`/Detail/${post.id}`);
-                    }}
-                  >
-                    <State>{post.state}</State>
-                    <Title>{post.title}</Title>
-                    <Icon>
-                      {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
-                      <Edit
-                        onClick={openModifyModal}
-                        style={{ cursor: "pointer" }}
-                      />
-                      {modify && (
-                        <ModalPortal>
-                          <div className="MyModal">
-                            <EditDetail onClose={closeModifyModal} />
-                          </div>
-                        </ModalPortal>
-                      )}
-                      <Delete
-                        onClick={() => onDeleteMyPost(post.id)}
-                        style={{ cursor: "pointer" }}
-                      />
-                    </Icon>
-                  </Main>
+                  <div>
+                    <Main
+                      className="top-line"
+                      onClick={() => {
+                        navigate(`/Detail/${post.id}`);
+                      }}
+                    >
+                      <State
+                        style={
+                          post.state
+                            ? { color: "#ED9071" }
+                            : { color: "#A1A1A1" }
+                        }
+                      >
+                        {post.state}
+                      </State>
+                      <Title>{post.title}</Title>
+                    </Main>
 
-                  <Down className="bottom-line">
-                    <CreatedAt>
-                      <Dates />
-                      &nbsp;{post.date}
-                      <span>{post.createdAt}</span>
-                    </CreatedAt>
-                  </Down>
+                    <Down className="bottom-line">
+                      <CreatedAt>
+                        <Dates />
+                        &nbsp;{post.date}
+                        <span>{post.createdAt}</span>
+                      </CreatedAt>
+                    </Down>
+                  </div>
+                  <Icon>
+                    {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
+                    <Edit
+                      onClick={openModifyModal}
+                      style={{ cursor: "pointer" }}
+                    />
+                    {modify && (
+                      <ModalPortal>
+                        <div className="MyModal">
+                          <EditDetail onClose={closeModifyModal} />
+                        </div>
+                      </ModalPortal>
+                    )}
+                    <Delete
+                      onClick={() => onDeleteMyPost(post.id)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </Icon>
                 </Content>
               );
             } else {
@@ -117,8 +126,9 @@ const Layout = styled.div`
     background-color: #f6f0ee;
   }
 `;
+
 const Content = styled.div`
-  width: 360px;
+  width: 355px;
   height: 66px;
   background-color: #fff;
   border: none;
@@ -126,6 +136,9 @@ const Content = styled.div`
   margin: 9px auto 1.59px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
   padding: 14px 27.14px 14.68px 32.29px;
+  display: flex;
+  flex-direction: row;
+  gap: 33.72px;
 `;
 
 const Main = styled.div`
@@ -135,7 +148,7 @@ const Main = styled.div`
 `;
 
 const State = styled.span`
-  color: #ed9071;
+  /* color: #ed9071; */
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 14px;
   font-weight: 510;
@@ -153,13 +166,12 @@ const Title = styled.span`
   font-size: 14px;
   font-weight: 400;
   line-height: 16.71px;
-  /* text-align: center; */
 `;
 
 const Down = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  align-items: center;
 `;
 
 const CreatedAt = styled.span`
@@ -168,8 +180,8 @@ const CreatedAt = styled.span`
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 10px;
   color: "#B0B0B0";
-  margin-top: 10px;
-  gap: 18.84;
+  margin-top: 8.32px;
+  gap: 18.84px;
   span {
     color: #606060;
     font-family: "Spoqa Han Sans Neo", sans-serif;
@@ -183,4 +195,5 @@ const Icon = styled.div`
   gap: 16px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;

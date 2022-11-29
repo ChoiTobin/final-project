@@ -1,7 +1,13 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import Carousels from "../../element/Carousel";
+
+// React BootStrap Library Import
+import "bootstrap/dist/css/bootstrap.min.css";
+import { ButtonGroup } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
+
 import useImgUpload from "../../hooks/useImgUpload";
 import { ReactComponent as Photo } from "../../../img/photo.svg";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
@@ -91,7 +97,7 @@ const EditDetail = ({ onClose }) => {
               <label htmlFor="imgFile">
                 <ImgPreview>
                   {/* 이미지 미리보기 Preview */}
-                  {imgUrls.length !== 0 ? (
+                  {/* {imgUrls.length !== 0 ? (
                     imgUrls.map((imgs, id) => {
                       return (
                         <img src={imgs} alt="업로드 사진 미리보기" key={id} />
@@ -101,8 +107,27 @@ const EditDetail = ({ onClose }) => {
                     <PicNote>
                       <Photo /> <span>이미지 미리보기</span>
                     </PicNote>
-                  )}
+                  )} */}
+                  {/* <Carousels imgUrls={imgUrls} /> */}
+
+                  <Carousel fade>
+                    {imgUrls.map((img) => {
+                      return (
+                        <Carousel.Item
+                          key={img.id}
+                          style={{
+                            height: "169.13px",
+                            width: 318.82,
+                            objectFit: "contain",
+                          }}
+                        >
+                          <img src={img ? img : ""} alt=""/>
+                        </Carousel.Item>
+                      );
+                    })}
+                  </Carousel>
                 </ImgPreview>
+
                 {/* 이미지 업로더 */}
                 <input
                   type="file"
@@ -226,7 +251,6 @@ const EditDetail = ({ onClose }) => {
             저장
           </FormBtn>
         </div>
-        
       </Layouts>
     </div>
   );
@@ -237,8 +261,9 @@ const Layouts = styled.div`
   width: 340px;
   min-height: 514px;
   height: 514.3px;
-  /* background-color: aqua; */
+  /* background-color: yellow; */
   background-color: #f6f0ee;
+  margin-bottom: 150px;
 
   overflow-x: hidden;
   overflow-y: auto;

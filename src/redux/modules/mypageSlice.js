@@ -218,6 +218,7 @@ const mypageSlice = createSlice({
     [__getMyPage.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("여기서는?", action.payload)
       state.myInfo = action.payload;
     },
     [__getMyPage.rejected]: (state, action) => {
@@ -232,6 +233,7 @@ const mypageSlice = createSlice({
     [__getMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("내 글은?", action.payload)
       state.myPost = action.payload;
     },
     [__getMyPost.rejected]: (state, action) => {
@@ -246,6 +248,7 @@ const mypageSlice = createSlice({
     [__postMyImg.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("프사 이미지는", action.payload);
       state.myPic = action.payload;
     },
     [__postMyImg.rejected]: (state, action) => {
@@ -259,6 +262,7 @@ const mypageSlice = createSlice({
     [__getMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+      console.log("이거는?", action.payload)
       state.myPets = action.payload;
     },
     [__getMyPet.rejected]: (state, action) => {

@@ -6,6 +6,7 @@ import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";
 import ModalPortal from "../../element/ModalPortal";
 import EditPetInfo from "../Mypage/EditPetInfo"
+import "../../element/MyModal.css";
 // 마이페이지 반려동물 정보 - 최대 3마리까지 가능함 (여기는 기본 정보 컨텐츠만)
 
 const PetInfo = ({ myPets }) => {
@@ -34,7 +35,7 @@ const PetInfo = ({ myPets }) => {
   // 반려동물 정보 조회
   useEffect(() => {
     dispatch(__getMyPet());
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
@@ -44,26 +45,38 @@ const PetInfo = ({ myPets }) => {
             if (pet.length !== 0) {
               return (
                 <Content key={pet.id}>
-                  <Main>
+                  <Info>
                     <Category>{pet.category}</Category>
-                    <Name>{pet.name}</Name>
-                  </Main>
-
-                  <Down>
-                    <div>
-                      <Age> {pet.age}살</Age>
-                    </div>
-                    <Icon>
-                      {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
-                      <Edit onClick={openEditModal} />
-                      {edit && (
-                        <ModalPortal>
-                          <EditPetInfo onClose={closeEditModal}/>
-                        </ModalPortal>
-                        )}
-                      <Delete onClick={() => onDeleteMyPet(pet.id)} />
-                    </Icon>
-                  </Down>
+                    {/* <Category>
+                      
+                    </Category> */}
+                    <Text>
+                      <Main>
+                        <Name>{pet.name}</Name>
+                      </Main>
+                      <Down>
+                        <Age> {pet.age}살</Age>
+                      </Down>
+                    </Text>
+                  </Info>
+                  <Icon>
+                    {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
+                    <Edit
+                      onClick={openEditModal}
+                      style={{ cursor: "pointer" }}
+                    />
+                    {edit && (
+                      <ModalPortal>
+                        <div className="MyModal">
+                          <EditPetInfo onClose={closeEditModal} />
+                        </div>                        
+                      </ModalPortal>
+                    )}
+                    <Delete
+                      onClick={() => onDeleteMyPet(pet.id)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </Icon>
                 </Content>
               );
             } else {
@@ -100,57 +113,81 @@ const Layout = styled.div`
   }
 `;
 const Content = styled.div`
-  width: 360px;
+  width: 355px;
   height: 66px;
   background-color: #fff;
-  align-items: center;
   border: none;
   border-radius: 4px;
   margin: 9px auto 1.59px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 12px 40px 10.59px 38px;
+  padding: 17.39px 27.14px 14.68px 19.14px;
+  display: flex;
+  flex-direction: row;
+  gap: 33.72px;
 `;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 const Main = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
 `;
 
 const Category = styled.span`
   color: #ed9071;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 15px;
-  font-weight: 900;
-  margin-right: 7px;
+  font-size: 14px;
+  font-weight: 510;
+  line-height: 16.71px;
+  margin-right: 23.2px;
+  padding-top: 8px;
 `;
 
 const Name = styled.span`
   width: 130px;
-  height: 18px;
+  height: 17px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.71px;
 `;
 
 const Down = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 220px;
-`;
-
-const Age = styled.span`
-  width: 73px;
-  height: 12px;
+  align-items: center;
+  width: 129.49px;
+  height: 12.01px;
   font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 10px;
   color: "#B0B0B0";
-  margin-top: 10px;
+  margin-top: 8.32px;
+  gap: 18.84px;
+`;
+
+const Age = styled.span`
+  color: rgba(176, 176, 176, 1);
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 10px;
+  line-height: 11.93px;
+  margin-top: -4px;
 `;
 
 const Icon = styled.div`
-  background-color: yellowgreen;
+  gap: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

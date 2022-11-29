@@ -94,10 +94,11 @@ const Detail = () => {
               src={require("../img/text.png")}
               alt=""
             />
-            {post.content}진돗개 두 마리를 동시에 산책하고 싶어서 도움
+            {post.content}
+            {/* 진돗개 두 마리를 동시에 산책하고 싶어서 도움
             청해봅니다. 금액의 경우 협의 가능합니다. 가능한 빠른 연락 부탁드리며
             노쇼 하지 않으실 분들만 찾습니다! 진돗개 두 마리를 동시에 산책하고
-            싶어서 도움 청해봅니다.
+            싶어서 도움 청해봅니다. */}
           </ContentBox>
         </Overflow>
         <ProfileBox>

@@ -11,7 +11,6 @@ import { ReactComponent as MypageMono } from "../../img/mypage-fo.svg";
 import { useNavigate } from "react-router-dom/dist";
 
 const Footer = () => {
-  const [color, setColor] = useState(false);
   const navigate = useNavigate();
 
   const onClickChat = () => {
@@ -32,16 +31,10 @@ const Footer = () => {
 
   return (
     <Layout>
-      <HomeMono onClick={onClickHome} />
-      <ChatMono onClick={onClickChat} />
-      <WriteMono onClick={onClickWrite} />
-      <MypageMono onClick={onClickMy} />
-
-      {/* <Back onClick={() => onClickBack()}/>
-      <Chat onClick={() => onClickChat()}/>
-      <Home onClick={() => onClickHome()} />
-      <Write onClick={() => onClickWrite()}/>
-      <Mypage onClick={() => onClickMy()}/> */}
+      <HomeMono onClick={onClickHome} id="home" />
+      <ChatMono onClick={onClickChat} id="chat" />
+      <WriteMono onClick={onClickWrite} id="write" />
+      <MypageMono onClick={onClickMy} id="mypage" />
     </Layout>
   );
 };

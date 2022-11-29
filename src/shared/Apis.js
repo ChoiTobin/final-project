@@ -52,6 +52,9 @@ export const Apis = {
   //createRoom
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
   // getRoomList: () => token.get(`/roomList`),
+  getRoomList: () => token.get(`/roomList`),
+
+  getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
@@ -79,7 +82,7 @@ export const Apis = {
   // 마이페이지 반려동물 정보 조회
   getMyPetAX: () => token.get(`api/mypage/pet`),
   // 마이페이지 반려동물 정보 작성
-  postMyPetAX: (payload) => token.get(`api/mypage/pet`, payload),
+  postMyPetAX: (payload) => token.post(`api/mypage/pet`, payload),
   // 마이페이지 반려동물 정보 수정
   putMyPetAX: (payload) => token.put(`api/mypage/pet/${payload.id}`, payload),
   // 마이페이지 반려동물 정보 삭제
@@ -96,5 +99,7 @@ export const Apis = {
   getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
   getFilterAX: (categoryKeyword) => token.get(`/api/filter?category=${categoryKeyword}`),
+  // 평점
+  getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }
 export default Apis

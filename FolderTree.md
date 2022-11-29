@@ -1,9 +1,8 @@
 ```
 final-project
 ├─ .gitignore
-├─ .vscode
-│  └─ settings.json
 ├─ db.json
+├─ FolderTree.md
 ├─ package-lock.json
 ├─ package.json
 ├─ public
@@ -20,68 +19,102 @@ final-project
 │  ├─ App.test.js
 │  ├─ components
 │  │  ├─ element
-│  │  │  ├─ Button.jsx
-│  │  │  ├─ Grid.js
+│  │  │  ├─ button.jsx
+│  │  │  ├─ Carousel.jsx
 │  │  │  ├─ Image.jsx
-│  │  │  ├─ infinityScroll.js
-│  │  │  ├─ input.jsx
-│  │  │  ├─ ValidBtnInput.jsx
-│  │  │  └─ ValidInput.jsx
+│  │  │  ├─ Modal.css
+│  │  │  ├─ Modal.jsx
+│  │  │  ├─ ModalPortal.jsx
+│  │  │  ├─ myApp.js
+│  │  │  ├─ MyModal.css
+│  │  │  ├─ MyModal.jsx
+│  │  │  └─ MyPetModal.css
 │  │  ├─ features
-│  │  │  ├─ AddPetInfo.jsx
-│  │  │  ├─ AddUserPic.jsx
-│  │  │  ├─ Content.jsx
-│  │  │  ├─ EditDetail.jsx
-│  │  │  ├─ EditPetInfo.jsx
-│  │  │  ├─ Form.jsx
-│  │  │  ├─ KakaoLogin.js
-│  │  │  ├─ MyContent.jsx
-│  │  │  ├─ mypageTab.jsx
-│  │  │  ├─ NaverLogin.js
-│  │  │  ├─ OAuth2RedirectHandler.js
-│  │  │  ├─ PetInfo.jsx
-│  │  │  ├─ PostList.jsx
-│  │  │  ├─ SearchList.jsx
-│  │  │  └─ UserInfo.jsx
+│  │  │  ├─ Login
+│  │  │  │  ├─ KakaoLogin.js
+│  │  │  │  ├─ NaverLogin.js
+│  │  │  │  └─ OAuth2RedirectHandler.js
+│  │  │  ├─ Mypage
+│  │  │  │  ├─ AddPetInfo.jsx
+│  │  │  │  ├─ AddUserPic.jsx
+│  │  │  │  ├─ EditDetail.jsx
+│  │  │  │  ├─ EditPetInfo.jsx
+│  │  │  │  ├─ MyContent.jsx
+│  │  │  │  ├─ mypageTab.jsx
+│  │  │  │  ├─ PetInfo.jsx
+│  │  │  │  └─ UserInfo.jsx
+│  │  │  └─ Posts
+│  │  │     ├─ Content.jsx
+│  │  │     ├─ Form.jsx
+│  │  │     ├─ PostList.jsx
+│  │  │     └─ SearchList.jsx
 │  │  ├─ hooks
 │  │  │  ├─ useImgUpload.jsx
 │  │  │  └─ useInput.jsx
-│  │  ├─ Layout
-│  │  │  ├─ Footer.jsx
-│  │  │  ├─ Header.jsx
-│  │  │  └─ Layout.jsx
-│  │  └─ modal
-│  │     ├─ modal.js
-│  │     ├─ modalApply.js
-│  │     ├─ modalContainer.js
-│  │     └─ useModal.js
+│  │  └─ Layout
+│  │     ├─ Footer.jsx
+│  │     ├─ Header.jsx
+│  │     └─ Layout.jsx
+│  ├─ fonts
+│  │  ├─ globalFont.js
+│  │  ├─ SpoqaHanSansNeo-Bold.woff2
+│  │  ├─ SpoqaHanSansNeo-Light.woff2
+│  │  ├─ SpoqaHanSansNeo-Medium.woff2
+│  │  ├─ SpoqaHanSansNeo-Regular.woff2
+│  │  └─ SpoqaHanSansNeo-Thin.woff2
+│  ├─ FullHTML.css
 │  ├─ img
-│  │  ├─ account_circle.svg
-│  │  ├─ add-user.png
-│  │  ├─ arrow_back.svg
-│  │  ├─ chat.svg
-│  │  ├─ edit_square.svg
-│  │  ├─ home.svg
-│  │  ├─ logout.svg
-│  │  ├─ online.png
-│  │  ├─ pets.png
-│  │  ├─ photoIMG.png
-│  │  └─ user.png
+│  │  ├─ all.png
+│  │  ├─ backArrow.png
+│  │  ├─ backarrow.svg
+│  │  ├─ banner.png
+│  │  ├─ big.png
+│  │  ├─ calender.png
+│  │  ├─ chat-f.svg
+│  │  ├─ chat-fo.svg
+│  │  ├─ colorarrow.svg
+│  │  ├─ date.svg
+│  │  ├─ datecolor.svg
+│  │  ├─ delete.svg
+│  │  ├─ edit.svg
+│  │  ├─ Form.png
+│  │  ├─ home-f.svg
+│  │  ├─ home-fo.svg
+│  │  ├─ kakao.svg
+│  │  ├─ logoImg.svg
+│  │  ├─ logoWhite.svg
+│  │  ├─ markup.png
+│  │  ├─ medium.png
+│  │  ├─ menu.svg
+│  │  ├─ middle.png
+│  │  ├─ mykakao.svg
+│  │  ├─ mypage-f.svg
+│  │  ├─ mypage-fo.svg
+│  │  ├─ naver.svg
+│  │  ├─ notice-arrow.svg
+│  │  ├─ photo.svg
+│  │  ├─ place.svg
+│  │  ├─ postImg.png
+│  │  ├─ search.svg
+│  │  ├─ send.png
+│  │  ├─ small.png
+│  │  ├─ StartImg.svg
+│  │  ├─ state-b.png
+│  │  ├─ state-g.png
+│  │  ├─ text.png
+│  │  ├─ user.png
+│  │  ├─ Vector5.png
+│  │  ├─ write-f.svg
+│  │  └─ write-fo.svg
 │  ├─ index.css
 │  ├─ index.js
-│  ├─ logo.svg
 │  ├─ pages
-│  │  ├─ chatting
-│  │  │  ├─ ChatCard.jsx
-│  │  │  ├─ ChatRoomPage.jsx
-│  │  │  ├─ ChatSubmitBox.jsx
-│  │  │  └─ element
-│  │  │     └─ GlobalHeaderChat.jsx
+│  │  ├─ ChatRoomPage.jsx
 │  │  ├─ Detail.jsx
 │  │  ├─ Home.jsx
+│  │  ├─ Intro.jsx
 │  │  ├─ MainLogin.jsx
 │  │  ├─ MyPage.jsx
-│  │  ├─ Search.jsx
 │  │  ├─ SignIn.jsx
 │  │  └─ SignUp.jsx
 │  ├─ redux
@@ -89,16 +122,15 @@ final-project
 │  │  │  └─ configStore.js
 │  │  └─ modules
 │  │     ├─ chattingSlice.js
-│  │     ├─ listSlice.js
 │  │     ├─ mypageSlice.js
 │  │     ├─ postSlice.js
-│  │     ├─ searchSlice.js
 │  │     └─ userSlice.js
-│  ├─ reportWebVitals.js
-│  ├─ setupTests.js
+│  ├─ serviceWorker.js
 │  └─ shared
 │     ├─ Apis.js
 │     ├─ Cookie.js
 │     ├─ regex.js
 │     └─ Router.js
 └─ yarn.lock
+
+```
