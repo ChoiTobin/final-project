@@ -1,19 +1,23 @@
 body.active-modal {
     overflow-y: hidden;
+    background: rgba(24, 24, 24, 0.8);
+
   }
 
-  .modal {
-    position: relative;
-    z-index:999;
+  .modal2 {
+    position: relative; 
+    z-index:999; 
+    
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     position: fixed;
+
   }
 
   
-  .overlay {
+  .overlay2 {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -22,8 +26,9 @@ body.active-modal {
     bottom: 0;
     position: fixed;
     background: rgba(24, 24, 24, 0.8);
+  
   }
-  .modal-content {
+  .modal2-content2 {
     position: absolute;
     width: 260px;
     height: 120px;
@@ -36,7 +41,7 @@ body.active-modal {
     /* padding: 14px 28px; */
     border-radius: 10px;
   }
-  .modaltwo{
+  .modalTwo2{
     width: 260px;
     height: 100px;
   }
@@ -61,7 +66,7 @@ body.active-modal {
     display:inline-block;
   }
   
-  .content{
+  .content2{
     font-weight: 600;
     height: 180px;
     text-align: center;

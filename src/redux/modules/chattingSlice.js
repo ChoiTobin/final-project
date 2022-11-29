@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import Apis from "../../shared/Apis";
+import Apis from "../../shared/Apis"
+import { current } from "@reduxjs/toolkit"
 
 const URI = {
   BASE: process.env.REACT_APP_BASE_URI,
@@ -17,15 +18,12 @@ const initialState = {
   roomId: null,
   err: null,
 };
-
 export const __CreateRoom = createAsyncThunk(
   "/chat/__CreateRoom",
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.CreateRoom(payload)
-      window.localStorage.setItem("roomId",response.data.data.roomId)
-      console.log("실행시점확인 roomID들어오는 시점")
-      window.location.reload(payload)
+      
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -33,37 +31,38 @@ export const __CreateRoom = createAsyncThunk(
   }
 );
 
-// export const __getRoomList = createAsyncThunk(
-//   "/chat/__getRoomList",
-//   async (payload, thunkAPI) => {
-//     try {
-//       const response = await Apis.getRoomList()
-//       return thunkAPI.fulfillWithValue(response.data.data);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-export const __getinitialChatList = createAsyncThunk(
-  "/chat/__getinitialChatList",
+export const __getRoomList = createAsyncThunk(
+  "/chat/__getRoomList",
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL}/room/${payload}`
-        , {
-        headers: {
-          Access_Token: localStorage.getItem("Access_Token"),
-        },
-  
-      }
-      )
+      const response = await Apis.getRoomList()
+      
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
+
+
+
+
+export const __getinitialChatList = createAsyncThunk(
+  "/chat/__getInitialChatList",
+  async (payload, thunkAPI) => {
+    try {
+      console.log("asdasdas페이로드!!",payload)
+      const response = await Apis.getInitialChatList(payload)
+      console.log("보내고나서 실행~~~~~~",response)
+      return thunkAPI.fulfillWithValue(response.data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.data);
+    }
+  }
+);
+
+
+
 
 
 const chatSlice = createSlice({
@@ -79,8 +78,11 @@ const chatSlice = createSlice({
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
     },
+ 
     ListReducer: (state, action) => {
-      state.listReducer.push(action.payload)
+      state.chatList.chatList.push(action.payload)
+
+ 
     },
 
   },
@@ -94,28 +96,31 @@ const chatSlice = createSlice({
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.createRoom = action.payload;
+      // console.log("풀필드",action.payload,state.createRoom)
     },
     [__CreateRoom.rejected]: (state, action) => {
       state.isLoading = false;
       state.err = action.payload;
     },
-    // [__getRoomList.pending]: (state, action) => {
-    //   state.isLoading = true;
-    // },
-    // [__getRoomList.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.roomList = action.payload;
-    // },
-    // [__getRoomList.rejected]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.err = action.payload;
-    // },
+    [__getRoomList.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getRoomList.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.roomList = action.payload;
+    },
+    [__getRoomList.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.err = action.payload;
+    },
     [__getinitialChatList.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
+
       state.chatList = action.payload;
+      
     
     },
     [__getinitialChatList.rejected]: (state, action) => {

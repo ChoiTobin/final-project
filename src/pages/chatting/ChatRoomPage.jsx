@@ -1,39 +1,84 @@
 import styled, { css } from "styled-components";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
+import Modal from "../../components/modal/modal";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 // import ChatSubmitBox from "./ChatSubmitBox";
 // import ChatCard from "./ChatCard";
 import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-import { ListReducer } from "../../redux/modules/chattingSlice";
-import Modal from "./Chattmodalfolder/Modal"
-
+import {ListReducer} from "../../redux/modules/chattingSlice";
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
+import Modal2 from "./Chattmodalfolder/Modal2";
+
+
+
+
 
 function ChatRoomPage() {
-  const roomId = localStorage.getItem("roomId")
+  
+  
   const {id}  = useParams()
   const navigate = useNavigate();
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
+  
+  const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
-  const listReducer = useSelector((state) => state.chatting.listReducer);
 
-  // if(roomId !== undefined || null){} 
+console.log("쳇리스트",chatList)
+
+
   let postId = Number(id)
 
-  // 컴포넌트 마운트시에 소켓 연결 , 채팅방 생성
-  useEffect(() => {
 
-    wsConnectSubscribe()
-    dispatch(__getinitialChatList(roomId));
+
+  //onSubmitHandler
+  useEffect(() => {
+    
+  
+    dispatch(__getinitialChatList({
+  
+      postId:postId,
+      roomId:1
+    }));
+    
+
+    return () => {
+      onbeforeunloda()
+      
+    };
+  
   }, []);
+  
+  
+  useEffect(() => {
+  
+  
+    wsConnectSubscribe()
+    
+    
+    return () => {
+
+      onbeforeunloda()
+      
+    };
+ 
+  }, [chatList.roomId]);
+  //새로고침 하지 않으면 메시지가 2개로 나오는 issue 떄문에 두번 연결
+  //끊어주지 않으면 또 다시 이전화면 다녀오면 2개 나오는 issue때문에 
+
+  
+
+
 
   const [chatBody, setChatBody] = useState("");
+
+
+
   const content = {
     sender:localStorage.getItem('user-nickname'),
     message:chatBody
@@ -43,30 +88,45 @@ function ChatRoomPage() {
     Access_Token: localStorage.getItem('Access_Token')
   };
 
+
+
   function wsConnectSubscribe() {
     try {
       ws.connect(
         headers,(frame) => {
+
           ws.subscribe(
-            `/sub/${roomId}`,
+            `/sub/${
+              chatList.roomId
+          }`,
             (response) => {
+
               let data = JSON.parse(response.body)
               dispatch(ListReducer(data))
+
             }
             );
-        },
 
+        },
       );
     } catch (error) {
     }
+
   }
+
+
+  
+  
 
   function waitForConnection(ws, callback) {
     setTimeout(
         function () {
             // 연결되었을 때 콜백함수 실행
+            
             if (ws.ws.readyState === 1) {
                 callback();
+                
+
                 // 연결이 안 되었으면 재호출
             } else {
                 waitForConnection(ws, callback);
@@ -78,9 +138,30 @@ function ChatRoomPage() {
 //stomp 메시지 에러 waitForConnection함수로 해결
 
 
+const onbeforeunloda = () =>{
+
+  try {
+    ws.disconnect(
+      ()=>{
+        ws.unsubscribe("sub-0");
+        clearTimeout(
+          waitForConnection
+          )
+      },
+    
+    {Access_Token: localStorage.getItem('Access_Token')}
+)
+    }catch (e){
+      console.log("연결구독해체 에러",e)
+  }
+}
+//채팅 메시지 여러개로 나오는것 구독해체로 해결 
+
+
+
   const inputHandler = (e) =>{
   setChatBody(e.target.value)
- 
+
 }
 
 const onSubmitHandler = (event) =>{
@@ -90,7 +171,7 @@ const onSubmitHandler = (event) =>{
     }
     waitForConnection(ws,function() {   
   ws.send(
-    `/pub/${roomId}`,
+    `/pub/${chatList.roomId}`,
     JSON.stringify(content),
             {
               Access_Token: localStorage.getItem("Access_Token")
@@ -99,7 +180,6 @@ const onSubmitHandler = (event) =>{
           )})
 
 }
-
 const appKeyPress = (e) => {
   
   if (e.key === 'Enter') {
@@ -122,62 +202,68 @@ useEffect(() => {
 }, [listReducer]);
 //채팅창 치면 맨 밑으로 내려감.
 
+
+
+
+
 return (
+  // <Modal2></Modal2>
         <LoginContainer>
+          
                 <Header>
                      <div>
                       <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
-                     
                      <div>
                       <Nickname>{chatList.postNickname}</Nickname>
-                      <Time>30분 전 접속</Time>
-                     </div>
-                     <Modal/>
-                </Header>
+                      <Time>30분 전 접속 </Time>
+                    </div>
+                    <span>
+                    {/* 잠시주석 <Modal2></Modal2> */}
+                    </span>
+                </Header> 
                 <Section>
-                    <Profile><Img2 src={require("../chatting/chattingImg/KakaoTalk_20221121_174337130_01.png")}/></Profile>
+                    <Profile><Img2>{chatList.postImg}</Img2></Profile>
                     <TextBox>
-                      <P>
                         <OrangeSpan>{chatList.state}</OrangeSpan>
                         <Span></Span>
                         <Title>{chatList.title}</Title>
-                      </P>
-                      <Money>{chatList.price}원</Money>
+                        <Money>{chatList.price}원</Money>
                     </TextBox>
                 </Section>
-                  <DivAt>날짜</DivAt> 
+                  <DivAt>날짜 오늘</DivAt> 
                   <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
-                      { chatList.chatList !== undefined && chatList.chatList !== null &&
-                        chatList.chatList.map((item,i)=>{
+                      {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
+                       chatList.chatList.map((item,i)=>{
                           return(
                           
                           localStorage.getItem('user-nickname') == item.sender ?  
-                        <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
+                        <TextBox key={uuidv4()}><Colorspan>{item.message}</Colorspan></TextBox>
                         :
                         <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
                         
                           )
                         })
-                      }
-                      { listReducer !== undefined &&
-                        listReducer.map((item,i)=>{
+                      } */}
+                      { listReducer.chatList !== undefined && listReducer.chatList !== null &&
+                        listReducer.chatList.map((item,i)=>{
                           return (
                             localStorage.getItem('user-nickname') == item.sender ?  
-                          <TextBox key={i}><Colorspan>{item.message}</Colorspan></TextBox>
+                          <TextBox key={uuidv4()}><Colorspan>{item.message}</Colorspan></TextBox>
                           :
                           <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
                           )
                         }
                           )
                       } 
+
                       <div ref={scrollRef}></div>
                   </OverFlow >
                 <Chatput>
 
                     <Input  value={chatBody}  onKeyPress={appKeyPress}  onChange={inputHandler}></Input>
                     <ArrowImg  onSubmit={appKeyPress} onClick={onSubmitHandler} src={require("../chatting/chattingImg/iconSand.png")}></ArrowImg>
-                </Chatput>   
+                </Chatput>
         </LoginContainer>
   );
 }
@@ -207,12 +293,12 @@ font-weight: lighter;
 font-size: 12px;
 max-width: calc(100% - 32px);
 min-width: 50px;
+
 `
 const Colorspan2 = styled.div`
-background:#F6F0EE;
+background:gray;
 color:black;
 padding:6px;
-
 border-radius: 7px;
 font-size:12px;
 display:flex;
@@ -220,8 +306,12 @@ flex-direction:left;
 text-align:left;
 width:170px;
 margin-bottom:3px;
-`
+float:right;
 
+
+overflow:hidden
+
+`
 const Colorspan = styled.div`
 background:#ED9071;
 color:black;
@@ -233,18 +323,24 @@ display:flex;
 text-align:left;
 width:150px;
 margin-bottom:3px;
+
+overflow:hidden
+
+
 `
 
 const TextBox = styled.div`
 padding:4px;
 background:#F6F0EE;
-min-height:33.26px;
+min-height:20.26px;
 width:318.82px;
 `
 
+
+
 const OverFlow = styled.div`
 overflow:auto;
-height:480px;
+height:460px;
 ::-webkit-scrollbar {
   width: 1vw;
 }
@@ -255,8 +351,8 @@ height:480px;
 ::-webkit-scrollbar {
   display: none;
 }
-`
 
+`
 const DivAt = styled.div`
 margin-top:10px;
 text-align:center;
@@ -264,11 +360,10 @@ color:#787878;
 font-size:12px;
 background:#f6f0ee
 `
-
 const Money = styled.p`
+
 font-weight:bold;
 `
-
 const Title = styled.span`
 width: 200px;
 overflow:hidden; 
@@ -278,24 +373,20 @@ display:inline-block;
 font-weight:bold;
 font-size:12px;
 `
-
 const Span= styled.span`
 width:30px;
 margin-left:10px;
 `
-
 const OrangeSpan = styled.span`
 color:#ED9071;
 font-weight:bold;
 `
-
 const Img = styled.img`
 margin-top:6px;
 height:25px;
 width:25px;
 margin-left:10px;
 `
-
 const Img2 = styled.img`
 height:33px;
 width:30px;
@@ -303,9 +394,10 @@ width:30px;
 
 const Time = styled.span`
 font-size:6px;
+margin-left:95px;
 `
 const Nickname = styled.p`
-margin-left:5px;
+margin-left:105px;
 font-weight:bold;
 font-size:15px;
 `
@@ -315,28 +407,31 @@ const LoginContainer = styled.div`
   margin: 0 auto;
   height:100%;
   background-color:#F6F0EE;
+  
 `;
 
 const Header = styled.div`
   border-bottom:1px solid #ED9071;
   background:#f6f0ee;
-  width:340px;
-  height:50px;
+  width:100%;
+  height:70px;
   display:flex;
-  justify-content: space-between;
+  margin-top:40px;
+  
+ 
 `
 
 const Section = styled.div`
-  width:330px;
-  height:60px;
+width:100%;
+  height:70px;
   display:flex;
   margin-top:10px;
   padding-left: 10px;
   background:#f6f0ee;
   border-bottom:1px solid #ED9071;
+  
 `
-const P = styled.p`
-`
+
 
 const Profile = styled.div`
   margin-top:5px;
@@ -353,6 +448,7 @@ const Chating = styled.div`
   background-color:#FFECEF;
   text-align:center;
   line-height:400px;
+  
 `
 
 export default ChatRoomPage;
