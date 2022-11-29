@@ -29,7 +29,7 @@ function ChatRoomPage() {
   const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
 
-
+console.log("쳇리스트",chatList)
 
 
   let postId = Number(id)

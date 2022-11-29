@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
-import KakaoLogin from "../components/features/KakaoLogin";
+import KakaoLogin from "../components/features/Login/KakaoLogin";
 import { useLocation } from "react-router-dom";
 import Modal2 from "./chatting/Chattmodalfolder/Modal2";
 

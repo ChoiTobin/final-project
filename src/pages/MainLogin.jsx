@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import KakaoLogin from '../components/features/KakaoLogin';
+import KakaoLogin from '../components/features/Login/KakaoLogin';
 const MainLogin = () => {
     const navigate = useNavigate()
   return (
