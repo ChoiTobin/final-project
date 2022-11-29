@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { ButtonGroup } from "react-bootstrap";
 import '../../../App.css';
 import Carousel from 'react-bootstrap/Carousel';
+import { ReactComponent as Search } from "../../../img/search.svg";
+
 const Content = () => {
   const dispatch = useDispatch()
   // const searchposts = useSelector((state) => state.post.post.response)
@@ -49,11 +51,22 @@ const Content = () => {
   };
   
   return (
-      <SearchListWrap>
-        <InputBox>
-          <Input onKeyPress={appKeyPress} type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler}  />
-          <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.png")} />
-        </InputBox>
+    <SearchListWrap>
+    <InputBox>
+      <Input
+        onKeyPress={appKeyPress}
+        type="text"
+        name="search"
+        defaultValue={getSearch.search || ""}
+        onChange={onChangeHandler}
+      />
+      {/* <Img
+        onKeyPress={appKeyPress}
+        onClick={onClickSearch}
+        src={require("../../../img/")}
+      /> */}
+      <Search onKeyPress={appKeyPress} onClick={onClickSearch} />
+    </InputBox>
         <Buttongroup>
             <Button type='button' onClick={onClickAll}>전체</Button>
             <Button type='button' name="대형" onClick={onClickBig}>대형</Button>
@@ -75,7 +88,7 @@ const Content = () => {
       </Carousel.Item>
       <Carousel.Item>
         <SlideImg
-          src={require("../../../img/middle.png")}
+          src={require("../../../img/search.svg")}
         />
       </Carousel.Item>
       <Carousel.Item>
@@ -90,6 +103,8 @@ const Content = () => {
 }
 
 export default Content
+
+
 const SearchListWrap = styled.div`
   position:relative;
 `

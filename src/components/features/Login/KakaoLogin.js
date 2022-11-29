@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
-
+import { ReactComponent as Naver } from "../../../img/naver.svg";
+import { ReactComponent as Kakao } from "../../../img/kakao.svg";
 
 
 const KakaoLogin = () => {
@@ -14,14 +15,16 @@ const KakaoLogin = () => {
         window.location.href = KAKAO_AUTH_URL;
     }
     return (
-    <div>
-        <Img onClick={()=>alert("준비중 입니다.")} src={require("../../img/NAVERLOGO.png")} alt="네이버 로그인 버튼"  />
-        <a id="kakao-login-btn" onClick={handleLogin}>
-        <Img2 src={require("../../img/kakao.png")}alt="카카오 로그인 버튼" />
-        </a>
-        <p id="token-result"></p>
-    </div>
-    )
+        <div>
+            {/* <Img onClick={()=>alert("준비중 입니다.")} src={require("../../img/NAVERLOGO.png")} alt="네이버 로그인 버튼"  /> */}
+            <Naver onClick={()=>alert("준비중 입니다.")} />
+            <a id="kakao-login-btn" onClick={handleLogin}>
+            {/* <Img2 src={require("../../img/kakao.png")}alt="카카오 로그인 버튼" /> */}
+            <Kakao/>
+            </a>
+            <p id="token-result"></p>
+        </div>
+        )
 }
 
 

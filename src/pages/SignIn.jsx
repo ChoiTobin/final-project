@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
-import { useLocation } from "react-router-dom";
-import Modal2 from "./chatting/Chattmodalfolder/Modal2";
+import { ReactComponent as Logo } from "../img/logoImg.svg";
+
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -49,14 +48,15 @@ const SignIn = () => {
     //navigate('/postlist')
   };
   return (
-    <div>
-      <LoginContainer>
-        <Wrap>
-
-          <div>
-            <LoginBox>
-              <img src={require("../img/LogoImg.png")} width="90px" height="70px"/>
-                <LogoLogin>LOGIN</LogoLogin>
+      <div>
+        <LoginContainer>
+          <Wrap>
+  
+            <div>
+              <LoginBox>
+                {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+                <Logo/>
+                  <LogoLogin>LOGIN</LogoLogin>
                 <KakaoLogin/>
                 <Input
                   placeholder='아이디'

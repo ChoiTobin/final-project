@@ -8,12 +8,11 @@ import MyPage from "../pages/MyPage";
 import Detail from "../pages/Detail";
 import PostList from "../components/features/Posts/PostList";
 import ChatRoomPage from "../pages/ChatRoomPage";
-import ChatList from "../pages/chatting/element/ChatList";
-import Rating from "../components/features/Rating";
-
-// 추가
-import OAuth2RedirectHandler from "../components/features/OAuth2RedirectHandler"
+import ChatList from "../pages/ChatList";
+import Rating from "../components/features/Posts/Rating";
+import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
+// 추가
 
 
 const Router = () => {
