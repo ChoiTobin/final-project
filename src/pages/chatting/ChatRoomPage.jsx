@@ -207,37 +207,32 @@ useEffect(() => {
 
 
 return (
+  // <Modal2></Modal2>
         <LoginContainer>
+          
                 <Header>
-
                      <div>
                       <Img onClick={()=>navigate(-1)} src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}/>
                       </div>
-                      
                      <div>
                       <Nickname>{chatList.postNickname}</Nickname>
                       <Time>30분 전 접속 </Time>
-                      
                     </div>
-                      <div>
-                        <Modal2></Modal2>
-                      </div>
+                    <span>
+                    <Modal2></Modal2>
+                    </span>
                 </Header>
                 <Section>
                     <Profile><Img2>{chatList.postImg}</Img2></Profile>
                     <TextBox>
-                        
                         <OrangeSpan>{chatList.state}</OrangeSpan>
                         <Span></Span>
                         <Title>{chatList.title}</Title>
                         <Money>{chatList.price}원</Money>
-
-                     
                     </TextBox>
                 </Section>
                   <DivAt>날짜 오늘</DivAt> 
                   <OverFlow sx={{ height: "80%", overflow: "scroll" }} >
-                      
                       {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
                        chatList.chatList.map((item,i)=>{
                           return(
@@ -250,7 +245,6 @@ return (
                           )
                         })
                       } */}
-
                       { listReducer.chatList !== undefined && listReducer.chatList !== null &&
                         listReducer.chatList.map((item,i)=>{
                           return (

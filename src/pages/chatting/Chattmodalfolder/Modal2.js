@@ -65,12 +65,11 @@ import { trueChat,clearChat } from "../../../redux/modules/chattingSlice";
 
       {
       modal && ( 
-
-        <div className="modal">
-            <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
-            <div className="modalTwo">
-              <div className="content">
+        <div className="modal2">
+            <div onClick={toggleModal} className="overlay2"></div>
+          <div className="modal2-content2">
+            <div className="modalTwo2">
+              <div className="content2">
                 <span  className="pink">'서폿구책'</span>님의
                 <span className="pink">'저와 산서폿'</span>
                 <br/>를 수락하시겠습니까?

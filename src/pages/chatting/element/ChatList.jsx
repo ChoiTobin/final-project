@@ -50,9 +50,9 @@ const onClickChatting = (item) => {
 
                     <span>{item.title}</span>
                     <span>
-                        <button onClick={()=>onClickChatting(item)}>
+                        <LoginButton onClick={()=>onClickChatting(item)}>
                         {item.postId}번방
-                        </button>
+                        </LoginButton>
                     </span>
                 </div>
 
@@ -66,3 +66,19 @@ const onClickChatting = (item) => {
 }
 
 export default ChatList ;
+
+
+const LoginButton = styled.button`
+font-size:18px;
+color: white;
+border: none;
+border-radius: 3px;
+font-weight: bold;
+width: 253px;
+height: 40px;
+margin-top: 30px;
+
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+cursor: pointer;
+background-color: #ED9071;
+`;
