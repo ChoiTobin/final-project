@@ -8,9 +8,6 @@ export default function Mytab() {
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPets = useSelector((state) => state.mypage.myPets);
 
-  console.log("포스트들어와라", myPosts);
-  console.log("동물들도 들어와", myPets);
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {
@@ -24,7 +21,7 @@ export default function Mytab() {
           className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
-          내가 쓴 글
+          내 게시글
         </TabTitle>
       ),
       tabCont: <MyContent myPost={myPosts} />,
@@ -35,7 +32,7 @@ export default function Mytab() {
           className={activeIndex === 1 ? "is-active" : ""}
           onClick={() => tabClickHandler(1)}
         >
-          반려동물 정보
+          나의 반려동물
         </TabTitle>
       ),
       tabCont: <PetInfo myPets={myPets} />,
@@ -55,27 +52,28 @@ export default function Mytab() {
 }
 
 const TabMain = styled.ul`
-  width: 220px;
-  height: 19.47px;
+  height: 49px;
+  border-top: 1px solid #f1b5a2;
+  border-bottom: 1px solid #f1b5a2;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: left;
-  gap: 12.59px;
-  margin-top: 23.01px;
-  margin-left: -10px;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 15.67px;
 `;
 
 const TabTitle = styled.div`
   cursor: pointer;
 
-  width: 200px;
-  height: 19.47px;
-  color: rgba(116, 116, 116, 1);
+  width: 135px;
+  height: 23.13px;
+  color: #ed9071;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-weight: 510;
-  font-size: 14px;
-  border: none;
+  font-weight: 800;
+  font-size: 12px;
+  border: 1px solid #ed9071;
+  border-radius: 20px;
 
   display: flex;
   flex-direction: row;

@@ -64,15 +64,14 @@ export const Apis = {
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
-  // getPostTimeAX: () => token.get(`/api/posts?&page=0&size=5`),
-  // getPostTimeAX: (payload) => token.get(`/api/posts?size=6&page=${payload}`),
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
   // 게시글 진행 상태 수정
   getStateAX: (id) => token.put(`/api/posts/${id}/state`),
-
+  
   // 마이페이지 조회
+  
   getMyPageAX: () => token.get(`/api/mypage`),
   // 마이페이지 내 게시글 조회
   getMyPostAX: () => token.get(`/api/mypage/posts`),
@@ -103,3 +102,4 @@ export const Apis = {
   getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }
 export default Apis
+
