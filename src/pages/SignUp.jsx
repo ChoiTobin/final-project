@@ -116,7 +116,7 @@ const SignUp = () => {
     dispatch(__userSignUp(obj))
     if(account.idCheck.status ===200 && account.nickCheck.status === 200 &&obj.password === obj.passwordCheck){
       alert("회원가입이 완료되었습니다.")  
-    window.location.replace("/SignIn")
+    window.location.replace("/")
     }
   }
   
