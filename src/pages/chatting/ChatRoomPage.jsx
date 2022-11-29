@@ -19,7 +19,7 @@ import Modal2 from "./Chattmodalfolder/Modal2";
 
 function ChatRoomPage() {
   
-  const roomId = localStorage.getItem("roomId")
+  
   const {id}  = useParams()
   const navigate = useNavigate();
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
