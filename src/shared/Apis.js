@@ -48,15 +48,13 @@ export const Apis = {
   loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
-  
-  CreateRoom: (createRoom) => token.post(`/room`, createRoom),
 
+  //createRoom
+  CreateRoom: (createRoom) => token.post(`/room`, createRoom),
+  // getRoomList: () => token.get(`/roomList`),
   getRoomList: () => token.get(`/roomList`),
 
   getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
-  //createRoom----------------------------------------------------------------
-
-
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
@@ -104,4 +102,3 @@ export const Apis = {
   getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }
 export default Apis
-
