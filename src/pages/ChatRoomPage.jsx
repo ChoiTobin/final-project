@@ -8,7 +8,7 @@ import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlic
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
-//import Modal2 from "./Chattmodalfolder/Modal2";
+import Modal2 from "../pages/ChatModal/Modal2"
 
 function ChatRoomPage() {
   const { id } = useParams();
@@ -159,7 +159,7 @@ function ChatRoomPage() {
           <Nickname>{chatList.postNickname}</Nickname>
           <Time>30분 전 접속 </Time>
         </div>
-        <span>{/* 잠시주석 <Modal2></Modal2> */}</span>
+         <Modal2></Modal2>
       </Header>
       <Section>
         <Profile>
