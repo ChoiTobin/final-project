@@ -14,7 +14,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const onClickChat = () => {
-    navigate(`/ChatRoomPage`);
+    navigate(`/chat`);
   };
 
   const onClickHome = () => {
