@@ -11,6 +11,7 @@ import { __getinitialChatList } from "../../redux/modules/chattingSlice";
 import {ListReducer} from "../../redux/modules/chattingSlice";
 import '../../App.css';
 import {v4 as uuidv4} from 'uuid';
+import Modal2 from "./Chattmodalfolder/Modal2";
 
 
 
@@ -218,7 +219,9 @@ return (
                       <Time>30분 전 접속 </Time>
                       
                     </div>
-
+                      <div>
+                        <Modal2></Modal2>
+                      </div>
                 </Header>
                 <Section>
                     <Profile><Img2>{chatList.postImg}</Img2></Profile>

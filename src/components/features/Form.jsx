@@ -74,13 +74,12 @@ const Post = () => {
       type: "application/json"
     }));
     dispatch(__addPost(formData));	  
-  console.log("이게가는지?",formData)  
-  }
+    }
     
   return (
     <Bg>
       <Form>
-      <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POST</p>
+      <p style={{fontWeight: 110, fontSize: 32, textAlign:"center", color:"#ED9071"}}>POSTs</p>
         <label htmlFor="imgFile" />
             <Carousel fade >
                 { 
@@ -247,42 +246,42 @@ outline: none;
   background-color:#ED9071;
 `
  
-// const Input = styled.input`
-//   height:36px;
-//   margin-bottom:12px;
-//   text-indent:8px;
-//   outline: none;
-//   border:1px solid #d8d8d8;
-//   border-radius:3px;
-// `
-// const Input2 = styled.input`
-//   height:36px;
-//   margin-bottom:12px;
-//   text-indent:5px;
-//   border:none;
-//   outline: none;
-//   border:1px solid #333;
-//   border-radius:3px;
-// `
+const Input = styled.input`
+  height:36px;
+  margin-bottom:12px;
+  text-indent:8px;
+  outline: none;
+  border:1px solid #d8d8d8;
+  border-radius:3px;
+`
+const Input2 = styled.input`
+  height:36px;
+  margin-bottom:12px;
+  text-indent:5px;
+  border:none;
+  outline: none;
+  border:1px solid #333;
+  border-radius:3px;
+`
 
-// const Select = styled.select`
-//   margin-bottom:12px;
-//   border-radius:3px;
-//   height:36px;
-//   text-indent:5px;
-//   outline: none;
-//   border:1px solid #696969;
-// `
-// const Select2 = styled.select`
-//   margin-bottom:12px;
-//   height:36px;
-//   text-indent:8px;
-//   outline: none;
-//   border:none;
-//   border:1px solid #666;
-//   border-radius:3px;
+const Select = styled.select`
+  margin-bottom:12px;
+  border-radius:3px;
+  height:36px;
+  text-indent:5px;
+  outline: none;
+  border:1px solid #696969;
+`
+const Select2 = styled.select`
+  margin-bottom:12px;
+  height:36px;
+  text-indent:8px;
+  outline: none;
+  border:none;
+  border:1px solid #666;
+  border-radius:3px;
   
-// `
+`
 const InputImg = styled.input`
   display:none;
   height: 40px;
@@ -292,29 +291,5 @@ const InputImg = styled.input`
   font-weight:600;
   background-color:#ED9071;
 `
-
-const Input = styled.input`
-  height:36px;
-  margin-bottom:12px;
-  text-indent:8px;
-`
-const Input2 = styled.input`
-  height:36px;
-  margin-bottom:12px;
-  text-indent:5px;
-`
-
-const Select = styled.select`
-  margin-bottom:12px;
-  border-radius:30px;
-  height:36px;
-  text-align:center;
-`
-const Select2 = styled.select`
-  margin-bottom:12px;
-  height:36px;
-  text-indent:8px;
-`
-
 
 

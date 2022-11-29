@@ -3,10 +3,8 @@ body.active-modal {
     background: rgba(24, 24, 24, 0.8);
 
   }
-  
 
   .modal {
-
     position: relative;
     z-index:999;
     top: 0;
