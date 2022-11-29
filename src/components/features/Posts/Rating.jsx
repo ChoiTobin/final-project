@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux"
-import postSlice, { __getPostRating, __getPostTime  } from "../../redux/modules/postSlice"
+import postSlice, { __getPostRating, __getPostTime  } from "../../../redux/modules/postSlice"
 
 const ARRAY = [0, 1, 2, 3, 4];
 

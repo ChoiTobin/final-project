@@ -1,10 +1,14 @@
-import React, { useEffect , useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import postSlice, { __getPostTime , __getKeyword , __getCategory } from "../../../redux/modules/postSlice"
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  __getPostTime,
+  __getKeyword,
+  __getCategory,
+} from "../../../redux/modules/postSlice";
 import styled from "styled-components";
-import { ButtonGroup } from "react-bootstrap";
-import '../../../App.css';
-import Carousel from 'react-bootstrap/Carousel';
+import "../../../App.css";
+import Carousel from "react-bootstrap/Carousel";
+import { ReactComponent as Search } from "../../../img/search.svg";
 const Content = () => {
   const dispatch = useDispatch()
   // const searchposts = useSelector((state) => state.post.post.response)
@@ -52,7 +56,7 @@ const Content = () => {
       <SearchListWrap>
         <InputBox>
           <Input onKeyPress={appKeyPress} type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler}  />
-          <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.png")} />
+          <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.svg")} />
         </InputBox>
         <Buttongroup>
             <Button type='button' onClick={onClickAll}>전체</Button>

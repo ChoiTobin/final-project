@@ -12,9 +12,9 @@ const Header = () => {
   };
 
   const onClickHome = () => {
-    navigate("/");
+    navigate("/home");
   };
-
+  
   return (
     <Layout>
       <BackArrow onClick={() => onClickMove()} />

@@ -64,7 +64,7 @@ export const __addPost = createAsyncThunk(
       const response = await Apis.postFileAX(payload)	
       //console.log("게시글작성완료",response)
       alert("작성완료하였습니다.")
-      window.location.href('/home')
+      window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
       
     } catch (error) {	
