@@ -1,9 +1,9 @@
 import React, { useEffect , useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import postSlice, { __getPostTime , __getKeyword , __getCategory } from "../../redux/modules/postSlice"
+import postSlice, { __getPostTime , __getKeyword , __getCategory } from "../../../redux/modules/postSlice"
 import styled from "styled-components";
 import { ButtonGroup } from "react-bootstrap";
-import '../../App.css';
+import '../../../App.css';
 import Carousel from 'react-bootstrap/Carousel';
 const Content = () => {
   const dispatch = useDispatch()
@@ -33,7 +33,6 @@ const Content = () => {
     }
   }
   
-  
   const onClickAll = () =>{ //전체검색
     // props.setState(0)
     // console.log("vmfka",props.state)
@@ -53,7 +52,7 @@ const Content = () => {
       <SearchListWrap>
         <InputBox>
           <Input onKeyPress={appKeyPress} type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler}  />
-          <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../img/search.png")} />
+          <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.png")} />
         </InputBox>
         <Buttongroup>
             <Button type='button' onClick={onClickAll}>전체</Button>
@@ -64,24 +63,24 @@ const Content = () => {
         <Carouselwrap>
         <Carousel>
         <Carousel.Item>
-       
+
         <SlideImg
-          src={require("../../img/all.png")}
+          src={require("../../../img/all.png")}
         />
       </Carousel.Item>
       <Carousel.Item>
         <SlideImg
-          src={require("../../img/big.png")}
+          src={require("../../../img/big.png")}
         />
       </Carousel.Item>
       <Carousel.Item>
         <SlideImg
-          src={require("../../img/middle.png")}
+          src={require("../../../img/middle.png")}
         />
       </Carousel.Item>
       <Carousel.Item>
         <SlideImg
-          src={require("../../img/small.png")}
+          src={require("../../../img/small.png")}
         />
       </Carousel.Item>
     </Carousel>

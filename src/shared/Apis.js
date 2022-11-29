@@ -48,11 +48,10 @@ export const Apis = {
   loginAX: (loginInfo) => noToken.post(`/auth/login`, loginInfo),
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
-
+  
   //createRoom----------------------------------------------------------------
-  CreateRoom: (createRoom) => token.post(`/room`, createRoom),
-  // getRoomList: () => token.get(`/roomList`),
-//-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈-토빈
+  getRoomList: () => token.get(`/roomList`),
+  getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
@@ -62,15 +61,14 @@ export const Apis = {
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
   // 게시글 전체 조회
-  // getPostTimeAX: () => token.get(`/api/posts?&page=0&size=5`),
-  // getPostTimeAX: (payload) => token.get(`/api/posts?size=6&page=${payload}`),
   getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
   // 게시글 진행 상태 수정
   getStateAX: (id) => token.put(`/api/posts/${id}/state`),
-
+  
   // 마이페이지 조회
+  
   getMyPageAX: () => token.get(`/api/mypage`),
   // 마이페이지 내 게시글 조회
   getMyPostAX: () => token.get(`/api/mypage/posts`),
@@ -80,7 +78,7 @@ export const Apis = {
   // 마이페이지 반려동물 정보 조회
   getMyPetAX: () => token.get(`api/mypage/pet`),
   // 마이페이지 반려동물 정보 작성
-  postMyPetAX: (payload) => token.get(`api/mypage/pet`, payload),
+  postMyPetAX: (payload) => token.post(`api/mypage/pet`, payload),
   // 마이페이지 반려동물 정보 수정
   putMyPetAX: (payload) => token.put(`api/mypage/pet/${payload.id}`, payload),
   // 마이페이지 반려동물 정보 삭제
@@ -97,5 +95,8 @@ export const Apis = {
   getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
   getFilterAX: (categoryKeyword) => token.get(`/api/filter?category=${categoryKeyword}`),
+  // 평점
+  getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }
 export default Apis
+

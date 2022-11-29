@@ -10,6 +10,21 @@ const initialState = {
   error: null,	
 }
 
+// 평점넘기기
+export const __getPostRating = createAsyncThunk(	
+  "api/posts/getPostRating",	
+  async (payload, thunkAPI) => {
+    // console.log("페이로드야",payload)	
+    try {	
+      const response = await Apis.getPostRatingAX(payload)	
+      console.log("전체조회",response.data)
+      return thunkAPI.fulfillWithValue(response.data);	
+    } catch (error) {	
+      return thunkAPI.rejectWithValue(error);	
+    }	
+  }	
+)
+
 // 게시글 전체 조회	
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
@@ -48,7 +63,10 @@ export const __addPost = createAsyncThunk(
     try {	
       const response = await Apis.postFileAX(payload)	
       //console.log("게시글작성완료",response)
+      alert("작성완료하였습니다.")
+      window.location.href('/home')
       return thunkAPI.fulfillWithValue(response.data);	
+      
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
@@ -101,6 +119,23 @@ const postSlice = createSlice({
   initialState,	
   reducers: {},	
   extraReducers: {	
+    // 평점넘기기
+    [__getPostRating.pending]: (state) => {	
+      state.isLoading = true;	
+    },	
+    [__getPostRating.fulfilled]: (state, action) => {	
+      // console.log("페이로드야",action.payload)
+      state.isLoading = false;	
+      state.isSuccess = false;	
+      state.post.response = action.payload.data;
+      // console.log("pay",action.payload.data)
+      // state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
+    },	
+    [__getPostRating.rejected]: (state, action) => {	
+      state.isLoading = false;	
+      state.isSuccess = false;	
+      state.error = action.payload;	
+    },	
     // 게시글 전체 조회	
     [__getPostTime.pending]: (state) => {	
       state.isLoading = true;	

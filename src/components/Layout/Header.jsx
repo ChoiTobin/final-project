@@ -3,24 +3,27 @@ import { useNavigate } from "react-router-dom/dist";
 import styled from "styled-components";
 import { ReactComponent as BackArrow } from "../../img/backarrow.svg";
 import { ReactComponent as Menu } from "../../img/menu.svg";
-import Pet from "../../img/pet.png";
+import { ReactComponent as Logo } from "../../img/logoImg.svg";
 
 const Header = () => {
   const navigate = useNavigate();
   const onClickMove = () => {
     navigate(-1);
   };
-  
+
   const onClickHome = () => {
     navigate("/");
   };
-  
+
   return (
     <Layout>
-        <BackArrow onClick={() => onClickMove()}/>
+      <BackArrow onClick={() => onClickMove()} />
       {/* <h2 onClick={() => onClickHome()}>Cmung</h2> */}
-      <Logo src={Pet} alt="logo" onClick={() => onClickHome()} />
-        <Menu/>
+      <Logo
+        onClick={() => onClickHome()}
+        style={{ margin: "20.41px -10px 13.59px" }}
+      />
+      <Menu />
     </Layout>
   );
 };
@@ -39,8 +42,3 @@ const Layout = styled.div`
 
   /* border: 1px solid #ed9071; */
 `;
-
-const Logo = styled.img`
-  width: 50px;
-  height: 50px;
-`

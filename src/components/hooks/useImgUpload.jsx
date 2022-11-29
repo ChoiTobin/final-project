@@ -7,11 +7,11 @@ import imageCompression from "browser-image-compression";
 //imgMaxSize 압축 최대 크기 기본값1mb
 //imgMaxWidthHeight 압축 이미지 최대 width,height 기본값1920px
 const useImgUpload = (limitCount = 0, isComp = false, imgMaxSize = 1, imgMaxWidthHeight = 1920) => {
-// const useImgUpload = (limitCount = 0) => {
+    //const useImgUpload = (limitCount = 0) => {
     //이미지 파일 & 프리뷰URL useState
     const [imgFiles, setImgFiles] = useState([]);
     const [imgUrls, setImgUrls] = useState([]);
-
+    
 
     //이미지 가져오기 핸들러
     const handler = (e) => {
@@ -63,7 +63,7 @@ const useImgUpload = (limitCount = 0, isComp = false, imgMaxSize = 1, imgMaxWidt
                         reader.readAsDataURL(res); //reader에게 file을 먼저 읽힘
                     })
                     .catch((error) => {
-                        console.log("파일 압축 실패", error);
+
                     })
             } else {
                 //이미지 파일 담기
