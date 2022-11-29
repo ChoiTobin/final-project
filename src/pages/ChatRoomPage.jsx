@@ -1,17 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import Modal from "../../components/modal/modal";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-// import ChatSubmitBox from "./ChatSubmitBox";
-// import ChatCard from "./ChatCard";
-import { __getinitialChatList } from "../../redux/modules/chattingSlice";
-import { ListReducer } from "../../redux/modules/chattingSlice";
-import "../../App.css";
+import { useNavigate, useParams } from "react-router-dom";
+import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlice";
+import "../App.css";
 import { v4 as uuidv4 } from "uuid";
-import Modal2 from "./Chattmodalfolder/Modal2";
+import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 
 function ChatRoomPage() {
   const { id } = useParams();
@@ -152,10 +148,11 @@ function ChatRoomPage() {
     <LoginContainer>
       <Header>
         <div>
-          <Img
+          {/* <Img
             onClick={() => navigate(-1)}
             src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}
-          />
+          /> */}
+          <BackArrow onClick={() => navigate(-1)} />
         </div>
         <div>
           <Nickname>{chatList.postNickname}</Nickname>
@@ -177,7 +174,7 @@ function ChatRoomPage() {
       <DivAt>날짜 오늘</DivAt>
       <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
         {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
-                       chatList.chatList.map((item,i)=>{
+                      chatList.chatList.map((item,i)=>{
                           return(
                           
                           localStorage.getItem('user-nickname') == item.sender ?  
@@ -191,7 +188,7 @@ function ChatRoomPage() {
         {listReducer.chatList !== undefined &&
           listReducer.chatList !== null &&
           listReducer.chatList.map((item, i) => {
-            return localStorage.getItem("user-nickname") == item.sender ? (
+            return localStorage.getItem("user-nickname") === item.sender ? (
               <TextBox key={uuidv4()}>
                 <Colorspan>{item.message}</Colorspan>
               </TextBox>
@@ -210,11 +207,16 @@ function ChatRoomPage() {
           onKeyPress={appKeyPress}
           onChange={inputHandler}
         ></Input>
-        <ArrowImg
+        {/* <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
           src={require("../chatting/chattingImg/iconSand.png")}
-        ></ArrowImg>
+        /> */}
+        <ArrowImg
+          onSubmit={appKeyPress}
+          onClick={onSubmitHandler}
+          src={require("../img/send.png")}
+        />
       </Chatput>
     </LoginContainer>
   );

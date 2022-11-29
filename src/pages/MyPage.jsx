@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
@@ -17,6 +18,7 @@ import "../components/element/MyPetModal.css";
 
 const MyPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const all = useSelector((state) => state.mypage);
   const post = useSelector((state) => state.mypage.post);
   const myInfo = useSelector((state) => state.mypage.myInfo);
@@ -42,6 +44,11 @@ const MyPage = () => {
 
   const closePetModal = () => {
     setPets(false)
+  }
+
+  const Logout = () => {
+    localStorage.clear()
+    navigate("/")
   }
 
   // 마이페이지 회원정보 조회
@@ -93,6 +100,7 @@ const MyPage = () => {
           </Info>
           <StateBtn>
             <button
+              onClick={Logout}
               style={{
                 color: "rgba(185, 185, 185, 1)",
                 border: "1px solid rgba(185, 185, 185, 1)",

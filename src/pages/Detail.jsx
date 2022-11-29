@@ -17,7 +17,7 @@ const Detail = () => {
   const {id}  = useParams()
   const dispatch = useDispatch()	
   const post = useSelector((state)=>state.post.post)
-   console.log("post",post)	
+  console.log("post",post)	
   
   useEffect(() => {	
     dispatch(__getDetail(id));	
@@ -34,16 +34,17 @@ const Detail = () => {
       postTitle:post.title,
       postNickName:post.nickname,
     }));
-    navigator(`/ChatRoomPage/${post.id}`);
-  }
-
-  setTimeout(
-    function () {
+    // navigator(`/ChatRoomPage/${post.id}`);
+    setTimeout(
+      function () {
         // 연결되었을 때 콜백함수 실행
         navigator(`/ChatRoomPage/${id}`);
-    },
-    300 // 밀리초 간격으로 실행
-  );
+      },
+      300 // 밀리초 간격으로 실행
+    );
+  }
+
+  
   //채팅방 입장시 바로 연결이 안됨 데이터를 보내는게 이동하는것 보다 느려서 그럴거라 판단이되서 setTimeout을 줌
   
   

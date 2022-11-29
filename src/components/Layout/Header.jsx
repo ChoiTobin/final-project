@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   const onClickHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (
