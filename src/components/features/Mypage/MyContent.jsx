@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { __deleteMyPost, __getMyPost } from "../../../redux/modules/mypageSlice";
 import { ReactComponent as Edit } from "../../../img/edit.svg";
 import { ReactComponent as Delete } from "../../../img/delete.svg";
-import { ReactComponent as Dates } from "../../../img/date.svg";
+import { ReactComponent as Dates } from "../../../img/myDate.svg";
 import ModalPortal from "../../element/ModalPortal";
 import EditDetail from "./EditDetail";
 import "../../element/MyModal.css";

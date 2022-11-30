@@ -1,15 +1,13 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import Carousels from "../../element/Carousel";
 
 // React BootStrap Library Import
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ButtonGroup } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 
 import useImgUpload from "../../hooks/useImgUpload";
-import { ReactComponent as Photo } from "../../../img/photo.svg";
+import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
 // import "../../element/MyModal.css";
 

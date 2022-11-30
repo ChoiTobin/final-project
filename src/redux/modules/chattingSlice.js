@@ -78,17 +78,10 @@ const chatSlice = createSlice({
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
     },
- 
     ListReducer: (state, action) => {
       state.chatList.chatList.push(action.payload)
-
- 
     },
-
   },
-
-
-
   extraReducers: {
     [__CreateRoom.pending]: (state, action) => {
       state.isLoading = true;
@@ -118,10 +111,7 @@ const chatSlice = createSlice({
     },
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
-
       state.chatList = action.payload;
-      
-    
     },
     [__getinitialChatList.rejected]: (state, action) => {
       state.isLoading = false;
