@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useImgUpload from "../hooks/useImgUpload";
-import upload from "../../img/upload.png";
+import { ReactComponent as Upload } from "../../../img/uploadPic.svg";
 import { __postMyImg } from "../../redux/modules/mypageSlice";
 
 const AddUserPic = ({ onClose }) => {
@@ -59,7 +59,8 @@ const AddUserPic = ({ onClose }) => {
               imgRef.current.click();
             }}
           >
-            <img src={upload} style={{ width: "30px" }} alt="" />
+            {/* <img src={upload} style={{ width: "30px" }} alt="" /> */}
+            <Upload/>
           </ImgUpload>
         </label>
       </div>

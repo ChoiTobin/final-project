@@ -68,7 +68,7 @@ const Content = () => {
           onClick={onClickSearch}
           src={require("../../../img/")}
         /> */}
-        <Search onKeyPress={appKeyPress} onClick={onClickSearch} />
+        <Search onKeyPress={appKeyPress} onClick={onClickSearch} style={{ marginLeft: "315px", zIndex: 1,  position: "absolute" }} />
       </InputBox>
       <Buttongroup>
         <Button type="button" onClick={onClickAll}>
@@ -93,7 +93,7 @@ const Content = () => {
             <SlideImg src={require("../../../img/big.png")} />
           </Carousel.Item>
           <Carousel.Item>
-            <SlideImg src={require("../../../img/middle.png")} />
+            <SlideImg src={require("../../../img/medium.png")} />
           </Carousel.Item>
           <Carousel.Item>
             <SlideImg src={require("../../../img/small.png")} />
@@ -105,8 +105,10 @@ const Content = () => {
 };
 
 export default Content;
+
 const SearchListWrap = styled.div`
   position: relative;
+  height: 172px;
 `;
 const Buttongroup = styled.div`
   display: flex;
@@ -114,37 +116,53 @@ const Buttongroup = styled.div`
   position: absolute;
   top: 51px;
   z-index: 1;
-  margin-left: 12px;
+  margin-left: 15px;
+  gap: 2px;
 `;
+
 const Button = styled.button`
-  width: 84px;
-  height: 36px;
+  width: 79.9px;
+  height: 26px;
   border: none;
   background-color: #ddd;
-  border-radius: 30px;
-  font-weight: 600;
+  border-radius: 15px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16.71px;
   :hover {
     background-color: #ed9071;
     color: #fff;
   }
 `;
-const Carouselwrap = styled.div``;
+const Carouselwrap = styled.div`
+  position: relative;
+  width: 360px;
+  height: 120px;
+`;
+
 const Input = styled.input`
   position: relative;
   border: none;
   outline: none;
-  border: 1px solid #666;
-  border-radius: 30px;
+  border: 1px solid #6f6f6f;
+  border-radius: 54px;
   width: 95%;
   min-width: 340px;
-  height: 36px;
   text-indent: 12px;
   margin-left: 10px;
+  background-color: transparent;
 `;
 
 const InputBox = styled.div`
+  width: 313.93px;
+  height: 24.99px;
   position: relative;
-  margin-bottom: 40px;
+  align-items: center;
+  margin-bottom: 37px;
+  display: flex;
+  flex-direction: row;
+
 `;
 const Img = styled.img`
   position: absolute;
@@ -155,5 +173,5 @@ const Img = styled.img`
 const SlideImg = styled.img`
   object-fit: cover;
   width: 360px;
-  hegith: 140px;
+  height: 140px;
 `;

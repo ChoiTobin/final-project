@@ -7,7 +7,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlice";
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
-import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import Modal2 from "../components/element/ChatModal/Modal2";
+import { ReactComponent as BackArrow } from "../img/backArrow.svg";
+import { ReactComponent as Send } from "../img/send.svg";
 
 function ChatRoomPage() {
   const { id } = useParams();
@@ -147,6 +149,7 @@ function ChatRoomPage() {
     // <Modal2></Modal2>
     <LoginContainer>
       <Header>
+        <Modal2/>
         <div>
           {/* <Img
             onClick={() => navigate(-1)}
@@ -212,10 +215,14 @@ function ChatRoomPage() {
           onClick={onSubmitHandler}
           src={require("../chatting/chattingImg/iconSand.png")}
         /> */}
-        <ArrowImg
+        {/* <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
           src={require("../img/send.png")}
+        /> */}
+        <Send
+          onSubmit={appKeyPress}
+          onClick={onSubmitHandler}
         />
       </Chatput>
     </LoginContainer>

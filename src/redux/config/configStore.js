@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-
 import mypage from "../modules/mypageSlice";
 import post from "../modules/postSlice";
 import account from "../modules/userSlice";
@@ -9,7 +8,6 @@ import chatting from "../modules/chattingSlice";
 const store = configureStore({
     
   reducer: {
-
     mypage,
     post,
     account,

@@ -1,17 +1,18 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
-import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
-import postSlice, { __getDetail } from"../redux/modules/postSlice"
+import { __getDetail } from"../redux/modules/postSlice"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
 import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
-// import FullHTML from '../FullHTML.css'
+import { ReactComponent as Date } from "../img/mainDate.svg";
+import { ReactComponent as Place } from "../img/mainPlace.svg";
+import { ReactComponent as Post } from "../img/post.svg";
+import { ReactComponent as User } from "../img/user.svg";
+import '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
@@ -50,137 +51,222 @@ const Detail = () => {
   
   return (
     <Layout>
-      <Header/>
-      <Container style={{margin:" 0 auto",marginTop:"20px"}}>
-        
-        <Overflow>
-        <Carousel fade >
-        {post.imgs !== undefined &&
+      <Header />
+      <Container>
+        <Carousel fade style={{ height: "196.37px" }}>
+          {post.imgs !== undefined &&
             post.imgs.map((pic) => {
-            if (post.imgs.length !== 0) {
-            return (
-            <Carousel.Item>
-            <Img src={pic} alt="postImg" />
-            </Carousel.Item>
-            );
-            }
-            })
-          }
-          </Carousel>
-        <ItemBox>
-          <Span style={{fontSize:24,fontWeight:590}}>
-            { post.price !== undefined && (
-              <>
-                {post.price.toLocaleString('ko-KR')}원
-              </>
-            )}
-          </Span>
-          <Text style={{fontWeight:600 , fontSize:20 }}>
+              if (post.imgs.length !== 0) {
+                return (
+                  <Carousel.Item>
+                    <img src={pic} alt="postImg" />
+                  </Carousel.Item>
+                );
+              }
+            })}
+        </Carousel>
+        <Content>
+          <Top>
+            <Price>
+              {post.price !== undefined && (
+                <>{post.price.toLocaleString("ko-KR")}원</>
+              )}
+            </Price>
             <Title>
-              {post.state}
-              <span style={{marginLeft:6,fontWeight:500}}>{post.title} </span>
+              <span style={{ fontWeight: 600, color: "rgba(78, 78, 78, 1)" }}>
+                {post.state}
+              </span>
+              <span>{post.title}</span>
             </Title>
-          </Text>
-          <Text style={{fontSize:14}}>
-            <div style={{marginTop:10}}>
-              <img style={{marginRight:5}} src={require("../img/calender.png")} alt=""  />{post.date}
-              <img style={{width:11,marginRight:5,marginLeft:10}} src={require("../img/markup.png")} alt=""  />{post.local}
+            <Info>
+              <Plan>
+                <span>
+                  {/* <img style={{marginRight:5}} src={require("../img/calender.png")} alt=""  />{post.date} */}
+                  <Date />
+                  &nbsp;
+                  {post.date}
+                </span>
+                <span>
+                  {/* <img style={{width:11,marginRight:5,marginLeft:10}} src={require("../img/markup.png")} alt=""  />{post.local} */}
+                  <Place />
+                  &nbsp;
+                  {post.local}
+                </span>
+              </Plan>
+              <span>{post.createdAt}</span>
+            </Info>
+          </Top>
+          <Hr/>
+          <Body>
+            <Post style={{ margin: "13.93px 0 0 24.5px" }} />
+            <div style={{ margin: "11.25px 0 0 8.1px" }}>
+              {/* <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  /> */}
+              {post.content}
             </div>
-            <div style={{marginTop:10}}>{post.createdAt}시간</div>
-          </Text>
-        </ItemBox>
-        <ContentBox>
-          <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
-          {post.content}진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
-              금액의 경우 협의 가능합니다.
-              가능한 빠른 연락 부탁드리며
-              노쇼 하지 않으실 분들만 찾습니다!
-
-              진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
-        </ContentBox>
-        </Overflow>
-        <ProfileBox>
-          <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
-          <Profilename>
-            <div style={{marginLeft:10}} >{post.nickname}</div>
-            <div style={{marginLeft:10}}>⭐⭐⭐⭐⭐</div>
-          </Profilename>
-        </ProfileBox>
-        <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
-        {/* <Button onClick={()=>onClickChatting(post)}>채팅하기</Button> */}
-        { 
-          post.nickname == localStorage.getItem("user-nickname")  ?
-          null:
-          <Button onClick={()=>onClickChatting(post)}>채팅하기</Button>
-        }
+          </Body>
+          <Hr/>
+          <Profile>
+            {/* <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  /> */}
+            <User style={{ width: "32.3px", height: "32.25px", margin: "11.15px 13.82px 11.24px 22.79px" }} />
+            <MyInfo>
+              <span>&nbsp;{post.nickname}</span>
+              <span>⭐4.2</span>
+            </MyInfo>
+          </Profile>
+        </Content>
       </Container>
-      <Footer/>
+      <ChatBtn>
+        {/* <div type="button" onClick={() => onClickMove()}>
+          이전버튼(크멍톡)
+        </div> */}
+        {/* <Button onClick={()=>onClickChatting(post)}>채팅하기</Button> */}
+        {post.nickname === localStorage.getItem("user-nickname") ? null : (
+          <button onClick={() => onClickChatting(post)}>크멍톡</button>
+        )}
+      </ChatBtn>
+      <Footer />
     </Layout>
-  )
+  );
 }
 
-export default Detail ;
+export default Detail;
 
-const Overflow = styled.div`
-  // background-color:#ED9071;
-  overflow: auto;
-  height:411px;
+const Layout = styled.div`
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  background-color: #f6f0ee;
+`;
+
+const Container = styled.div`
+  width: 360px;
+  /* height: 466.38px; */
+  height: 473.38px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
-    display: none;
+    width: 5px;
   }
-`
-const Container = styled.div `
-  width:95%;
-  max-width:360px;
 
-  background-color:#f6f0ee;
-`
-const ItemBox = styled.div`
-  border-bottom: 1px solid #ED9071;
-  border-top: 1px solid #ED9071;
-  padding: 20px 10px;
-`
-const ContentBox = styled.div`
-  border-bottom: 1px solid #ED9071;
-  padding: 20px 10px
-`
-const ProfileBox = styled.div`
-  display:flex; 
-  border-bottom: 1px solid #ED9071;
-  padding: 20px 10px
-  
-`
-const Text = styled.div`
-  display:flex;
-  justify-content:space-between;
-`
-const Span = styled.span `
-  color:#ED9071;
-`
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
+
+const Content = styled.div`
+  width: 360px;
+  height: 270.01px;
+`;
+
+const Top = styled.div`
+  height: 83.14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 11.24px 0 5.79px 22.79px;
+`;
+
+const Price = styled.span`
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 19.09px;
+  color: #ED9071;
+  margin: 11.24px 0 7.43px 0;
+`;
+
 const Title = styled.div`
+  width: 340px;
+  height: 83.14px;
+  span {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 7.43px 5px 5.5px 0;
+    color: rgba(40, 40, 40, 1);
+  }
+`;
 
+const Info = styled.div`
+  font-family: "Pretendard", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16.26px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 110px;
+`;
+
+const Plan = styled.div`
+  span {
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 8.43px;
+  }
+`;
+
+const Hr = styled.hr`
+  width: 360px;
+  border: 0.24px solid #EE8B6A;
 `
-const Button = styled.button`
-  width:100%;
-  border:none;
-  height:60px;
+
+const Body = styled.div`
+  width: 340px;
+  min-height: 131.42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  font-family: "Pretendard", sans-serif;
   font-size: 16px;
-  font-weight:bold;
-  color:#fff;
-  box-sizing: border-box;
-  background-color:#ED9071;
-  cursor:pointer;
-  margin-top:20px;
-`
-const Img = styled.img`
-  object-fit: cover;
-  width:360px;
-  height:200px;
-`
-const Userimg = styled.img`
-  width:50px;
-`
-const Profilename = styled.div`
-  display:flex;
-  flex-direction:column;
-`
+  font-weight: 400;
+  line-height: 15.54px;
+`;
+
+const Profile = styled.div`
+  width: 340px;
+  height: 55.05px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+`;
+
+const MyInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 15.51px;
+  color: rgba(78, 78, 78, 1);
+  gap: 5px;
+`;
+
+const ChatBtn = styled.div`
+  button {
+    width: 360px;
+    height: 47.8px;
+    color: #fff;
+    background-color: #ed9071;
+    border: none;
+    font-family: "Pretendard", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 19.09px;
+    letter-spacing: 0.055cm;
+  }
+`;
+

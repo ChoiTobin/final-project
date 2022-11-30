@@ -6,8 +6,8 @@ import { ReactComponent as ChatColor } from "../../img/chat-f.svg";
 import { ReactComponent as ChatMono } from "../../img/chat-fo.svg";
 import { ReactComponent as WriteColor } from "../../img/write-f.svg";
 import { ReactComponent as WriteMono } from "../../img/write-fo.svg";
-import { ReactComponent as MypageColor } from "../../img/mypage-f.svg";
-import { ReactComponent as MypageMono } from "../../img/mypage-fo.svg";
+import { ReactComponent as MypageColor } from "../../img/my-f.svg";
+import { ReactComponent as MypageMono } from "../../img/my-fo.svg";
 import { useNavigate } from "react-router-dom/dist";
 
 const Footer = () => {

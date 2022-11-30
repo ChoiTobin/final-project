@@ -1,3 +1,6 @@
+https://cactus.tistory.com/306
+yarn add pretendard
+
 ```
 final-project
 ├─ .gitignore

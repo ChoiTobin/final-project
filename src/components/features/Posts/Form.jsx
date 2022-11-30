@@ -12,7 +12,7 @@ import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
-import { ReactComponent as Photo } from "../../../img/photo.svg";
+import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -241,7 +241,7 @@ const Layout = styled.div`
 const One = styled.div`
   display: flex;
   position: relative;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 16px;
 `;
 const P2 = styled.p`
@@ -252,7 +252,7 @@ const P2 = styled.p`
   color: #787878;
 `;
 const Bg = styled.div`
-  max-height: 466.38px;
+  max-height: 456.38px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -290,14 +290,14 @@ const ImgUpload = styled.button`
     margin: 10px 0 0 10px;
   } */
   span {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
     margin-left: 11px;
   }
   ::placeholder {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -320,7 +320,7 @@ const FormBtn1 = styled.button`
   width: 180px;
   height: 50px;
   cursor: pointer;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 18px;
   font-weight: 500;
   background-color: #838383;
@@ -332,7 +332,7 @@ const FormBtn2 = styled.button`
   width: 180px;
   height: 50px;
   cursor: pointer;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 18px;
   font-weight: 510;
   background-color: #ed9071;
@@ -345,9 +345,9 @@ const Input = styled.input`
   outline: none;
   border: 1px solid rgba(146, 146, 146, 0.95);
   border-radius: 3px;
-  background-color: rgba(243, 243, 243, 0.64);
+  /* background-color: rgba(243, 243, 243, 0.64); */
   ::placeholder {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -363,8 +363,9 @@ const Input2 = styled.input`
   border: 1px solid #333;
   border-radius: 3px;
   background-color: rgba(243, 243, 243, 0.64);
+  font-family: "Pretendard", sans-serif;
   ::placeholder {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -379,8 +380,9 @@ const Select = styled.select`
   outline: none;
   border: 1px solid rgba(105, 105, 105, 1);
   background-color: rgba(243, 243, 243, 0.64);
+  font-family: "Pretendard", sans-serif;
   select {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -396,8 +398,9 @@ const Select2 = styled.select`
   border: 1px solid #666;
   border-radius: 3px;
   background-color: rgba(243, 243, 243, 0.64);
+  font-family: "Pretendard", sans-serif;
   select {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;

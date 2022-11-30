@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/KakaoLogin";
-import { useLocation } from "react-router-dom";
 import { ReactComponent as Kakao } from "../img/kakao.svg";
 import { ReactComponent as Naver } from "../img/naver.svg";
 import Pet from "../img/pet.png";
@@ -56,8 +55,10 @@ const SignIn = () => {
       <div>
         <Login>
           <div className="login-btn">
-            <img src={Kakao} alt="" />
-            <img src={Naver} alt="" />
+            {/* <img src={Kakao} alt="" />
+            <img src={Naver} alt="" /> */}
+            <Kakao />
+            <Naver />
           </div>
           <div className="login-input">
             <div className="input-id">
