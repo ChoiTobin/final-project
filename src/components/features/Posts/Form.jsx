@@ -195,14 +195,13 @@ const Post = () => {
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
           </Select2>
-          <textarea
+          <Textarea
             style={{
               width: "100%",
               height: "8em",
               resize: "none",
-              border: "none",
               textIndent: 10,
-              outline: "none",
+              // outline: "none",
             }}
             name="content"
             value={conimal.content || ""}
@@ -345,7 +344,7 @@ const Input = styled.input`
   outline: none;
   border: 1px solid rgba(146, 146, 146, 0.95);
   border-radius: 3px;
-  /* background-color: rgba(243, 243, 243, 0.64); */
+  background-color: transparent;
   ::placeholder {
     font-family: "Pretendard", sans-serif;
     font-size: 16px;
@@ -362,7 +361,7 @@ const Input2 = styled.input`
   outline: none;
   border: 1px solid #333;
   border-radius: 3px;
-  background-color: rgba(243, 243, 243, 0.64);
+  background-color: transparent;
   font-family: "Pretendard", sans-serif;
   ::placeholder {
     font-family: "Pretendard", sans-serif;
@@ -403,6 +402,20 @@ const Select2 = styled.select`
     font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
+    line-height: 19.09px;
+  }
+`;
+
+const Textarea = styled.textarea`
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background-color: transparent;
+  padding: 13.85px 0 0 3px;
+  margin-bottom: 14px;
+  ::placeholder {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
     line-height: 19.09px;
   }
 `;
