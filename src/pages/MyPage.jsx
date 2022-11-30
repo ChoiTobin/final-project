@@ -6,7 +6,7 @@ import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import styled from "styled-components";
-import { ReactComponent as Kakao } from "../img/myKakao.svg";
+import { ReactComponent as MyKakao } from "../img/kakaoMy.svg";
 import { ReactComponent as NoticeArrow } from "../img/noticeArrow.svg";
 import User from "../img/user.png";
 import Banner from "../img/banner.png";
@@ -85,7 +85,7 @@ const MyPage = () => {
             <Account>
               <UserInfo>
                 <span>{myInfo.nickname}</span>
-                <Kakao />
+                <MyKakao />
               </UserInfo>
               <span
                 style={{
