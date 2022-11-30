@@ -5,62 +5,85 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { __getinitialChatList, __getRoomList } from "../redux/modules/chattingSlice";
 
+
 const ChatList = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const navigator = useNavigate();
-  const Room = useSelector((state) => state.chatting.roomList);
+    const {id}  = useParams()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const navigator = useNavigate();
+    const Room = useSelector((state) => state.chatting.roomList);
+  console.log(Room,"방생성자???")
 
-  useEffect(() => {
-    dispatch(__getRoomList());
-  }, []);
 
-  const onClickChatting = (item) => {
-    navigator(`/ChatRoomPage/${item.postId}`);
 
-    dispatch(
-      __getinitialChatList({
-        postId: item.postId,
-        roomId: item.roomId,
-      })
-    );
-  };
-  //들어갈때 get요청
+  
+
+    useEffect(() => {
+
+        dispatch(__getRoomList());
+      }, []);
+
+
+const onClickChatting = (item) => {
+
+  navigator(`/ChatRoomPage/${item.postId}`)
+  setTimeout(
+    function () {
+      dispatch(__getinitialChatList({
+        postId:item.postId,
+        roomId:item.roomId,
+      }));
+    },
+  300 // 밀리초 간격으로 실행
+  );
+ //roomID가  undefind가 나타남. 방연결이 되었다안되었다함
+ // chatList쪽에 dispatch에 SetTimeout을 설정한후 roomId를 직접 로컬로 받아서 sub에 넣으니까 해결은됨 f5시에 문자가 두개씩나타나는 오류가생김.
+
+
+}
+//들어갈때 get요청
+
 
   return (
-    <>
-      {Room !== undefined &&
-        Room !== [] &&
-        Room.map((item, i) => {
-          return (
-            <div key={i}>
-              <span>{item.title}</span>
-              <span>
-                <LoginButton onClick={() => onClickChatting(item)}>
-                  {item.postId}번방
-                </LoginButton>
-              </span>
-            </div>
-          );
-        })}
-    </>
-  );
-};
+      <>
+            { 
+             Room !== undefined && Room !== [] &&
+             Room.map((item,i)=>{
+               return(
+               
+                <div key={i}>
 
-export default ChatList;
+                    <span>{item.title}</span>
+                    <span>
+                        <LoginButton onClick={()=>onClickChatting(item)}>
+                        {item.postId}번방
+                        </LoginButton>
+                    </span>
+                </div>
+
+               )
+              }
+              )
+            } 
+      </>
+
+  )
+}
+
+export default ChatList ;
+
 
 const LoginButton = styled.button`
-  font-size: 18px;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  font-weight: bold;
-  width: 253px;
-  height: 40px;
-  margin-top: 30px;
+font-size:18px;
+color: white;
+border: none;
+border-radius: 3px;
+font-weight: bold;
+width: 253px;
+height: 40px;
+margin-top: 30px;
 
-  // 버튼 누르면 손모양 나오게 하는 마우스 커서
-  cursor: pointer;
-  background-color: #ed9071;
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+cursor: pointer;
+background-color: #ED9071;
 `;
