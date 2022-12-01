@@ -9,6 +9,7 @@ const URI = {
 
 const initialState = {
   // URI: `${URI.BASE}`,
+  complete:[],
   createRoom: [],
   roomList:[],
   chatList:[],
@@ -18,12 +19,14 @@ const initialState = {
   roomId: null,
   err: null,
 };
+
+
 export const __CreateRoom = createAsyncThunk(
   "/chat/__CreateRoom",
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.CreateRoom(payload)
-      console.log("실행시점확인","방입장시 thunk")
+
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -49,17 +52,33 @@ export const __getinitialChatList = createAsyncThunk(
   "/chat/__getInitialChatList",
   async (payload, thunkAPI) => {
     try {
-      console.log("방입장시","get")
+
       const response = await Apis.getInitialChatList(payload)
-    
-  
-      
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.data);
     }
   }
 );
+
+export const __complete = createAsyncThunk(
+  "/chat/__complete",
+  async (payload, thunkAPI) => {
+    try {
+      console.log("페이로드~~~~~~~~~~",payload)
+
+      const response = await Apis.complete(payload)
+    
+      console.log(response)
+      
+      return thunkAPI.fulfillWithValue(response.data.msg);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.data);
+    }
+  }
+);
+
+
 
 
 
@@ -95,13 +114,29 @@ const chatSlice = createSlice({
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.createRoom = action.payload;
-      console.log("방입장시","fullfild")
-      // console.log("풀필드",action.payload,state.createRoom)
     },
     [__CreateRoom.rejected]: (state, action) => {
       state.isLoading = false;
       state.err = action.payload;
     },
+
+
+
+    [__complete.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__complete.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.complete = action.payload;
+    },
+    [__complete.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.err = action.payload;
+    },
+
+
+
+
     [__getRoomList.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -118,8 +153,6 @@ const chatSlice = createSlice({
     },
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("방입장시","get")
-
       state.chatList = action.payload;
       
     

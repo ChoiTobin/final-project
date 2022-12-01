@@ -9,7 +9,7 @@ import "../App.css";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2"
-
+import RatingModal from "../components/features/Posts/RatingModal/RatingModal";
 function ChatRoomPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function ChatRoomPage() {
   let postId = Number(id);
   //여러번 호출안하거나 undefined 
   //onSubmitHandler
-
+console.log(chatList,"쳇리스트")
   useEffect(() => {
     dispatch(__getinitialChatList({postId: postId,roomId: 1,}));
     return () => {onbeforeunloda();};
@@ -33,7 +33,8 @@ function ChatRoomPage() {
     wsConnectSubscribe();
   return () => {
       onbeforeunloda();};
-  }, [chatList.roomId]);
+  }, 
+  [chatList.roomId]);
   //새로고침 하지 않으면 메시지가 2개로 나오는 issue 떄문에 두번 연결
   //끊어주지 않으면 또 다시 이전화면 다녀오면 2개 나오는 issue때문에
 
@@ -128,7 +129,7 @@ function ChatRoomPage() {
     }
   }, [listReducer]);
   //채팅창 치면 맨 밑으로 내려감.
-
+console.log(chatList)
   return (
     <LoginContainer>
       <Header>
@@ -143,7 +144,11 @@ function ChatRoomPage() {
         </div>
         {
           localStorage.getItem("user-nickname") === chatList.postNickname ?
+            <>
             <Modal2></Modal2>
+  
+            </>
+
             : null
         }
       </Header>

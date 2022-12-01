@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
-import { trueChat,postChat } from "../../redux/modules/chattingSlice";
-
-
+// import { trueChat,postChat } from "../../redux/modules/chattingSlice";
+import { __complete } from "../../redux/modules/chattingSlice";
+import RatingModal from "./../../components/features/Posts/RatingModal/RatingModal";
 
  function Modal2() {
   const [modal, setModal] = useState(false);
   
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.chatting.chatTrueFalse)
+
+  const listReducer = useSelector((state) => state.chatting.chatList);
+
+  const complete = useSelector((state) => state.chatting.complete);
+
+
+  // const count = useSelector((state) => state.chatting.chatTrueFalse)
   const [WriteTrue,setWriteTrue ] =useState ({
     mode:false
   })
@@ -19,16 +25,11 @@ import { trueChat,postChat } from "../../redux/modules/chattingSlice";
     e.preventDefault()
     setModal(!modal);
     setWriteTrue(WriteTrue.mode=true)
-    dispatch(trueChat(WriteTrue))
+    dispatch(__complete(listReducer.postId))
+    // dispatch(trueChat(WriteTrue))
 
     //false로 바뀐다.
     }
-
-    
-
-    //true값 넘겨주기 =>modal색깔 그린 
-  //count가 true일때 이제 visible moddal창 
-  //true일때 색깔바뀌는것만 하기 창닫는거 말고.
   const toggleModal = () => {
     setModal(!modal);
 
@@ -40,25 +41,38 @@ import { trueChat,postChat } from "../../redux/modules/chattingSlice";
   } else{
     document.body.classList.remove('active-modal')
   }
+
+
+
+  let str = "진행중"
+  let UserBoxMessage ="20221121_141505"
+  if(complete== "진행중")
+  {
+     str = "진행중"
+     UserBoxMessage="20221121_141505"
+  }else if(complete == "완료")
+  {
+     str = "완료"
+     UserBoxMessage= "20221121_141959"
+  }
+
+//완료버튼일때 클릭하면 내모달이아니고 현진님 모달.
+
+
   return (
     <>
-      {
-      count== true?
-      <>
-        <P>
-          <Himg2 onClick={toggleModal} src={require("../../img/20221121_141959.png")}/>
-          <Span>완료</Span>
-        </P> 
-      </>
-
-        :
-       <> 
-        <P>
-          <Himg onClick={toggleModal} src={require("../../img/20221121_141505.png")}/>
-          <Span>수락</Span>
-        </P>
-      </>
+      { str == "완료" ? 
+        <RatingModal></RatingModal>
+          :
+            <>
+          <Himg2 onClick={toggleModal} src={require(`../../img/${UserBoxMessage}.png`)}/>
+          <Span>{str}</Span>
+          </>  
+          
       }
+
+
+
       {/* 모달창 승인버튼 green OR black */}
 
       {
