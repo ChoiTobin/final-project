@@ -23,7 +23,7 @@ export const __CreateRoom = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.CreateRoom(payload)
-      
+      console.log("실행시점확인","방입장시 thunk")
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -45,22 +45,21 @@ export const __getRoomList = createAsyncThunk(
 );
 
 
-
-
 export const __getinitialChatList = createAsyncThunk(
   "/chat/__getInitialChatList",
   async (payload, thunkAPI) => {
     try {
-      console.log("asdasdas페이로드!!",payload)
+      console.log("방입장시","get")
       const response = await Apis.getInitialChatList(payload)
-      console.log("보내고나서 실행~~~~~~",response)
+    
+  
+      
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.data);
     }
   }
 );
-
 
 
 
@@ -96,6 +95,7 @@ const chatSlice = createSlice({
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.createRoom = action.payload;
+      console.log("방입장시","fullfild")
       // console.log("풀필드",action.payload,state.createRoom)
     },
     [__CreateRoom.rejected]: (state, action) => {
@@ -118,6 +118,7 @@ const chatSlice = createSlice({
     },
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
+      console.log("방입장시","get")
 
       state.chatList = action.payload;
       

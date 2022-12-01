@@ -19,31 +19,20 @@ function ChatRoomPage() {
 
   const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
-
-  console.log("쳇리스트", chatList);
-
   let postId = Number(id);
-
+  //여러번 호출안하거나 undefined 
   //onSubmitHandler
-  useEffect(() => {
-    dispatch(
-      __getinitialChatList({
-        postId: postId,
-        roomId: 1,
-      })
-    );
 
-    return () => {
-      onbeforeunloda();
-    };
-  }, []);
+  useEffect(() => {
+    dispatch(__getinitialChatList({postId: postId,roomId: 1,}));
+    return () => {onbeforeunloda();};
+    }, []);
+
 
   useEffect(() => {
     wsConnectSubscribe();
-
-    return () => {
-      onbeforeunloda();
-    };
+  return () => {
+      onbeforeunloda();};
   }, [chatList.roomId]);
   //새로고침 하지 않으면 메시지가 2개로 나오는 issue 떄문에 두번 연결
   //끊어주지 않으면 또 다시 이전화면 다녀오면 2개 나오는 issue때문에
@@ -52,32 +41,28 @@ function ChatRoomPage() {
 
   const content = {
     sender: localStorage.getItem("user-nickname"),
-    message: chatBody,
-  };
+    message: chatBody,};
 
   let headers = {
-    Access_Token: localStorage.getItem("Access_Token"),
-  };
+    Access_Token: localStorage.getItem("Access_Token"),};
 
   function wsConnectSubscribe() {
     try {
       ws.connect(headers, (frame) => {
-        ws.subscribe(`/sub/${chatList.roomId}`, (response) => {
-          let data = JSON.parse(response.body);
-          dispatch(ListReducer(data));
-        });
-      });
+//roomID가  undefind가 나타남. chatList쪽에 dispatch에 SetTimeout을 설정한후 roomId를 직접 로컬로 받아서 sub에 넣으니까 해결은됨 f5시에 문자가 두개씩나타나는 오류가생김.
+      ws.subscribe(`/sub/${chatList.roomId}`, (response) => {
+      let data = JSON.parse(response.body);
+      dispatch(ListReducer(data));
+      });});
     } catch (error) {}
-  }
+    }
 
   function waitForConnection(ws, callback) {
     setTimeout(
       function () {
         // 연결되었을 때 콜백함수 실행
-
         if (ws.ws.readyState === 1) {
           callback();
-
           // 연결이 안 되었으면 재호출
         } else {
           waitForConnection(ws, callback);
@@ -145,21 +130,22 @@ function ChatRoomPage() {
   //채팅창 치면 맨 밑으로 내려감.
 
   return (
-    // <Modal2></Modal2>
     <LoginContainer>
       <Header>
         <div>
-          {/* <Img
-            onClick={() => navigate(-1)}
-            src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}
-          /> */}
-          <BackArrow onClick={() => navigate(-1)} />
+          <BackArrow onClick={
+            ()=>  navigate(-1)
+            }/>
         </div>
         <div>
           <Nickname>{chatList.postNickname}</Nickname>
           <Time>30분 전 접속 </Time>
         </div>
-         <Modal2></Modal2>
+        {
+          localStorage.getItem("user-nickname") === chatList.postNickname ?
+            <Modal2></Modal2>
+            : null
+        }
       </Header>
       <Section>
         <Profile>
@@ -174,26 +160,17 @@ function ChatRoomPage() {
       </Section>
       <DivAt>날짜 오늘</DivAt>
       <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
-        {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
-                       chatList.chatList.map((item,i)=>{
-                          return(
-                          
-                          localStorage.getItem('user-nickname') == item.sender ?  
-                        <TextBox key={uuidv4()}><Colorspan>{item.message}</Colorspan></TextBox>
-                        :
-                        <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
-                        
-                          )
-                        })
-                      } */}
-        {listReducer.chatList !== undefined &&
+        {
+        listReducer.chatList !== undefined &&
           listReducer.chatList !== null &&
           listReducer.chatList.map((item, i) => {
-            return localStorage.getItem("user-nickname") == item.sender ? (
+            return localStorage.getItem("user-nickname") == item.sender ? 
+            (
               <TextBox key={uuidv4()}>
                 <Colorspan>{item.message}</Colorspan>
               </TextBox>
-            ) : (
+            ) : 
+            (
               <TextBox key={uuidv4()}>
                 <Colorspan2>{item.message}</Colorspan2>
               </TextBox>
@@ -208,11 +185,6 @@ function ChatRoomPage() {
           onKeyPress={appKeyPress}
           onChange={inputHandler}
         ></Input>
-        {/* <ArrowImg
-          onSubmit={appKeyPress}
-          onClick={onSubmitHandler}
-          src={require("../chatting/chattingImg/iconSand.png")}
-        /> */}
         <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}

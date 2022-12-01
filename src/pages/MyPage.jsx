@@ -96,7 +96,7 @@ const MyPage = () => {
                   marginBottom: "10.04px",
                 }}
               >
-                평점: ⭐⭐⭐⭐⭐
+                평점:{myInfo.rating}
               </span>
             </Account>
           </Info>
