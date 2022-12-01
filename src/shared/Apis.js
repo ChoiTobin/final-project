@@ -54,7 +54,7 @@ export const Apis = {
   // getRoomList: () => token.get(`/roomList`),
   getRoomList: () => token.get(`/roomList`),
   getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
-  
+  getInitialChatList2: (getInitialList2) => token.post(`/roomInfo`,getInitialList2),
   complete: (complete) => token.put(`/room/${complete}`),
   
 

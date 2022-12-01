@@ -9,10 +9,12 @@ const URI = {
 
 const initialState = {
   // URI: `${URI.BASE}`,
+  chatListTest:[],
   complete:[],
   createRoom: [],
   roomList:[],
   chatList:[],
+  chatList2:[],
   listReducer:[],
   chatTrueFalse:false,
   isLoading: false,
@@ -61,6 +63,24 @@ export const __getinitialChatList = createAsyncThunk(
   }
 );
 
+
+export const __getinitialChatList2 = createAsyncThunk(
+  "/chat/__getInitialChatList2",
+  async (payload, thunkAPI) => {
+    try {
+
+      const response = await Apis.getInitialChatList(payload)
+      return thunkAPI.fulfillWithValue(response.data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.data);
+    }
+  }
+);
+
+
+
+
+
 export const __complete = createAsyncThunk(
   "/chat/__complete",
   async (payload, thunkAPI) => {
@@ -98,7 +118,7 @@ const chatSlice = createSlice({
     },
  
     ListReducer: (state, action) => {
-      state.chatList.chatList.push(action.payload)
+      state.chatList2.chatList.push(action.payload)
 
  
     },
@@ -113,7 +133,7 @@ const chatSlice = createSlice({
     },
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.createRoom = action.payload;
+      state.chatList2 = action.payload;
     },
     [__CreateRoom.rejected]: (state, action) => {
       state.isLoading = false;
@@ -154,13 +174,25 @@ const chatSlice = createSlice({
     [__getinitialChatList.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.chatList = action.payload;
-      
-    
     },
     [__getinitialChatList.rejected]: (state, action) => {
       state.isLoading = false;
       state.err = action.payload;
     },
+
+
+    [__getinitialChatList2.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getinitialChatList2.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.chatList2 = action.payload;
+    },
+    [__getinitialChatList2.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.err = action.payload;
+    },
+
   },
 });
 

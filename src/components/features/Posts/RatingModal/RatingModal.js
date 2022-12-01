@@ -36,6 +36,7 @@ import Rating from "../Rating";
   } else{
     document.body.classList.remove('active-modal')
   }
+  //navigator("/home")
   return (
     <>
       {
