@@ -14,6 +14,8 @@ import AddPetInfo from "../components/features/Mypage/AddPetInfo";
 import "../components/element/MyPetModal.css";
 import { useNavigate } from "react-router-dom";
 
+//별추가
+import { FaStar } from 'react-icons/fa';
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
@@ -29,13 +31,12 @@ const MyPage = () => {
   console.log("전체 셀렉터", all);
 
   console.log("셀렉터post", post);
-  console.log("셀렉터myInfo", myInfo);
+  console.log("셀렉터myInfo", all);
   console.log("셀렉터myPosts", myPosts);
   console.log("셀렉터myPic", myPic);
   console.log("셀렉터myPets", myPets);
 
   console.log("프사 이미지 가져오나", myInfo.userImage);
-
   const [pets, setPets] = useState(false)
 
   const openPetModal = () => {
@@ -68,6 +69,8 @@ const MyPage = () => {
 
   }
 
+  const ARRAY = [0, 1, 2, 3, 4];
+  
   return (
     <Layouts>
       <Header />
@@ -95,8 +98,16 @@ const MyPage = () => {
                   color: "#989593",
                   marginBottom: "10.04px",
                 }}
-              >
-                평점: ⭐⭐⭐⭐⭐
+              > 
+                평점: 
+                {	
+                  ARRAY.map((id,i) => { 
+                      return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
+                    <FaStar key={id} style={i < myInfo.rating ? { color: "#fcc419"}:{}} />
+                    )
+                  })
+                }
+                {myInfo.rating}
               </span>
             </Account>
           </Info>

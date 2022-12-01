@@ -1,0 +1,41 @@
+body.active-modal {
+  overflow-y: hidden;
+  background: rgba(24, 24, 24, 0.8);
+
+}
+
+.Rating {
+  position: relative; 
+  z-index:999; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.RatingOverlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(24, 24, 24, 0.8);
+
+}
+
+.modal3-content3 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  color:#333;
+  /* padding: 14px 28px; */
+  border-radius: 10px;
+}
+

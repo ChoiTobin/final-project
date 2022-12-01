@@ -8,6 +8,9 @@ import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlic
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import Modal2 from "../pages/ChatModal/Modal2"
+import Rating from "../components/features/Posts/Rating";
+import RatingModal from "../components/features/Posts/RatingModal/RatingModal";
 
 
 function ChatRoomPage() {
@@ -19,7 +22,7 @@ function ChatRoomPage() {
 
   const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
-
+  
   console.log("쳇리스트", chatList);
 
   let postId = Number(id);
@@ -148,6 +151,8 @@ function ChatRoomPage() {
     // <Modal2></Modal2>
     <LoginContainer>
       <Header>
+      <Modal2/>
+      <RatingModal/>
         <div>
           {/* <Img
             onClick={() => navigate(-1)}
@@ -219,6 +224,7 @@ function ChatRoomPage() {
           src={require("../img/send.png")}
         />
       </Chatput>
+      
     </LoginContainer>
   );
 }

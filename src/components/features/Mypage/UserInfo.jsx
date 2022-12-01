@@ -7,7 +7,7 @@ import { __getMyPage } from "../../redux/modules/mypageSlice";
 
 const UserInfo = ({ myInfo }) => {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(__getMyPage());
   }, []);

@@ -35,13 +35,13 @@ const Detail = () => {
       postNickName:post.nickname,
     }));
     //navigator(`/ChatRoomPage/${post.id}`);
-    setTimeout(
-      function () {
-          // 연결되었을 때 콜백함수 실행
-          navigator(`/ChatRoomPage/${id}`);
-      },
-      300 // 밀리초 간격으로 실행
-    );
+    // setTimeout(
+    //   function () {
+    //       // 연결되었을 때 콜백함수 실행
+    //       navigator(`/ChatRoomPage/${id}`);
+    //   },
+    //   300 // 밀리초 간격으로 실행
+    // );
   }
 
   

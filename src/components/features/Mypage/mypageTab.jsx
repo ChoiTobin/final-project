@@ -8,7 +8,7 @@ import PetInfo from "./PetInfo";
 export default function Mytab() {
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPets = useSelector((state) => state.mypage.myPets);
-
+  
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {
@@ -39,7 +39,7 @@ export default function Mytab() {
       tabCont: <PetInfo myPets={myPets} />,
     },
   ];
-
+  
   return (
     <div>
       <TabMain className="tab is-boxed">

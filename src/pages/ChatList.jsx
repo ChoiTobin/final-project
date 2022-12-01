@@ -21,19 +21,20 @@ const ChatList = () => {
       }, []);
 
 const onClickChatting = (item) => {
-
-
-  navigator(`/ChatRoomPage/${item.postId}`);
-
-  dispatch(__getinitialChatList({
-   
-    postId:item.postId,
-    roomId:item.roomId,
-    
-}));
-
-
-}
+  
+  navigator(`/ChatRoomPage/${item.postId}`)
+    setTimeout(
+    function () {
+    dispatch(__getinitialChatList({
+      postId:item.postId,
+      roomId:item.roomId,
+    }));
+  },
+  300 // 밀리초 간격으로 실행
+  );
+  //roomID가 undefind가 나타남. 방연결이 되었다안되었다함
+  // chatList쪽에 dispatch에 SetTimeout을 설정한후 roomId를 직접 로컬로 받아서 sub에 넣으니까 해결은됨 f5시에 문자가 두개씩나타나는 오류가생김.
+  }
 //들어갈때 get요청
 
 

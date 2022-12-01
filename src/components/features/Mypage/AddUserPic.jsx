@@ -37,7 +37,6 @@ const AddUserPic = ({ onClose }) => {
     window.alert("프로필 사진이 수정되었습니다!");
     navigate("/mypage");
   };
-
   return (
     <div>
       <div>

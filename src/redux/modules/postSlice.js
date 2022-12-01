@@ -14,10 +14,10 @@ const initialState = {
 export const __getPostRating = createAsyncThunk(	
   "api/posts/getPostRating",	
   async (payload, thunkAPI) => {
-    // console.log("페이로드야",payload)	
+    console.log("페이로드야",payload)	
     try {	
       const response = await Apis.getPostRatingAX(payload)	
-      console.log("전체조회",response.data)
+      console.log("별점리스폰스",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	

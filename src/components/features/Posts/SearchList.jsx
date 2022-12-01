@@ -59,10 +59,10 @@ const Content = () => {
           <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.svg")} />
         </InputBox>
         <Buttongroup>
-            <Button type='button' onClick={onClickAll}>전체</Button>
-            <Button type='button' name="대형" onClick={onClickBig}>대형</Button>
-            <Button type='button' name="중형" onClick={onClickMiddle}>중형</Button>
-            <Button type='button' name="소형" onClick={onClickSmall}>소형</Button>
+          <Button type='button' onClick={onClickAll}>전체</Button>
+          <Button type='button' name="대형" onClick={onClickBig}>대형</Button>
+          <Button type='button' name="중형" onClick={onClickMiddle}>중형</Button>
+          <Button type='button' name="소형" onClick={onClickSmall}>소형</Button>
         </Buttongroup>
         <Carouselwrap>
         <Carousel>
