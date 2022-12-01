@@ -85,7 +85,7 @@ const Content = () => {
         </Button>
       </Buttongroup>
       <Carouselwrap>
-        <Carousel>
+        <Carousel id="carousel">
           <Carousel.Item>
             <SlideImg src={require("../../../img/all.png")} />
           </Carousel.Item>

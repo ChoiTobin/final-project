@@ -17,5 +17,6 @@ const Layouts = styled.div`
   max-width: 360px;
   height: 640px;
   margin: auto;
-  background-color: #f6f0ee;
+  /* background-color: #FFF; */
+  background-color: #F6F0EE;
 `;

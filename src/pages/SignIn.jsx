@@ -53,11 +53,9 @@ const SignIn = () => {
           <div>
             <LoginBox>
               {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-              <Logo style={{marginTop: "36.84px"}} />
+              <Logo style={{ marginTop: "36.84px" }} />
               <LogoLogin>LOGIN</LogoLogin>
-              <LogoBtns>
-                <KakaoLogin />
-              </LogoBtns>
+
               <InputBox>
                 <Input
                   placeholder="아이디"
@@ -98,8 +96,15 @@ const SignIn = () => {
               </InputBox>
             </LoginBox>
             <LoginButton onClick={onSubmitHandler}>로그인</LoginButton>
+            <SocialLogin>
+              <span>또는</span>
+              <LogoBtns>
+                <KakaoLogin />
+              </LogoBtns>
+            </SocialLogin>
+            
             <Hr />
-            <SignButton onClick={() => navigate("/signup")}>
+            <SignButton onClick={() => navigate("/")}>
               회원가입
             </SignButton>
             <p id="token-result"></p>
@@ -135,15 +140,14 @@ const LogoLogin = styled.span`
   /* font-family: "Spoqa Han Sans Neo", sans-serif; */
   font-family: "Pretendard", sans-serif;
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 38.19px;
-  margin: 5.57px auto 30.75px;
+  margin: 5.57px auto 34px;
 `;
 
 const LogoBtns = styled.div`
-  width: 117.99px;
-  height: 44.52px;
-  margin-bottom: 14px;
+  width: 100px;
+  height: 38px;
 `;
 const InputBox = styled.div`
   justify-content: left;
@@ -215,12 +219,28 @@ const LoginButton = styled.button`
   font-family: "Pretendard", sans-serif;
   font-size: 20px;
   font-weight: 600;
-  margin: 22.58px auto 36px 14px;
+  margin: 22.58px auto 22px 14px;
+`;
+
+const SocialLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  margin-bottom: 24px;
+  color: rgba(120, 120, 120, 1);
+  span {
+    margin-bottom: 12px;
+  }
 `;
 
 const Hr = styled.hr`
   border: 1px solid rgba(153, 153, 153, 0.54);
-  margin-bottom: 36px;
+  margin-bottom: 30.42px;
 `;
 
 const SignButton = styled.button`
@@ -228,7 +248,7 @@ const SignButton = styled.button`
   height: 50px;
   border: none;
   border-radius: 3px;
-  background-color: #838383;
+  background-color: #aeaeae;
   color: #fff;
   font-family: "Pretendard", sans-serif;
   font-size: 20px;

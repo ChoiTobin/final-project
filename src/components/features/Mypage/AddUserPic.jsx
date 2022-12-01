@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import useImgUpload from "../hooks/useImgUpload";
+import useImgUpload from "../../hooks/useImgUpload";
 import { ReactComponent as Upload } from "../../../img/uploadPic.svg";
-import { __postMyImg } from "../../redux/modules/mypageSlice";
+import { __postMyImg } from "../../../redux/modules/mypageSlice";
 
 const AddUserPic = ({ onClose }) => {
   const dispatch = useDispatch();

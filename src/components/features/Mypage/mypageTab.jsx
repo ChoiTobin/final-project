@@ -4,17 +4,19 @@ import { useSelector } from "react-redux";
 import MyContent from "./MyContent";
 import PetInfo from "./PetInfo";
 
-// 마이페이지에서 반려동물과 내가 쓴 글을 볼 수 있는 탭
 export default function Mytab() {
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPets = useSelector((state) => state.mypage.myPets);
+
+  console.log("포스트들어와라", myPosts);
+  console.log("동물들도 들어와", myPets);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {
     setActiveIndex(index);
   };
-      //
+
   const tabContArr = [
     {
       tabTitle: (
@@ -22,7 +24,7 @@ export default function Mytab() {
           className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
-          내 게시글
+          내가 쓴 글
         </TabTitle>
       ),
       tabCont: <MyContent myPost={myPosts} />,
@@ -33,7 +35,7 @@ export default function Mytab() {
           className={activeIndex === 1 ? "is-active" : ""}
           onClick={() => tabClickHandler(1)}
         >
-          나의 반려동물
+          반려동물 정보
         </TabTitle>
       ),
       tabCont: <PetInfo myPets={myPets} />,
@@ -53,28 +55,27 @@ export default function Mytab() {
 }
 
 const TabMain = styled.ul`
-  height: 49px;
-  border-top: 1px solid #f1b5a2;
-  border-bottom: 1px solid #f1b5a2;
+  width: 220px;
+  height: 19.47px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 15.67px;
+  justify-content: left;
+  gap: 12.59px;
+  margin-top: 23.01px;
+  margin-left: -10px;
 `;
 
 const TabTitle = styled.div`
   cursor: pointer;
 
-  width: 135px;
-  height: 23.13px;
-  color: #ed9071;
+  width: 200px;
+  height: 19.47px;
+  color: rgba(116, 116, 116, 1);
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-weight: 800;
-  font-size: 12px;
-  border: 1px solid #ed9071;
-  border-radius: 20px;
+  font-weight: 510;
+  font-size: 14px;
+  border: none;
 
   display: flex;
   flex-direction: row;

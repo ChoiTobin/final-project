@@ -13,6 +13,7 @@ import Banner from "../img/banner.png";
 import ModalPortal from "../components/element/ModalPortal";
 import AddPetInfo from "../components/features/Mypage/AddPetInfo";
 import "../components/element/MyPetModal.css";
+import AddUserPic from "../components/features/Mypage/AddUserPic";
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
@@ -35,6 +36,16 @@ const MyPage = () => {
   console.log("셀렉터myPets", myPets);
 
   console.log("프사 이미지 가져오나", myInfo.userImage);
+
+  const [photo, setPhoto] = useState(false);
+
+  const openPicModal = () => {
+    setPhoto(true)
+  }
+
+  const closePicModal = () => {
+    setPhoto(false)
+  }
 
   const [pets, setPets] = useState(false)
 
@@ -109,6 +120,7 @@ const MyPage = () => {
               로그아웃
             </button>
             <button
+              onClick={openPicModal}
               style={{
                 color: "rgba(108, 108, 108, 1)",
                 border: "1px solid rgba(108, 108, 108, 1)",
@@ -116,6 +128,13 @@ const MyPage = () => {
             >
               사진수정
             </button>
+            {photo && (
+              <ModalPortal>
+                <div className="MyModal">
+                  <AddUserPic onClose={closePicModal}/>
+                </div>                
+              </ModalPortal>
+            )}
           </StateBtn>
         </Title>
         <PetBtn>
@@ -264,6 +283,7 @@ const StateBtn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   button {
     width: 79.09px;
