@@ -42,10 +42,12 @@ export const __userLogout = createAsyncThunk(
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       // membersApis.loginAX(code)
-      axios.get(`https://크멍.com/auth/member/kakao/callback?code=${code}`)
+      
+      axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
     //post가 아닌 get으로 보낸다.
     // `http://{서버주소}?code=${code}`
           .then((res) => {
+            console.log(res)
               if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
               localStorage.setItem("Access_Token", Access_Token);
@@ -61,8 +63,11 @@ export const __kakaoLogin = (code) => {
               window.location.replace("/home")
             }
           })
+          
           .catch((error) => {
-              window.alert("로그인에 실패하였습니다.");
+            
+            window.alert("로그인에 실패하였습니다.");
+              
               // 로그인 실패하면 로그인 화면으로 돌려보냄
               //window.location.replace('/SignIn');
           })
