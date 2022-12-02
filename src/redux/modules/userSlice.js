@@ -42,7 +42,7 @@ export const __userLogout = createAsyncThunk(
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       // membersApis.loginAX(code)
-      axios.get(`http://localhost:3000/auth/member/kakao/callback?code=${code}`)
+      axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
     //post가 아닌 get으로 보낸다.
     // `http://{서버주소}?code=${code}`
           .then((res) => {
