@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Home } from "../../img/home.svg";
 import { ReactComponent as AHome } from "../../img/homeOn.svg";
@@ -32,8 +31,8 @@ const Footer = () => {
 
   return (
     <>
-      <Layout>
-        <TabMenu>
+      <div>
+        <div>
           {tabArr.map((page, index) => {
         return (
           // 삼항연산자 렌더링
@@ -46,49 +45,11 @@ const Footer = () => {
               )
             })
           }
-        </TabMenu>    
-    </Layout>
+        </div>    
+    </div>
     </>
     
   );
 };
 
 export default Footer;
-
-const Layout = styled.div`
-  height: 55.7px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  gap: 58px;
-  /* cursor: pointer; */
-  background-color: #fff;
-
-  border: 1px solid #ED9071;
-`;
-
-const TabMenu = styled.ul`
-  display: flex;
-  padding: 0px;
-
-  li {
-    background-color: #FFF;
-  }
-
-  .submenu {
-    list-style: none;
-    font-weight: bold;
-    width: 100%;
-    border: none;
-    padding: 7px 0;
-    cursor: pointer;
-    text-align: center;
-  }
-  .focused {
-    background-color: transparent;
-    color: rgba(255, 255, 255, 1);
-    transition: 0.5s;
-  }
-`;

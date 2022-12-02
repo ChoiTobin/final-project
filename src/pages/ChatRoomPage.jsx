@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
@@ -147,8 +146,8 @@ function ChatRoomPage() {
 
   return (
     // <Modal2></Modal2>
-    <LoginContainer>
-      <Header>
+    <div>
+      <div>
         <Modal2/>
         <div>
           {/* <Img
@@ -158,24 +157,23 @@ function ChatRoomPage() {
           <BackArrow onClick={() => navigate(-1)} />
         </div>
         <div>
-          <Nickname>{chatList.postNickname}</Nickname>
-          <Time>30분 전 접속 </Time>
+          <span>{chatList.postNickname}</span>
+          <span>30분 전 접속 </span>
         </div>
         <span>{/* 잠시주석 <Modal2></Modal2> */}</span>
-      </Header>
-      <Section>
-        <Profile>
-          <Img2>{chatList.postImg}</Img2>
-        </Profile>
-        <TextBox>
-          <OrangeSpan>{chatList.state}</OrangeSpan>
-          <Span></Span>
-          <Title>{chatList.title}</Title>
-          <Money>{chatList.price}원</Money>
-        </TextBox>
-      </Section>
-      <DivAt>날짜 오늘</DivAt>
-      <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
+      </div>
+      <div>
+        <div>
+          <span>{chatList.postImg}</span>
+        </div>
+        <div>
+          <span>{chatList.state}</span>
+          <span>{chatList.title}</span>
+          <span>{chatList.price}원</span>
+        </div>
+      </div>
+      <div>날짜 오늘</div>
+      <div sx={{ height: "80%", overflow: "scroll" }}>
         {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
                       chatList.chatList.map((item,i)=>{
                           return(
@@ -192,24 +190,24 @@ function ChatRoomPage() {
           listReducer.chatList !== null &&
           listReducer.chatList.map((item, i) => {
             return localStorage.getItem("user-nickname") === item.sender ? (
-              <TextBox key={uuidv4()}>
-                <Colorspan>{item.message}</Colorspan>
-              </TextBox>
+              <div key={uuidv4()}>
+                <span>{item.message}</span>
+              </div>
             ) : (
-              <TextBox key={uuidv4()}>
-                <Colorspan2>{item.message}</Colorspan2>
-              </TextBox>
+              <div key={uuidv4()}>
+                <span>{item.message}</span>
+              </div>
             );
           })}
 
         <div ref={scrollRef}></div>
-      </OverFlow>
-      <Chatput>
-        <Input
+      </div>
+      <div>
+        <input
           value={chatBody}
           onKeyPress={appKeyPress}
           onChange={inputHandler}
-        ></Input>
+        ></input>
         {/* <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
@@ -224,177 +222,9 @@ function ChatRoomPage() {
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
         />
-      </Chatput>
-    </LoginContainer>
+      </div>
+    </div>
   );
 }
-
-const ArrowImg = styled.img`
-  position: absolute;
-  top: 10px;
-  right: 6px;
-  border: none;
-  width: 13px;
-  height: 15px;
-  background-color: white;
-`;
-const Chatput = styled.div`
-  border-radius: 20%;
-  position: relative;
-`;
-const Input = styled.input`
-  width: 100%;
-  height: 30px;
-  outline: none;
-  text-indent: 8px;
-  border: 2px solid #ed9071;
-  border-radius: 30px;
-  display: inline-block;
-  font-weight: lighter;
-  font-size: 12px;
-  max-width: calc(100% - 32px);
-  min-width: 50px;
-`;
-const Colorspan2 = styled.div`
-  background: gray;
-  color: black;
-  padding: 6px;
-  border-radius: 7px;
-  font-size: 12px;
-  display: flex;
-  flex-direction: left;
-  text-align: left;
-  width: 170px;
-  margin-bottom: 3px;
-  float: right;
-
-  overflow: hidden;
-`;
-const Colorspan = styled.div`
-  background: #ed9071;
-  color: black;
-  padding: 8px;
-  box-sizing: border-box;
-  border-radius: 7px;
-  font-size: 12px;
-  display: flex;
-  text-align: left;
-  width: 150px;
-  margin-bottom: 3px;
-
-  overflow: hidden;
-`;
-
-const TextBox = styled.div`
-  padding: 4px;
-  background: #f6f0ee;
-  min-height: 20.26px;
-  width: 318.82px;
-`;
-
-const OverFlow = styled.div`
-  overflow: auto;
-  height: 460px;
-  ::-webkit-scrollbar {
-    width: 1vw;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: hsla(0, 0%, 42%, 0.49);
-    border-radius: 7px;
-  }
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-const DivAt = styled.div`
-  margin-top: 10px;
-  text-align: center;
-  color: #787878;
-  font-size: 12px;
-  background: #f6f0ee;
-`;
-const Money = styled.p`
-  font-weight: bold;
-`;
-const Title = styled.span`
-  width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 12px;
-`;
-const Span = styled.span`
-  width: 30px;
-  margin-left: 10px;
-`;
-const OrangeSpan = styled.span`
-  color: #ed9071;
-  font-weight: bold;
-`;
-const Img = styled.img`
-  margin-top: 6px;
-  height: 25px;
-  width: 25px;
-  margin-left: 10px;
-`;
-const Img2 = styled.img`
-  height: 33px;
-  width: 30px;
-`;
-
-const Time = styled.span`
-  font-size: 6px;
-  margin-left: 95px;
-`;
-const Nickname = styled.p`
-  margin-left: 105px;
-  font-weight: bold;
-  font-size: 15px;
-`;
-
-const LoginContainer = styled.div`
-  width: 340px;
-  margin: 0 auto;
-  height: 100%;
-  background-color: #f6f0ee;
-`;
-
-const Header = styled.div`
-  border-bottom: 1px solid #ed9071;
-  background: #f6f0ee;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  margin-top: 40px;
-`;
-
-const Section = styled.div`
-  width: 100%;
-  height: 70px;
-  display: flex;
-  margin-top: 10px;
-  padding-left: 10px;
-  background: #f6f0ee;
-  border-bottom: 1px solid #ed9071;
-`;
-
-const Profile = styled.div`
-  margin-top: 5px;
-  margin-right: 5px;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  text-align: center;
-  line-height: 50px;
-`;
-const Chating = styled.div`
-  height: 400px;
-  over-flow: hidden;
-  background-color: #ffecef;
-  text-align: center;
-  line-height: 400px;
-`;
 
 export default ChatRoomPage;

@@ -54,9 +54,9 @@ const Content = () => {
   };
 
   return (
-    <SearchListWrap>
-      <InputBox>
-        <Input
+    <div>
+      <div>
+        <input
           onKeyPress={appKeyPress}
           type="text"
           name="search"
@@ -68,22 +68,22 @@ const Content = () => {
           onClick={onClickSearch}
           src={require("../../../img/")}
         /> */}
-        <Search onKeyPress={appKeyPress} onClick={onClickSearch} style={{ marginLeft: "315px", zIndex: 1,  position: "absolute" }} />
-      </InputBox>
-      <Buttongroup>
-        <Button type="button" onClick={onClickAll}>
+        <div onKeyPress={appKeyPress} onClick={onClickSearch} style={{ marginLeft: "315px", zIndex: 1,  position: "absolute" }} />
+      </div>
+      <div>
+        <button type="button" onClick={onClickAll}>
           전체
-        </Button>
-        <Button type="button" name="대형" onClick={onClickBig}>
+        </button>
+        <button type="button" name="대형" onClick={onClickBig}>
           대형
-        </Button>
-        <Button type="button" name="중형" onClick={onClickMiddle}>
+        </button>
+        <button type="button" name="중형" onClick={onClickMiddle}>
           중형
-        </Button>
-        <Button type="button" name="소형" onClick={onClickSmall}>
+        </button>
+        <button type="button" name="소형" onClick={onClickSmall}>
           소형
-        </Button>
-      </Buttongroup>
+        </button>
+      </div>
       <Carouselwrap>
         <Carousel id="carousel">
           <Carousel.Item>
@@ -100,76 +100,18 @@ const Content = () => {
           </Carousel.Item>
         </Carousel>
       </Carouselwrap>
-    </SearchListWrap>
+    </div>
   );
 };
 
 export default Content;
 
-const SearchListWrap = styled.div`
-  position: relative;
-  height: 172px;
-`;
-const Buttongroup = styled.div`
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 51px;
-  z-index: 1;
-  margin-left: 15px;
-  gap: 2px;
-`;
-
-const Button = styled.button`
-  width: 79.9px;
-  height: 26px;
-  border: none;
-  background-color: #ddd;
-  border-radius: 15px;
-  font-family: "Pretendard", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 16.71px;
-  :hover {
-    background-color: #ed9071;
-    color: #fff;
-  }
-`;
 const Carouselwrap = styled.div`
   position: relative;
   width: 360px;
   height: 120px;
 `;
 
-const Input = styled.input`
-  position: relative;
-  border: none;
-  outline: none;
-  border: 1px solid #6f6f6f;
-  border-radius: 54px;
-  width: 95%;
-  min-width: 340px;
-  text-indent: 12px;
-  margin-left: 10px;
-  background-color: transparent;
-`;
-
-const InputBox = styled.div`
-  width: 313.93px;
-  height: 24.99px;
-  position: relative;
-  align-items: center;
-  margin-bottom: 37px;
-  display: flex;
-  flex-direction: row;
-
-`;
-const Img = styled.img`
-  position: absolute;
-  top: 8px;
-  right: 30px;
-  width: 20px;
-`;
 const SlideImg = styled.img`
   object-fit: cover;
   width: 360px;

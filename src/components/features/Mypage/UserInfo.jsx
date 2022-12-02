@@ -14,9 +14,9 @@ const UserInfo = ({ myInfo }) => {
 
   return (
     <div key={myInfo.id}>
-      <UserImg>
+      <div>
         <img src={myInfo.userImage} alt="profile-pic" />
-      </UserImg>
+      </div>
       <div>
         <h2>{myInfo.nickname}</h2>
       </div>
@@ -26,8 +26,3 @@ const UserInfo = ({ myInfo }) => {
 
 export default UserInfo;
 
-const UserImg = styled.img`
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
-`;

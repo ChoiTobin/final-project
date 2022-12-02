@@ -40,20 +40,20 @@ const MyContent = ({ myPost }) => {
 
   return (
     <>
-      <Layout>
+      <div>
         {myPost !== undefined &&
           myPost.map((post) => {
             if (myPost.length !== 0) {
               return (
-                <Content key={post.id}>
+                <div key={post.id}>
                   <div>
-                    <Main
+                    <div
                       className="top-line"
                       onClick={() => {
                         navigate(`/Detail/${post.id}`);
                       }}
                     >
-                      <State
+                      <div
                         style={
                           post.state
                             ? { color: "#ED9071" }
@@ -61,19 +61,19 @@ const MyContent = ({ myPost }) => {
                         }
                       >
                         {post.state}
-                      </State>
-                      <Title>{post.title}</Title>
-                    </Main>
+                      </div>
+                      <span>{post.title}</span>
+                    </div>
 
-                    <Down className="bottom-line">
-                      <CreatedAt>
+                    <div className="bottom-line">
+                      <div>
                         <Dates />
                         &nbsp;{post.date}
                         <span>{post.createdAt}</span>
-                      </CreatedAt>
-                    </Down>
+                      </div>
+                    </div>
                   </div>
-                  <Icon>
+                  <div>
                     {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
                     <Edit
                       onClick={openModifyModal}
@@ -90,110 +90,16 @@ const MyContent = ({ myPost }) => {
                       onClick={() => onDeleteMyPost(post.id)}
                       style={{ cursor: "pointer" }}
                     />
-                  </Icon>
-                </Content>
+                  </div>
+                </div>
               );
             } else {
               return null;
             }
           })}
-      </Layout>
+      </div>
     </>
   );
 };
 
 export default MyContent;
-
-const Layout = styled.div`
-  min-height: 225px;
-  max-height: 226px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* 스크롤바 영역에 대한 설정 */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  /* 스크롤바 막대에 대한 설정 */
-  ::-webkit-scrollbar-thumb {
-    height: 20%;
-    background-color: #d8d8d8;
-    border-radius: 20px;
-  }
-
-  /* 스크롤바 뒷 배경에 대한 설정 */
-  ::-webkit-scrollbar-track {
-    background-color: #f6f0ee;
-  }
-`;
-
-const Content = styled.div`
-  width: 355px;
-  height: 66px;
-  background-color: #fff;
-  border: none;
-  border-radius: 4px;
-  margin: 9px auto 1.59px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 14px 27.14px 14.68px 32.29px;
-  display: flex;
-  flex-direction: row;
-  gap: 33.72px;
-`;
-
-const Main = styled.div`
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-`;
-
-const State = styled.span`
-  /* color: #ed9071; */
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 14px;
-  font-weight: 510;
-  line-height: 16.71px;
-  margin-right: 7px;
-`;
-
-const Title = styled.span`
-  width: 160px;
-  height: 17px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16.71px;
-`;
-
-const Down = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const CreatedAt = styled.span`
-  width: 129.49px;
-  height: 12.01px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-size: 10px;
-  color: "#B0B0B0";
-  margin-top: 8.32px;
-  gap: 18.84px;
-  span {
-    color: #606060;
-    font-family: "Spoqa Han Sans Neo", sans-serif;
-    font-size: 10px;
-    line-height: 11.93px;
-    margin-left: 10px;
-  }
-`;
-
-const Icon = styled.div`
-  gap: 16px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;

@@ -31,7 +31,7 @@ const EditPetInfo = ({ onClose }) => {
 
   return (
     <div>
-      <Layout>
+      <div>
         <span>반려동물 정보 수정</span>
         {/* 등록 누르면 신규 정보 입력, 수정 버튼을 눌렀을 때, 인풋창에 수정하고 싶은 내용을 작성할 수 있는 페이지 */}
         <div className="content">
@@ -74,33 +74,13 @@ const EditPetInfo = ({ onClose }) => {
           <br />
         </div>
         {/* 정보등록 */}
-        <PlaceBtn>
+        <button>
           <button onClick={onClose}>취소</button>
           <button onClick={onUpdateMyPets}>완료</button>
-        </PlaceBtn>
-      </Layout>
+        </button>
+      </div>
     </div>
   );
 };
 
 export default EditPetInfo;
-
-const Layout = styled.div`
-  width: 95%;
-  max-width: 360px;
-  height: 640px;
-  margin: auto;
-`;
-
-const PlaceBtn = styled.div`
-  width: 200px;
-  height: 40px;
-  gap: 20px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  margin: 10px auto 20px;
-`;

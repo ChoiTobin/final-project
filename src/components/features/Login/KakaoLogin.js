@@ -14,7 +14,7 @@ const KakaoLogin = () => {
         window.location.href = KAKAO_AUTH_URL;
     }
     return (
-    <Btns>
+    <div>
         {/* <Img onClick={()=>alert("준비중 입니다.")} src={require("../../img/NAVERLOGO.png")} alt="네이버 로그인 버튼"  /> */}
         <Naver onClick={() => alert("준비중 입니다.")} style={{ width: "41px", height: "38px", marginRight: "18px" }} />
         <a id="kakao-login-btn" onClick={handleLogin}>
@@ -22,31 +22,9 @@ const KakaoLogin = () => {
         <Kakao style={{ width: "41px", height: "38px" }} />
         </a>
         <p id="token-result"></p>
-    </Btns>
+    </div>
     )
 }
 
 
 export default KakaoLogin
-
-const Btns = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content:center ;
-`
-
-const Img2 = styled.img`  
-width:45px;
-height:43px;
-box-shadow: 2px 2px 6px gray;
-
-background-color:green;
-`
-const Img = styled.img`
-height:43px;
-box-shadow: 2px 2px 6px gray;
-margin-right:20px;
-
-background-color:green;
-`
