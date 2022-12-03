@@ -57,7 +57,7 @@ export const Apis = {
   getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
      naverloginAX: (loginData) =>noToken.get(`/auth/member/naver/callback?code=${loginData.code}&state=${loginData.state}`),
   
-  
+   
   
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
