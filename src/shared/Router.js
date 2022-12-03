@@ -10,11 +10,9 @@ import PostList from "../components/features/Posts/PostList";
 import ChatRoomPage from "../pages/ChatRoomPage";
 import ChatList from "../pages/ChatList";
 import Rating from "../components/features/Posts/Rating";
-
-// 추가
 import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
-
+import OAuthNaverLogin from "../components/features/Login/OAuthNaverLogin"
 
 const Router = () => {
   return (
