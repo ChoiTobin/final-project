@@ -52,40 +52,33 @@ const SignIn = () => {
 
 
   return (
-
-      <div>
-        <LoginContainer>
-          <Wrap>
-            <div>
-
-              <LoginBox>
-                {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-                <Logo/>
-                  <LogoLogin>LOGIN</LogoLogin>
-
-                <KakaoLogin/>
-
+    <Layout>
+      <LoginContainer>
+        <Wrap>
+          <div>
+            <LoginBox>
+              {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+              <Logo style={{ marginTop: "36.84px" }} />
+              <LogoLogin>LOGIN</LogoLogin>
+                <KakaoLogin />
+              <InputBox>
                 <Input
-                  placeholder='아이디'
-                  type='text'
-                  name='email'
+                  placeholder="아이디"
+                  type="text"
+                  name="email"
                   value={login.email}
                   onChange={onChangeHandler}
                 />
                 <ErrorMessageWrap>
-                {
-                  !IdValid ?
-
-                !IdValid && login.email.length > 0 && 
-                (
-                <Red>올바른 아이디를 입력해주세요.</Red>
-                )
-                :
-                IdValid && login.email.length > 0 && 
-                (
-                <Green>올바른 아이디 형식입니다.</Green>
-                )
-                }  
+                  {!IdValid
+                    ? !IdValid &&
+                      login.email.length > 0 && (
+                        <Red>올바른 아이디를 입력해주세요.</Red>
+                      )
+                    : IdValid &&
+                      login.email.length > 0 && (
+                        <Green>올바른 아이디 형식입니다.</Green>
+                      )}
                 </ErrorMessageWrap>
                 <Input
                   placeholder="비밀번호"
@@ -105,143 +98,164 @@ const SignIn = () => {
                         <Green>올바른 비밀번호 형식입니다.</Green>
                       )}
                 </ErrorMessageWrap>
+              </InputBox>
             </LoginBox>
-      
-              <p id="token-result"></p>
+            <LoginButton onClick={onSubmitHandler}>로그인</LoginButton>
+            <SocialLogin>
+              <span>또는</span>
+              <LogoBtns>
+                <KakaoLogin />
+              </LogoBtns>
+            </SocialLogin>
+
+            <Hr />
+            <SignButton onClick={() => navigate("/")}>회원가입</SignButton>
+
+            <p id="token-result"></p>
           </div>
         </Wrap>
       </LoginContainer>
-  </div>
+    </Layout>
   );
 };
 
 
 export default SignIn;
-const LogoLogin = styled.span`
-color:#ED9071;
-font-size:30px;
-margin-bottom:50px;
 
-`
-const Red = styled.div`
-color: #ef0000;
-font-size:12px;
-text-align:left;
-width:270px;
-padding:5px;
+const Layout = styled.div`
+  width: 360px;
+  height: 638px;
+  max-height: 640px;
+  background-color: #f6f0ee;
+  margin: auto;
 `;
 
-const Green = styled.div`
-  color: green;
-  font-size:12px;
-  text-align:left;
-  width:270px;
-  padding:5px;
-
-
-`;
-/*const Green2 = styled.div`
-  color: green;
-  font-size:12px;
-  margin-bottom: 5px;
-  margin-right:100px;
-  margin-top:5px;
-`;
-*/
-
-const ErrorMessageWrap = styled.div`
-  color:#ef0000;
-
-
-  `;
-/*const ErrorMessageWrap2 = styled.div`
-  color:#ef0000;
-  font-size:12px;
-  margin-right:20px;
-  margin-top:5px;
-  margin-bottom: 5px;
-
-  `;
-  */
 const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
+
 const Wrap = styled.div`
   display: flex;
 `;
+
+const LogoLogin = styled.span`
+  /* font-family: "Spoqa Han Sans Neo", sans-serif; */
+  font-family: "Pretendard", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38.19px;
+  margin: 5.57px auto 34px;
+`;
+
+const LogoBtns = styled.div`
+  width: 100px;
+  height: 38px;
+`;
+const InputBox = styled.div`
+  justify-content: left;
+`;
+
+const Input = styled.input`
+  border: 1px solid #929292;
+  width: 320px;
+  height: 50px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 12px;
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 14.69px;
+  margin: 9px auto 9px;
+  ::placeholder {
+    color: rgba(120, 120, 120, 1);
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+`;
+
+const Red = styled.div`
+  color: #fd6e7f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 10.5px;
+  line-height: 11.93px;
+  font-weight: 700;
+  text-align: left;
+  width: 270px;
+  padding: 5px;
+`;
+
+const Green = styled.div`
+  color: #4db173;
+  font-family: "Pretendard", sans-serif;
+  font-size: 10.5px;
+  line-height: 11.93px;
+  font-weight: 700;
+  text-align: left;
+  padding: 5px;
+`;
+
+const ErrorMessageWrap = styled.div`
+  color: #fd6e7f;
+`;
+
 const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 350px;
-  /* margin: 0 auto; */
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const Input = styled.input`
-  border: 1px solid #929292;
-  width: 260px;
-  height: 40px;
-  font-size: 12px;
-  border-radius: 2px;
-  padding:10px;
-  background: #FAFAFA;
-  &:focus {
-    outline: 1px solid #ADADAD;
-  }
-  border-radius:3px;
-`;
+
 const LoginButton = styled.button`
-font-size:18px;
-color: white;
-border: none;
-border-radius: 3px;
-font-weight: bold;
-width: 253px;
-height: 40px;
-margin-top: 30px;
-margin-bottom: 70px;
-// 버튼 누르면 손모양 나오게 하는 마우스 커서
-cursor: pointer;
-background-color: #ED9071;
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ed9071;
+  color: #fff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 22.58px auto 22px 14px;
 `;
-const SignButton = styled.button`
-font-size:18px;
-color: white;
-border: none;
-border-radius: 3px;
-font-weight: bold;
-width: 253px;
-height: 40px;
-margin-top: 10px;
-margin-bottom: 20px;
-// 버튼 누르면 손모양 나오게 하는 마우스 커서
-cursor: pointer;
-  background-color: #838383;
-`;
-const SignupBox = styled.div`
-  background-color: white;
-  width: 350px;
-  height: 80px;
-  border: 1px solid #eee;
-  margin-top: 20px;
-  /* margin: 0 auto; */
+
+const SocialLogin = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-`;
-const LogoBox = styled.div`
-  width: 175px;
-  height: 51px;
-  margin-bottom: 36px;
-  svg {
-    width: 100%;
-    height: 100%;
+  justify-content: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  margin-bottom: 24px;
+  color: rgba(120, 120, 120, 1);
+  span {
+    margin-bottom: 12px;
   }
+`;
+
+const Hr = styled.hr`
+  border: 1px solid rgba(153, 153, 153, 0.54);
+  margin-bottom: 30.42px;
+`;
+
+const SignButton = styled.button`
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  background-color: #aeaeae;
+  color: #fff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 auto 36px 14px;
 `;
