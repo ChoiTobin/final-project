@@ -6,9 +6,6 @@ import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
 
 
-import { ReactComponent as Logo } from "../img/logoImg.svg";
-
-
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
