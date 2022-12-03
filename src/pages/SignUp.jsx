@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { ReactComponent as Logo } from "../img/logoImg.svg";
-
 
 
 const SignUp = () => {
