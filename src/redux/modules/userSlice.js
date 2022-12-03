@@ -148,7 +148,7 @@ export const __NickCheck = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-  }
+  } 
 );
 //tobin닉네임 중복검사------------------------------------------------------------------------
 export const __userLogin = createAsyncThunk(
