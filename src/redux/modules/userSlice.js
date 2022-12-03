@@ -24,27 +24,32 @@ const initialState = {
   },  
 };
 
-
-
-//네이버 로그인
-export const __naverLogin = createAsyncThunk(
-  "account/__naverLogin",
+export const __getinitialChatList = createAsyncThunk(
+  "/chat/__getInitialChatList",
   async (payload, thunkAPI) => {
     try {
-      const res = await Apis.naverloginAX(payload)
-      const Access_Token = res.headers.authorization
-      localStorage.setItem("Access_Token", Access_Token);
-      localStorage.setItem("user-userId", res.data.data.email);
-      localStorage.setItem("user-nickname", res.data.data.nickname);
-      localStorage.setItem("userImage", res.data.data.userImage);
-      // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
 
-      window.location.replace("/home")
+      const response = await Apis.getInitialChatList(payload)
+      return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error)
+      return thunkAPI.rejectWithValue(error.response.data.data);
     }
   }
-)
+);
+
+
+export const __getinitialChatList2 = createAsyncThunk(
+  "/chat/__getInitialChatList2",
+  async (payload, thunkAPI) => {
+    try {
+
+      const response = await Apis.getInitialChatList(payload)
+      return thunkAPI.fulfillWithValue(response.data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.data);
+    }
+  }
+);
 
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
@@ -161,7 +166,7 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-     [__naverLogin.pending]: (state) => {
+    [__naverLogin.pending]: (state) => {
 
       state.isLoading = true
     },
@@ -214,7 +219,7 @@ export const LoginSlice = createSlice({
       state.isSuccess = false;
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
-   
+  
     [__NickCheck.pending]: (state) => {
       state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },

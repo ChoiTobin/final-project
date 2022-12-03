@@ -9,6 +9,7 @@ import { __getinitialChatList,__getinitialChatList2, ListReducer } from "../redu
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import { ReactComponent as Send } from "../img/send.svg";
 import Modal2 from "../pages/ChatModal/Modal2"
 import RatingModal from "../components/features/Posts/RatingModal/RatingModal";
 function ChatRoomPage() {
@@ -219,13 +220,14 @@ function ChatRoomPage() {
           onKeyPress={appKeyPress}
           onChange={inputHandler}
         ></Input>
-        {/* <ArrowImg
+          {/* <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
 
           src={require("../img/send.png")}
 
-        />
+        /> */}
+        <Send onSubmit={appKeyPress} onClick={onSubmitHandler}/>
       </Chatput>
     </LoginContainer>
   );

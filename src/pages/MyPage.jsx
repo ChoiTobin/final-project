@@ -13,14 +13,12 @@ import Banner from "../img/banner.png";
 import ModalPortal from "../components/element/ModalPortal";
 import AddPetInfo from "../components/features/Mypage/AddPetInfo";
 import "../components/element/MyPetModal.css";
-import { useNavigate } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const all = useSelector((state) => state.mypage);
   const post = useSelector((state) => state.mypage.post);
   const myInfo = useSelector((state) => state.mypage.myInfo);
@@ -67,13 +65,7 @@ const MyPage = () => {
   useEffect(() => {
     dispatch(__getMyPet());
   }, []);
-
-  const Logout =() => {
-    localStorage.clear()
-    navigate("/")
-    console.log("우뜨케나오는지?")
-
-  }
+  
   const ARRAY = [0, 1, 2, 3, 4];
   return (
     <Layouts>

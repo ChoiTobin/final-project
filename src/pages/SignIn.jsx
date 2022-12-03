@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
+import { ReactComponent as Logo } from "../img/signLogo.svg";
 
 
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const account = useSelector((state) => state.account);
+  // const account = useSelector((state) => state.account);
   const initialState = {
     email: "",
     password: "",
@@ -51,7 +52,7 @@ const SignIn = () => {
 
   return (
 
-      <div>
+      <Layout>
         <LoginContainer>
           <Wrap>
             <div>
@@ -99,7 +100,6 @@ const SignIn = () => {
                         <Green>올바른 비밀번호 형식입니다.</Green>
                       )}
                 </ErrorMessageWrap>
-              </InputBox>
             </LoginBox>
             <LoginButton onClick={onSubmitHandler}>로그인</LoginButton>
             <Hr />
