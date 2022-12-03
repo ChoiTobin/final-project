@@ -64,25 +64,6 @@ export const __kakaoLogin = (code) => {
           })
   }
 };
-//네이버 로그인 ----------------------------------------------------------------
-export const __naverLogin = createAsyncThunk(
-  "account/__naverLogin",
-  async (payload, thunkAPI) => {
-    try {
-      const res = await Apis.naverloginAX(payload)
-      const Access_Token = res.headers.authorization
-      localStorage.setItem("Access_Token", Access_Token);
-      localStorage.setItem("user-userId", res.data.data.email);
-      localStorage.setItem("user-nickname", res.data.data.nickname);
-      localStorage.setItem("userImage", res.data.data.userImage);
-      // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
-
-      window.location.replace("/home")
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error)
-    }
-  }
-)
 
 
 //tobin카카오톡 로그인-----------------------------------------------------------------------
