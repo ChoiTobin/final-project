@@ -15,7 +15,7 @@ import MainLogin from "../pages/MainLogin";
 import OAuthNaverLogin from "../components/features/Login/OAuthNaverLogin"
 
 const Router = () => {
-  return (
+  return ( 
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
