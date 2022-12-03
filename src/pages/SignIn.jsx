@@ -109,7 +109,7 @@ const SignIn = () => {
             </SocialLogin>
 
             <Hr />
-            <SignButton onClick={() => navigate("/")}>회원가입</SignButton>
+            <SignButton onClick={() => navigate("/signup")}>회원가입</SignButton>
 
             <p id="token-result"></p>
           </div>
