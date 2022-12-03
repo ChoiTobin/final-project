@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { __getinitialChatList, __getRoomList } from "../redux/modules/chattingSlice";
+import { __getinitialChatList2, __getRoomList } from "../redux/modules/chattingSlice";
 
 
 
