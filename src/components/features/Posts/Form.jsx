@@ -11,7 +11,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
-import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
+import { ReactComponent as Upload } from "../../../img/uploadPic.svg";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ const Post = () => {
               imgRef.current.click();
             }}
           >
-            <Photo
+            <Upload
               style={{
                 width: "25.88px",
                 height: "24.18px",
