@@ -18,7 +18,6 @@ import { FaStar } from 'react-icons/fa';
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const all = useSelector((state) => state.mypage);
