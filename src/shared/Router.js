@@ -13,11 +13,10 @@ import Rating from "../components/features/Posts/Rating";
 import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
 import OAuthNaverLogin from "../components/features/Login/OAuthNaverLogin"
-// 추가
 
 
 const Router = () => {
-  return (
+  return ( 
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />

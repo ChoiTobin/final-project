@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom/dist";
 import styled from "styled-components";
 import { ReactComponent as BackArrow } from "../../img/backarrow.svg";
 import { ReactComponent as Menu } from "../../img/menu.svg";
-import { ReactComponent as Logo } from "../../img/logoImg.svg";
+import { ReactComponent as Logo } from "../../img/headerLogo.svg";
 
 const Header = () => {
   const navigate = useNavigate();

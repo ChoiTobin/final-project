@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { __getinitialChatList2, __getRoomList } from "../redux/modules/chattingSlice";
+import { __getinitialChatList, __getRoomList } from "../redux/modules/chattingSlice";
+
 
 
 const ChatList = () => {
@@ -13,7 +14,8 @@ const ChatList = () => {
     const navigator = useNavigate();
     const Room = useSelector((state) => state.chatting.roomList);
 
-  
+
+ 
   useEffect(() => {
     dispatch(__getRoomList());
     }, []);
@@ -72,6 +74,7 @@ return (
             <div>채팅내역이 없습니다.</div>
             <button onClick={ () =>navigator(-1)}>이전으로</button>
       </>
+
             } 
       </>
 
@@ -79,6 +82,7 @@ return (
 }
 
 export default ChatList ;
+
 
 const Span = styled.span`
 font-size:14px;
@@ -105,4 +109,5 @@ display:flex;
 
     
 `
+
 

@@ -50,7 +50,6 @@ export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
           .then((res) => {
-            console.log(res)
               if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
               localStorage.setItem("Access_Token", Access_Token);
@@ -65,6 +64,27 @@ export const __kakaoLogin = (code) => {
           })
   }
 };
+//네이버 로그인 ----------------------------------------------------------------
+export const __naverLogin = createAsyncThunk(
+  "account/__naverLogin",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await Apis.naverloginAX(payload)
+      const Access_Token = res.headers.authorization
+      localStorage.setItem("Access_Token", Access_Token);
+      localStorage.setItem("user-userId", res.data.data.email);
+      localStorage.setItem("user-nickname", res.data.data.nickname);
+      localStorage.setItem("userImage", res.data.data.userImage);
+      // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
+
+      window.location.replace("/home")
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+
 //tobin카카오톡 로그인-----------------------------------------------------------------------
 export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
@@ -105,7 +125,7 @@ export const __NickCheck = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-  }
+  } 
 );
 //tobin닉네임 중복검사------------------------------------------------------------------------
 export const __userLogin = createAsyncThunk(
@@ -141,7 +161,8 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [__naverLogin.pending]: (state) => {
+     [__naverLogin.pending]: (state) => {
+
       state.isLoading = true
     },
     [__naverLogin.fulfilled]: (state, action) => {
