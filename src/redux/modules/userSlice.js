@@ -36,7 +36,7 @@ export const __naverLogin = createAsyncThunk(
 
       const res = await Apis.naverloginAX(payload)
             console.log("response",res)
-      const Access_Token = res.headers.authorization
+      const Access_Token = res.headers.access_token;
       localStorage.setItem("Access_Token", Access_Token);
       localStorage.setItem("user-userId", res.data.data.email);
       localStorage.setItem("user-nickname", res.data.data.nickname);
