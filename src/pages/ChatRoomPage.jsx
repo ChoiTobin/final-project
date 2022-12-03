@@ -217,7 +217,7 @@ function ChatRoomPage() {
         <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
-          src={require("../img/send.png")}
+          src={require("../img/send.svg")}
         />
       </Chatput>
     </LoginContainer>
