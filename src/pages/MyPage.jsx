@@ -67,12 +67,7 @@ const MyPage = () => {
     dispatch(__getMyPet());
   }, []);
 
-  const Logout =() => {
-    localStorage.clear()
-    navigate("/")
-    console.log("우뜨케나오는지?")
 
-  }
   const ARRAY = [0, 1, 2, 3, 4];
   return (
     <Layouts>
