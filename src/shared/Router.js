@@ -35,7 +35,8 @@ const Router = () => {
       <Route path="/chat" element={<ChatList/>} />
       <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
       <Route path="/Rating" element={<Rating />} />
-
+       {/* 네이버 */}
+       <Route path="/user/naver/callback" element={<OAuthNaverLogin />} />
 
       </Routes>
     </BrowserRouter>
