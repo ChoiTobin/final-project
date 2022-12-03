@@ -1,10 +1,10 @@
 import styled from "styled-components";
+//확인용
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { __getinitialChatList,__getinitialChatList2, ListReducer } from "../redux/modules/chattingSlice";
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
@@ -154,13 +154,10 @@ function ChatRoomPage() {
   return (
     <LoginContainer>
       <Header>
-        <Modal2/>
         <div>
-
           <BackArrow onClick={
             ()=>  navigate(-1)
             }/>
-
         </div>
         <div>
           <Nickname>{chatList2.postNickname}</Nickname>
@@ -190,7 +187,6 @@ function ChatRoomPage() {
       <DivAt>날짜 오늘</DivAt>
       <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
 
-
       
 
 
@@ -200,7 +196,6 @@ function ChatRoomPage() {
         chatList2.chatList.map((item, i) => {
             return localStorage.getItem("user-nickname") == item.sender ? 
             (
-
               <TextBox key={uuidv4()}>
                 <Colorspan>{item.message}</Colorspan>
               </TextBox>

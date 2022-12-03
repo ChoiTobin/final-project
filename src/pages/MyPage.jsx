@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
@@ -65,7 +65,8 @@ const MyPage = () => {
   useEffect(() => {
     dispatch(__getMyPet());
   }, []);
-  
+
+
   const ARRAY = [0, 1, 2, 3, 4];
   return (
     <Layouts>
