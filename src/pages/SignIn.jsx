@@ -60,7 +60,7 @@ const SignIn = () => {
               {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
               <Logo style={{ marginTop: "36.84px" }} />
               <LogoLogin>LOGIN</LogoLogin>
-                <KakaoLogin />
+                {/* <KakaoLogin /> */}
               <InputBox>
                 <Input
                   placeholder="아이디"

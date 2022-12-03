@@ -21,18 +21,25 @@ const KakaoLogin = () => {
     //naver
 
     return (
-        <div>
-            <Naver onClick={handleNaverLogin} />
+        <Layout>
+            <Naver onClick={handleNaverLogin} style={{ width: "41px", height: "38px", marginRight: "18px", cursor: 'pointer' }}/>
             <a id="kakao-login-btn" onClick={handleLogin}>
-            <Kakao/>
+            <Kakao style={{ width: "41px", height: "38px", cursor: "pointer"}}/>
             </a>
             <p id="token-result"></p>
-        </div>
+        </Layout>
         )
 }
 
 
 export default KakaoLogin
+
+const Layout = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
 
 const Img2 = styled.img`  
 width:45px;
