@@ -25,8 +25,9 @@ function ChatRoomPage() {
   // const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
   const chatList2 = useSelector((state) => state.chatting.chatList2);
-  console.log("방에들어갔을때겟요청용?",chatList2)
-  console.log("그냥 겟요청용?",chatList)
+
+  console.log("요청하는정보~~",chatList,chatList2)
+
   let postId = Number(id);
   //여러번 호출안하거나 undefined 
   //onSubmitHandler

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
+
 import { ReactComponent as Logo } from "../img/logoImg.svg";
 
 
@@ -60,6 +61,7 @@ const SignIn = () => {
                 {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
                 <Logo/>
                   <LogoLogin>LOGIN</LogoLogin>
+
                 <KakaoLogin/>
                 <Input
                   placeholder='아이디'

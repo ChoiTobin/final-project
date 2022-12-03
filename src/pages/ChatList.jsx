@@ -42,19 +42,30 @@ const ChatList = () => {
 //   window.location.reload()
 //   //event.preventDefault()
 // };
+console.log("룸",Room)
 return (
       <> 
         { Room !== undefined && Room !==null ?
           Room.map((item,i)=>{       
           return(
-            <div key={i}>
-              <span>{item.title}</span>
-              <span>
-                <LoginButton onClick={()=>onClickChatting(item)}>
-                  {item.postId}번방
-                </LoginButton>
-              </span>
-            </div>
+            <Root key={i}>
+                  <FlexDiv>
+                      <div>
+                        <img src={require("../img/bros_blank.jpg")} width="48px"/>
+                      </div>
+                      <MarginDiv>
+                          <h4 onClick={()=>onClickChatting(item)}>
+                            {item.joinNickname}
+                          </h4>
+                          <div>
+                            <Span>{item.title}</Span>
+                          </div>
+                      </MarginDiv>
+                  </FlexDiv>
+            </Root>
+
+
+
         )})
               :
       <>
@@ -69,18 +80,29 @@ return (
 
 export default ChatList ;
 
+const Span = styled.span`
+font-size:14px;
+`
+const MarginDiv =styled.div`
+margin-left:10px;
 
-const LoginButton = styled.button`
-font-size:18px;
-color: white;
-border: none;
-border-radius: 3px;
-font-weight: bold;
-width: 253px;
-height: 40px;
-margin-top: 30px;
+`
 
-// 버튼 누르면 손모양 나오게 하는 마우스 커서
-cursor: pointer;
-background-color: #ED9071;
-`;
+const Root = styled.div`
+background-color: #f6f0ee;
+width:100%;
+height:100%;
+margin:17px;
+margin-bottom:30px;
+margin-left:10px;
+
+
+
+`
+const FlexDiv = styled.div`
+display:flex;
+
+
+    
+`
+
