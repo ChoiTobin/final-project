@@ -31,7 +31,11 @@ export const __naverLogin = createAsyncThunk(
   "account/__naverLogin",
   async (payload, thunkAPI) => {
     try {
+            console.log("갔나?",payload)
+
+
       const res = await Apis.naverloginAX(payload)
+            console.log("response",res)
       const Access_Token = res.headers.authorization
       localStorage.setItem("Access_Token", Access_Token);
       localStorage.setItem("user-userId", res.data.data.email);
