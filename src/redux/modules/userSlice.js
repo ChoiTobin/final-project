@@ -10,7 +10,17 @@ const initialState = {
   detail : {},
   feeds : [],
   isLoading : false,
-  error : null
+  error : null,
+  user: {
+    location: "",
+    gu: "",
+    nickName: "",
+    ageRange: "",
+    gender: "",
+    profileImage: "",
+    email: "",
+    site: "",
+  },  
 };
 export const __userLogout = createAsyncThunk(
   "account/userLogout",
@@ -69,6 +79,27 @@ export const __kakaoLogin = (code) => {
           })
   }
 };
+//네이버 로그인 ----------------------------------------------------------------
+export const __naverLogin = createAsyncThunk(
+  "account/__naverLogin",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await Apis.naverloginAX(payload)
+      const Access_Token = res.headers.authorization
+      localStorage.setItem("Access_Token", Access_Token);
+      localStorage.setItem("user-userId", res.data.data.email);
+      localStorage.setItem("user-nickname", res.data.data.nickname);
+      localStorage.setItem("userImage", res.data.data.userImage);
+      // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
+
+      window.location.replace("/home")
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+
 //tobin카카오톡 로그인-----------------------------------------------------------------------
 export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
@@ -157,6 +188,19 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+     [__naverLogin.pending]: (state) => {
+      state.isLoading = true
+    },
+    [__naverLogin.fulfilled]: (state, action) => {
+      state.isLoading = false
+      state.isSuccess = false
+      state.user = action.payload
+    },
+    [__naverLogin.rejected]: (state, action) => {
+      state.isLoading = false
+      state.isSuccess = false
+      state.error = action.payload
+    },
     [__userSignUp.pending]: (state) => {
       state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
