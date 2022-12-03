@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Apis from "../../shared/Apis";
-import { getCookie ,setCookie, delCookie } from "../../shared/Cookie";
+
+
 const initialState = {
   account : [],
   idCheck:[],
@@ -22,60 +23,44 @@ const initialState = {
     site: "",
   },  
 };
-export const __userLogout = createAsyncThunk(
-  "account/userLogout",
-  async(payload, thunkAPI) => {
+
+
+
+//네이버 로그인
+export const __naverLogin = createAsyncThunk(
+  "account/__naverLogin",
+  async (payload, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3000`,)
-      delCookie("Access_Token")
-      delCookie("refreshToken")
-      delCookie("nickname")
-      return thunkAPI.fulfillWithValue(payload)
-    }catch(error){
-      return thunkAPI.rejectWithValue(error);
+      const res = await Apis.naverloginAX(payload)
+      const Access_Token = res.headers.authorization
+      localStorage.setItem("Access_Token", Access_Token);
+      localStorage.setItem("user-userId", res.data.data.email);
+      localStorage.setItem("user-nickname", res.data.data.nickname);
+      localStorage.setItem("userImage", res.data.data.userImage);
+      // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
+
+      window.location.replace("/home")
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
     }
   }
 )
-//tobin전체 로그아웃-----------------------------------------------------------------------
-// export const __kakaoLogout = createAsyncThunk(
-//   "account/kakaoLogout",
-//   async(payload, thunkAPI) => {
-//     try {
-//       await axios.get(`https://kauth.kakao.com/oauth/logout?client_$id=${process.env.REACT_APP_API_KAKAO_ID}&logout_redirect_uri=${process.env.REACT_APP_API_KAKAO_LOGOUT}`)
-//       return thunkAPI.fulfillWithValue(payload)
-//     }catch(error){
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// )
-//tobin카카오톡 로그아웃-----------------------------------------------------------------------
+
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
-      // membersApis.loginAX(code)
       axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
-    //post가 아닌 get으로 보낸다.
-    // `http://{서버주소}?code=${code}`
           .then((res) => {
-        console.log(res,"어떤값??????????????????????")
               if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
               localStorage.setItem("Access_Token", Access_Token);
-
               localStorage.setItem("user-userId", res.data.data.email);
-
               localStorage.setItem("user-nickname", res.data.data.nickname);
-
               localStorage.setItem("userImage", res.data.data.userImage);
-
-              //카멜케이스
-              // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
               window.location.replace("/home")
             }
           })
           .catch((error) => {
-              window.alert("로그인에 실패하였습니다.");
-              // 로그인 실패하면 로그인 화면으로 돌려보냄
-              //window.location.replace('/SignIn');
+            window.alert("로그인에 실패하였습니다.");
           })
   }
 };
@@ -105,13 +90,8 @@ export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
     try {
-
       const res = await Apis.signupAX(payload)
       .then((response)=>{
-        // if(response.status ==200){
-        //   window.location.replace('/home')
-        //   alert("회원가입이 완료됬습니다.")
-        // }
       })
       return thunkAPI.fulfillWithValue(res)
     } catch (error) {
@@ -124,10 +104,8 @@ export const __userCheck = createAsyncThunk(
   "idCheck/userCheck",
   // login : reducer name, 경로 정해줘야
   async (payload, thunkAPI) => {
-
     try {
       const res = await Apis.usernameAX(payload)
-
       alert(res.data.message)
       return thunkAPI.fulfillWithValue(res.data)
     } catch (error) {
@@ -142,7 +120,6 @@ export const __NickCheck = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await Apis.nicknameAX(payload)
-
       alert(res.data.message)
       return thunkAPI.fulfillWithValue(res.data)
     } catch (error) {
@@ -158,16 +135,12 @@ export const __userLogin = createAsyncThunk(
     try {
       await Apis.loginAX(payload)
       .then((response)=>{
-        //console.log(response.data)
         if (response.data.status === 200) {
-          console.log("어떤값이들어올까?~~~~~~~~~~~~~~~~~",response)
-          //setCookie represh token 받기 
           localStorage.setItem("Access_Token", response.headers.access_token)
           localStorage.setItem("user-nickname", response.data.data.nickname)
           localStorage.setItem("user-userId", response.data.data.userId)
           window.location.replace('/home');
           alert(response.data.message)
-          
         }else{
           alert(response.data.message)
         }
@@ -189,6 +162,7 @@ export const LoginSlice = createSlice({
   reducers: {},
   extraReducers: {
      [__naverLogin.pending]: (state) => {
+
       state.isLoading = true
     },
     [__naverLogin.fulfilled]: (state, action) => {
@@ -240,14 +214,7 @@ export const LoginSlice = createSlice({
       state.isSuccess = false;
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
-    [__userLogout.pending]: (state) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
-    },
-    [__userLogout.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.isSuccess = false;
-      state.account = action.payload; //
-    },
+   
     [__NickCheck.pending]: (state) => {
       state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },

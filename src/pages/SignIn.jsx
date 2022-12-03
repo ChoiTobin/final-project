@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
-import { ReactComponent as Logo } from "../img/signLogo.svg";
+
+
+import { ReactComponent as Logo } from "../img/logoImg.svg";
+
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -46,19 +49,23 @@ const SignIn = () => {
     dispatch(__userLogin(obj));
     //navigate('/postlist')
   };
+
+
+
   return (
-    <Layout>
-      <LoginContainer>
-        <Wrap>
-          <div>
-            <LoginBox>
-              {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-              <Logo style={{marginTop: "36.84px"}} />
-              <LogoLogin>LOGIN</LogoLogin>
-              <LogoBtns>
-                <KakaoLogin />
-              </LogoBtns>
-              <InputBox>
+
+      <div>
+        <LoginContainer>
+          <Wrap>
+            <div>
+
+              <LoginBox>
+                {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+                <Logo/>
+                  <LogoLogin>LOGIN</LogoLogin>
+
+                <KakaoLogin/>
+
                 <Input
                   placeholder="아이디"
                   type="text"

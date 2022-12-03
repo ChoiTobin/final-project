@@ -41,9 +41,9 @@ export const __putMyPost = createAsyncThunk(
   "posts/__putPost",
   async (payload, thunkAPI) => {
     try {
-      console.log("게시글 수정 페이로드", payload);
+
       const response = await Apis.putPostAX(payload)
-      console.log("putPost 수정수정", response)
+
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -56,10 +56,10 @@ export const __deleteMyPost = createAsyncThunk(
   "posts/__deletePost",
   async (payload, thunkAPI) => {
     try {
-      console.log("deletePost", payload)
+
       await Apis.deletePostAX(payload)
         .then((response) => {
-        console.log("response", response.data)
+
       })
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
@@ -76,7 +76,7 @@ export const __getMyPage = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getMyPageAX()
-      console.log("마이페이지 조회", response);
+
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -90,7 +90,7 @@ export const __getMyPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getMyPostAX()
-      console.log("내 게시글", response);
+
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -103,10 +103,10 @@ export const __postMyImg = createAsyncThunk(
   "mypage/__postMyImg",
   async (payload, thunkAPI) => {
     try {
-      console.log("프사이미지 페이로드", payload);
+
       await Apis.postMyImgAX(payload)
         .then((response) => {
-          console.log("프사 res", response);
+
           // return thunkAPI.fulfillWithValue(response)
       })
     } catch (error) {
@@ -122,7 +122,7 @@ export const __getMyPet = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getMyPetAX()
-      console.log("반려동물 정보", response);
+
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -134,10 +134,10 @@ export const __getMyPet = createAsyncThunk(
 export const __addMyPet = createAsyncThunk(
   "mypage/__addMyPet",
   async (payload, thunkAPI) => {
-    console.log("add 반려동물", payload)
+
     try {
       const response = await Apis.postMyPetAX(payload)
-      console.log("add 반려동물 응답", response)
+
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -150,10 +150,10 @@ export const __addMyPet = createAsyncThunk(
 export const __putMyPet = createAsyncThunk(
   "mypage/__putMyPet",
   async (payload, thunkAPI) => {
-    console.log("수정 페이로드 들어오나", payload)
+
     try {
       const response = await Apis.putMyPetAX(payload)
-      console.log(response, "반려동물 수정 리스폰스")
+
           return thunkAPI.fulfillWithValue(payload)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -167,7 +167,7 @@ export const __deleteMyPet = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = Apis.deleteMyPetAX(payload)
-      console.log("응답하라 오바", response);
+
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       // alert(error.response)
@@ -188,7 +188,7 @@ const mypageSlice = createSlice({
     [__putMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("게시글 수정 스토어 페이로드", action.payload);
+
       state.myPost.response.push(action.payload.data)
       
     },
@@ -218,7 +218,7 @@ const mypageSlice = createSlice({
     [__getMyPage.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("여기서는?", action.payload)
+
       state.myInfo = action.payload;
     },
     [__getMyPage.rejected]: (state, action) => {
@@ -233,7 +233,7 @@ const mypageSlice = createSlice({
     [__getMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("내 글은?", action.payload)
+
       state.myPost = action.payload;
     },
     [__getMyPost.rejected]: (state, action) => {

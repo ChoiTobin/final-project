@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useDispatch } from "react-redux"
 import { __getPostRating  } from "../../../redux/modules/postSlice"
 
+
 const ARRAY = [0, 1, 2, 3, 4];
 
 function Search() {

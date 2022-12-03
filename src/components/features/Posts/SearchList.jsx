@@ -8,6 +8,7 @@ import {
 import styled from "styled-components";
 import "../../../App.css";
 import Carousel from "react-bootstrap/Carousel";
+
 import { ReactComponent as Search } from "../../../img/search.svg";
 
 const Content = () => {
@@ -85,6 +86,7 @@ const Content = () => {
         </Button>
       </Buttongroup>
       <Carouselwrap>
+
         <Carousel>
           <Carousel.Item>
             <SlideImg src={require("../../../img/all.png")} />

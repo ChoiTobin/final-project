@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { ReactComponent as Logo } from "../img/signLogo.svg";
+import { ReactComponent as Logo } from "../img/logoImg.svg";
+
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -135,18 +137,19 @@ const SignUp = () => {
     // },[account])
 
   return (
-    <SignupContainer>
-      <SignupBox onSubmit={onSubmitHandler}>
-        {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-        <Logo
-          style={{
-            width: "58.75px",
-            height: "44.43px",
-            margin: "36.84px auto 18.68px",
-          }}
-        />
-        <LoGoSignUp1>SIGN UP</LoGoSignUp1>
-        <LogoBox>{/* <LoGoSignUp1>SIGN UP</LoGoSignUp1> */}</LogoBox>
+
+      <SignupContainer>
+        <SignupBox onSubmit={onSubmitHandler}>
+          <LogoBox>
+            <LoGoSignUp>
+                {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+                <Logo/>
+            </LoGoSignUp>
+            <LoGoSignUp1>
+              SIGN UP
+            </LoGoSignUp1>
+        </LogoBox>
+
         <InputBox>
           <Insert>
             <Duplicate>

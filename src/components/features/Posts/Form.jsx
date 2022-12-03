@@ -12,27 +12,27 @@ import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
-import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
-
+import { ReactComponent as Photo } from "../../../img/photo.svg";
 const Post = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [conimal, setConimal] = useState({
-    title: "",
-    price: "",
-    content: "",
-    category: "크기선택",
-    state: "진행중",
-    local: "",
-    date: "",
-    imgs: [""],
-  });
-
+  const [conimal , setConimal] = useState({
+    title:"",
+    price:"",
+    content:"",
+    category:"크기선택",
+    state:"진행중",
+    local:"",
+    date:"",
+    imgs:[""]
+  })
+  
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setConimal({ ...conimal, [name]: value });
+    setConimal({...conimal,[name]: value,});
+    
   };
-
+  
   //여기서부터 이미지훅
   const [files, fileUrls, onChangeImage] = useImgUpload(5, true, 0.3, 1000);
   //이미지 업로드 인풋돔 선택 훅
@@ -45,46 +45,43 @@ const Post = () => {
     if (files.length > 0) {
       files.forEach((file) => {
         formData.append("postImg", file);
-      });
+      })
     } else {
       formData.append("postImg", null);
     }
     if (conimal.title === "") {
-      alert("제목을 입력해주세요.");
-      return;
+      alert("제목을 입력해주세요.")
+      return
     }
     if (conimal.content === "") {
-      alert("내용을 입력해주세요.");
-      return;
+      alert("내용을 입력해주세요.")
+      return
     }
     if (conimal.price === "") {
-      alert("의뢰비용을 입력해주세요.");
-      return;
+      alert("의뢰비용을 입력해주세요.")
+      return
     }
-    setConimal("");
+    setConimal("")
 
     const data = {
-      title: conimal.title,
-      content: conimal.content,
-      category: conimal.category,
-      price: parseInt(conimal.price), // 문자를  string숫자로 변환해서 보내야할때 parseInt로 감싸서 보내주면된다.
-      state: "진행중",
-      local: conimal.local,
-      date: conimal.date,
-    };
-
+      "title" : conimal.title,
+      "content" : conimal.content,
+      "category" : conimal.category,
+      "price" : parseInt(conimal.price), // 문자를  string숫자로 변환해서 보내야할때 parseInt로 감싸서 보내주면된다.
+      "state" : "진행중",
+      "local" : conimal.local,
+      "date" : conimal.date
+    }
+    
     //폼 데이터에 글작성 데이터 넣기
-    formData.append("postImg", fileUrls);
-    formData.append(
-      "postRequestDto",
-      new Blob([JSON.stringify(data)], {
-        type: "application/json",
-      })
-    );
-    dispatch(__addPost(formData));
-    // console.log("이게가는지?",formData)
-  };
-
+    formData.append("postImg",fileUrls);
+    formData.append("postRequestDto", new Blob([JSON.stringify(data)], {
+      type: "application/json"
+    }));
+    dispatch(__addPost(formData));	  
+  // console.log("이게가는지?",formData)  
+  }
+  
   return (
     <Layout>
       <Header />
@@ -195,13 +192,14 @@ const Post = () => {
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
           </Select2>
-          <Textarea
+          <textarea
             style={{
               width: "100%",
               height: "8em",
               resize: "none",
+              border: "none",
               textIndent: 10,
-              // outline: "none",
+              outline: "none",
             }}
             name="content"
             value={conimal.content || ""}
@@ -240,7 +238,7 @@ const Layout = styled.div`
 const One = styled.div`
   display: flex;
   position: relative;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 16px;
 `;
 const P2 = styled.p`
@@ -251,7 +249,7 @@ const P2 = styled.p`
   color: #787878;
 `;
 const Bg = styled.div`
-  max-height: 456.38px;
+  max-height: 466.38px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -289,14 +287,14 @@ const ImgUpload = styled.button`
     margin: 10px 0 0 10px;
   } */
   span {
-    font-family: "Pretendard", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
     margin-left: 11px;
   }
   ::placeholder {
-    font-family: "Pretendard", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -319,7 +317,7 @@ const FormBtn1 = styled.button`
   width: 180px;
   height: 50px;
   cursor: pointer;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 18px;
   font-weight: 500;
   background-color: #838383;
@@ -331,7 +329,7 @@ const FormBtn2 = styled.button`
   width: 180px;
   height: 50px;
   cursor: pointer;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   font-size: 18px;
   font-weight: 510;
   background-color: #ed9071;
@@ -344,9 +342,9 @@ const Input = styled.input`
   outline: none;
   border: 1px solid rgba(146, 146, 146, 0.95);
   border-radius: 3px;
-  background-color: transparent;
+  background-color: rgba(243, 243, 243, 0.64);
   ::placeholder {
-    font-family: "Pretendard", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -361,10 +359,9 @@ const Input2 = styled.input`
   outline: none;
   border: 1px solid #333;
   border-radius: 3px;
-  background-color: transparent;
-  font-family: "Pretendard", sans-serif;
+  background-color: rgba(243, 243, 243, 0.64);
   ::placeholder {
-    font-family: "Pretendard", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -379,9 +376,8 @@ const Select = styled.select`
   outline: none;
   border: 1px solid rgba(105, 105, 105, 1);
   background-color: rgba(243, 243, 243, 0.64);
-  font-family: "Pretendard", sans-serif;
   select {
-    font-family: "Pretendard", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
@@ -397,25 +393,10 @@ const Select2 = styled.select`
   border: 1px solid #666;
   border-radius: 3px;
   background-color: rgba(243, 243, 243, 0.64);
-  font-family: "Pretendard", sans-serif;
   select {
-    font-family: "Pretendard", sans-serif;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
     font-size: 16px;
     font-weight: 300;
-    line-height: 19.09px;
-  }
-`;
-
-const Textarea = styled.textarea`
-  border: 1px solid rgba(146, 146, 146, 0.95);
-  border-radius: 3px;
-  background-color: transparent;
-  padding: 13.85px 0 0 3px;
-  margin-bottom: 14px;
-  ::placeholder {
-    font-family: "Pretendard", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
     line-height: 19.09px;
   }
 `;

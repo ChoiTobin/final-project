@@ -4,48 +4,55 @@ import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import { useNavigate, useParams } from "react-router-dom";
-import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlice";
+
+import { __getinitialChatList,__getinitialChatList2, ListReducer } from "../redux/modules/chattingSlice";
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
-import Modal2 from "../components/element/ChatModal/Modal2";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
-import { ReactComponent as Send } from "../img/send.svg";
-
+import Modal2 from "../pages/ChatModal/Modal2"
+import RatingModal from "../components/features/Posts/RatingModal/RatingModal";
 function ChatRoomPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
+  
+//문제 해결 list에서 들어갈때 getintalchatlist를 요청하는데  이미 그페이지에서는 getintalchatlist를 요청하고 있었다.
+// 그런데 요청하는 정보가 다르기대문에 다른 값을 리스폰스 받게 되었고 나는 한쪽방면의  getintalchatlist를 getintalchatlist2로 바꿔주었다. 그리고 chatList2로 이니셜스테이트도 바꿔주었다..
+// useSelector로 map 돌리고 reducer도 받은값을 getintalchalist2같은 이니셜스테이트ㅡ 써서 뜨게함 ui로
 
-  const listReducer = useSelector((state) => state.chatting.chatList);
+  // const listReducer = useSelector((state) => state.chatting.chatList);
   const chatList = useSelector((state) => state.chatting.chatList);
+  const chatList2 = useSelector((state) => state.chatting.chatList2);
 
-  console.log("쳇리스트", chatList);
+  console.log("요청하는정보~~",chatList,chatList2)
 
   let postId = Number(id);
-
+  //여러번 호출안하거나 undefined 
   //onSubmitHandler
-  useEffect(() => {
-    dispatch(
-      __getinitialChatList({
-        postId: postId,
-        roomId: 1,
-      })
-    );
 
-    return () => {
-      onbeforeunloda();
-    };
-  }, []);
+  useEffect(() => { //채팅내역을 mount될때마다 
+    dispatch(__getinitialChatList({postId: postId,roomId: 1,}));
+      return () => 
+      {
+        onbeforeunloda();
+      }
+    },[]);
+
+    //소켓이 끊겼을떄 감지해서 페이지를 이탈했을떄 스토어를 리셋 array splice
+    //splice(0) 싹다 날려줌.state.search 
+    //state.splice(0) =>0번째 인덱스부터 날린다.
 
   useEffect(() => {
     wsConnectSubscribe();
+      return () => 
+      {onbeforeunloda();};
+  }, 
+  [chatList2.roomId]);
 
-    return () => {
-      onbeforeunloda();
-    };
-  }, [chatList.roomId]);
+  //함수를 return안에 만들어서 리듀서를 비워주는 
   //새로고침 하지 않으면 메시지가 2개로 나오는 issue 떄문에 두번 연결
   //끊어주지 않으면 또 다시 이전화면 다녀오면 2개 나오는 issue때문에
 
@@ -63,31 +70,28 @@ function ChatRoomPage() {
   function wsConnectSubscribe() {
     try {
       ws.connect(headers, (frame) => {
-        ws.subscribe(`/sub/${chatList.roomId}`, (response) => {
-          let data = JSON.parse(response.body);
-          dispatch(ListReducer(data));
-        });
-      });
-    } catch (error) {}
+      //roomID가  undefind가 나타남. chatList쪽에 dispatch에 SetTimeout을 설정한후 roomId를 직접 로컬로 받아서 sub에 넣으니까 해결은됨 f5시에 문자가 두개씩나타나는 오류가생김.
+      ws.subscribe(`/sub/${chatList2.roomId}`, (response) => {
+        let data = JSON.parse(response.body);
+        dispatch(ListReducer(data));
+      })
+    });
+      }catch(error) {}
   }
 
   function waitForConnection(ws, callback) {
     setTimeout(
       function () {
         // 연결되었을 때 콜백함수 실행
-
         if (ws.ws.readyState === 1) {
           callback();
-
           // 연결이 안 되었으면 재호출
         } else {
           waitForConnection(ws, callback);
         }
-      },
-      1 // 밀리초 간격으로 실행
-    );
-  }
-  //stomp 메시지 에러 waitForConnection함수로 해결
+          },1 // 밀리초 간격으로 실행
+      );
+    }//stomp 메시지 에러 waitForConnection함수로 해결
 
   const onbeforeunloda = () => {
     try {
@@ -100,15 +104,16 @@ function ChatRoomPage() {
         { Access_Token: localStorage.getItem("Access_Token") }
       );
     } catch (e) {
-      console.log("연결구독해체 에러", e);
+      // console.log("연결구독해체 에러", e);
     }
-  };
-  //채팅 메시지 여러개로 나오는것 구독해체로 해결
+      };
 
+
+  //채팅 메시지 여러개로 나오는것 구독해체로 해결
   const inputHandler = (e) => {
     setChatBody(e.target.value);
   };
-
+  
   const onSubmitHandler = (event) => {
     //event.preventDefault()
     if (chatBody === "" || chatBody === " ") {
@@ -116,7 +121,7 @@ function ChatRoomPage() {
     }
     waitForConnection(ws, function () {
       ws.send(
-        `/pub/${chatList.roomId}`,
+        `/pub/${chatList2.roomId}`,
         JSON.stringify(content),
         {
           Access_Token: localStorage.getItem("Access_Token"),
@@ -142,60 +147,64 @@ function ChatRoomPage() {
         inline: "nearest",
       });
     }
-  }, [listReducer]);
+  }, [chatList2]);
   //채팅창 치면 맨 밑으로 내려감.
 
   return (
-    // <Modal2></Modal2>
     <LoginContainer>
       <Header>
         <Modal2/>
         <div>
-          {/* <Img
-            onClick={() => navigate(-1)}
-            src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}
-          /> */}
-          <BackArrow onClick={() => navigate(-1)} />
+
+          <BackArrow onClick={
+            ()=>  navigate(-1)
+            }/>
+
         </div>
         <div>
-          <Nickname>{chatList.postNickname}</Nickname>
+          <Nickname>{chatList2.postNickname}</Nickname>
           <Time>30분 전 접속 </Time>
         </div>
-        <span>{/* 잠시주석 <Modal2></Modal2> */}</span>
+        {
+          localStorage.getItem("user-nickname") === chatList2.postNickname ?
+            <>
+            <Modal2></Modal2>
+  
+            </>
+
+            : null
+        }
       </Header>
       <Section>
         <Profile>
-          <Img2>{chatList.postImg}</Img2>
+          <Img2>{chatList2.postImg}</Img2>
         </Profile>
         <TextBox>
-          <OrangeSpan>{chatList.state}</OrangeSpan>
+          <OrangeSpan>{chatList2.state}</OrangeSpan>
           <Span></Span>
-          <Title>{chatList.title}</Title>
-          <Money>{chatList.price}원</Money>
+          <Title>{chatList2.title}</Title>
+          <Money>{chatList2.price}원</Money>
         </TextBox>
       </Section>
       <DivAt>날짜 오늘</DivAt>
       <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
-        {/* { chatList.chatList !== undefined && chatList.chatList !== null &&
-                      chatList.chatList.map((item,i)=>{
-                          return(
-                          
-                          localStorage.getItem('user-nickname') == item.sender ?  
-                        <TextBox key={uuidv4()}><Colorspan>{item.message}</Colorspan></TextBox>
-                        :
-                        <TextBox key={uuidv4()}><Colorspan2>{item.message}</Colorspan2></TextBox>
-                        
-                          )
-                        })
-                      } */}
-        {listReducer.chatList !== undefined &&
-          listReducer.chatList !== null &&
-          listReducer.chatList.map((item, i) => {
-            return localStorage.getItem("user-nickname") === item.sender ? (
+
+
+      
+
+
+        {
+        chatList2.chatList !== undefined &&
+        chatList2.chatList !== null &&
+        chatList2.chatList.map((item, i) => {
+            return localStorage.getItem("user-nickname") == item.sender ? 
+            (
+
               <TextBox key={uuidv4()}>
                 <Colorspan>{item.message}</Colorspan>
               </TextBox>
-            ) : (
+            ) : 
+            (
               <TextBox key={uuidv4()}>
                 <Colorspan2>{item.message}</Colorspan2>
               </TextBox>
@@ -213,16 +222,9 @@ function ChatRoomPage() {
         {/* <ArrowImg
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
-          src={require("../chatting/chattingImg/iconSand.png")}
-        /> */}
-        {/* <ArrowImg
-          onSubmit={appKeyPress}
-          onClick={onSubmitHandler}
+
           src={require("../img/send.png")}
-        /> */}
-        <Send
-          onSubmit={appKeyPress}
-          onClick={onSubmitHandler}
+
         />
       </Chatput>
     </LoginContainer>
