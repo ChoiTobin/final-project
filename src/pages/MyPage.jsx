@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
@@ -14,6 +13,7 @@ import ModalPortal from "../components/element/ModalPortal";
 import AddPetInfo from "../components/features/Mypage/AddPetInfo";
 import "../components/element/MyPetModal.css";
 import { FaStar } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {

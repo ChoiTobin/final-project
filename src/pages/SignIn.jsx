@@ -53,7 +53,7 @@ const SignIn = () => {
 
   return (
 
-      <Layout>
+      <div>
         <LoginContainer>
           <Wrap>
             <div>
@@ -111,7 +111,7 @@ const SignIn = () => {
           </div>
         </Wrap>
       </LoginContainer>
-    </div>
+  </div>
   );
 };
 
