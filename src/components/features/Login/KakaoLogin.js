@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
-//import { ReactComponent as Naver } from "../../../img/naver.svg";
-//import { ReactComponent as Kakao } from "../../../img/kakao.svg";
+import { ReactComponent as Naver } from "../../../img/naver.svg";
+import { ReactComponent as Kakao } from "../../../img/kakao.svg";
 import { useNavigate } from 'react-router-dom'
 
 const KakaoLogin = () => {
