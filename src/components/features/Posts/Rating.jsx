@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useDispatch } from "react-redux"
 import { __getPostRating  } from "../../../redux/modules/postSlice"
 
+
 const ARRAY = [0, 1, 2, 3, 4];
 
 function Search() {
@@ -29,9 +30,9 @@ function Search() {
   // 평점숫자로 나오는건 백에서 보여줄것같다는 예상 .. 4점
   
   return (
-    <div>
-      <span>평가하기</span>
-      <div>
+    <Wrap>
+      <RatingText>평가하기</RatingText>
+      <Stars>
         {ARRAY.map((el, idx) => {
           return (
             <FaStar
@@ -42,10 +43,44 @@ function Search() {
             />
           );
         })}
-      </div>
+      </Stars>
       <button type="button" onClick={onClickRating}>평점남기기</button>
-    </div>
+    </Wrap>
   );
 }
 
 export default Search;
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+`;
+
+const RatingText = styled.div`
+  color: #787878;
+  font-size: 12px;
+  font-weight: 400;
+`;
+
+const Stars = styled.div`
+  display: flex;
+  padding-top: 5px;
+
+  & svg {
+    color: gray;
+    cursor: pointer;
+  }
+
+  :hover svg {
+    color: #fcc419;
+  }
+
+  & svg:hover ~ svg {
+    color: gray;
+  }
+
+  .yellowStar {
+    color: #fcc419;
+  }
+`;

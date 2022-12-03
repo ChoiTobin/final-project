@@ -10,14 +10,13 @@ import PostList from "../components/features/Posts/PostList";
 import ChatRoomPage from "../pages/ChatRoomPage";
 import ChatList from "../pages/ChatList";
 import Rating from "../components/features/Posts/Rating";
-
-// 추가
 import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
+import OAuthNaverLogin from "../components/features/Login/OAuthNaverLogin"
 
 
 const Router = () => {
-  return (
+  return ( 
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -35,7 +34,8 @@ const Router = () => {
       <Route path="/chat" element={<ChatList/>} />
       <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
       <Route path="/Rating" element={<Rating />} />
-
+       {/* 네이버 */}
+       <Route path="/user/naver/callback" element={<OAuthNaverLogin />} />
 
       </Routes>
     </BrowserRouter>

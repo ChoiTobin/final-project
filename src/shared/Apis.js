@@ -53,9 +53,15 @@ export const Apis = {
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
   // getRoomList: () => token.get(`/roomList`),
   getRoomList: () => token.get(`/roomList`),
-
   getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
-  
+
+  naverloginAX: (loginData) =>noToken.get(`/auth/member/naver/callback?code=${loginData.code}&state=${loginData.state}`
+  ),
+/// * 밑으로는 따로 올려주기 깃허브
+  complete: (complete) => token.put(`/room/${complete}`),
+  getInitialChatList2: (getInitialList2) => token.post(`/roomInfo`,getInitialList2),
+
+
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),

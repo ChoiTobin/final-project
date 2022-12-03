@@ -1,55 +1,56 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ReactComponent as Home } from "../../img/home.svg";
-import { ReactComponent as AHome } from "../../img/homeOn.svg";
-import { ReactComponent as Chat } from "../../img/chat.svg";
-import { ReactComponent as AChat } from "../../img/chatOn.svg";
-import { ReactComponent as Posting } from "../../img/posting.svg";
-import { ReactComponent as APosting } from "../../img/postingOn.svg";
-import { ReactComponent as Mypage } from "../../img/mypage.svg";
-import { ReactComponent as AMypage } from "../../img/mypageOn.svg";
-// import { Home, Chat, Posting, Mypage } from "./FooterIcons.js";
+import styled from "styled-components";
+import { ReactComponent as HomeColor } from "../../img/home-f.svg";
+import { ReactComponent as HomeMono } from "../../img/home-fo.svg";
+import { ReactComponent as ChatColor } from "../../img/chat-f.svg";
+import { ReactComponent as ChatMono } from "../../img/chat-fo.svg";
+import { ReactComponent as WriteColor } from "../../img/write-f.svg";
+import { ReactComponent as WriteMono } from "../../img/write-fo.svg";
+import { ReactComponent as MypageColor } from "../../img/my-f.svg";
+import { ReactComponent as MypageMono } from "../../img/my-fo.svg";
+import { useNavigate } from "react-router-dom/dist";
 
 const Footer = () => {
-  const [currentTab, setCurrentTab] = useState(0)
-  const [click, setClick] = useState(false)
-
   const navigate = useNavigate();
 
-  const tabArr = [
-    { name: <Home/>, nav: "/home" },
-    { name: <Chat/>, nav: "/chat" },
-    { name: <Posting/>, nav: "/form" },
-    { name: <Mypage/>, nav: "/mypage" },
-  ];
+  const onClickChat = () => {
+    navigate(`/chat`);
+  };
 
-  const selectTabHandler = (index) => {
-    // 함수에도 index를 전달한다
-    setCurrentTab(index)
-    setClick(!click)
-  }
+  const onClickHome = () => {
+    navigate(`/home`);
+  };
+
+  const onClickWrite = () => {
+    navigate(`/form`);
+  };
+
+  const onClickMy = () => {
+    navigate(`/mypage`);
+  };
 
   return (
-    <>
-      <div>
-        <div>
-          {tabArr.map((page, index) => {
-        return (
-          // 삼항연산자 렌더링
-          <li className={currentTab === index ? "submenu focused" : "submenu"}
-            // onClick event에서 index를 매개변수로 전달해준다
-            onClick={() => {
-              selectTabHandler(index)
-              navigate(page.nav)
-            }}>{page.name}</li>
-              )
-            })
-          }
-        </div>    
-    </div>
-    </>
-    
+    <Layout>
+      <HomeMono onClick={onClickHome} id="home" />
+      <ChatMono onClick={onClickChat} id="chat" />
+      <WriteMono onClick={onClickWrite} id="write" />
+      <MypageMono onClick={onClickMy} id="mypage" />
+    </Layout>
   );
 };
 
 export default Footer;
+
+const Layout = styled.div`
+  height: 55.7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  gap: 58px;
+  cursor: pointer;
+  background-color: #fff;
+
+  border: 1px solid #ED9071;
+`;
