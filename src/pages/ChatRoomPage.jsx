@@ -17,39 +17,21 @@ function ChatRoomPage() {
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
-  
-//문제 해결 list에서 들어갈때 getintalchatlist를 요청하는데  이미 그페이지에서는 getintalchatlist를 요청하고 있었다.
-// 그런데 요청하는 정보가 다르기대문에 다른 값을 리스폰스 받게 되었고 나는 한쪽방면의  getintalchatlist를 getintalchatlist2로 바꿔주었다. 그리고 chatList2로 이니셜스테이트도 바꿔주었다..
-// useSelector로 map 돌리고 reducer도 받은값을 getintalchalist2같은 이니셜스테이트ㅡ 써서 뜨게함 ui로
-
 
   const chatList2 = useSelector((state) => state.chatting.chatList2);
 
-
-
   let postId = Number(id);
-  //여러번 호출안하거나 undefined 
-  //onSubmitHandler
 
-
-
-  useEffect(() => { //페이지가 마운트될때마다 띄어준다.
+  useEffect(() => { //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
     dispatch(__getinitialChatList({postId: postId,roomId: 0,}));
-    console.log("마운트시 여기들이 나오는지1")
-    },[]);
+      wsConnectSubscribe();
+    return () => 
+    {
+      onbeforeunloda();
+    }
+    },[chatList2.roomId]);
 
 
-  useEffect(() => {//
-    wsConnectSubscribe();
-    console.log("마운트시 여기들이 나오는지2")
-      return () => 
-      {onbeforeunloda();};
-  }, 
-  [chatList2.roomId]);
-
-  //함수를 return안에 만들어서 리듀서를 비워주는 
-  //새로고침 하지 않으면 메시지가 2개로 나오는 issue 떄문에 두번 연결
-  //끊어주지 않으면 또 다시 이전화면 다녀오면 2개 나오는 issue때문에
 
   const [chatBody, setChatBody] = useState("");
 
@@ -65,12 +47,11 @@ function ChatRoomPage() {
   function wsConnectSubscribe() {
     try {
       ws.connect(headers, (frame) => {
-      //roomID가  undefind가 나타남. chatList쪽에 dispatch에 SetTimeout을 설정한후 roomId를 직접 로컬로 받아서 sub에 넣으니까 해결은됨 f5시에 문자가 두개씩나타나는 오류가생김.
-      ws.subscribe(`/sub/${chatList2.roomId}`, (response) => {
-        let data = JSON.parse(response.body);
-        dispatch(ListReducer(data));
-      })
-    });
+        ws.subscribe(`/sub/${chatList2.roomId}`, (response) => {
+          let data = JSON.parse(response.body);
+          dispatch(ListReducer(data));
+        })
+      });
       }catch(error) {}
   }
 
@@ -191,13 +172,15 @@ function ChatRoomPage() {
           //여기 이미지부분 나중에 물어보기
         }
         {/* <img src={require("../img/bros_blank.jpg")} width="48px"/> */}
+        
+
           <OrangeSpan>{chatList2.state}</OrangeSpan>
           <Span></Span>
           <Title>{chatList2.title}</Title>
           <Money>{chatList2.price}원</Money>
         </TextBox>
       </Section>
-      <DivAt>{chatList2.post.date}</DivAt>
+      <DivAt></DivAt>
       <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
 
       
