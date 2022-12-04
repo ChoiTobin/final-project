@@ -53,6 +53,11 @@ return (
                       <div>
                         <img src={require("../img/bros_blank.jpg")} width="48px"/>
                       </div>
+                      {/* {
+                        item.post.image !== undefined
+
+                        console.log("찍어보자!",item.post.image[0].image)
+                      } */}
                       <MarginDiv>
                           <h4 onClick={()=>onClickChatting(item)}>
                             {item.joinNickname}
@@ -61,6 +66,14 @@ return (
                             <Span>{item.title}</Span>
                           </div>
                       </MarginDiv>
+                      <div>
+                      {
+
+          item.post.image.length !== 0 &&
+                  <img src={`${item.post.image[0].image}`}/>
+                }
+
+                      </div>
                   </FlexDiv>
             </Root>
 

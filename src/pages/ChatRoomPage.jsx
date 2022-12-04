@@ -22,30 +22,26 @@ function ChatRoomPage() {
 // 그런데 요청하는 정보가 다르기대문에 다른 값을 리스폰스 받게 되었고 나는 한쪽방면의  getintalchatlist를 getintalchatlist2로 바꿔주었다. 그리고 chatList2로 이니셜스테이트도 바꿔주었다..
 // useSelector로 map 돌리고 reducer도 받은값을 getintalchalist2같은 이니셜스테이트ㅡ 써서 뜨게함 ui로
 
-  // const listReducer = useSelector((state) => state.chatting.chatList);
-  const chatList = useSelector((state) => state.chatting.chatList);
+
   const chatList2 = useSelector((state) => state.chatting.chatList2);
 
-  console.log("요청하는정보~~",chatList,chatList2)
+
 
   let postId = Number(id);
   //여러번 호출안하거나 undefined 
   //onSubmitHandler
 
-  useEffect(() => { //채팅내역을 mount될때마다 
-    dispatch(__getinitialChatList({postId: postId,roomId: 1,}));
-      return () => 
-      {
-        onbeforeunloda();
-      }
+
+
+  useEffect(() => { //페이지가 마운트될때마다 띄어준다.
+    dispatch(__getinitialChatList({postId: postId,roomId: 0,}));
+    console.log("마운트시 여기들이 나오는지1")
     },[]);
 
-    //소켓이 끊겼을떄 감지해서 페이지를 이탈했을떄 스토어를 리셋 array splice
-    //splice(0) 싹다 날려줌.state.search 
-    //state.splice(0) =>0번째 인덱스부터 날린다.
 
-  useEffect(() => {
+  useEffect(() => {//
     wsConnectSubscribe();
+    console.log("마운트시 여기들이 나오는지2")
       return () => 
       {onbeforeunloda();};
   }, 
@@ -149,6 +145,16 @@ function ChatRoomPage() {
   }, [chatList2]);
   //채팅창 치면 맨 밑으로 내려감.
 
+
+
+
+// let num
+// if(
+//  chatList2.post.image.length !== 0 && chatList2.post.image !== undefined  && chatList2.post.image !== []){
+//    num =chatList2.post.image[0].image
+// }else{
+//   num = undefined
+// }
   return (
     <LoginContainer>
       <Header>
@@ -158,8 +164,10 @@ function ChatRoomPage() {
             }/>
         </div>
         <div>
+          <div>
+          </div>
           <Nickname>{chatList2.postNickname}</Nickname>
-          <Time>30분 전 접속 </Time>
+          <Time></Time>
         </div>
         {
           localStorage.getItem("user-nickname") === chatList2.postNickname ?
@@ -173,16 +181,23 @@ function ChatRoomPage() {
       </Header>
       <Section>
         <Profile>
-          <Img2>{chatList2.postImg}</Img2>
+
+
         </Profile>
         <TextBox>
+        {
+          // chatList2.post.image.length !== 0 || chatList2.post.image !== undefined  || chatList2.post.image !== []&&
+          // <Img  src={`${num}`}/>
+          //여기 이미지부분 나중에 물어보기
+        }
+        {/* <img src={require("../img/bros_blank.jpg")} width="48px"/> */}
           <OrangeSpan>{chatList2.state}</OrangeSpan>
           <Span></Span>
           <Title>{chatList2.title}</Title>
           <Money>{chatList2.price}원</Money>
         </TextBox>
       </Section>
-      <DivAt>날짜 오늘</DivAt>
+      <DivAt>{chatList2.post.date}</DivAt>
       <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
 
       
@@ -328,10 +343,8 @@ const OrangeSpan = styled.span`
   font-weight: bold;
 `;
 const Img = styled.img`
-  margin-top: 6px;
-  height: 25px;
-  width: 25px;
-  margin-left: 10px;
+  height: 45px;
+  width: 45px;
 `;
 const Img2 = styled.img`
   height: 33px;

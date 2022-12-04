@@ -116,11 +116,16 @@ const chatSlice = createSlice({
     trueChat: (state, action) => {
       state.chatTrueFalse = action.payload.mode
     },
- 
     ListReducer: (state, action) => {
-      state.chatList2.chatList.push(action.payload)
+      console.log("왜노푸쉬?",action.payload)
+      console.log("이개뭐지",state.chatList2.chatList)
+      if(state.chatList2.chatList == null){
+        state.chatList2.chatList = []
 
- 
+      }
+      //처음 채팅내역에서 null값이 들어오게됨. 그래서 배열을 강제로 만들어서 집어넣는다.
+      //
+      state.chatList2.chatList.push(action.payload)
     },
 
   },

@@ -13,8 +13,9 @@ const KakaoLogin = () => {
         window.location.href = KAKAO_AUTH_URL;
     }
     //kakao
+    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_NAVER_CALLBACK_URL}&state=state`
     const handleNaverLogin = () => {
-        let NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_NAVER_CALLBACK_URL}&state=state`
+        
         window.location.href = NAVER_AUTH_URL
       }
 

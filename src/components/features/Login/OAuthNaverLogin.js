@@ -13,9 +13,14 @@ const OAuthNaverLogin = () => {
     code: code,
     state: state,
   }
-  useEffect(async () => {
-    await dispatch(__naverLogin(loginData))
-  }, [])
+  useEffect(
+    //async () => {
+    //await 
+    dispatch(__naverLogin(loginData))
+    
+  
+  //}
+  , [])
 
   return <div />
 }
