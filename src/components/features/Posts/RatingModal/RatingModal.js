@@ -6,7 +6,7 @@ import Rating from "../Rating";
 
 
 
- function RatingModal() {
+ function RatingModal({setModal2,modal2}) {
   const [modal, setModal] = useState(false);
   
   const dispatch = useDispatch();
@@ -28,9 +28,9 @@ import Rating from "../Rating";
   //count가 true일때 이제 visible moddal창 
   //true일때 색깔바뀌는것만 하기 창닫는거 말고.
   const toggleModal = () => {
-    setModal(!modal);
+    setModal(!modal2);
   };
-  if(modal) {
+  if(modal2) {
     document.body.classList.add('active-modal')
     
   } else{
@@ -53,7 +53,7 @@ import Rating from "../Rating";
       {/* 모달창 승인버튼 green OR black */}
       
       {
-      modal && ( 
+      modal2 && ( 
         <div className="Rating">
             <div onClick={toggleModal} className="RatingOverlay"></div>
           <div className="modal3-content3">

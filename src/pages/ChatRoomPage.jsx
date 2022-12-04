@@ -1,49 +1,43 @@
 import styled from "styled-components";
+import "../App.css";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import { useNavigate, useParams } from "react-router-dom";
-import { __getinitialChatList,__getinitialChatList2, ListReducer } from "../redux/modules/chattingSlice";
-import "../App.css";
+import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlice";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2"
-import RatingModal from "../components/features/Posts/RatingModal/RatingModal";
+
+
+
 function ChatRoomPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
-
   const chatList2 = useSelector((state) => state.chatting.chatList2);
-
   let postId = Number(id);
+
 
   useEffect(() => { //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
     dispatch(__getinitialChatList({postId: postId,roomId: 0,}));
       wsConnectSubscribe();
-    return () => 
-    {
-      onbeforeunloda();
-    }
-    },[chatList2.roomId]);
-
-
-
+        return () => 
+          {
+            onbeforeunloda();
+          }
+                },[chatList2.roomId]);
   const [chatBody, setChatBody] = useState("");
-
   const content = {
     sender: localStorage.getItem("user-nickname"),
     message: chatBody,
   };
-
   let headers = {
     Access_Token: localStorage.getItem("Access_Token"),
   };
-
   function wsConnectSubscribe() {
     try {
       ws.connect(headers, (frame) => {
@@ -54,7 +48,6 @@ function ChatRoomPage() {
       });
       }catch(error) {}
   }
-
   function waitForConnection(ws, callback) {
     setTimeout(
       function () {
@@ -74,7 +67,7 @@ function ChatRoomPage() {
       ws.disconnect(
         () => {
           ws.unsubscribe("sub-0");
-          clearTimeout(waitForConnection);
+            clearTimeout(waitForConnection);
         },
 
         { Access_Token: localStorage.getItem("Access_Token") }
@@ -98,7 +91,7 @@ function ChatRoomPage() {
     waitForConnection(ws, function () {
       ws.send(
         `/pub/${chatList2.roomId}`,
-        JSON.stringify(content),
+          JSON.stringify(content),
         {
           Access_Token: localStorage.getItem("Access_Token"),
         },
@@ -126,101 +119,95 @@ function ChatRoomPage() {
   }, [chatList2]);
   //채팅창 치면 맨 밑으로 내려감.
 
-
-
-
-// let num
-// if(
-//  chatList2.post.image.length !== 0 && chatList2.post.image !== undefined  && chatList2.post.image !== []){
-//    num =chatList2.post.image[0].image
-// }else{
-//   num = undefined
-// }
   return (
-    <LoginContainer>
-      <Header>
-        <div>
-          <BackArrow onClick={
-            ()=>  navigate(-1)
+<LoginContainer>
+    <Header>
+        <div className="">
+            <BackArrow 
+            onClick={()=>  
+            navigate(-1)
             }/>
         </div>
         <div>
-          <div>
-          </div>
-          <Nickname>{chatList2.postNickname}</Nickname>
-          <Time></Time>
+            <div>
+            </div>
+            <Nickname>
+              {chatList2.postNickname}
+            </Nickname>
+            <Time>
+            </Time>
         </div>
         {
-          localStorage.getItem("user-nickname") === chatList2.postNickname ?
-            <>
-            <Modal2></Modal2>
-  
-            </>
-
-            : null
+        localStorage.getItem("user-nickname") === chatList2.postNickname ?
+        <Modal2>
+        </Modal2>
+        : 
+        null
         }
-      </Header>
-      <Section>
-        <Profile>
+    </Header>
 
+    <Section>
+        <div className="profile">
+          <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
+          <OrangeSpan>
+            {chatList2.state}
+          </OrangeSpan>
+          <Span>
+          </Span>
+          <Title>
+            {chatList2.title}
+          </Title>
+          <Money>
+            {chatList2.price}원
+          </Money>
+        </div>
+    </Section>
+      <DivAt>
+      </DivAt>
+    <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
+      {
+      chatList2.chatList !== undefined &&
+      chatList2.chatList !== null &&
+      chatList2.chatList.map((item, i) => {
+        return localStorage.getItem("user-nickname") == item.sender ? 
+      (
+      <TextBox key={uuidv4()}>
+        <Colorspan>
+          {item.message}
+        </Colorspan>
+      </TextBox>
+      ) 
+      : 
+      (
+      <TextBox key={uuidv4()}>
+        <Colorspan2>
+          {item.message}
+        </Colorspan2>
+      </TextBox>
+      );
+      })
+      }
 
-        </Profile>
-        <TextBox>
-        {
-          // chatList2.post.image.length !== 0 || chatList2.post.image !== undefined  || chatList2.post.image !== []&&
-          // <Img  src={`${num}`}/>
-          //여기 이미지부분 나중에 물어보기
-        }
-        {/* <img src={require("../img/bros_blank.jpg")} width="48px"/> */}
-        
-
-          <OrangeSpan>{chatList2.state}</OrangeSpan>
-          <Span></Span>
-          <Title>{chatList2.title}</Title>
-          <Money>{chatList2.price}원</Money>
-        </TextBox>
-      </Section>
-      <DivAt></DivAt>
-      <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
-
-      
-
-
-        {
-        chatList2.chatList !== undefined &&
-        chatList2.chatList !== null &&
-        chatList2.chatList.map((item, i) => {
-            return localStorage.getItem("user-nickname") == item.sender ? 
-            (
-              <TextBox key={uuidv4()}>
-                <Colorspan>{item.message}</Colorspan>
-              </TextBox>
-            ) : 
-            (
-              <TextBox key={uuidv4()}>
-                <Colorspan2>{item.message}</Colorspan2>
-              </TextBox>
-            );
-          })}
-
-        <div ref={scrollRef}></div>
-      </OverFlow>
-      <Chatput>
-        <Input
-          value={chatBody}
-          onKeyPress={appKeyPress}
-          onChange={inputHandler}
-        ></Input>
-        <ArrowImg
-          onSubmit={appKeyPress}
-          onClick={onSubmitHandler}
-          src={require("../img/send.png")}
-        />
-      </Chatput>
-    </LoginContainer>
+      <div ref={scrollRef}></div>
+    </OverFlow>
+    <Chatput>
+      <Input
+      value={chatBody}
+      onKeyPress={appKeyPress}
+      onChange={inputHandler}>
+      </Input>
+      <ArrowImg
+      onSubmit={appKeyPress}
+      onClick={onSubmitHandler}
+      src={require("../img/send.png")}/>
+    </Chatput>
+  </LoginContainer>
   );
 }
 
+const Userimg = styled.img`
+  width:50px;
+`
 const ArrowImg = styled.img`
   position: absolute;
   top: 10px;

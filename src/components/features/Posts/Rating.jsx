@@ -23,6 +23,7 @@ function Search() {
   
   const onClickRating = () => {
     dispatch(__getPostRating());
+    window.location.replace('/home')
   } 
   // 채팅방에서 완료버튼을 눌렀을때 평점모달이 뜨고 평점남기기를 눌러야 서버로 완료라는걸 보내서 
   // 평점을 보내주고 상태값을 바꾼다 

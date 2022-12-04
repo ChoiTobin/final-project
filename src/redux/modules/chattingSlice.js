@@ -56,7 +56,7 @@ export const __getinitialChatList = createAsyncThunk(
     try {
 
       const response = await Apis.getInitialChatList(payload)
-
+      console.log("어케다른겨",response)
       return thunkAPI.fulfillWithValue(response.data.data);
 
     } catch (error) {
@@ -89,6 +89,7 @@ export const __complete = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       console.log("페이로드~~~~~~~~~~",payload)
+      console.log("페이로드!!!~~~~~~~~~~~~~~~~",payload)
 
       const response = await Apis.complete(payload)
     
@@ -176,17 +177,17 @@ const chatSlice = createSlice({
       state.isLoading = false;
       state.err = action.payload;
     },
-    [__getinitialChatList.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [__getinitialChatList.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.chatList = action.payload;
-    },
-    [__getinitialChatList.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.err = action.payload;
-    },
+    // [__getinitialChatList.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
+    // [__getinitialChatList.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.chatList = action.payload;
+    // },
+    // [__getinitialChatList.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.err = action.payload;
+    // },
 
 
     [__getinitialChatList2.pending]: (state, action) => {

@@ -5,35 +5,46 @@ import { useSelector,useDispatch  } from "react-redux";
 // import { trueChat,postChat } from "../../redux/modules/chattingSlice";
 import { __complete } from "../../redux/modules/chattingSlice";
 import RatingModal from "./../../components/features/Posts/RatingModal/RatingModal";
-
+import {  useParams } from "react-router-dom";
  function Modal2() {
+  const { id } = useParams();
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~",id)
+
   const [modal, setModal] = useState(false);
+  const [editTg, setEidtTg] = useState({
+    id:0,
+    isEdit:false,
+  });
+
+
+
+  const [modal2, setModal2] = useState(false);
+  // console.log("리스트리듀서",listReducer)
+
+
   
   const dispatch = useDispatch();
 
-  const listReducer = useSelector((state) => state.chatting.chatList);
+  const listReducer = useSelector((state) => state.chatting.chatList2);
 
   const complete = useSelector((state) => state.chatting.complete);
-
-
-  // const count = useSelector((state) => state.chatting.chatTrueFalse)
-  const [WriteTrue,setWriteTrue ] =useState ({
-    mode:false
-  })
+  
 
   const onClickButton = (e) => {
     e.preventDefault()
     setModal(!modal);
-    setWriteTrue(WriteTrue.mode=true)
     dispatch(__complete(listReducer.postId))
-    // dispatch(trueChat(WriteTrue))
-
-    //false로 바뀐다.
+    
+    setModal2(!modal2) 
     }
+
+
+    
+
+console.log("이게먼값~!!!!!!!!!!!!!!~!~!",listReducer.postId)
+
   const toggleModal = () => {
     setModal(!modal);
-
-
   };
   if(modal) {
     document.body.classList.add('active-modal')
@@ -45,28 +56,40 @@ import RatingModal from "./../../components/features/Posts/RatingModal/RatingMod
 
 
   let str = "진행중"
-  let UserBoxMessage ="20221121_141505"
+
+  // let UserBoxMessage ="20221121_141505"
   if(complete== "진행중")
   {
-     str = "진행중"
-     UserBoxMessage="20221121_141505"
-  }else if(complete == "완료")
-  {
-     str = "완료"
-     UserBoxMessage= "20221121_141959"
-  }
+    str = "진행중"
+    // UserBoxMessage="20221121_141505"
 
-//완료버튼일때 클릭하면 내모달이아니고 현진님 모달.
+
+    // UserBoxMessage="20221121_141959"
+
+
+  }else if(complete =="완료"){
+    str= "완료"
+
+
+  }
 
 
   return (
     <>
-      { str == "완료" ? 
-        <RatingModal></RatingModal>
+      { complete == "완료" ? 
+         <>
+         별점
+        <RatingModal setModal2 modal2 ></RatingModal>
+        <Himg2 onClick={toggleModal} />
+      </>   
+          
           :
             <>
-          <Himg2 onClick={toggleModal} src={require(`../../img/${UserBoxMessage}.png`)}/>
+          
           <Span>{str}</Span>
+          <Himg2 onClick={toggleModal} 
+          //src={require(`../../img/${UserBoxMessage}.png`)}
+          />
           </>  
           
       }
