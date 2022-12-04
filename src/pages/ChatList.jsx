@@ -25,7 +25,7 @@ const ChatList = () => {
     function () {
       dispatch(__getinitialChatList2({
         postId:item.postId,
-        roomId:item.roomId,}
+        roomId:item.roomId,}   
     ));},100 );
 
   //여기 부분을 풀면 채팅 이 잘나오고 방이 안들어가짐
