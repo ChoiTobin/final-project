@@ -56,7 +56,9 @@ export const __getinitialChatList = createAsyncThunk(
     try {
 
       const response = await Apis.getInitialChatList(payload)
+
       return thunkAPI.fulfillWithValue(response.data.data);
+
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.data);
     }
@@ -68,8 +70,9 @@ export const __getinitialChatList2 = createAsyncThunk(
   "/chat/__getInitialChatList2",
   async (payload, thunkAPI) => {
     try {
-
       const response = await Apis.getInitialChatList(payload)
+      
+      console.log("어떤값주니 2",response)
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.data);
@@ -117,12 +120,12 @@ const chatSlice = createSlice({
       state.chatTrueFalse = action.payload.mode
     },
     ListReducer: (state, action) => {
-      console.log("왜노푸쉬?",action.payload)
-      console.log("이개뭐지",state.chatList2.chatList)
+
       if(state.chatList2.chatList == null){
         state.chatList2.chatList = []
         // state.chatList2.chatList.push(action.payload)
       }
+      // console.log("어떤값?",current(state),"어떤값?",action.payload)
       //처음 채팅내역에서 null값이 들어오게됨. 그래서 배열을 강제로 만들어서 집어넣는다.
       //
       state.chatList2.chatList.push(action.payload)
