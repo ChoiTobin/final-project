@@ -62,7 +62,7 @@ const Content = () => {
           name="search"
           defaultValue={getSearch.search || ""}
           onChange={onChangeHandler}
-        />
+        /><Search/>
         {/* <Img
           onKeyPress={appKeyPress}
           onClick={onClickSearch}

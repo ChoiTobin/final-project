@@ -1,0 +1,582 @@
+* {
+  font-family: 'Pretendard', sans-serif;
+}
+
+.home {
+  width: 100vw;
+  height: 100vh;
+  background-color: #F6F0EE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.layout {
+  width: 540px;
+  height: 960px;
+  /* background-color: #F6F0EE; */
+  background-color: lightsteelblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.container {
+  width: 540px;
+  height: 960px;
+  background-color: #F6F0EE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+// 폰트 크기
+.font-s1 {
+  font-size: 13.5px;
+}
+
+.font-s2 {
+  font-size: 15px;
+}
+
+.font-s3 {
+  font-size: 16.5px;
+}
+
+.font-s4 {
+  font-size: 18px;
+}
+
+.font-s5 {
+  font-size: 19.5px;
+}
+
+.font-s6 {
+  font-size: 21px;
+}
+
+.font-s7 {
+  font-size: 22.5px;
+}
+
+.font-s8 {
+  font-size: 24px;
+}
+
+.font-s9 {
+  font-size: 30px;
+}
+
+.font-s10 {
+  font-size: 48px;
+}
+
+
+// 폰트 굵기
+.font-w1 {
+  font-weight: 200;
+}
+
+.font-w2 {
+  font-weight: 300;
+}
+
+.font-w3 {
+  font-weight: 400;
+}
+
+.font-w4 {
+  font-weight: 500;
+}
+
+.font-w5 {
+  font-weight: 600;
+}
+
+.font-w6 {
+  font-weight: 700;
+}
+
+// 색상 - 글씨
+.color-1 {
+  color: #ED9071;
+}
+
+// sub-color
+.color-2 {
+  color: #F6F0EE;
+}
+
+// 로그인 인풋
+.color-3 {
+  color: #FD6E7F;
+}
+
+// 로그인 인풋
+.color-4 {
+  color: #4DB173;
+}
+
+// 컬러버튼 텍스트
+.color-5 {
+  color: #FFFFFF;
+}
+
+// 모달 텍스트
+.color-6 {
+  color: #252525;
+}
+
+// 메인 리스트 보더컬러
+.color-7 {
+  color: #F8D1C5;
+}
+
+// 카테고리탭 텍스트
+.color-8 {
+  color: #5A5A5A;
+}
+
+// 포스트박스에 카테고리 텍스트 + 채팅 대화방 날짜
+.color-9 {
+  color: #424242;
+}
+
+// 상세페이지 모집상태 + 채팅목록(닉네임, 내용, 날짜) + 마이페이지 공지 내용
+.color-10 {
+  color: #4E4E4E;
+}
+
+// 상세페이지 날짜, 위치, 작성시간 + 마이페이지 사진수정
+.color-11 {
+  color: #696969;
+}
+
+// 포스트 이미지 미리보기, 추가, 업로드갯수 + 마이페이지 탭메뉴 활성
+.color-12 {
+  color: #393939;
+}
+
+// 글작성 제목, 내용, 가격 placeholder + 마이페이지 탭메뉴 비활성
+.color-13 {
+  color: #787878;
+}
+
+// 글작성 날짜, 위치, 크기 placeholder + 반려동물 등록 placeholder
+.color-14 {
+  color: #5E5E5E;
+}
+
+// 마이페이지 공지 제목 텍스트
+.color-15 {
+  color: #EE8B6A;
+}
+
+// 마이페이지 닉네임
+.color-16 {
+  color: #333333;
+}
+
+// 마이페이지 로그아웃
+.color-17 {
+  color: #B9B9B9;
+}
+
+// 마이페이지 약속날짜
+.color-18 {
+  color: #606060;
+}
+
+// 마이페이지 진행완료 텍스트 + 작성일자
+.color-19 {
+  color: #A1A1A1;
+}
+
+
+// 색상 - 배경
+.bg-1 {
+  background-color: #ED9071;
+}
+
+.bg-2 {
+  background-color: #F6F0EE;
+}
+
+// 채팅 상대방 말풍선
+.bg-3 {
+  background-color: #E7E7E7;
+}
+
+// 모달 취소
+.bg-4 {
+  background-color: #AFAFAF;
+}
+
+// 회원가입
+.bg-5 {
+  background-color: #AEAEAE;
+}
+
+// 글쓰기 등록 취소
+.bg-6 {
+  background-color: #838383;
+}
+
+// input 디자인
+
+// 채팅 말풍선 최소
+.form-1 {
+  width: 57.96px;
+  height: 49.88px;
+  border: none;
+  border-radius: 22.5px;
+}
+
+// 채팅 말풍선 중간
+.form-2 {
+  width: 161.56px;
+  height: 49.88px;
+  border: none;
+  border-radius: 22.5px;
+}
+
+// 반려동물 나이
+.form-3 {
+  width: 205.09px;
+  height: 32.76px;
+  border: 0.75px solid #ED9071;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  padding-left: 21.81px;
+  ::placeholder {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    color: #565656;
+  }
+}
+
+// 반려동물 이름, 종류
+.form-4 {
+  width: 500.77px;
+  height: 32.76px;
+  border: 0.75px solid #ED9071;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  padding-left: 21.81px;
+  ::placeholder {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    color: #565656;
+  }
+}
+
+// 채팅 말풍선 최대
+.form-5 {
+  width: 411.36px;
+  height: 49.88px;
+  border: none;
+  border-radius: 22.5px;
+}
+
+// 글작성 제목, 가격
+.form-6 {
+  width: 435px;
+  height: 50.66px;
+  border: 1.5px solid #929292;
+  border-radius: 4.5px;
+  padding-left: 27.23px;
+  ::placeholder {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 24px;
+    color: #787878;
+  }
+}
+
+// 글작성 내용
+.form-7 {
+  width: 435px;
+  height: 222.2px;
+  border: 1.5px solid #929292;
+  border-radius: 4.5px;
+  padding-left: 27.23px;
+  ::placeholder {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    color: #565656;
+  }
+}
+
+// 글작성 날짜, 위치, 크기
+.form-8 {
+  width: 435px;
+  height: 50.66px;
+  border: 1.5px solid #929292;
+  border-radius: 4.5px;
+  background-color: #DEDCDB;
+  padding-left: 27.23px;
+  ::placeholder {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 24px;
+    color: #5E5E5E;
+  }
+}
+
+// 검색창
+.form-9 {
+  width: 469.52px;
+  height: 45px;
+  border: 1.5px solid #6F6F6F;
+  border-radius: 6px;
+  padding-left: 27.23px;
+}
+
+// 채팅 입력창
+.form-10 {
+  width: 471.62px;
+  height: 49.88px;
+  border: none;
+  border-radius: 22.5px;
+  background-color: #EBEBEB;
+  padding: 13.5px 25px;
+}
+
+// 로그인 회원가입 입력
+.form-11 {
+  width: 420px;
+  height: 60px;
+  border: 1.5px solid #929292;
+  padding-left: 25px;
+  ::placeholder {
+    font-size: 24px;
+    font-weight: 400;
+    color: #787878;
+  }
+}
+
+
+// button 디자인
+
+// 중복확인
+.btn-1 {
+  width: 88.98px;
+  height: 37.5px;
+  border: none;
+  border-radius: 4.5px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #7D7D7D;
+  background-color: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 사진수정, 로그아웃
+.btn-2 {
+  width: 118.63px;
+  height: 31.5px;
+  border: 1.5px solid;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 카테고리 탭
+.btn-3 {
+  width: 135.04px;
+  height: 39px;
+  border: none;
+  border-radius: 13.5px 13.5px 0 0;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #ED9071;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 채팅 취소, 수락
+.btn-4 {
+  width: 165.29px;
+  height: 48px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 별점 취소, 확인
+.btn-5 {
+  width: 166.5px;
+  height: 48px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 중복확인 취소, 완료
+.btn-6 {
+  width: 165.29px;
+  height: 48px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 마이페이지 동물등록 취소, 완료
+.btn-7 {
+  width: 165.29px;
+  height: 48px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 로그인, 회원가입 버튼
+.btn-8 {
+  width: 420px;
+  height: 60px;
+  border: none;
+  border-radius: 4.5px;
+  color: '#FFFFFF';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 반려동물 등록 및 수정
+.btn-9 {
+  width: 471.87px;
+  height: 50.52px;
+  border: none;
+  border-radius: 1.5px;
+  color: #FFFFFF;
+  background-color: #ED9071;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 채팅방 입장 버튼
+.btn-10 {
+  width: 540px;
+  height: 71.69px;
+  color: '#FFFFFF';
+  background-color: #ED9071;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 글작성 버튼
+.btn-11 {
+  width: 268.29px;
+  height: 67.73px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// state수락 취소버튼 곡선
+.btn-12 {
+  border-radius: 0 0 0 15px;
+}
+
+// state수락 확인버튼 곡선
+.btn-13 {
+  border-radius: 0 0 15px 0;
+}
+
+// state수락 취소버튼 곡선
+.btn-14{
+  border-radius: 0 0 0 16.5px;
+}
+
+// state수락 확인버튼 곡선
+.btn-15 {
+  border-radius: 0 0 16.5px 0;
+}
+
+// state수락 취소버튼 곡선
+.btn-16 {
+  border-radius: 0 0 0 18px;
+}
+
+// state수락 확인버튼 곡선
+.btn-17 {
+  border-radius: 0 0 18px 0;
+}
+
+
+// 모달 크기 설정
+
+// state수락 모달
+.modal-1 {
+  width: 330.58px;
+  height: 175.31px;
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 평점 모달
+.modal-2 {
+  width: 331.54px;
+  height: 252px;
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 중복확인 모달
+.modal-3 {
+  width: 360.66px;
+  height: 198.46px;
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 반려동물 정보 모달
+.modal-4 {
+  width: 406.5px;
+  height: 285.12px;
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

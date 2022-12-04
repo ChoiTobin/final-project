@@ -8,7 +8,7 @@ import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import { ReactComponent as MyKakao } from "../img/kakaoMy.svg";
 import { ReactComponent as NoticeArrow } from "../img/noticeArrow.svg";
-import User from "../img/user.png";
+import User from "../img/user-my.png";
 import Banner from "../img/banner.png";
 import ModalPortal from "../components/element/ModalPortal";
 import AddPetInfo from "../components/features/Mypage/AddPetInfo";

@@ -10,7 +10,8 @@ import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
 import { ReactComponent as Date } from "../img/mainDate.svg";
 import { ReactComponent as Place } from "../img/mainPlace.svg";
 import { ReactComponent as Post } from "../img/post.svg";
-import { ReactComponent as User } from "../img/user.svg";
+import { ReactComponent as User } from "../img/user-post.svg";
+import { ReactComponent as Back } from "../img/backarrow.svg";
 import '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
@@ -50,7 +51,7 @@ const Detail = () => {
   
   return (
     <div>
-      <Header />
+      <Back onClick={onClickMove}/><Header />
       <div>
         <Carousel fade style={{ height: "196.37px" }}>
           {post.imgs !== undefined &&

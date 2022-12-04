@@ -1,6 +1,7 @@
 import React from "react";
 // 브라우저 여백 없애기
 import "../../FullHTML.css";
+import "../../style.css";
 
 const Layout = (props) => {
   return (
@@ -11,3 +12,4 @@ const Layout = (props) => {
 };
 
 export default Layout;
+

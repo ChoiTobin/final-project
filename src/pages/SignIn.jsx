@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
 import { ReactComponent as Logo } from "../img/signLogo.svg";
+import "../style/sign.css"
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -46,70 +47,63 @@ const SignIn = () => {
     //navigate('/postlist')
   };
   return (
-    <div>
+    <div className="signin">
       <div>
-        <div>
-          <div>
-            <div>
-              {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-              <Logo style={{ marginTop: "36.84px" }} />
-              <span>LOGIN</span>
+        {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+        <Logo style={{ width: "88.13px", height: "66.64px", margin: "0 0 0 27.86px" }} />
+        <span className="font-s10 font-w3">LOGIN</span>
 
-              <div>
-                <input
-                  placeholder="아이디"
-                  type="text"
-                  name="email"
-                  value={login.email}
-                  onChange={onChangeHandler}
-                />
-                <div>
-                  {!IdValid
-                    ? !IdValid &&
-                      login.email.length > 0 && (
-                        <span>올바른 아이디를 입력해주세요.</span>
-                      )
-                    : IdValid &&
-                      login.email.length > 0 && (
-                        <span>올바른 아이디 형식입니다.</span>
-                      )}
-                </div>
-                <input
-                  placeholder="비밀번호"
-                  type="password"
-                  name="password"
-                  value={login.password}
-                  onChange={onChangeHandler}
-                />
-                <div>
-                  {!PwValid
-                    ? !PwValid &&
-                      login.password.length > 0 && (
-                        <span>영문,숫자,특수문자 포함 8자 이상 입력해주세요</span>
-                      )
-                    : PwValid &&
-                      login.password.length > 0 && (
-                        <span>올바른 비밀번호 형식입니다.</span>
-                      )}
-                </div>
-              </div>
-            </div>
-            <button onClick={onSubmitHandler}>로그인</button>
-            <div>
-              <span>또는</span>
-              <div>
-                <KakaoLogin />
-              </div>
-            </div>
-            
-            <hr />
-            <button onClick={() => navigate("/")}>
-              회원가입
-            </button>
-            <p id="token-result"></p>
+        <div>
+          <input
+            placeholder="아이디"
+            type="text"
+            name="email"
+            value={login.email}
+            onChange={onChangeHandler}
+            className="form-11"
+          />
+          <div>
+            {!IdValid
+              ? !IdValid &&
+                login.email.length > 0 && (
+                  <span>올바른 아이디를 입력해주세요.</span>
+                )
+              : IdValid &&
+                login.email.length > 0 && (
+                  <span>올바른 아이디 형식입니다.</span>
+                )}
+          </div>
+          <input
+            placeholder="비밀번호"
+            type="password"
+            name="password"
+            value={login.password}
+            onChange={onChangeHandler}
+          />
+          <div>
+            {!PwValid
+              ? !PwValid &&
+                login.password.length > 0 && (
+                  <span>영문,숫자,특수문자 포함 8자 이상 입력해주세요</span>
+                )
+              : PwValid &&
+                login.password.length > 0 && (
+                  <span>올바른 비밀번호 형식입니다.</span>
+                )}
           </div>
         </div>
       </div>
+      <button onClick={onSubmitHandler}>로그인</button>
+      <div>
+        <span>또는</span>
+        <div>
+          <KakaoLogin />
+        </div>
+      </div>
+
+      <hr />
+      <button onClick={() => navigate("/")}>회원가입</button>
+      <p id="token-result"></p>
     </div>
   );
 };

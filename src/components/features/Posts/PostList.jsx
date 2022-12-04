@@ -2,9 +2,8 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'		
 import { useDispatch, useSelector } from 'react-redux'
 import { __getPostTime } from"../../../redux/modules/postSlice"	
-import styled from "styled-components";
-import { ReactComponent as Date } from "../../../img/mainDate.svg";
-import { ReactComponent as Place } from "../../../img/mainPlace.svg";
+import { ReactComponent as Date } from "../../../img/list-date.svg";
+import { ReactComponent as Place } from "../../../img/list-local.svg";
 import '../../../App.css';
 
 const PostList = () => {	

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Home } from "../../img/home.svg";
-import { ReactComponent as AHome } from "../../img/homeOn.svg";
-import { ReactComponent as Chat } from "../../img/chat.svg";
-import { ReactComponent as AChat } from "../../img/chatOn.svg";
-import { ReactComponent as Posting } from "../../img/posting.svg";
-import { ReactComponent as APosting } from "../../img/postingOn.svg";
-import { ReactComponent as Mypage } from "../../img/mypage.svg";
-import { ReactComponent as AMypage } from "../../img/mypageOn.svg";
-// import { Home, Chat, Posting, Mypage } from "./FooterIcons.js";
+import { ReactComponent as Hg } from "../../img/home-g.svg";
+import { ReactComponent as Hc } from "../../img/home-c.svg";
+import { ReactComponent as Cg } from "../../img/chat-g.svg";
+import { ReactComponent as Cc } from "../../img/chat-c.svg";
+import { ReactComponent as Pg } from "../../img/post-g.svg";
+import { ReactComponent as Pc } from "../../img/post-c.svg";
+import { ReactComponent as Mg } from "../../img/my-g.svg";
+import { ReactComponent as Mc } from "../../img/my-c.svg";
 
 const Footer = () => {
   const [currentTab, setCurrentTab] = useState(0)
@@ -17,10 +16,10 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const tabArr = [
-    { name: <Home/>, nav: "/home" },
-    { name: <Chat/>, nav: "/chat" },
-    { name: <Posting/>, nav: "/form" },
-    { name: <Mypage/>, nav: "/mypage" },
+    { name: <Hg/>, nav: "/home" },
+    { name: <Cg/>, nav: "/chat" },
+    { name: <Pg/>, nav: "/form" },
+    { name: <Mg/>, nav: "/mypage" },
   ];
 
   const selectTabHandler = (index) => {

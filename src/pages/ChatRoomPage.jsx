@@ -7,7 +7,7 @@ import { __getinitialChatList, ListReducer } from "../redux/modules/chattingSlic
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
 import Modal2 from "../components/element/ChatModal/Modal2";
-import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import { ReactComponent as Back } from "../img/backarrow.svg";
 import { ReactComponent as Send } from "../img/send.svg";
 
 function ChatRoomPage() {
@@ -154,7 +154,7 @@ function ChatRoomPage() {
             onClick={() => navigate(-1)}
             src={require("../chatting/chattingImg/png-clipart-computer-icons-arrow-previous-button-angle-triangle.png")}
           /> */}
-          <BackArrow onClick={() => navigate(-1)} />
+          <Back onClick={() => navigate(-1)} />
         </div>
         <div>
           <span>{chatList.postNickname}</span>

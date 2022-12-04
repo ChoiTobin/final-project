@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as RunPet } from "../img/introImg.svg";
-import { ReactComponent as NavArrow } from "../img/navarrow.svg";
+import { ReactComponent as NavArrow } from "../img/nav-arrow.svg";
 
 const Desc = () => {
   const navigate = useNavigate();

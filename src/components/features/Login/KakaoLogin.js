@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from "styled-components"
 import { ReactComponent as Naver } from "../../../img/naverLogo.svg";
 import { ReactComponent as Kakao } from "../../../img/kakaoLogo.svg";
 

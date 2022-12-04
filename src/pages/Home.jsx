@@ -6,7 +6,7 @@ import Content from "../components/features/Posts/Content"
 const Home = () => {
   
   return (
-    <div>
+    <div className="home">
       <Layout>
         <Header/>
           <Content />
@@ -16,4 +16,5 @@ const Home = () => {
   )
 }
 
-export default Home ;
+export default Home;
+
