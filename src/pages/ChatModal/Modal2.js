@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
@@ -8,9 +8,10 @@ import RatingModal from "./../../components/features/Posts/RatingModal/RatingMod
 import {  useParams } from "react-router-dom";
  function Modal2() {
   const { id } = useParams();
-  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~",id)
+
 
   const [modal, setModal] = useState(false);
+  const [buttonTrue, setButtonTrue] = useState(false);
   const [editTg, setEidtTg] = useState({
     id:0,
     isEdit:false,
@@ -19,94 +20,64 @@ import {  useParams } from "react-router-dom";
 
 
   const [modal2, setModal2] = useState(false);
-  // console.log("리스트리듀서",listReducer)
-
-
-  
   const dispatch = useDispatch();
-
   const listReducer = useSelector((state) => state.chatting.chatList2);
+   const complete = useSelector((state) => state.chatting.complete);
 
-  const complete = useSelector((state) => state.chatting.complete);
-  
+
+   console.log(listReducer.state)
 
   const onClickButton = (e) => {
     e.preventDefault()
+    setButtonTrue(!buttonTrue)
     setModal(!modal);
+
     dispatch(__complete(listReducer.postId))
-    
     setModal2(!modal2) 
+
+
     }
-
-
-    
-
-console.log("이게먼값~!!!!!!!!!!!!!!~!~!",listReducer.postId)
 
   const toggleModal = () => {
     setModal(!modal);
   };
   if(modal) {
     document.body.classList.add('active-modal')
-    
   } else{
     document.body.classList.remove('active-modal')
   }
 
+  console.log("헬로우베이비",listReducer,complete)
 
 
-  let str = "진행중"
 
+  //모달을 보여주는곳에서 listReducer가 state가 완료면 안보여준다. 또는 완료로.
+
+  // let str = listReducer.state
   // let UserBoxMessage ="20221121_141505"
-  if(complete== "진행중")
-  {
-    str = "진행중"
-    // UserBoxMessage="20221121_141505"
-
-
-    // UserBoxMessage="20221121_141959"
-
-
-  }else if(complete =="완료"){
-    str= "완료"
-
-
-  }
+  //<Himg2 onClick={toggleModal} />
 
 
   return (
-    <>
-      { complete == "완료" ? 
-         <>
-         별점
-        <RatingModal setModal2 modal2 ></RatingModal>
-        <Himg2 onClick={toggleModal} />
-      </>   
-          
-          :
-            <>
-          
-          <Span>{str}</Span>
-          <Himg2 onClick={toggleModal} 
-          //src={require(`../../img/${UserBoxMessage}.png`)}
-          />
-          </>  
-          
-      }
-
-
-
-      {/* 모달창 승인버튼 green OR black */}
-
+    <>  
       {
-      modal && ( 
+        buttonTrue == true?
+        <>
+        <span onClick={toggleModal}>완료</span>
+        <RatingModal setModal2 modal2 ></RatingModal>
+      </>
+      :
+        <span onClick={toggleModal}>수락</span>
+      }
+      
+      { modal && ( 
         <div className="modal2">
             <div onClick={toggleModal} className="overlay2"></div>
           <div className="modal2-content2">
             <div className="modalTwo2">
               <div className="content2">
-                <span  className="pink">'서폿구책'</span>님의
-                <span className="pink">'저와 산서폿'</span>
+                <span  className="pink2">{listReducer.joinNickname}</span>님의
+                <span className="pink">'{listReducer.title}'</span>
                 <br/>를 수락하시겠습니까?
               </div>
             </div>
@@ -114,8 +85,7 @@ console.log("이게먼값~!!!!!!!!!!!!!!~!~!",listReducer.postId)
             <button className="trueButton" onClick={onClickButton}>수락</button>
           </div>
         </div>
-      )
-      }
+      )}
     </>
   );
 }

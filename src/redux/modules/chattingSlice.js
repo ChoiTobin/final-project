@@ -13,7 +13,7 @@ const initialState = {
   complete:[],
   createRoom: [],
   roomList:[],
-  chatList:[],
+  //chatList:[],
   chatList2:[],
   listReducer:[],
   chatTrueFalse:false,
@@ -88,12 +88,11 @@ export const __complete = createAsyncThunk(
   "/chat/__complete",
   async (payload, thunkAPI) => {
     try {
-      console.log("페이로드~~~~~~~~~~",payload)
-      console.log("페이로드!!!~~~~~~~~~~~~~~~~",payload)
+
 
       const response = await Apis.complete(payload)
     
-      console.log(response)
+      console.log("컴플리트22222222222",response)
       
       return thunkAPI.fulfillWithValue(response.data.msg);
     } catch (error) {
@@ -126,7 +125,7 @@ const chatSlice = createSlice({
         state.chatList2.chatList = []
         // state.chatList2.chatList.push(action.payload)
       }
-      // console.log("어떤값?",current(state),"어떤값?",action.payload)
+      console.log("어떤값?",current(state),"어떤값?",action.payload)
       //처음 채팅내역에서 null값이 들어오게됨. 그래서 배열을 강제로 만들어서 집어넣는다.
       //
       state.chatList2.chatList.push(action.payload)

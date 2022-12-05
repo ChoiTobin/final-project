@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import {__getinitialChatList2, __getRoomList } from "../redux/modules/chattingSlice";
-
-
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
+import Layouts from "../components/Layout/Layout";
 const ChatList = () => {
     const {id}  = useParams()
     const navigate = useNavigate();
@@ -15,100 +15,101 @@ const ChatList = () => {
 
   
   useEffect(() => {
-    dispatch(__getRoomList());
+  dispatch(__getRoomList());
     }, []);
 
 
   const onClickChatting = (item) => {
   navigator(`/ChatRoomPage/${item.postId}`)
-   setTimeout(
-     function () {
-      dispatch(__getinitialChatList2({//역할:이동시 해당하는 채팅방내역을 뿌려줌 .X시 해당하는 채팅방을 안뿌림
-        postId:item.postId,
-        roomId:item.roomId}   
+  setTimeout(
+  function () {
+  dispatch(__getinitialChatList2({
+  postId:item.postId,
+  roomId:item.roomId}  
+        )
+    );
+  }
+  ,200 );
+  }
 
-   )
-  );
-      }
-    ,200 );
-
-  
-}
-
-console.log("룸",Room)
 return (
-      <> 
+      
+  <Layouts>
+    <Header />
+      <DivOverflow>
         { Room !== undefined && Room !==null ?
           Room.map((item,i)=>{       
           return(
-            <Root key={i}>
-                  <FlexDiv>
-                      <div>
-                        <img src={require("../img/bros_blank.jpg")} width="48px"/>
-                      </div>
-                      {/* {
-                        item.post.image !== undefined
+          <Root key={i}>
+              
 
-                        console.log("찍어보자!",item.post.image[0].image)
-                      } */}
-                      <MarginDiv>
-                          <h4 onClick={()=>onClickChatting(item)}>
-                            {item.joinNickname}
-                          </h4>
-                          <div>
-                            <Span>{item.title}</Span>
-                          </div>
-                      </MarginDiv>
-                      <div>
+              <FlexDiv>
+                  <div>
+                    <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
+                  </div>
+                    <MarginDiv>
+                        <h4 onClick={()=>onClickChatting(item)}>
+                        {item.joinNickname}
+                        </h4>
+                        <div>
+                          <Span>{item.title}</Span>
+                        </div>
+                    </MarginDiv>
+                    <div>
                       {
-
-          item.post.image.length !== 0 &&
-                  <img src={`${item.post.image[0].image}`}/>
-                }
-
-                      </div>
-                  </FlexDiv>
-            </Root>
-
-
-
+                      item.post.image.length !== 0 &&
+                      <Img src={`${item.post.image[0].image}`}/>
+                      }
+                    </div>
+                </FlexDiv>
+                      
+          </Root>
         )})
-              :
+        :
       <>
-            <div>채팅내역이 없습니다.</div>
-            <button onClick={ () =>navigator(-1)}>이전으로</button>
+        <div>채팅내역이 없습니다.</div>
+        <button onClick={ () =>navigator(-1)}>이전으로</button>
       </>
-            } 
-      </>
-
+        } 
+      </DivOverflow>
+    <Footer/>
+  </Layouts>
   )
 }
-
 export default ChatList ;
+const DivOverflow = styled.div`
+overflow:auto; 
+width:100%;
+height:520px;
 
+` 
+const Img = styled.img`
+  width:50px;
+  height:30px;
+`
+
+const Userimg = styled.img`
+  width:50px;
+`
 const Span = styled.span`
 font-size:14px;
 `
 const MarginDiv =styled.div`
-margin-left:10px;
 
-`
+margin-left:10px;
+`;
 
 const Root = styled.div`
-background-color: #f6f0ee;
 width:100%;
-height:100%;
+height:30px;
 margin:17px;
 margin-bottom:30px;
 margin-left:10px;
-
-
-
 `
 const FlexDiv = styled.div`
+
 display:flex;
 
-
-    
+height: 460px;
 `
 

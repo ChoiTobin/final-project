@@ -21,6 +21,9 @@ function ChatRoomPage() {
   const chatList2 = useSelector((state) => state.chatting.chatList2);
   let postId = Number(id);
 
+  console.log("쳇리스트2",chatList2)
+
+
 
   useEffect(() => { //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
     dispatch(__getinitialChatList({postId: postId,roomId: 0,}));
@@ -29,7 +32,11 @@ function ChatRoomPage() {
           {
             onbeforeunloda();
           }
-                },[chatList2.roomId]);
+      },[chatList2.roomId]);
+  
+ 
+
+    
   const [chatBody, setChatBody] = useState("");
   const content = {
     sender: localStorage.getItem("user-nickname"),
@@ -44,6 +51,7 @@ function ChatRoomPage() {
         ws.subscribe(`/sub/${chatList2.roomId}`, (response) => {
           let data = JSON.parse(response.body);
           dispatch(ListReducer(data));
+          console.log("데이터!!!!!!!!!!!",data)
         })
       });
       }catch(error) {}
@@ -138,11 +146,13 @@ function ChatRoomPage() {
             </Time>
         </div>
         {
-        localStorage.getItem("user-nickname") === chatList2.postNickname ?
+        localStorage.getItem("user-nickname") === chatList2.postNickname && chatList2.state !=="완료"  ?
         <Modal2>
         </Modal2>
         : 
-        null
+          
+          null 
+        
         }
     </Header>
 
