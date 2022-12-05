@@ -1,33 +1,12 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @font-face {
     font-family: 'SpoqaHanSansNeo-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
-
-
-ul,li{
-  width:360px;
-  list-style: none;
-  justify-content:center;
-}
-li{ 
-
-  text-align: center;
-  line-height: 36px;
-  width:60px;
-  height:36px;
-  border:none;
-  background-color:#ddd;
-  border-radius:30px;
-  font-weight:600;
-}
-
-h1,h2,h3,h4,h5,h6,p,span,strong{
-  margin:0;
-  padding:0;
 }
 
 body {

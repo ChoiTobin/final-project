@@ -8,16 +8,20 @@ import Footer from "../components/Layout/Footer";
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import postSlice, { __getDetail } from"../redux/modules/postSlice"
+import mypageSlice, { __getMyPage } from"../redux/modules/mypageSlice"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
 import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
 // import FullHTML from '../FullHTML.css'
+import User from "../img/user.png";
+//별추가
+import { FaStar } from 'react-icons/fa';
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
   const dispatch = useDispatch()	
   const post = useSelector((state)=>state.post.post)
-   console.log("post",post)	
+  console.log("post",post)	
   
   useEffect(() => {	
     dispatch(__getDetail(id));	
@@ -27,7 +31,7 @@ const Detail = () => {
     navigator(-1);
     
   };
-
+  
   const onClickChatting = (post) =>{
     dispatch(__CreateRoom({
       postId:post.id,
@@ -43,10 +47,11 @@ const Detail = () => {
     //   300 // 밀리초 간격으로 실행
     // );
   }
-
+  
   
   //채팅방 입장시 바로 연결이 안됨 데이터를 보내는게 이동하는것 보다 느려서 그럴거라 판단이되서 setTimeout을 줌
-  
+  //별점 배열
+  const ARRAY = [0, 1, 2, 3, 4];
   
   return (
     <Layout>
@@ -66,16 +71,16 @@ const Detail = () => {
             }
             })
           }
-          </Carousel>
+        </Carousel>
         <ItemBox>
-          <Span style={{fontSize:24,fontWeight:590}}>
+          <Span style={{fontSize:16,fontWeight:590}}>
             { post.price !== undefined && (
               <>
                 {post.price.toLocaleString('ko-KR')}원
               </>
             )}
           </Span>
-          <Text style={{fontWeight:600 , fontSize:20 }}>
+          <Text style={{fontWeight:600 , fontSize:14 }}>
             <Title>
               {post.state}
               <span style={{marginLeft:6,fontWeight:500}}>{post.title} </span>
@@ -91,22 +96,24 @@ const Detail = () => {
         </ItemBox>
         <ContentBox>
           <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
-          {post.content}진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
-              금액의 경우 협의 가능합니다.
-              가능한 빠른 연락 부탁드리며
-              노쇼 하지 않으실 분들만 찾습니다!
-
-              진돗개 두 마리를 동시에 산책하고 싶어서 도움 청해봅니다.
+          {post.content}
         </ContentBox>
         </Overflow>
         <ProfileBox>
-          <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  />
+          <Userimg src={post.userImg !== undefined ? post.userImg : User} alt=""  />
           <Profilename>
-            <div style={{marginLeft:10}} >{post.nickname}</div>
-            <div style={{marginLeft:10}}>⭐⭐⭐⭐⭐</div>
+            <div style={{marginLeft:10}}>{post.nickname}</div>
+            <div style={{marginLeft:10}}>
+            {	ARRAY.map((id,i) => { 
+                  return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
+                <FaStar key={id} style={i < post.rating ? { color: "#fcc419"}:{}} />
+                )
+              })
+            }
+            {post.rating}
+            </div>
           </Profilename>
         </ProfileBox>
-        <Button type='button' onClick={() => onClickMove()}>이전버튼(크멍톡)</Button>
         {/* <Button onClick={()=>onClickChatting(post)}>채팅하기</Button> */}
         { 
           post.nickname == localStorage.getItem("user-nickname")  ?
@@ -130,10 +137,9 @@ const Overflow = styled.div`
   }
 `
 const Container = styled.div `
-  width:95%;
   max-width:360px;
 
-  background-color:#f6f0ee;
+  background-color:#fff;
 `
 const ItemBox = styled.div`
   border-bottom: 1px solid #ED9071;
@@ -179,6 +185,8 @@ const Img = styled.img`
 `
 const Userimg = styled.img`
   width:50px;
+  height:50px;
+  border-radius:30px;
 `
 const Profilename = styled.div`
   display:flex;

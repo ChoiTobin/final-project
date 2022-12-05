@@ -3,6 +3,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { __getPostRating } from "../../../redux/modules/postSlice";
 import { FaStar } from 'react-icons/fa';
+import { CiStar } from 'react-icons/ci';
 import styled from 'styled-components';
 
 function Rating() {
@@ -10,11 +11,11 @@ function Rating() {
   const dispatch = useDispatch();
 
   const chatList = useSelector((state) => state.chatting.chatList)
-  // console.log("dskfs",chatList)
+  // console.log("chatList:",chatList) //joinNickname 셀렉터로 가져옴
 
   const ARRAY = [0, 1, 2, 3, 4];
   const [rating, setRating] = useState([false, false, false, false, false]);
-  
+  console.log("rating:",rating)
   const handleStarClick = index => {
     let clickStates = [...rating];
     for (let i = 0; i < 5; i++) {
@@ -29,6 +30,31 @@ function Rating() {
     joinUser:chatList.joinUser,
     rating:score,
   }
+  
+
+  //-------------------------------------------------------
+  //  const ARRAY = [0, 1, 2, 3, 4];
+  // let desk = []
+  // let forDesk =""
+  // for(let i =0; i<=rating.length; i++){
+    
+  //   if(rating[i] == true){
+  //     desk.push(rating[i])
+  //   }
+  //   if(desk.length == 1 ){
+  //     return forDesk = "아주 잘했어요"
+  //   }else if (desk.length == 2 ){
+  //     return forDesk = "쥰나 잘했습니닷!"
+  //   }else if (desk.length == 3 ){
+  //     return forDesk = "쥰나 잘했습니닷!"
+  //   }else if (desk.length == 4  ){
+  //     return forDesk = "쥰나 잘했습니닷!"
+  //   }else if (desk.length == 5 ){
+  //     return forDesk = "쥰나 잘했습니닷!"
+  //   }
+  // }
+
+
 
   //filter(Boolean)을 통해 true값만 반환해줄 수 있음.
   //length까지 붙여서 결국 "true=별을 클릭한 갯수"을 구현한 것.
@@ -36,6 +62,7 @@ function Rating() {
     dispatch(__getPostRating(obj));	
   };
 
+  // const = ["좋습니다","좋습니다2","좋습니다3"]
   return (
     <Wrap>
       <RatingText>
@@ -62,6 +89,9 @@ function Rating() {
 export default Rating;
 
 const StarButton = styled.button`
+position:absolute;
+  top:90px;
+  left:100px;
   width:100px;
   height:40px;
   border:none;
@@ -69,7 +99,6 @@ const StarButton = styled.button`
   border-radius:5px
   font-weight: 900;
   color:#ED9071;
-
 `
 const Wrap = styled.div`
   width:300px;
@@ -87,21 +116,15 @@ const RatingText = styled.div`
 
 const Stars = styled.div`
   display: flex;
+  position:absolute;
+  top:50px;
+  left:89px;
   padding-top: 5px;
 
   & svg {
     color: #ddd;
     cursor: pointer;
   }
-
-  :hover svg {
-    color: #fcc419;
-  }
-
-  & svg:hover ~ svg {
-    color: #ddd;
-  }
-
   .yellowStar {
     color: #fcc419;
   }

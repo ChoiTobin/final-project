@@ -68,7 +68,8 @@ const MyPage = () => {
     console.log("우뜨케나오는지?")
 
   }
-
+  
+  //별점 배열
   const ARRAY = [0, 1, 2, 3, 4];
   
   return (

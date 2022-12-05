@@ -53,11 +53,13 @@ import Rating from "../Rating";
       {
       modal && ( 
         <div className="Rating">
+          <div className="center">
             <div onClick={toggleModal} className="RatingOverlay"></div>
-          <div className="modal3-content3">
-                <Rating/>
-            {/* <button className="falseButton" onClick={toggleModal}>완료</button> */}
-            {/* <button className="trueButton" onClick={onClickButton}>완료버튼</button> */}
+            <div className="modal3-content3">
+              <Rating/>
+              {/* <button className="falseButton" onClick={toggleModal}>완료</button> */}
+              {/* <button className="trueButton" onClick={onClickButton}>완료버튼</button> */}
+            </div>
           </div>
         </div>
       )
