@@ -142,7 +142,7 @@ const Post = () => {
             onChange={onChangeHandler}
             required
           >
-            <option default value="대형">
+            <option default value="크기">
               크기 선택
             </option>
             <option value="대형">대형- 15kg초과</option>

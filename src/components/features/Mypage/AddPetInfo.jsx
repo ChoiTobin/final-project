@@ -30,7 +30,7 @@ const AddPetInfo = ({ onClose }) => {
     }
     console.log("마이펫", myPet);
     dispatch(__addMyPet(myPet));
-    // window.location.reload("/mypage");
+    window.location.reload("/mypage");
   };
 
   return (
@@ -125,7 +125,7 @@ const Content = styled.div`
     font-size: 15px;
     font-weight: 700;
     line-height: 17.9px;
-    margin: 15.06px 0 19.39px -70px;
+    margin: 15.06px 0 19.39px 0px;
   }
   label {
     font-family: "Spoqa Han Sans Neo", sans-serif;

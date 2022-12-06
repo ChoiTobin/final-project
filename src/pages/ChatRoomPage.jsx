@@ -149,7 +149,7 @@ function ChatRoomPage() {
     // <Modal2></Modal2>
     <LoginContainer>
       <Header>
-        <Modal2/>
+        {/* <Modal2 /> */}
         <div>
           {/* <Img
             onClick={() => navigate(-1)}
@@ -157,20 +157,23 @@ function ChatRoomPage() {
           /> */}
           <BackArrow onClick={() => navigate(-1)} />
         </div>
-        <div>
+        <Info>
           <Nickname>{chatList.postNickname}</Nickname>
           <Time>30분 전 접속 </Time>
-        </div>
+        </Info>
         <span>{/* 잠시주석 <Modal2></Modal2> */}</span>
+        <Btn><Modal2/></Btn>
       </Header>
+
       <Section>
         <Profile>
           <Img2>{chatList.postImg}</Img2>
         </Profile>
         <TextBox>
-          <OrangeSpan>{chatList.state}</OrangeSpan>
-          <Span></Span>
-          <Title>{chatList.title}</Title>
+          <Top>
+            <OrangeSpan>{chatList.state}</OrangeSpan>
+            <Title>{chatList.title}</Title>
+          </Top>
           <Money>{chatList.price}원</Money>
         </TextBox>
       </Section>
@@ -220,24 +223,75 @@ function ChatRoomPage() {
           onClick={onSubmitHandler}
           src={require("../img/send.png")}
         /> */}
-        <Send
-          onSubmit={appKeyPress}
-          onClick={onSubmitHandler}
-        />
+        <Send onSubmit={appKeyPress} onClick={onSubmitHandler} />
       </Chatput>
     </LoginContainer>
   );
 }
+export default ChatRoomPage;
 
-const ArrowImg = styled.img`
-  position: absolute;
-  top: 10px;
-  right: 6px;
-  border: none;
-  width: 13px;
-  height: 15px;
-  background-color: white;
+const LoginContainer = styled.div`
+  width: 340px;
+  height: 640px;
+  background-color: #f6f0ee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto
 `;
+
+const Header = styled.div`
+  border-bottom: 1px solid #ed9071;
+  width: 340px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 22.79px;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+`;
+
+const Btn = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Section = styled.div`
+  width: 100%;
+  height: 59px;
+  display: flex;
+  border-bottom: 1px solid rgba(237, 144, 113, 0.41);
+`;
+
+const Time = styled.span`
+  font-size: 6px;
+`;
+const Nickname = styled.p`
+  font-weight: bold;
+  font-size: 15px;
+`;
+
+const Profile = styled.div`
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+`;
+
 const Chatput = styled.div`
   border-radius: 20%;
   position: relative;
@@ -286,10 +340,20 @@ const Colorspan = styled.div`
 `;
 
 const TextBox = styled.div`
-  padding: 4px;
-  background: #f6f0ee;
+  /* padding: 4px; */
   min-height: 20.26px;
   width: 318.82px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+`;
+
+const Top = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
 `;
 
 const OverFlow = styled.div`
@@ -331,7 +395,9 @@ const Span = styled.span`
 `;
 const OrangeSpan = styled.span`
   color: #ed9071;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 15.51px;
 `;
 const Img = styled.img`
   margin-top: 6px;
@@ -344,51 +410,6 @@ const Img2 = styled.img`
   width: 30px;
 `;
 
-const Time = styled.span`
-  font-size: 6px;
-  margin-left: 95px;
-`;
-const Nickname = styled.p`
-  margin-left: 105px;
-  font-weight: bold;
-  font-size: 15px;
-`;
-
-const LoginContainer = styled.div`
-  width: 340px;
-  margin: 0 auto;
-  height: 100%;
-  background-color: #f6f0ee;
-`;
-
-const Header = styled.div`
-  border-bottom: 1px solid #ed9071;
-  background: #f6f0ee;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  margin-top: 40px;
-`;
-
-const Section = styled.div`
-  width: 100%;
-  height: 70px;
-  display: flex;
-  margin-top: 10px;
-  padding-left: 10px;
-  background: #f6f0ee;
-  border-bottom: 1px solid #ed9071;
-`;
-
-const Profile = styled.div`
-  margin-top: 5px;
-  margin-right: 5px;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  text-align: center;
-  line-height: 50px;
-`;
 const Chating = styled.div`
   height: 400px;
   over-flow: hidden;
@@ -396,5 +417,3 @@ const Chating = styled.div`
   text-align: center;
   line-height: 400px;
 `;
-
-export default ChatRoomPage;

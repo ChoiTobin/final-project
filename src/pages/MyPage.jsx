@@ -13,7 +13,8 @@ import "../components/element/MyPetModal.css";
 import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
 import { ReactComponent as User } from "../img/user-my.svg";
-import { ReactComponent as Banner } from "../img/banner.svg";
+// import { ReactComponent as Banner } from "../img/banner.svg";
+import Banner from "../img/banner.png";
 
 
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
@@ -150,6 +151,7 @@ const MyPage = () => {
         </PetBtn>
         <Ad>
           <img src={Banner} alt="banner" />
+          {/* <Banner/> */}
         </Ad>
 
         <div></div>

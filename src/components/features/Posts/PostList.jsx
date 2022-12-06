@@ -5,7 +5,6 @@ import { __getPostTime } from"../../../redux/modules/postSlice"
 import styled from "styled-components";
 import { ReactComponent as Date } from "../../../img/list-date.svg";
 import { ReactComponent as Place } from "../../../img/list-local.svg";
-import '../../../App.css';
 
 const PostList = () => {	
   const navigator = useNavigate();	
@@ -77,6 +76,8 @@ const Layouts = styled.div`
   width: 360px;
   height: 345.96px;
   margin: 4.17px auto 0;
+  background-color: #fff;
+  opacity: 96%;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -137,7 +138,7 @@ const Top = styled.div`
 
 const TopLeft = styled.div`
   width: 300px;
-  height: 44.78px;
+  height: 34.78px;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
   font-size: 19px;
@@ -232,7 +233,7 @@ const DownLeft = styled.div`
   justify-content: left;
   font-size: 10px;
   gap: 8px;
-  margin-top: -5px;
+  margin-top: -18px;
   margin-left: 10px;
 `;
 
@@ -252,6 +253,6 @@ const DownRight = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: right;
-  margin-top: -20px;
+  margin-top: -10px;
   margin-right: 10px
 `;

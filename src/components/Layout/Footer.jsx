@@ -10,85 +10,89 @@ import { ReactComponent as APosting } from "../../img/post-c.svg";
 import { ReactComponent as Mypage } from "../../img/my-g.svg";
 import { ReactComponent as AMypage } from "../../img/my-c.svg";
 // import { Home, Chat, Posting, Mypage } from "./FooterIcons.js";
+import "./Footer.css";
 
-const Footer = () => {
-  const [currentTab, setCurrentTab] = useState(0)
-  const [click, setClick] = useState(false)
-
+const Footers = ({ onChange, checked }) => {
   const navigate = useNavigate();
 
-  const tabArr = [
-    { name: <Home/>, nav: "/home" },
-    { name: <Chat/>, nav: "/chat" },
-    { name: <Posting/>, nav: "/form" },
-    { name: <Mypage/>, nav: "/mypage" },
+  const tabs = [
+    { id: 1, item: <Home />, move: "/home", state: true },
+    { id: 2, item: <Chat />, move: "/chat", state: false },
+    { id: 3, item: <Posting />, move: "/form", state: false },
+    { id: 4, item: <Mypage />,  move: "/mypage", state: false},
   ];
 
-  const selectTabHandler = (index) => {
-    // 함수에도 index를 전달한다
-    setCurrentTab(index)
+  const [active, setActive] = useState(tabs[0]["item"]);
+  const [click, setClick] = useState(false);
+
+  const handleChange = (e) => {
+    setActive(e.target.value)
     setClick(!click)
   }
 
+  
+
+
   return (
-    <>
-      <Layout>
-        <TabMenu>
-          {tabArr.map((page, index) => {
-        return (
-          // 삼항연산자 렌더링
-          <li className={currentTab === index ? "submenu focused" : "submenu"}
-            // onClick event에서 index를 매개변수로 전달해준다
-            onClick={() => {
-              selectTabHandler(index)
-              navigate(page.nav)
-            }}>{page.name}</li>
-              )
-            })
-          }
-        </TabMenu>    
+    <Layout>
+      <div>
+        <TabTitle onChange={handleChange} checked={active}>
+          {tabs.map((page) => {
+            return (
+              <Label key={page.id} className="btns" onClick={() => {navigate(page.move)}}>
+                <input
+                  type="radio"
+                  value={page.item}
+                  onChange={onChange}
+                  checked={checked === page.item}
+                  style={{ display: "none" }}
+                />
+                {page.item}
+              </Label>
+            );
+          })}
+        </TabTitle>
+      </div>
     </Layout>
-    </>
-    
   );
 };
 
-export default Footer;
+export default Footers;
 
 const Layout = styled.div`
+  width: 360px;
   height: 55.7px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin: auto;
-  gap: 58px;
   /* cursor: pointer; */
   background-color: #fff;
 
-  border: 1px solid #ED9071;
+  /* border: 1px solid #ed9071; */
 `;
 
-const TabMenu = styled.ul`
+const TabTitle = styled.div`
+  cursor: pointer;
+
+  width: 250px;
+  height: 19.47px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+
   display: flex;
-  padding: 0px;
-
-  li {
-    background-color: #FFF;
-  }
-
-  .submenu {
-    list-style: none;
-    font-weight: bold;
-    width: 100%;
-    border: none;
-    padding: 7px 0;
-    cursor: pointer;
-    text-align: center;
-  }
-  .focused {
-    background-color: transparent;
-    color: rgba(255, 255, 255, 1);
-    transition: 0.5s;
-  }
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 50px;
 `;
+
+
+const Label = styled.label`
+  width: 54px;
+  height: 51px;
+  margin-top: 13.46px;
+`

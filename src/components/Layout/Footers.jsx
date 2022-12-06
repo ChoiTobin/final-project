@@ -1,103 +1,104 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as Home } from "../../img/home-g.svg";
+import { ReactComponent as AHome } from "../../img/home-c.svg";
+import { ReactComponent as Chat } from "../../img/chat-g.svg";
+import { ReactComponent as AChat } from "../../img/chat-c.svg";
+import { ReactComponent as Posting } from "../../img/post-g.svg";
+import { ReactComponent as APosting } from "../../img/post-c.svg";
+import { ReactComponent as Mypage } from "../../img/my-g.svg";
+import { ReactComponent as AMypage } from "../../img/my-c.svg";
+// import { Home, Chat, Posting, Mypage } from "./FooterIcons.js";
+import "./Footer.css";
 
-const Footers = () => {
-  const htmlElements = document.querySelectorAll("li");
+const Footers = ({ onChange, checked }) => {
+  const tabs = [
+    { id: 1, item: <Home /> },
+    { id: 2, item: <Chat /> },
+    { id: 3, item: <Posting /> },
+    { id: 4, item: <Mypage /> },
+  ];
 
-  htmlElements.forEach((li) => {
-    li.addEventListener("click", ({ target }) => {
-      target.parentNode.className = "";
-      target.parentNode.classList.add(target.id);
-    });
-  });
-
+  const InputRadio = () => {
+    const [active, setActive] = useState(tabs[0]["item"]);
+    const handleChange = (e) => setActive(e.target.value);
+    
+    return (
+      <Layout>
+        <TabMenu>
+          <div onChange={handleChange} checked={active}>
+            {tabs.map((page) => {
+              return (
+                <label key={page.id} className="label">
+                  <input type="radio" value={page.item} onChange={onChange} checked={checked === page.item} style={{ display: "none" }} />
+                  {page.item}
+                </label>
+              )
+            })}
+          </div>
+        </TabMenu>
+      </Layout>
+    )
+  }
 
   return (
-    <Layout>
-      <Body>
-        <Ul>
-          <Home id="home">Home</Home>
-          <Chat id="chat">Chat</Chat>
-          <Post id="post">Post</Post>
-          <Mypage id="mypage">Mypage</Mypage>
-        </Ul>
-      </Body>
-    </Layout>
-  );
-}
+    <InputRadio />
+  )
+};
 
-export default Footers
+export default Footers;
 
 const Layout = styled.div`
-  width: 360px;
   height: 55.7px;
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  font-family: "Pretendard", sans-serif;
-`;
-
-const Body = styled.div`
-  height: 100vh;
-  width: 100%;
-
-  display: grid;
-  place-items: center;
-
-  ul, li {
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    display: grid;
-    place-items: center;
-    font-size: 14px;
-    position: relative;
-    z-index: 1;
-    cursor: pointer;
-  }
-`;
-
-const Ul = styled.ul`
-  height: 50px;
-  width: 360px;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  gap: 50px;
+  /* cursor: pointer; */
+  background-color: #fff;
 
-  background: #f2f2f2;
-  list-style: none;
-  border-radius: 40px;
-  position: relative;
-  padding: 2.5px;
-
-  ::before {
-    content: "";
-    height: 45px;
-    width: calc(100% / 3);
-    background: #fff;
-    position: absolute;
-    border-radius: 40px;
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-    transition: transform 0.5s cubic-bezier(0.15, 0.88, 0.15, 0.97);
-  }
+  border: 1px solid #ed9071;
 `;
 
-const Home = styled.li`
-  ::before {
-    transform: translate3d(0px, 0px, 0px);
+const TabMenu = styled.ul`
+  display: flex;
+  padding: 0px;
+
+  li {
+    background-color: #fff;
   }
-`;
-const Chat = styled.li`
-  ::before {
-    transform: translate3d(117px, 0px, 0px);
+
+  .submenu {
+    list-style: none;
+    font-weight: bold;
+    width: 100%;
+    border: none;
+    padding: 7px 0;
+    cursor: pointer;
+    text-align: center;
   }
-`;
-const Post = styled.li`
-  ::before {
-    transform: translate3d(235px, 0px, 0px);
-  }
-`;
-const Mypage = styled.li`
-  ::before {
-    transform: translate3d(350px, 0px, 0px);
+  .focused {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 1);
+    transition: 0.5s;
   }
 `;
 
+const TabTitle = styled.div`
+  cursor: pointer;
+
+  width: 250px;
+  height: 19.47px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;

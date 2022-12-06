@@ -287,16 +287,23 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   width: 318.82px;
-  margin: 9.7px auto 0;
+  margin: 9.7px 0 0 -6px;
+  /* background-color: lightpink; */
 `;
 
 const Top = styled.span`
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 32px;
   font-weight: 110;
   line-height: 38.19px;
   color: rgba(237, 144, 113, 1);
   margin-bottom: 12.59px;
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const PicNote = styled.div`
@@ -306,11 +313,11 @@ const PicNote = styled.div`
   justify-content: center;
   margin-top: 65.33px;
   span {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
-    color: rgba(57,57,57,0.93);
+    color: rgba(57, 57, 57, 0.93);
   }
 `;
 
@@ -330,7 +337,7 @@ const ImgUpload = styled.button`
   align-items: center;
   justify-content: center;
   span {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
@@ -356,7 +363,7 @@ const Content = styled.div`
     background-color: rgba(243, 243, 243, 0.64);
     ::placeholder {
       color: #5e5e5e;
-      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-family: "Pretendard", sans-serif;
       font-size: 16px;
     }
   }
@@ -375,7 +382,7 @@ const Won = styled.span`
   margin-left: -35px;
   margin-right: 20px;
   color: #787878;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-weight: 300;
   font-size: 16px;
 `;
@@ -389,7 +396,7 @@ const Select = styled.div`
     height: 33.78px;
     padding-left: 17px;
     background-color: rgba(243, 243, 243, 0.64);
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     color: rgba(94, 94, 94, 1);
   }
@@ -404,7 +411,7 @@ const Textarea = styled.textarea`
   padding: 13.85px 0 0 19.96px;
   background-color: rgba(243, 243, 243, 0.64);
   ::placeholder {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     line-height: 19.09px;
     color: rgba(120, 120, 120, 1);
@@ -418,7 +425,7 @@ const FormBtn = styled.button`
   width: 167.5px;
   height: 45.16px;
   border: none;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 16px;
   font-weight: 590;
 `;

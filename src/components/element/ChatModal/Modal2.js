@@ -44,26 +44,29 @@ function Modal2() {
   }
   return (
     <>
-      {
-      count== true?
-      <>
-        <P>
-          {/* <Himg2 onClick={toggleModal} src={require("../../img/20221121_141959.png")}/> */}
-          <Done/>
-          <Span>완료</Span>
-        </P> 
-      </>
+      <Btns>
+        {
+        count === true?
+        <>
+          <P>
+            {/* <Himg2 onClick={toggleModal} src={require("../../img/20221121_141959.png")}/> */}
+            <Done/>
+            <Span>완료</Span>
+          </P> 
+        </>
 
-        :
-      <> 
-        <P>
-          {/* <Himg onClick={toggleModal} src={require("../../img/20221121_141505.png")}/> */}
-          <Accept/>
-          <Span>수락</Span>
-        </P>
-      </>
-      }
-      {/* 모달창 승인버튼 green OR black */}
+          :
+        <> 
+          <P>
+            {/* <Himg onClick={toggleModal} src={require("../../img/20221121_141505.png")}/> */}
+            <Accept/>
+            <Span>수락</Span>
+          </P>
+        </>
+        }
+        {/* 모달창 승인버튼 green OR black */}
+      </Btns>
+      
 
       {
       modal && ( 
@@ -90,52 +93,22 @@ function Modal2() {
 
 export default Modal2
 
+const Btns = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+`
+
 const Span = styled.span`
-margin-left:1px;
-font-size:10px;
-font-weight:600;
-`
+  font-size: 10px;
+  font-weight: 600;
+`;
+
 const P = styled.span`
-display:flex;
-width:60px;
-height:60px;
-flex-direction:column;
-margin-top:5px;
-margin-left:90px;
-`
-const Himg2 = styled.img`  
-  width:26px;
-  height:26px;
-  margin-right:20px;
-
-  background-color:green;
-`
-const Himg = styled.img`  
-  width:26px;
-  height:26px;
-  margin-right:20px;
-
-  background-color:#303030
-`
-const Button = styled. button`
-  width:0px;
-  border:none;
-  background:transparent;
-`
-const HeadRight2 = styled.button`
-font-size: 0.9rem;
-width: 30px;
-height: 40px;
-color: #00251a;
-border: 0;
-cursor: pointer;
-font-weight: 600;
-background-color: transparent;
-justify-content: center;
-.head-ico {
-  font-size: 1.6rem;
-  margin: 5px;
-  color: white;
-  background-color: transparent;
-}
-`
+  display:flex;
+  width:60px;
+  height:60px;
+  flex-direction:column;
+`;

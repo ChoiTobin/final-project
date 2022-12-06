@@ -13,16 +13,26 @@ export default function Mytab() {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [colors, setColors] = useState({
+    post: true,
+    pet: false,
+  })
+
   const tabClickHandler = (index) => {
     setActiveIndex(index);
+    setColors(!colors)
   };
 
   const tabContArr = [
     {
       tabTitle: (
         <TabTitle
+          name="post"
           className={activeIndex === 0 ? "is-active" : ""}
-          onClick={() => tabClickHandler(0)}
+          onClick={() => {
+            tabClickHandler(0);
+          }}
+          style={colors ? { color: "#3C3C3C" } : { color: "#787878" }}
         >
           내가 쓴 글
         </TabTitle>
@@ -32,8 +42,12 @@ export default function Mytab() {
     {
       tabTitle: (
         <TabTitle
+          name="pet"
           className={activeIndex === 1 ? "is-active" : ""}
-          onClick={() => tabClickHandler(1)}
+          onClick={() => {
+            tabClickHandler(1);
+          }}
+          style={colors ? { color: "#787878" } : { color: "#3C3C3C" }}
         >
           반려동물 정보
         </TabTitle>
@@ -55,26 +69,24 @@ export default function Mytab() {
 }
 
 const TabMain = styled.ul`
-  width: 220px;
+  width: 260px;
   height: 19.47px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  gap: 12.59px;
   margin-top: 23.01px;
-  margin-left: -10px;
+  margin-left: -22px;
 `;
 
 const TabTitle = styled.div`
   cursor: pointer;
 
-  width: 200px;
+  width: 250px;
   height: 19.47px;
-  color: rgba(116, 116, 116, 1);
-  font-family: "Spoqa Han Sans Neo", sans-serif;
-  font-weight: 510;
-  font-size: 14px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
   border: none;
 
   display: flex;

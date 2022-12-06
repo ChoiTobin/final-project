@@ -9,6 +9,7 @@ import styled from "styled-components";
 import "../../../App.css";
 import Carousel from "react-bootstrap/Carousel";
 import { ReactComponent as Search } from "../../../img/search.svg";
+import '../../../styles/List.css'
 
 const Content = () => {
   const dispatch = useDispatch();
@@ -37,16 +38,6 @@ const Content = () => {
     }
   };
 
-  const [current, setCurrent] = useState(0);
-  const tabs = ['전체', '대형', '중형', '소형']
-  const selected = { style: { backgroundColor: "ED9071" } }
-  
-  const onClickTab = (index) => {
-    const pics = ['../../../img/all.png', '../../../img/big.png', '../../../img/medium.png', '../../img/small.png']
-    setCurrent(pics[index])
-  }
-  
-
   const onClickAll = () => {
     //전체검색
     // props.setState(0)
@@ -64,9 +55,10 @@ const Content = () => {
   };
 
   return (
-    <SearchListWrap>
-      <InputBox>
-        <Input
+    <div className="list-wrap">
+      <div className="search-box">
+        <input
+          className="search-input"
           onKeyPress={appKeyPress}
           type="text"
           name="search"
@@ -74,12 +66,12 @@ const Content = () => {
           onChange={onChangeHandler}
         />
         <Search
+          className="search-icon"
           onKeyPress={appKeyPress}
           onClick={onClickSearch}
-          style={{ marginLeft: "315px", zIndex: 1, position: "absolute", cursor: 'pointer' }}
         />
-      </InputBox>
-      <Buttongroup>
+      </div>
+      {/* <Buttongroup>
         <Button type="button" onClick={onClickAll}>
           전체
         </Button>
@@ -92,18 +84,27 @@ const Content = () => {
         <Button type="button" name="소형" onClick={onClickSmall}>
           소형
         </Button>
-      </Buttongroup>
-      <div>
-        {tabs.map((tab, index) => {
-          <ul>
-            <li key={index} onClick={() => onClickTab(index)}
-            style={current === index ? selected : {}}>
-            {`Tab${index +1}`}
-            </li>
-            <span><img src={tab[index]}alt=""/></span>
-          </ul>
-          
-        })}
+      </Buttongroup> */}
+      <div className="tab-menu">
+        <input type="radio" style={{ display: "none" }} checked />
+        <label onClick={onClickAll} htmlFor="category" className="tab-btn">
+          전체
+        </label>
+
+        <input type="radio" style={{ display: "none" }} name="대형" />
+        <label onClick={onClickBig} htmlFor="category" className="tab-btn">
+          대형
+        </label>
+
+        <input type="radio" style={{ display: "none" }} name="중형" />
+        <label onClick={onClickMiddle} htmlFor="category" className="tab-btn">
+          중형
+        </label>
+
+        <input type="radio" style={{ display: "none" }} name="소형" />
+        <label onClick={onClickSmall} htmlFor="category" className="tab-btn">
+          소형
+        </label>
       </div>
       {/* <Carouselwrap>
         <Carousel id="carousel">
@@ -121,80 +122,52 @@ const Content = () => {
           </Carousel.Item>
         </Carousel>
       </Carouselwrap> */}
-    </SearchListWrap>
+    </div>
   );
 };
 
 export default Content;
 
-const SearchListWrap = styled.div`
-  position: relative;
-  height: 172px;
-`;
 const Buttongroup = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
   top: 40px;
+  margin-left: -24.5px;
+  input[type='radio'] {
+    display: none;
+  }
+  input[type='radio']:checked {
+    background-color: #ED9071;
+    color: #000;
+  }
 `;
 
-const Button = styled.button`
+const Radio = styled.label`
   width: 90.02px;
   height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background-color: #fff;
+  /* background-color: #ed9071; */
+  color: #000;
   border-radius: 9px 9px 0 0;
   font-family: "Pretendard", sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 16.71px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-  :hover {
-    background-color: #ed9071;
-    color: #5a5a5a;
+  cursor: pointer;
+  :last-child {
+    border-right: none;
   }
 `;
+
 const Carouselwrap = styled.div`
   position: relative;
   width: 360px;
   height: 120px;
   margin-top: 36px;
-`;
-
-const Input = styled.input`
-  position: relative;
-  border: none;
-  outline: none;
-  border: 1px solid #6f6f6f;
-  border-radius: 4px;
-  width: 95%;
-  min-width: 340px;
-  text-indent: 12px;
-  margin-left: 10px;
-  background-color: transparent;
-`;
-
-const InputBox = styled.div`
-  width: 313.01px;
-  height: 30px;
-  position: relative;
-  align-items: center;
-  margin: 6px 0 8px;
-  display: flex;
-  flex-direction: row;
-
-`;
-const Img = styled.img`
-  width: 360px;
-  height: 109.28px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 37px;
-`;
-const SlideImg = styled.img`
-  object-fit: cover;
-  width: 360px;
-  height: 140px;
 `;
