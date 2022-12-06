@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
-import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import postSlice, { __getDetail } from"../redux/modules/postSlice"
 import mypageSlice, { __getMyPage } from"../redux/modules/mypageSlice"
@@ -14,14 +13,14 @@ import Carousel from 'react-bootstrap/Carousel';
 import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
 // import FullHTML from '../FullHTML.css'
 import User from "../img/user.png";
-//별추가
 import { FaStar } from 'react-icons/fa';
+import "../css/detail.css"
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()
   const dispatch = useDispatch()	
   const post = useSelector((state)=>state.post.post)
-  console.log("post",post)	
+  // console.log("post",post)	
   
   useEffect(() => {	
     dispatch(__getDetail(id));	
@@ -31,96 +30,68 @@ const Detail = () => {
     navigator(-1);
     
   };
+  // const ARRAY = [0, 1, 2, 3, 4];
   
-  const onClickChatting = (post) =>{
-    dispatch(__CreateRoom({
-      postId:post.id,
-      postTitle:post.title,
-      postNickName:post.nickname,
-    }));
-    //navigator(`/ChatRoomPage/${post.id}`);
-    // setTimeout(
-    //   function () {
-    //       // 연결되었을 때 콜백함수 실행
-    //       navigator(`/ChatRoomPage/${id}`);
-    //   },
-    //   300 // 밀리초 간격으로 실행
-    // );
-  }
-  
-  
-  //채팅방 입장시 바로 연결이 안됨 데이터를 보내는게 이동하는것 보다 느려서 그럴거라 판단이되서 setTimeout을 줌
-  //별점 배열
-  const ARRAY = [0, 1, 2, 3, 4];
   
   return (
     <Layout>
       <Header/>
-      <Container style={{margin:" 0 auto",marginTop:"20px"}}>
-        
-        <Overflow>
-        <Carousel fade >
-        {post.imgs !== undefined &&
-            post.imgs.map((pic) => {
-            if (post.imgs.length !== 0) {
-            return (
-            <Carousel.Item>
-            <Img src={pic} alt="postImg" />
-            </Carousel.Item>
-            );
-            }
-            })
-          }
-        </Carousel>
-        <ItemBox>
-          <Span style={{fontSize:16,fontWeight:590}}>
-            { post.price !== undefined && (
-              <>
-                {post.price.toLocaleString('ko-KR')}원
-              </>
-            )}
-          </Span>
-          <Text style={{fontWeight:600 , fontSize:14 }}>
-            <Title>
-              {post.state}
-              <span style={{marginLeft:6,fontWeight:500}}>{post.title} </span>
-            </Title>
-          </Text>
-          <Text style={{fontSize:14}}>
-            <div style={{marginTop:10}}>
-              <img style={{marginRight:5}} src={require("../img/calender.png")} alt=""  />{post.date}
-              <img style={{width:11,marginRight:5,marginLeft:10}} src={require("../img/markup.png")} alt=""  />{post.local}
+        <Bg>
+          <Form>
+            <Carousel fade >
+              {post.imgs !== undefined &&
+                  post.imgs.map((pic) => {
+                  if (post.imgs.length !== 0) {
+                  return (
+                  <Carousel.Item>
+                  <Img src={pic} alt="postImg" />
+                  </Carousel.Item>
+                  );
+                  }
+                  })
+                }
+            </Carousel>
+
+            <div className='item-box'>
+              <h3>
+                { post.price !== undefined && (
+                  <>
+                    {post.price.toLocaleString('ko-KR')}원
+                  </>
+                )}
+              </h3>
+              <p>{post.state}<span style={{marginLeft:8}}>{post.title}</span></p>
+              <div className='date'> 
+                <p><img src={require("../img/calender.png")} alt="" />{post.date}</p>
+                <p><img src={require("../img/markup.png")} alt="" />{post.local}</p>
+                <h6 className='createdAt'>{post.createdAt}</h6>
+              </div>
             </div>
-            <div style={{marginTop:10}}>{post.createdAt}시간</div>
-          </Text>
-        </ItemBox>
-        <ContentBox>
-          <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
-          {post.content}
-        </ContentBox>
-        </Overflow>
-        <ProfileBox>
-          <Userimg src={post.userImg !== undefined ? post.userImg : User} alt=""  />
-          <Profilename>
-            <div style={{marginLeft:10}}>{post.nickname}</div>
-            <div style={{marginLeft:10}}>
-            {	ARRAY.map((id,i) => { 
-                  return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
-                <FaStar key={id} style={i < post.rating ? { color: "#fcc419"}:{}} />
-                )
-              })
-            }
-            {post.rating}
+
+            <div className='content'>
+              <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  />
+              {post.content}
             </div>
-          </Profilename>
-        </ProfileBox>
-        {/* <Button onClick={()=>onClickChatting(post)}>채팅하기</Button> */}
-        { 
-          post.nickname == localStorage.getItem("user-nickname")  ?
-          null:
-          <Button onClick={()=>onClickChatting(post)}>채팅하기</Button>
-        }
-      </Container>
+
+            <div className='profile'>
+              <Userimg src={post.userImg !== undefined ? post.userImg : User} alt=""  />
+              <div className='profile-name'>
+                <p>{post.nickname}</p>
+                <p>
+                  {/* {	ARRAY.map((id,i) => { 
+                        return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
+                      <FaStar key={id} style={i < post.rating ? { color: "#fcc419"}:{}} />
+                      )
+                    })
+                  } */}
+                  <FaStar style={{color:"#fcc419",marginRight:6}} />
+                  {post.rating}
+                </p>
+              </div>
+            </div>
+          </Form>
+        </Bg>
+        <button class="chatBtn">크멍톡</button>
       <Footer/>
     </Layout>
   )
@@ -128,56 +99,39 @@ const Detail = () => {
 
 export default Detail ;
 
-const Overflow = styled.div`
-  // background-color:#ED9071;
-  overflow: auto;
-  height:411px;
+const Layout = styled.div`
+  width: 360px;
+  margin: 0 auto;
+  background-color: #f6f0ee;
+`;
+const Form = styled.div`
+  width: 360px;
+  margin: 12.59px auto 0;
+  display: flex;
+  flex-direction: column;
+`;
+const Bg = styled.div`
+  max-height: 514.32px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
-    display: none;
+    width: 5px;
   }
-`
-const Container = styled.div `
-  max-width:360px;
 
-  background-color:#fff;
-`
-const ItemBox = styled.div`
-  border-bottom: 1px solid #ED9071;
-  border-top: 1px solid #ED9071;
-  padding: 20px 10px;
-`
-const ContentBox = styled.div`
-  border-bottom: 1px solid #ED9071;
-  padding: 20px 10px
-`
-const ProfileBox = styled.div`
-  display:flex; 
-  border-bottom: 1px solid #ED9071;
-  padding: 20px 10px
-  
-`
-const Text = styled.div`
-  display:flex;
-  justify-content:space-between;
-`
-const Span = styled.span `
-  color:#ED9071;
-`
-const Title = styled.div`
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
 
-`
-const Button = styled.button`
-  width:100%;
-  border:none;
-  height:60px;
-  font-size: 16px;
-  font-weight:bold;
-  color:#fff;
-  box-sizing: border-box;
-  background-color:#ED9071;
-  cursor:pointer;
-  margin-top:20px;
-`
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+  // background-color: purple;
+`;
 const Img = styled.img`
   object-fit: cover;
   width:360px;
@@ -187,8 +141,4 @@ const Userimg = styled.img`
   width:50px;
   height:50px;
   border-radius:30px;
-`
-const Profilename = styled.div`
-  display:flex;
-  flex-direction:column;
 `

@@ -223,7 +223,7 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
       console.log("카테고리:",action.payload.data)
-      state.post = action.payload.data;	
+      state.posts = action.payload.data;	
       // state.posts.push(...action.payload.data);
     },
     [__getCategory.rejected]: (state, action) => {	

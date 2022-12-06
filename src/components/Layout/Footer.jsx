@@ -42,6 +42,7 @@ const Footer = () => {
 export default Footer;
 
 const Layout = styled.div`
+  width: 360px;
   height: 55.7px;
   display: flex;
   flex-direction: row;

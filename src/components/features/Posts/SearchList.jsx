@@ -4,8 +4,8 @@ import {__getPostTime,__getKeyword,__getCategory,} from "../../../redux/modules/
 import styled from "styled-components";
 import "../../../App.css";
 import Carousel from "react-bootstrap/Carousel";
-import { ReactComponent as Search } from "../../../img/search.svg";
 import "../../../../src/index.css"
+import "../../../css/searchlist.css"
 
 const Content = () => {
   const dispatch = useDispatch()
@@ -37,117 +37,68 @@ const Content = () => {
   //   page:page,
   //   petsize:petsize
   // }
+
+  let All = '전체검색'
+  localStorage.setItem(All,"전체")
   const onClickAll = () =>{ //전체검색
     //dispatch(__getPostTime(setPage));//문제 온클릭했을때 셋이되기전에 겟을 먼저한다
     window.location.replace("/home")
+    localStorage.setItem(All,"전체")
+
     //전체조회 눌렀을때 배열을 비우고 다시 0페이지인 배열을 
     //뿌려줘야하는데... 어떻게해야할지 고민해봐야할듯 
   } 
   const onClickBig = () => {
     dispatch(__getCategory("대형"));
+    localStorage.removeItem(All)
   };
   const onClickMiddle = () => {
     dispatch(__getCategory("중형"));
+    localStorage.removeItem(All)
   };
   const onClickSmall = () => {
     dispatch(__getCategory("소형"));
+    localStorage.removeItem(All)
   };
+   
   
-  
+
   return (
-      <SearchListWrap>
-        <InputBox>
-          <Input  onKeyPress={appKeyPress}  type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler}  />
-          <Img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.png")} />
-        </InputBox>
-      
-        <Buttongroup>
-          <Button type='button' onClick={onClickAll}>전체</Button>
-          <Button type='button' name="대형" onClick={onClickBig}>대형</Button>
-          <Button type='button' name="중형" onClick={onClickMiddle}>중형</Button>
-          <Button type='button' name="소형" onClick={onClickSmall}>소형</Button>
-        </Buttongroup>
+      <div className="wrap">
+        <div className="search">
+          <input onKeyPress={appKeyPress}  type="text" name="search" defaultValue={getSearch.search || ""} onChange={onChangeHandler}  />
+          <img onKeyPress={appKeyPress} onClick={onClickSearch} src={require("../../../img/search.png")} />
+        </div>
+
+        <div className="btn-group">
+          <button type='button'  onClick={onClickAll}>전체</button>
+          <button type='button' name="대형" onClick={onClickBig}>대형</button>
+          <button type='button' name="중형" onClick={onClickMiddle}>중형</button>
+          <button type='button' name="소형" onClick={onClickSmall}>소형</button>
+        </div>
 
         {/* 캐러셀슬라이드 */}
         <Carouselwrap>
           <Carousel>
             <Carousel.Item>
-              <SlideImg
-                src={require("../../../img/all.png")}
-              />
+              <img src={require("../../../img/all.png")}/>
             </Carousel.Item>
             <Carousel.Item>
-              <SlideImg
-                src={require("../../../img/big.png")}
-              />
+              <img src={require("../../../img/big.png")}/>
             </Carousel.Item>
             <Carousel.Item>
-              <SlideImg
-                src={require("../../../img/middle.png")}
-              />
+              <img src={require("../../../img/middle.png")}/>
             </Carousel.Item>
             <Carousel.Item>
-              <SlideImg
-                src={require("../../../img/small.png")}
-              />
+              <img src={require("../../../img/small.png")}/>
             </Carousel.Item>
           </Carousel>
         </Carouselwrap> 
-
-      </SearchListWrap> 
+      </div> 
   )
 }
 
 export default Content
-const SearchListWrap = styled.div`
-  position:relative;
-`
-const Buttongroup = styled.div`
-  display:flex;
-  justify-content:center;
-  z-index:1;
-`
-const Button =styled.button`
-  width:90px;
-  height:26px;
-  border:none;
-  background-color:#fff;
-  border-radius:10px 10px 0 0;
-  font-size:12px;
-  font-weight:600;
-  :hover{
-    background-color:#ED9071;
-    color:#fff;
-  }
-`
 const Carouselwrap = styled.div`
   
-`
-const Input = styled.input`
-  position:relative;
-  left:24px;
-  border:none;
-  outline: none;
-  border:1px solid #666;
-  border-radius:3px;
-  width: 313.01px;
-  height: 30px;
-  text-indent:5px; 
-  background-color:transparent;
-`
-
-const InputBox = styled.div`
-  position:relative;
-  margin-bottom:10px;
-`
-const Img = styled.img`
-  position:absolute;
-  top:8px;
-  right:30px;
-  width:16px;
-`
-const SlideImg = styled.img`
-  object-fit: cover;
-  width:360px;
-  hegith:140px;
 `

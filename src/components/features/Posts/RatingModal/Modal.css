@@ -23,19 +23,18 @@ body.active-modal {
   bottom: 0;
   position: fixed;
   background: rgba(24, 24, 24, 0.8);
-
 }
 
-.modal3-content3 {
+.rating-content {
   position: absolute;
   width: 300px;
-  height: 300px;
+  height: 180px;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  line-height: 1.4;
-  color:#333;
-  /* padding: 14px 28px; */
   border-radius: 10px;
+  background-color: #fff;
 }
 
+.rating-important{
+}
