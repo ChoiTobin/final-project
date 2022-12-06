@@ -12,9 +12,9 @@ const initialState = {
   chatListTest:[],
   complete:[],
   createRoom: [],
+  create:[],
   roomList:[],
-  //chatList:[],
-  chatList2:[],
+  room:[],
   listReducer:[],
   chatTrueFalse:false,
   isLoading: false,
@@ -27,8 +27,10 @@ export const __CreateRoom = createAsyncThunk(
   "/chat/__CreateRoom",
   async (payload, thunkAPI) => {
     try {
-      const response = await Apis.CreateRoom(payload)
 
+      const response = await Apis.CreateRoom(payload)
+      window.location.replace(`/ChatRoomPage/${response.data.data.roomId}`);
+  
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -50,27 +52,15 @@ export const __getRoomList = createAsyncThunk(
 );
 
 
-export const __getinitialChatList = createAsyncThunk(
-  "/chat/__getInitialChatList",
-  async (payload, thunkAPI) => {
-    try {
 
-      const response = await Apis.getInitialChatList(payload)
-      console.log("어케다른겨",response)
-      return thunkAPI.fulfillWithValue(response.data.data);
-
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.data);
-    }
-  }
-);
 
 
 export const __getinitialChatList2 = createAsyncThunk(
   "/chat/__getInitialChatList2",
   async (payload, thunkAPI) => {
     try {
-      const response = await Apis.getInitialChatList(payload)
+      console.log("주는값!!!!!!!!!!",payload)
+      const response = await Apis.getInitialChatList2(payload)
       
       console.log("어떤값주니 2",response)
       return thunkAPI.fulfillWithValue(response.data.data);
@@ -121,14 +111,14 @@ const chatSlice = createSlice({
     },
     ListReducer: (state, action) => {
 
-      if(state.chatList2.chatList == null){
-        state.chatList2.chatList = []
-        // state.chatList2.chatList.push(action.payload)
+      if(state.room.chatList == null){
+        state.room.chatList = []
+        // state.room.chatList.push(action.payload)
       }
       console.log("어떤값?",current(state),"어떤값?",action.payload)
       //처음 채팅내역에서 null값이 들어오게됨. 그래서 배열을 강제로 만들어서 집어넣는다.
       //
-      state.chatList2.chatList.push(action.payload)
+      state.room.chatList.push(action.payload)
     },
 
   },
@@ -141,7 +131,8 @@ const chatSlice = createSlice({
     },
     [__CreateRoom.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chatList2 = action.payload;
+      state.create = action.payload;
+      
     },
     [__CreateRoom.rejected]: (state, action) => {
       state.isLoading = false;
@@ -176,17 +167,6 @@ const chatSlice = createSlice({
       state.isLoading = false;
       state.err = action.payload;
     },
-    // [__getinitialChatList.pending]: (state, action) => {
-    //   state.isLoading = true;
-    // },
-    // [__getinitialChatList.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.chatList = action.payload;
-    // },
-    // [__getinitialChatList.rejected]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.err = action.payload;
-    // },
 
 
     [__getinitialChatList2.pending]: (state, action) => {
@@ -194,7 +174,7 @@ const chatSlice = createSlice({
     },
     [__getinitialChatList2.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chatList2 = action.payload;
+      state.room = action.payload;
     },
     [__getinitialChatList2.rejected]: (state, action) => {
       state.isLoading = false;

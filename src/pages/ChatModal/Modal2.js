@@ -2,12 +2,10 @@ import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
-// import { trueChat,postChat } from "../../redux/modules/chattingSlice";
 import { __complete } from "../../redux/modules/chattingSlice";
 import RatingModal from "./../../components/features/Posts/RatingModal/RatingModal";
-import {  useParams } from "react-router-dom";
  function Modal2() {
-  const { id } = useParams();
+
 
 
   const [modal, setModal] = useState(false);
@@ -21,23 +19,15 @@ import {  useParams } from "react-router-dom";
 
   const [modal2, setModal2] = useState(false);
   const dispatch = useDispatch();
-  const listReducer = useSelector((state) => state.chatting.chatList2);
-   const complete = useSelector((state) => state.chatting.complete);
-
-
-   console.log(listReducer.state)
-
+  const listReducer = useSelector((state) => state.chatting.room);
+  const complete = useSelector((state) => state.chatting.complete);
   const onClickButton = (e) => {
     e.preventDefault()
     setButtonTrue(!buttonTrue)
     setModal(!modal);
-
     dispatch(__complete(listReducer.postId))
     setModal2(!modal2) 
-
-
     }
-
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -46,9 +36,6 @@ import {  useParams } from "react-router-dom";
   } else{
     document.body.classList.remove('active-modal')
   }
-
-  console.log("헬로우베이비",listReducer,complete)
-
 
 
   //모달을 보여주는곳에서 listReducer가 state가 완료면 안보여준다. 또는 완료로.
@@ -63,11 +50,17 @@ import {  useParams } from "react-router-dom";
       {
         buttonTrue == true?
         <>
-        <span onClick={toggleModal}>완료</span>
         <RatingModal setModal2 modal2 ></RatingModal>
       </>
       :
-        <span onClick={toggleModal}>수락</span>
+        <div className="flexZone" onClick={toggleModal}>
+          <div>
+            <img className="clearTrade" src={require(`../../img/20221121_141505.png`)}/>
+          </div>
+          <div className="clearName">
+            수락
+          </div>
+        </div>
       }
       
       { modal && ( 

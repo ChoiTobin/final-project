@@ -35,18 +35,10 @@ const Detail = () => {
       postTitle:post.title,
       postNickName:post.nickname,
     }));
-    // navigator(`/ChatRoomPage/${post.id}`);
-    setTimeout(
-      function () {
-          // 연결되었을 때 콜백함수 실행
-          navigator(`/ChatRoomPage/${post.id}`);
-      },
-      300 // 밀리초 간격으로 실행
-    );
   }
-  //CreateRoom은 입장시 데이터를 chatList2로 보내서 결국 다른 데이터를 넣어줌 
-
+    // navigator(`/ChatRoomPage/${post.id}`);
   
+  //CreateRoom은 입장시 데이터를 chatList2로 보내서 결국 다른 데이터를 넣어줌 
   //채팅방 입장시 바로 연결이 안됨 데이터를 보내는게 이동하는것 보다 느려서 그럴거라 판단이되서 setTimeout을 줌
   
   

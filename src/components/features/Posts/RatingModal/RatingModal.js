@@ -46,9 +46,9 @@ import Rating from "../Rating";
       </>
         :
        <> 
-       <Himg2 onClick={toggleModal} src={require(`../../../../img/20221121_141959.png`)}/>
-        <Span>완료</Span>
-         </>
+        <Himg2 src={require(`../../../../img/20221121_141959.png`)}/>
+
+        </>
       }
       {/* 모달창 승인버튼 green OR black */}
       
