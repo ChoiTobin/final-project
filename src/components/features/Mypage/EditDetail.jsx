@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 
 import useImgUpload from "../../hooks/useImgUpload";
-import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
+import { ReactComponent as Photo } from "../../../img/form-add.svg";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
 // import "../../element/MyModal.css";
 
@@ -84,13 +84,13 @@ const EditDetail = ({ onClose }) => {
 
   return (
     <div>
-      <div>
+      <Layouts>
         <div className="content">
-          <div>
-            <div>
+          <Form>
+            <Top>
               <label htmlFor="text" />
               <span>POST</span>
-            </div>
+            </Top>
             <div>
               <label htmlFor="imgFile">
                 <ImgPreview>
@@ -149,8 +149,8 @@ const EditDetail = ({ onClose }) => {
               </label>
             </div>
 
-            <div>
-              <div>
+            <Content>
+              <Select>
                 <select
                   onChange={onChangePost}
                   name="category"
@@ -161,7 +161,7 @@ const EditDetail = ({ onClose }) => {
                   <option value="medium">중형 - 8kg 이하 | 40cm 이하</option>
                   <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
                 </select>
-              </div>
+              </Select>
 
               <div>
                 <label htmlFor="text" />
@@ -177,17 +177,17 @@ const EditDetail = ({ onClose }) => {
 
               <div>
                 <label htmlFor="text" />
-                <input
+                <Price
                   type="text"
                   name="price"
                   value={myPost.price}
                   onChange={onChangePost}
                   placeholder="희망 가격"
                 />
-                <span>원</span>
+                <Won>원</Won>
               </div>
 
-              <div>
+              <Select>
                 <label htmlFor="text" />
                 <select
                   onChange={onChangePost}
@@ -211,11 +211,11 @@ const EditDetail = ({ onClose }) => {
                   <option value="충청남도">충청남도</option>
                   <option value="충청북도">충청북도</option>
                 </select>
-              </div>
+              </Select>
 
               <div>
                 <label htmlFor="text" />
-                <textarea
+                <Textarea
                   type="text"
                   name="content"
                   value={myPost.content}
@@ -225,8 +225,8 @@ const EditDetail = ({ onClose }) => {
                   style={{ minHeight: "100px" }}
                 />
               </div>
-            </div>
-          </div>
+            </Content>
+          </Form>
 
           {/* <FormBtn
             onClick={onClose}
@@ -239,50 +239,186 @@ const EditDetail = ({ onClose }) => {
           </FormBtn> */}
         </div>
         <div>
-          <button
+          <FormBtn
             onClick={onClose}
             style={{ backgroundColor: "#838383", color: "#fff" }}
           >
             취소
-          </button>
-          <button onClick={writeSubmit} style={{ backgroundColor: "#ED9071" }}>
+          </FormBtn>
+          <FormBtn onClick={writeSubmit} style={{ backgroundColor: "#ED9071" }}>
             저장
-          </button>
+          </FormBtn>
         </div>
-      </div>
+      </Layouts>
     </div>
   );
 };
 export default EditDetail;
 
+const Layouts = styled.div`
+  width: 340px;
+  min-height: 514px;
+  height: 514.3px;
+  /* background-color: yellow; */
+  background-color: #f6f0ee;
+  margin-bottom: 150px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
+
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 318.82px;
+  margin: 9.7px auto 0;
+`;
+
+const Top = styled.span`
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 32px;
+  font-weight: 110;
+  line-height: 38.19px;
+  color: rgba(237, 144, 113, 1);
+  margin-bottom: 12.59px;
+`;
+
+const PicNote = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 65.33px;
+  span {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: rgba(57,57,57,0.93);
+  }
+`;
+
 const ImgUpload = styled.button`
-  margin: 10px 0 10px 100px;
-  border: none;
-  border-radius: 10px;
+  width: 318.5px;
+  height: 53.97px;
+  border: 1px solid #696969;
+  background-color: #f3f3f3;
+  border-radius: 3px;
+  margin: 12.23px auto 6.115px;
   img {
     align-items: center;
     justify-content: center;
-    margin: 10px 0 0 10px;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  span {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: rgba(57, 57, 57, 0.93);
   }
 `;
 
 const ImgPreview = styled.div`
-  width: 270px;
-  height: 170px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  width: 318.82px;
+  height: 166px;
+  border: 1px solid #000;
+  border-radius: 5px;
+`;
 
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-
-  margin: 0 auto 10px;
-
-  img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+const Content = styled.div`
+  input {
+    width: 318px;
+    height: 33.78px;
+    margin: 6.115px auto 6.115px;
+    padding-left: 19.96px;
+    border: 1px solid #929292;
+    border-radius: 3px;
+    background-color: rgba(243, 243, 243, 0.64);
+    ::placeholder {
+      color: #5e5e5e;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-size: 16px;
+    }
   }
+`;
+
+const Price = styled.input`
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  padding-left: -10px;
+  /* margin-left: -20px; */
+`;
+
+const Won = styled.span`
+  margin-left: -35px;
+  margin-right: 20px;
+  color: #787878;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+`;
+
+const Select = styled.div`
+  margin: 6.115px auto 6.115px;
+  select {
+    border: 1px solid #696969;
+    border-radius: 3px;
+    width: 318px;
+    height: 33.78px;
+    padding-left: 17px;
+    background-color: rgba(243, 243, 243, 0.64);
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    color: rgba(94, 94, 94, 1);
+  }
+`;
+
+const Textarea = styled.textarea`
+  margin: 6.115px auto 6.115px;
+  width: 318.82px;
+  height: 148.13px;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  padding: 13.85px 0 0 19.96px;
+  background-color: rgba(243, 243, 243, 0.64);
+  ::placeholder {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-size: 16px;
+    line-height: 19.09px;
+    color: rgba(120, 120, 120, 1);
+  }
+`;
+
+// 버튼 누르면 손모양 나오게 하는 마우스 커서
+const FormBtn = styled.button`
+  cursor: pointer;
+  margin: 8.805px auto 0;
+  width: 167.5px;
+  height: 45.16px;
+  border: none;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 16px;
+  font-weight: 590;
 `;

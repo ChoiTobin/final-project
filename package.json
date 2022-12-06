@@ -15,7 +15,6 @@
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
     "browser-image-compression": "^2.0.0",
-    "craco": "^0.0.3",
     "env-cmd": "^10.1.0",
     "install": "^0.13.0",
     "json-server": "^0.17.1",
@@ -61,8 +60,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "package": "^1.0.1"
   }
 }

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { ReactComponent as Logo } from "../img/signLogo.svg";
+import { ReactComponent as Logo } from "../img/logo-sign.svg";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -134,8 +135,8 @@ const SignUp = () => {
     // },[account])
 
   return (
-    <div>
-      <div onSubmit={onSubmitHandler}>
+    <SignupContainer>
+      <SignupBox onSubmit={onSubmitHandler}>
         {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
         <Logo
           style={{
@@ -144,65 +145,65 @@ const SignUp = () => {
             margin: "36.84px auto 18.68px",
           }}
         />
-        <span>SIGN UP</span>
-        <span>{/* <LoGoSignUp1>SIGN UP</LoGoSignUp1> */}</span>
-        <div>
-          <div>
-            <div>
-              <input
+        <LoGoSignUp1>SIGN UP</LoGoSignUp1>
+        <LogoBox>{/* <LoGoSignUp1>SIGN UP</LoGoSignUp1> */}</LogoBox>
+        <InputBox>
+          <Insert>
+            <Duplicate>
+              <InputTop
                 name="email"
                 placeholder="아이디"
                 onChange={onChangeHandler}
               />
-              <button
+              <CheckBtn
                 type="button"
                 onClick={() => {
                   dispatch(__userCheck({ email: join.email }));
                 }}
               >
                 중복확인
-              </button>
-            </div>
+              </CheckBtn>
+            </Duplicate>
             <div>
               {!IdValid
                 ? !IdValid &&
-                  join.email.length > 0 && <span>이메일 형식을 입력해주세요</span>
+                  join.email.length > 0 && <Red>이메일 형식을 입력해주세요</Red>
                 : IdValid &&
                   join.email.length > 0 && (
-                    <span>올바른 이메일 형식 입니다.</span>
+                    <Green>올바른 이메일 형식 입니다.</Green>
                   )}
             </div>
-          </div>
-          <div>
-            <div>
-              <input
+          </Insert>
+          <Insert>
+            <Duplicate>
+              <InputTop
                 name="nickname"
                 placeholder="닉네임"
                 onChange={onChangeHandler}
               />
-              <button
+              <CheckBtn
                 type="button"
                 onClick={() => {
                   dispatch(__NickCheck({ nickname: join.nickname }));
                 }}
               >
                 중복확인
-              </button>
-            </div>
+              </CheckBtn>
+            </Duplicate>
             <div>
               {!nickValid
                 ? !nickValid &&
                   join.nickname.length > 0 && (
-                    <span>닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</span>
+                    <Red>닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</Red>
                   )
                 : nickValid &&
                   join.nickname.length > 0 && (
-                    <span>올바른 닉네임 형식 입니다.</span>
+                    <Green>올바른 닉네임 형식 입니다.</Green>
                   )}
             </div>
-          </div>
-          <div>
-            <input
+          </Insert>
+          <Insert>
+            <InputDown
               placeholder="비밀번호"
               type="password"
               name="password"
@@ -212,16 +213,16 @@ const SignUp = () => {
               {!PwValid
                 ? !PwValid &&
                   join.password.length > 0 && (
-                    <span>비밀번호 영문 숫자 특수기호 포함 8자~20자</span>
+                    <Red>비밀번호 영문 숫자 특수기호 포함 8자~20자</Red>
                   )
                 : PwValid &&
                   join.password.length > 0 && (
-                    <span>사용 가능한 비밀번호 입니다.</span>
+                    <Green>사용 가능한 비밀번호 입니다.</Green>
                   )}
             </div>
-          </div>
-          <div>
-            <input
+          </Insert>
+          <Insert>
+            <InputDown
               placeholder="비밀번호 확인"
               type="password"
               name="passwordCheck"
@@ -232,31 +233,197 @@ const SignUp = () => {
                 !PwCValid
                   ? !PwCValid &&
                     join.passwordCheck.length > 0 && (
-                      <span>비밀번호 영문 숫자 특수기호 포함 8자~20자</span>
+                      <Red>비밀번호 영문 숫자 특수기호 포함 8자~20자</Red>
                     )
                   : PwCValid &&
                     join.passwordCheck.length > 0 &&
                     (join.passwordCheck === join.password ? (
-                      <span>사용 가능한 비밀번호 입니다.</span>
+                      <Green>사용 가능한 비밀번호 입니다.</Green>
                     ) : (
-                      <span>비밀번호가 일치하지 않습니다.</span>
+                      <Red>비밀번호가 일치하지 않습니다.</Red>
                     ))
                 //위에 비밀번호와 일치하는지 대조.
               }
             </div>
-          </div>
-          <button onClick={onSubmitHandler}>회원가입</button>
-        </div>
-        <div>
+          </Insert>
+          <SignupButton onClick={onSubmitHandler}>회원가입</SignupButton>
+        </InputBox>
+        <LoginBox>
           {" "}
           이미 계정이 있으신가요?{" "}
           <span onClick={() => navigate("/")}>
             <span style={{ color: "#FD6E7F" }}>&nbsp;로그인</span>
           </span>
-        </div>
-      </div>
-    </div>
+        </LoginBox>
+      </SignupBox>
+    </SignupContainer>
   );
 };
 
 export default SignUp;
+
+
+const SignupContainer = styled.div`
+  width: 360px;
+  height: 640px;
+  background-color: #f6f0ee;
+  margin: auto;
+`;
+
+const SignupBox = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const LoGoSignUp1 = styled.span`
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40.06px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 15.84px;
+`;
+
+const InputBox = styled.div`
+  /* margin-top: 17.84px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const InputTop = styled.input`
+  background-color: lightgreen;
+  width: 280px;
+  height: 40px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 14.69px;
+  margin: 4.5px -16.12px 4.5px 0px;
+  z-index: 0;
+  ::placeholder {
+    color: rgba(120, 120, 120, 1);
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20.23px;
+  }
+`;
+
+const InputDown = styled.input`
+  width: 280px;
+  height: 40px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 14.69px;
+  margin: 4.5px auto 4.5px;
+  ::placeholder {
+    color: rgba(120, 120, 120, 1);
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20.23px;
+  }
+`;
+
+const Insert = styled.div`
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  flex-direction: column;
+`;
+
+const SignupButton = styled.button`
+  width: 320px;
+  height: 50px;
+  margin: 24.41px auto 20px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 23.87px;
+  cursor: pointer;
+  background-color: #ed9071;
+`;
+
+const LogoBox = styled.div`
+  width: 175px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const LoginBox = styled.div`
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  span {
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    // 버튼 누르면 손모양 나오게 하는 마우스 커서
+    cursor: pointer;
+  }
+`;
+
+const Duplicate = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const CheckBtn = styled.button`
+  width: 59.32px;
+  height: 25px;
+  border: none;
+  border-radius: 3px;
+  background-color: #d9d9d9;
+  color: #7d7d7d;
+  font-family: "Pretendard", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.02px;
+  position: relative;
+  z-index: 100;
+  margin-left: -55px;
+  margin-right: 10.68px;
+`;
+
+const Green = styled.div`
+  color: #4db173;
+  font-family: "Pretendard", sans-serif;
+  font-size: 11px;
+  margin-bottom: 5px;
+  font-weight: 700;
+  /* text-align: left; */
+`;
+
+const Red = styled.div`
+  color: #fd6e7f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 11px;
+  margin-bottom: 5px;
+  font-weight: 700;
+  /* text-align: left; */
+`;
+
+const ErrorMessageWrap = styled.div`
+  font-family: "Pretendard", sans-serif;
+  color: #fd6e7f;
+  font-size: 11px;
+  margin-bottom: 5px;
+  font-weight: 700;
+`;

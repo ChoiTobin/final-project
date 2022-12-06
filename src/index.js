@@ -7,7 +7,6 @@ import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 import GlobalFont from './fonts/globalFont';
 import "./index.css"
-import "./style.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // yarn add react-is

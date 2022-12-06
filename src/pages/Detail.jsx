@@ -3,15 +3,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
+import styled from "styled-components";
 import { __getDetail } from"../redux/modules/postSlice"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from 'react-bootstrap/Carousel';
 import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
-import { ReactComponent as Date } from "../img/mainDate.svg";
-import { ReactComponent as Place } from "../img/mainPlace.svg";
-import { ReactComponent as Post } from "../img/post.svg";
+import { ReactComponent as Date } from "../img/post-date.svg";
+import { ReactComponent as Place } from "../img/post-local.svg";
+import { ReactComponent as Post } from "../img/post-content.svg";
 import { ReactComponent as User } from "../img/user-post.svg";
-import { ReactComponent as Back } from "../img/backarrow.svg";
 import '../FullHTML.css'
 const Detail = () => {
   const navigator = useNavigate();
@@ -50,9 +50,9 @@ const Detail = () => {
   
   
   return (
-    <div>
-      <Back onClick={onClickMove}/><Header />
-      <div>
+    <Layout>
+      <Header />
+      <Container>
         <Carousel fade style={{ height: "196.37px" }}>
           {post.imgs !== undefined &&
             post.imgs.map((pic) => {
@@ -65,21 +65,21 @@ const Detail = () => {
               }
             })}
         </Carousel>
-        <div>
-          <div>
-            <span>
+        <Content>
+          <Top>
+            <Price>
               {post.price !== undefined && (
                 <>{post.price.toLocaleString("ko-KR")}원</>
               )}
-            </span>
-            <div>
+            </Price>
+            <Title>
               <span style={{ fontWeight: 600, color: "rgba(78, 78, 78, 1)" }}>
                 {post.state}
               </span>
               <span>{post.title}</span>
-            </div>
-            <div>
-              <div>
+            </Title>
+            <Info>
+              <Plan>
                 <span>
                   {/* <img style={{marginRight:5}} src={require("../img/calender.png")} alt=""  />{post.date} */}
                   <Date />
@@ -92,30 +92,30 @@ const Detail = () => {
                   &nbsp;
                   {post.local}
                 </span>
-              </div>
+              </Plan>
               <span>{post.createdAt}</span>
-            </div>
-          </div>
-          <hr/>
-          <div>
+            </Info>
+          </Top>
+          <Hr/>
+          <Body>
             <Post style={{ margin: "13.93px 0 0 24.5px" }} />
             <div style={{ margin: "11.25px 0 0 8.1px" }}>
               {/* <img style={{marginRight:5}} src={require("../img/text.png")} alt=""  /> */}
               {post.content}
             </div>
-          </div>
-          <hr/>
-          <div>
+          </Body>
+          <Hr/>
+          <Profile>
             {/* <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  /> */}
             <User style={{ width: "32.3px", height: "32.25px", margin: "11.15px 13.82px 11.24px 22.79px" }} />
-            <div>
+            <MyInfo>
               <span>&nbsp;{post.nickname}</span>
               <span>⭐4.2</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
+            </MyInfo>
+          </Profile>
+        </Content>
+      </Container>
+      <ChatBtn>
         {/* <div type="button" onClick={() => onClickMove()}>
           이전버튼(크멍톡)
         </div> */}
@@ -123,11 +123,150 @@ const Detail = () => {
         {post.nickname === localStorage.getItem("user-nickname") ? null : (
           <button onClick={() => onClickChatting(post)}>크멍톡</button>
         )}
-      </div>
+      </ChatBtn>
       <Footer />
-    </div>
+    </Layout>
   );
 }
 
 export default Detail;
+
+const Layout = styled.div`
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  background-color: #f6f0ee;
+`;
+
+const Container = styled.div`
+  width: 360px;
+  /* height: 466.38px; */
+  height: 473.38px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
+
+const Content = styled.div`
+  width: 360px;
+  height: 270.01px;
+`;
+
+const Top = styled.div`
+  height: 83.14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 11.24px 0 5.79px 22.79px;
+`;
+
+const Price = styled.span`
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 19.09px;
+  color: #ED9071;
+  margin: 11.24px 0 7.43px 0;
+`;
+
+const Title = styled.div`
+  width: 340px;
+  height: 83.14px;
+  span {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 7.43px 5px 5.5px 0;
+    color: rgba(40, 40, 40, 1);
+  }
+`;
+
+const Info = styled.div`
+  font-family: "Pretendard", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16.26px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 110px;
+`;
+
+const Plan = styled.div`
+  span {
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 8.43px;
+  }
+`;
+
+const Hr = styled.hr`
+  width: 360px;
+  border: 0.24px solid #EE8B6A;
+`
+
+const Body = styled.div`
+  width: 340px;
+  min-height: 131.42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 15.54px;
+`;
+
+const Profile = styled.div`
+  width: 340px;
+  height: 55.05px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+`;
+
+const MyInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 15.51px;
+  color: rgba(78, 78, 78, 1);
+  gap: 5px;
+`;
+
+const ChatBtn = styled.div`
+  button {
+    width: 360px;
+    height: 47.8px;
+    color: #fff;
+    background-color: #ed9071;
+    border: none;
+    font-family: "Pretendard", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 19.09px;
+    letter-spacing: 0.055cm;
+  }
+`;
 

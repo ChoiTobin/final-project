@@ -12,7 +12,8 @@ import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
-import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
+import { ReactComponent as Photo } from "../../../img/form-add.svg";
+import { ReactComponent as Preview } from "../../../img/form-preview.svg";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -86,15 +87,17 @@ const Post = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <Header />
-      <div>
-        <div>
+      <Bg>
+        <Form>
           <label htmlFor="imgFile" />
           <Carousel fade>
-            {fileUrls.map((img) => {
-              return (
-                <Carousel.Item
+            {fileUrls !== undefined &&
+              fileUrls.map((img) => {
+                if (img !== "") {
+                  return (
+                    <Carousel.Item
                   key={img.id}
                   style={{
                     height: "166px",
@@ -103,10 +106,13 @@ const Post = () => {
                 >
                   <Img style={{ width: "550px" }} src={img ? img : ""} />
                 </Carousel.Item>
-              );
+                  )
+                } else {
+                  return <Preview/>
+                }
             })}
           </Carousel>
-          <input
+          <InputImg
             type="File"
             id="imgFile"
             name="imgFile"
@@ -130,7 +136,7 @@ const Post = () => {
             />
             <span>사진 업로드</span>
           </ImgUpload>
-          <select
+          <Select
             name="category"
             value={conimal.category || ""}
             onChange={onChangeHandler}
@@ -142,8 +148,8 @@ const Post = () => {
             <option value="대형">대형- 15kg초과</option>
             <option value="중형">중형- 7kg초과</option>
             <option value="소형">소형- 5kg초과</option>
-          </select>
-          <input
+          </Select>
+          <Input
             type="text"
             maxLength={30}
             name="title"
@@ -152,14 +158,14 @@ const Post = () => {
             required
             placeholder="제목"
           />
-          <input
+          <Input2
             type="date"
             name="date"
             value={conimal.date || ""}
             onChange={onChangeHandler}
           />
-          <div>
-            <input
+          <One>
+            <Input
               style={{ width: "100%" }}
               type="number"
               name="price"
@@ -168,9 +174,9 @@ const Post = () => {
               placeholder="희망가격"
               required
             />
-            <span>원</span>
-          </div>
-          <select
+            <P2>원</P2>
+          </One>
+          <Select2
             name="local"
             value={conimal.local || ""}
             required
@@ -194,8 +200,8 @@ const Post = () => {
             <option value="전라북도">전라북도</option>
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
-          </select>
-          <textarea
+          </Select2>
+          <Textarea
             style={{
               width: "100%",
               height: "8em",
@@ -215,19 +221,62 @@ const Post = () => {
             value="진행중"
             onChange={onChangeHandler}
           />
-        </div>
-      </div>
+        </Form>
+      </Bg>
 
-      <div style={{ marginTop: 14 }}>
-        <button onClick={() => navigate("/home")}>취소하기</button>
-        <button onClick={writeSubmit}>업로드</button>
-      </div>
+      <ButtonGroup style={{ marginTop: 14 }}>
+        <FormBtn1 onClick={() => navigate("/home")}>취소하기</FormBtn1>
+        <FormBtn2 onClick={writeSubmit}>업로드</FormBtn2>
+      </ButtonGroup>
       <Footer />
-    </div>
+    </Layout>
   );
 };
 
 export default Post;
+
+const Layout = styled.div`
+  width: 360px;
+  min-height: 638px;
+  max-height: 640px;
+  margin: 0 auto;
+  background-color: #f6f0ee;
+`;
+
+const One = styled.div`
+  display: flex;
+  position: relative;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+`;
+const P2 = styled.p`
+  position: absolute;
+  right: 0;
+  left: 290px;
+  top: 5px;
+  color: #787878;
+`;
+const Bg = styled.div`
+  max-height: 456.38px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
 
 const ImgUpload = styled.button`
   width: 318.82px;
@@ -260,6 +309,129 @@ const ImgUpload = styled.button`
   }
 `;
 
+const Form = styled.div`
+  width: 318.82px;
+  margin: 12.59px auto 0;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Img = styled.img`
   object-fit: contain;
+`;
+const FormBtn1 = styled.button`
+  display: block;
+  border: none;
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
+  font-family: "Pretendard", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #838383;
+  color: #fff;
+`;
+const FormBtn2 = styled.button`
+  display: block;
+  border: none;
+  width: 180px;
+  height: 50px;
+  cursor: pointer;
+  font-family: "Pretendard", sans-serif;
+  font-size: 18px;
+  font-weight: 510;
+  background-color: #ed9071;
+`;
+
+const Input = styled.input`
+  height: 36px;
+  margin-bottom: 12px;
+  text-indent: 8px;
+  outline: none;
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background-color: transparent;
+  ::placeholder {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.09px;
+  }
+`;
+
+const Input2 = styled.input`
+  height: 36px;
+  margin-bottom: 12px;
+  text-indent: 5px;
+  border: none;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 3px;
+  background-color: transparent;
+  font-family: "Pretendard", sans-serif;
+  ::placeholder {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.09px;
+  }
+`;
+
+const Select = styled.select`
+  margin-bottom: 12px;
+  border-radius: 3px;
+  height: 36px;
+  text-indent: 5px;
+  outline: none;
+  border: 1px solid rgba(105, 105, 105, 1);
+  background-color: rgba(243, 243, 243, 0.64);
+  font-family: "Pretendard", sans-serif;
+  select {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.09px;
+  }
+`;
+
+const Select2 = styled.select`
+  margin-bottom: 12px;
+  height: 36px;
+  text-indent: 8px;
+  outline: none;
+  border: none;
+  border: 1px solid #666;
+  border-radius: 3px;
+  background-color: rgba(243, 243, 243, 0.64);
+  font-family: "Pretendard", sans-serif;
+  select {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.09px;
+  }
+`;
+
+const Textarea = styled.textarea`
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background-color: transparent;
+  padding: 13.85px 0 0 3px;
+  margin-bottom: 14px;
+  ::placeholder {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+  }
+`;
+
+const InputImg = styled.input`
+  display: none;
+  height: 40px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #ed9071;
 `;
