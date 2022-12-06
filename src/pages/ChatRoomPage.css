@@ -12,7 +12,7 @@
     width: 100%;
     height: 70px;
     display: flex;
-    display: flex;
+
     justify-content: space-around;
     align-items: center;
 
@@ -65,34 +65,15 @@
     font-weight: bold;
 }
 .textBox{
+    display: flex;
     padding: 4px;
     background: #f6f0ee;
     min-height: 40px;
     width: 318.82px;
 }
 .textColorDiv{
-    background: #ed9071;
-    align-items: center;
-    color: black;
-    padding: 8px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    display: flex;
-    text-align: left;
-    width: 170px;
-    margin-bottom: 2px;
-    overflow: hidden;
-    align-items: center;
-    font-weight: 600;
-    margin-left: 25px;
-    font-size: 13px;
-
-
-}
-.textColorDiv2{
+    max-width: 170px;
+    word-break:break-all;
     background:#FFFFFF;
     align-items: center;
     color: black;
@@ -104,11 +85,27 @@
     line-height: 16px;
     display: flex;
     text-align: left;
-    width: 170px;
-    margin-bottom: 10px;
-    float: right;
+    margin-bottom: 2px;
     overflow: hidden;
-    margin-right: 25px;
+    align-items: center;
+    font-weight: 600;
+    margin-left: 25px;
+    font-size: 13px;
+}
+.textColorDiv2{
+    max-width: 170px;
+    word-break:break-all;
+    margin-left: auto;
+    background: #ed9071;
+    align-items: center;
+    color: black;
+    padding: 8px;
+    border-radius: 15px;
+    font-weight: 400;
+    font-size: 13px;
+    display: flex;
+    overflow: hidden;
+    margin-right: autox;
     font-size: 13px;
     font-weight: 600;
 }

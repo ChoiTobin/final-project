@@ -9,14 +9,14 @@ import RatingModal from "./../../components/features/Posts/RatingModal/RatingMod
 
 
   const [modal, setModal] = useState(false);
-  const [buttonTrue, setButtonTrue] = useState(false);
+
+
+  
   const [editTg, setEidtTg] = useState({
     id:0,
     isEdit:false,
   });
-
-
-
+  const [buttonTrue, setButtonTrue] = useState(false);
   const [modal2, setModal2] = useState(false);
   const dispatch = useDispatch();
   const listReducer = useSelector((state) => state.chatting.room);
@@ -30,19 +30,14 @@ import RatingModal from "./../../components/features/Posts/RatingModal/RatingMod
     }
   const toggleModal = () => {
     setModal(!modal);
+    console.log("어떻게나올까나~~~~~",modal)
   };
+  console.log("채팅창고쳤따!!!",modal)
   if(modal) {
     document.body.classList.add('active-modal')
   } else{
     document.body.classList.remove('active-modal')
   }
-
-
-  //모달을 보여주는곳에서 listReducer가 state가 완료면 안보여준다. 또는 완료로.
-
-  // let str = listReducer.state
-  // let UserBoxMessage ="20221121_141505"
-  //<Himg2 onClick={toggleModal} />
 
 
   return (

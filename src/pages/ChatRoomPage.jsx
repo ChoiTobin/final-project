@@ -155,10 +155,7 @@ return (
         navigate(-1)}/>
     </div>
     <div className="Nickname">
-        {localStorage.getItem("user-nickname") 
-        == 
-        room.joinNickname
-        ? 
+        {localStorage.getItem("user-nickname") == room.joinNickname? 
         room.postNickname
         :
         room.joinNickname} 
@@ -247,7 +244,7 @@ return (
           {item.message}
         </div>
       </div>
-      ) 
+    ) 
      
     
   })
