@@ -375,7 +375,7 @@ const DivAt = styled.div`
   text-align: center;
   color: #787878;
   font-size: 12px;
-  background: #f6f0ee;
+  /* background: #f6f0ee; */
 `;
 const Money = styled.p`
   font-weight: bold;

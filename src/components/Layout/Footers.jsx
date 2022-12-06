@@ -31,7 +31,7 @@ const Footers = ({ onChange, checked }) => {
             {tabs.map((page) => {
               return (
                 <label key={page.id} className="label">
-                  <input type="radio" value={page.item} onChange={onChange} checked={checked === page.item} style={{ display: "none" }} />
+                  <input type="radio" value={page.item} onChange={onChange} checked={checked === page.item} style={{ display: "none" }}/>
                   {page.item}
                 </label>
               )

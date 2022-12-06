@@ -12,7 +12,7 @@ import { ReactComponent as AMypage } from "../../img/my-c.svg";
 // import { Home, Chat, Posting, Mypage } from "./FooterIcons.js";
 import "./Footer.css";
 
-const Footers = ({ onChange, checked }) => {
+const Footer = ({ onChange, checked }) => {
   const navigate = useNavigate();
 
   const tabs = [
@@ -57,7 +57,7 @@ const Footers = ({ onChange, checked }) => {
   );
 };
 
-export default Footers;
+export default Footer;
 
 const Layout = styled.div`
   width: 360px;
