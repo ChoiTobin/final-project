@@ -8,72 +8,91 @@ import RatingModal from "./../../components/features/Posts/RatingModal/RatingMod
 
 
 
-  const [modal, setModal] = useState(false);
 
 
-  
-  const [editTg, setEidtTg] = useState({
-    id:0,
-    isEdit:false,
-  });
-  const [buttonTrue, setButtonTrue] = useState(false);
-  const [modal2, setModal2] = useState(false);
+
+
+
+
+
   const dispatch = useDispatch();
   const listReducer = useSelector((state) => state.chatting.room);
   const complete = useSelector((state) => state.chatting.complete);
+  
   const onClickButton = (e) => {
-    e.preventDefault()
-    setButtonTrue(!buttonTrue)
-    setModal(!modal);
     dispatch(__complete(listReducer.postId))
-    setModal2(!modal2) 
-    }
-  const toggleModal = () => {
-    setModal(!modal);
-    console.log("어떻게나올까나~~~~~",modal)
-  };
-  console.log("채팅창고쳤따!!!",modal)
-  if(modal) {
-    document.body.classList.add('active-modal')
-  } else{
-    document.body.classList.remove('active-modal')
+    setModal(false)
+    window.location.reload();
+  
   }
 
 
+
+const [modal,setModal] = useState(false);
+const [modal2,setModal2] = useState(false);
+    
+const toggleModal = () => {
+      setModal(!modal);
+  };
+const toggleModal2 = () => {
+      setModal2(!modal2);
+}
+
+//       let mode = true
+
+// const ModalOpen = () =>{
+
+//   console.log(mode)
+//   if(listReducer.state == "진행중"){
+//       mode = true
+
+//   }else{
+//     mode = false
+//   }
+
+//   } 
+//<RatingModal></RatingModal>
   return (
     <>  
-      {
-        buttonTrue == true?
-        <>
-        <RatingModal setModal2 modal2 ></RatingModal>
-      </>
-      :
-        <div className="flexZone" onClick={toggleModal}>
-          <div>
-            <img className="clearTrade" src={require(`../../img/20221121_141505.png`)}/>
-          </div>
-          <div className="clearName">
-            수락
+
+{
+    listReducer.state == "완료" ? 
+    <img className="clearTrade"  src={require(`../../img/20221121_141959.png`)}/> 
+    :   
+    listReducer.state == "산책중" ? 
+    <img className="clearTrade" onClick={toggleModal2} src={require(`../../img/20221121_141959.png`)}/> 
+    :
+    <img className="clearTrade" onClick={toggleModal} src={require(`../../img/20221121_141505.png`)}/>
+    
+}
+
+{
+modal2 &&(
+   <RatingModal modal2 setModal2></RatingModal>
+   )
+}
+
+
+ {  
+ modal && (
+    <div className="modal2">
+        <div onClick={toggleModal} className="overlay2"></div>
+      <div className="modal2-content2">
+        <div className="modalTwo2">
+          <div className="content2">
+            <span  className="pink2">{listReducer.joinNickname}</span>님의
+            <span className="pink">'{listReducer.title}'</span>
+            <br/>를 수락하시겠습니까?
           </div>
         </div>
-      }
-      
-      { modal && ( 
-        <div className="modal2">
-            <div onClick={toggleModal} className="overlay2"></div>
-          <div className="modal2-content2">
-            <div className="modalTwo2">
-              <div className="content2">
-                <span  className="pink2">{listReducer.joinNickname}</span>님의
-                <span className="pink">'{listReducer.title}'</span>
-                <br/>를 수락하시겠습니까?
-              </div>
-            </div>
-            <button className="falseButton" onClick={toggleModal}>취소</button>
-            <button className="trueButton" onClick={onClickButton}>수락</button>
-          </div>
-        </div>
-      )}
+        <button className="falseButton" onClick={toggleModal}>취소</button>
+        <button className="trueButton" onClick={onClickButton}>수락</button>
+      </div>
+    </div>
+    )
+  } 
+
+  
     </>
   );
 }

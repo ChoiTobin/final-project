@@ -9,6 +9,7 @@ import { __getinitialChatList2, ListReducer } from "../redux/modules/chattingSli
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2"
+import { off } from "process";
 
 
 
@@ -160,26 +161,8 @@ return (
         :
         room.joinNickname} 
     </div>
-        {
-        localStorage.getItem("user-nickname") === room.postNickname && room.state !=="완료"  
-        ? 
-        <Modal2/> 
-        :
-        room.state =="완료"  ?
-        <>
-      <div className="flexZone">
-          <div>
-            <img className="clearTrade" src={require(`../img/20221121_141959.png`)}/>
-          </div>  
-          <div>
-            <div className="clearName">완료</div>
-          </div>  
-      </div>
-        </>  
-        :  <img />
-        //만약 완료가 아닐때는 모달창보여주고, 완료 이면 state값이 완료일때 이미지 완료 버튼을 보여주고 아니면 null값 즉  room.postNickname 
-        //만약 완료이면 둘다에게 거래완료를 보여준다.
-        }
+    <Modal2></Modal2>
+      
   </div>
   {/* header */}
     <div className="row">

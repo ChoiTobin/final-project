@@ -1,86 +1,93 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useDispatch , useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { __getPostRating } from "../../../redux/modules/postSlice";
 import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from "react-redux"
-import postSlice, { __getPostRating, __getPostTime  } from "../../../redux/modules/postSlice"
+import '../../../css/rating.css'
+import { __complete } from "../../../redux/modules/chattingSlice";
 
-const ARRAY = [0, 1, 2, 3, 4];
+function Rating() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const listReducer = useSelector((state) => state.chatting.room);
 
-function Search() {
-  const dispatch = useDispatch()
-  // const [clicked, setClicked] = useState([false, false, false, false, false]);
-  const [clicked, setClicked] = useState([1,2,3,4,5]);
-  console.log("별:",clicked)
+  // console.log("chatList:",chatList) //joinNickname 셀렉터로 가져옴
+
+  const ARRAY = [0, 1, 2, 3, 4];
+  const [rating, setRating] = useState([true, false, false, false, false]);
+  const [ratingIndex, setRatingIndex] = useState(1);
+  console.log("rating:",rating)
+
   const handleStarClick = index => {
-    let clickStates = [...clicked];
+    let clickStates = [...rating];
     for (let i = 0; i < 5; i++) {
       clickStates[i] = i <= index ? true : false;
     }
-    setClicked(clickStates);
+    setRating(clickStates);
   };
   
-  //postUserId: rating: 바디값으로 보내준다
-  
-  const onClickRating = () => {
-    dispatch(__getPostRating());
-    window.location.replace('/home')
-  } 
-  // 채팅방에서 완료버튼을 눌렀을때 평점모달이 뜨고 평점남기기를 눌러야 서버로 완료라는걸 보내서 
-  // 평점을 보내주고 상태값을 바꾼다 
-  // 평점숫자로 나오는건 백에서 보여줄것같다는 예상 .. 4점
-  
+  let score = rating.filter(Boolean).length;
+
+  let obj = {
+    joinUser:listReducer.joinUser,
+    rating:score,
+  }
+
+  //filter(Boolean)을 통해 true값만 반환해줄 수 있음.
+  //length까지 붙여서 결국 "true=별을 클릭한 갯수"을 구현한 것.
+  const onClickStars = () => {
+    dispatch(__getPostRating(obj));	
+    dispatch(__complete(listReducer.postId))
+    window.location.replace("/home")
+  };
+
   return (
-    <Wrap>
-      <RatingText>평가하기</RatingText>
-      <Stars>
-        {ARRAY.map((el, idx) => {
-          return (
-            <FaStar
-              key={idx}
-              size="50"
-              onClick={() => handleStarClick(el)}
-              className={clicked[el] && 'yellowStar'}
-            />
-          );
-        })}
-      </Stars>
-      <button type="button" onClick={onClickRating}>평점남기기</button>
-    </Wrap>
+    <div className='Rating-wrap'>
+        <p>"{listReducer.joinNickname}"님에게</p>  
+        <p>소중한 평점을 남겨주세요.</p>  
+        <Stars>
+          {ARRAY.map((el, idx) => {
+            return (
+              <FaStar
+                key={idx}
+                size="25"
+                onClick={() => handleStarClick(el)}
+                className={rating[el] && 'yellowStar'}
+              />
+            );
+          })}
+        </Stars>
+          <span>
+            {
+              score === 5
+              ? '최고에요! 추천해요!'
+              : score === 4
+              ? '좋았어요! 다음에 또 만나요'
+              : score === 3
+              ? '괜찮았어요'
+              : score === 2
+              ? '나쁘지 않았어요'
+              : score === 1
+              ? '아쉬웠어요'
+              : null
+            }
+          </span>
+        <button className='stBtn' onClick={onClickStars}>감사합니다.</button>
+    </div>
   );
 }
 
-export default Search;
-
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 15px;
-`;
-
-const RatingText = styled.div`
-  color: #787878;
-  font-size: 12px;
-  font-weight: 400;
-`;
-
+export default Rating;
 const Stars = styled.div`
-  display: flex;
-  padding-top: 5px;
-
+  display:flex;
+  margin:20px 0;
+  margin-left:87px;
   & svg {
-    color: gray;
+    color: #ddd;
     cursor: pointer;
   }
-
-  :hover svg {
-    color: #fcc419;
-  }
-
-  & svg:hover ~ svg {
-    color: gray;
-  }
-
   .yellowStar {
-    color: #fcc419;
+    color: #ED9071;
   }
 `;
