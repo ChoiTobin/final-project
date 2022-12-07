@@ -11,7 +11,6 @@ const PostList = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts);
-  // console.log("posts",posts)
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState();
   const [ref, inView] = useInView();

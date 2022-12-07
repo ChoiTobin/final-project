@@ -94,7 +94,7 @@ const Post = () => {
       })
     );
     dispatch(__addPost(formData));
-    // console.log("이게가는지?",formData)
+
   };
   return (
     <Layout>

@@ -104,7 +104,7 @@
 }
 .ArrowImg {
   position: absolute;
-  top: 6px;
+  top: 15px;
   right: 52px;
   border: none;
   width: 18px;
@@ -168,6 +168,7 @@
   margin-left: 17px;
   width: 40px;
   height: 40px;
+  border-radius: 10%;
 }
 .marginBottom {
   margin-bottom: 10px;

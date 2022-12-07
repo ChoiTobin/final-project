@@ -32,9 +32,7 @@ export const __naverLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     
     try {
-      console.log("갔나?",payload)
       const res = await Apis.naverloginAX(payload)
-      console.log("response",res)
       const Access_Token = res.headers.access_token;
       localStorage.setItem("Access_Token", Access_Token);
       localStorage.setItem("user-userId", res.data.data.email);
@@ -53,7 +51,6 @@ export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
           .then((res) => {
-            console.log(res)
               if(res.data.status === 200){
               const Access_Token = res.headers.access_token;
               localStorage.setItem("Access_Token", Access_Token);

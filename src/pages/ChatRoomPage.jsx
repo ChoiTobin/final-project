@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
 import { off } from "process";
+import { ReactComponent as Complete } from '../img/state-g.svg';
 
 function ChatRoomPage() {
   const { id } = useParams();
@@ -76,7 +77,6 @@ function ChatRoomPage() {
         { Access_Token: localStorage.getItem("Access_Token") }
       );
     } catch (e) {
-      // console.log("연결구독해체 에러", e);
     }
   };
 
@@ -120,6 +120,7 @@ function ChatRoomPage() {
   }, [room]);
   //채팅창 치면 맨 밑으로 내려감.
 
+
   const original = `${room.price}`;
   const fomatting = original.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   //가격 3째자리수 마다 ,붙이는 정규식
@@ -130,6 +131,9 @@ function ChatRoomPage() {
   var day = ("0" + today.getDate()).slice(-2);
   let dateString = year + "-" + month + "-" + day;
 
+
+
+
   return (
     <div className="LoginContainer">
       <div className="Header">
@@ -137,17 +141,36 @@ function ChatRoomPage() {
           <BackArrow onClick={() => navigate(-1)} />
         </div>
         <div className="Nickname">
-          {localStorage.getItem("user-nickname") == room.joinNickname
-            ? room.postNickname
-            : room.joinNickname}
+          {localStorage.getItem("user-nickname") == room.joinUserNickname
+            ? room.postUserNickname
+            : room.joinUserNickname}
         </div>
-        <Modal2></Modal2>
+        {
+        localStorage.getItem("user-nickname") === room.postUserNickname && room.state !=="완료"  
+        ? 
+        <Modal2/> 
+        :
+        room.state =="완료"  ?
+        <>
+      <div className="flexZone">
+          <div>
+          <Complete /> 
+          </div>  
+          <div>
+            <div className="clearName">완료</div>
+          </div>  
       </div>
+        </>  
+        :  <img /> 
+
+        }
+      </div>
+
       {/* header */}
       <div className="row">
         <div className="flexBox">
           <div>
-            <img className="photoImg" src={require("../img/user.png")} alt="" />
+            <img className="photoImg" src={(`${room.postImg}`)} alt="" />
           </div>
           <div>
             <div className="flexBox2">

@@ -26,7 +26,7 @@ const ResModal = ({props}) => {
   const { open } = state;
 
   useEffect(() => {
-    console.log('modal state changed');
+
   }, [state])
 
     return (

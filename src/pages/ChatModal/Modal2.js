@@ -11,11 +11,20 @@ function Modal2() {
   const dispatch = useDispatch();
   const listReducer = useSelector((state) => state.chatting.room);
   const complete = useSelector((state) => state.chatting.complete);
-  
+
   const onClickButton = (e) => {
+
     dispatch(__complete(listReducer.postId))
     setModal(false)
-    window.location.reload();
+
+
+
+    setTimeout(
+      function () {
+        window.location.reload();
+      }
+      ,200 
+      );
   
   }
 
@@ -29,20 +38,7 @@ function Modal2() {
         setModal2(!modal2);
   }
 
-  //       let mode = true
 
-  // const ModalOpen = () =>{
-
-  //   console.log(mode)
-  //   if(listReducer.state == "진행중"){
-  //       mode = true
-
-  //   }else{
-  //     mode = false
-  //   }
-
-  //   } 
-  //<RatingModal></RatingModal>
     return (
       <>  
 
@@ -51,12 +47,29 @@ function Modal2() {
       <Complete /> 
       :   
       listReducer.state === "산책중" ? 
-      // <img className="clearTrade" onClick={toggleModal2} src={require(`../../img/20221121_141959.png`)}/> 
-      <Complete onClick={toggleModal2} /> 
+      <>
+      <div className="flexZone">
+          <div>
+          <Complete onClick={toggleModal2} /> 
+
+          </div>  
+          <div>
+            <div className="clearName">완료</div>
+          </div>  
+      </div>
+      </>
       :
-      // <img className="clearTrade" onClick={toggleModal} src={require(`../../img/20221121_141505.png`)}/>
+      <div className="flexZone">
+      <div>
       <Accept onClick={toggleModal} />
+
+      </div>  
+      <div>
+        <div className="clearName">수락</div>
+      </div>  
+  </div>
       
+
   }
 
   {
@@ -73,7 +86,7 @@ function Modal2() {
         <div className="modal2-content2">
           <div className="modalTwo2">
             <div className="content2">
-              <span  className="pink2">{listReducer.joinNickname}</span>님의
+              <span  className="pink2">{listReducer.joinUserNickname}</span>님의
               <span className="pink">'{listReducer.title}'</span>
               <br/>를 수락하시겠습니까?
             </div>

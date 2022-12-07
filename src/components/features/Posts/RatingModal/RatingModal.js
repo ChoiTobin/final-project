@@ -4,7 +4,7 @@ import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
 import Rating from "../Rating";
 
-function RatingModal() {
+function RatingModal(modal2,setModal2) {
   const [modal, setModal] = useState(false);
   
   const dispatch = useDispatch();
@@ -14,10 +14,10 @@ function RatingModal() {
   })
 
   const toggleModal = () => {
-    setModal(!modal);
+    setModal(!modal2);
   };
   
-  if(modal) {
+  if(modal2) {
     document.body.classList.add('active-modal')
     
   } else{
@@ -25,7 +25,7 @@ function RatingModal() {
   }
   return (
     <>
-      {
+      {/* {
       count== true?
       <>
           <button onClick={toggleModal}>완료</button>
@@ -34,11 +34,11 @@ function RatingModal() {
       <> 
           <button onClick={toggleModal}>별점</button>
       </>
-      }
+      } */}
       {/* 모달창 승인버튼 green OR black */}
       
       {
-      modal && ( 
+      modal2 && ( 
         <div className="Rating">
           <div className="center">
             <div onClick={toggleModal} className="RatingOverlay"></div>

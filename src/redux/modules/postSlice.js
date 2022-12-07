@@ -14,10 +14,10 @@ const initialState = {
 export const __getPostRating = createAsyncThunk(	
   "api/posts/getPostRating",	
   async (payload, thunkAPI) => {
-    // console.log("페이로드야",payload)	
+
     try {	
       const response = await Apis.getPostRatingAX(payload)	
-      // console.log("별점리스폰스",response.data)
+
       window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
@@ -30,14 +30,13 @@ export const __getPostRating = createAsyncThunk(
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {
-    console.log("page:",payload)	
+
     try {	
       
       const response = await Apis.getPostTimeAX(payload)	
       
-      // console.log("확인",response.data.data.push({title:"전체보기"}))
-      // response.data.data[0].push({title:"전체보기"})
-      console.log("전체조회",response.data)
+
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {
       return thunkAPI.rejectWithValue(error);	
@@ -49,10 +48,10 @@ export const __getPostTime = createAsyncThunk(
 export const __getDetail = createAsyncThunk(	
   "api/post/getDetail",	
   async (payload, thunkAPI) => {	
-    // console.log("상세조회payload",payload)	
+
     try {	
       const response = await Apis.getDetailAX(payload)
-      // console.log("상세조회payload2",response.data)	
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -64,10 +63,10 @@ export const __getDetail = createAsyncThunk(
 export const __addPost = createAsyncThunk(	
   "api/posts/addPost",	
   async (payload, thunkAPI) => {	
-    // console.log("제발페이로드야",payload)
+
     try {	
       const response = await Apis.postFileAX(payload)	
-      //console.log("게시글작성완료",response)
+
       alert("작성완료하였습니다.")
       window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
@@ -94,10 +93,10 @@ export const __editState = createAsyncThunk(
 export const __getKeyword = createAsyncThunk(	
   "/api/search/getSearch",	
   async (payload, thunkAPI) => {	
-    console.log("검색:",payload)
+
     try {	
       const response = await Apis.getKeywordAX(payload)	
-      console.log("검색리스폰스:",response.data)
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -109,10 +108,10 @@ export const __getKeyword = createAsyncThunk(
 export const __getCategory = createAsyncThunk(	
   "/api/search/getCategory",	
   async (payload, thunkAPI) => {	
-    console.log("카테고리:",payload)
+
     try {	
       const response = await Apis.getFilterAX(payload)	
-      console.log("카테고리검색완료",response.data)
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -130,7 +129,7 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostRating.fulfilled]: (state, action) => {	
-      console.log("페이로드야",action.payload)
+
       state.isLoading = false;	
       state.isSuccess = false;	
       state.post.response = action.payload.data;
@@ -145,11 +144,10 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostTime.fulfilled]: (state, action) => {	
-      // console.log("페이로드야",action.payload)
+
       state.isLoading = false;	
       state.isSuccess = false;	
-      // state.post.response = action.payload.data;
-      // console.log("pay",action.payload.data)
+
       state.posts.push(...action.payload.data);	
     },	
     [__getPostTime.rejected]: (state, action) => {	
@@ -204,7 +202,7 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
-      console.log("검색리듀서:",action.payload.data)
+
       state.isLoading = false;	
       state.isSuccess = false;	
       state.posts = action.payload.data;	
@@ -222,7 +220,7 @@ const postSlice = createSlice({
     [__getCategory.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      console.log("카테고리:",action.payload.data)
+
       state.posts = action.payload.data;	
       // state.posts.push(...action.payload.data);
     },

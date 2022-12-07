@@ -27,7 +27,7 @@ const Content = () => {
       return alert("내용을 입력해주세요.");
     }
     dispatch(__getKeyword(getSearch.search));
-    console.log("검색:", getSearch.search);
+
   };
 
   const appKeyPress = (e) => {

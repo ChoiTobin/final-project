@@ -21,14 +21,19 @@ const ChatList = () => {
   }, []);
 
   const onClickChatting = (item) => {
-    navigator(`/ChatRoomPage/${item.roomId}`);
-    setTimeout(function () {
-      dispatch(__getinitialChatList2(item.roomId));
-    }, 200);
-  };
-
+    navigator(`/ChatRoomPage/${item.roomId}`)
+    setTimeout(
+    function () {
+    dispatch(__getinitialChatList2(item.roomId)
+    );
+    }
+    ,200 
+    );
+    }
+  
   //리스트방에서 빠져나오면 로컬스토리에서 최근 날짜 없앰 그리고 로컬스토리지 단한번 만실행
   //채팅 샌드할때
+
   return (
     <Layouts>
       <Header />
@@ -42,45 +47,51 @@ const ChatList = () => {
                 <div className="flexDiv">
                   <img
                     className="Userimg"
-                    src={require("../img/user.png")}
+                    src={`${item.postUserImg}`}
                     alt=""
                     onClick={() => onClickChatting(item)}
                   />
                   <div className="marginDiv">
-                    <p
+                    <span
                       className="boldText"
                       onClick={() => onClickChatting(item)}
                     >
                       {
                         localStorage.getItem("user-nickname") ==
-                        item.joinNickname
-                          ? item.postNickname
-                          : item.joinNickname
+                        item.joinUserNickname
+                          ? item.postUserNickname
+                          : item.joinUserNickname
+
                         //내 아이디명이 아닌 상대방 아이디
                       }
-                    </p>
+                    </span>
                     <div
                       className="chatlength"
                       onClick={() => onClickChatting(item)}
                     >
                       {item.chatList[item.chatList.length - 1] !== undefined &&
-                        item.chatList[item.chatList.length - 1].message}
+                        item.chatList[item.chatList.length - 1].message
+                        }
+                    
                     </div>
 
                     <span className="whiteTime">
+                       {item.chatList[item.chatList.length - 1] !== undefined &&
+                        `${item.chatList[item.chatList.length - 1].sendDate.substring(5, 7)}월`}
+
+
                       {item.chatList[item.chatList.length - 1] !== undefined &&
                         `${item.chatList[
                           item.chatList.length - 1
-                        ].sendDate.substring(5, 7)}월`}
-                      {item.chatList[item.chatList.length - 1] !== undefined &&
-                        `${item.chatList[
-                          item.chatList.length - 1
-                        ].sendDate.substring(8, 10)}일`}
+                        ].sendDate.substring(8, 10)}일`} 
                     </span>
                   </div>
-                  {item.post.image.length !== 0 && (
-                    <img className="img" src={`${item.post.image[0].image}`} />
-                  )}
+                  {
+                    item.postImg.length !== 0 && 
+                    
+                  <img className="img" src={`${item.postImg}`}/>
+                  
+                  } 
                 </div>
               </div>
             );
