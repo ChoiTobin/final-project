@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import { ReactComponent as Home } from "../../img/home-g.svg";
-// import { ReactComponent as AHome } from "../../img/home-c.svg";
-// import { ReactComponent as Chat } from "../../img/chat-g.svg";
-// import { ReactComponent as AChat } from "../../img/chat-c.svg";
-// import { ReactComponent as Posting } from "../../img/post-g.svg";
-// import { ReactComponent as APosting } from "../../img/post-c.svg";
-// import { ReactComponent as Mypage } from "../../img/my-g.svg";
-// import { ReactComponent as AMypage } from "../../img/my-c.svg";
 import Home from "../../img/home-g.svg";
 import AHome from "../../img/home-c.svg";
 import Chat from "../../img/chat-g.svg";
