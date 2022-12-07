@@ -25,6 +25,7 @@ function ChatRoomPage() {
 
   useEffect(() => {
     //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
+    //heelo
 
     dispatch(__getinitialChatList2(id));
     wsConnectSubscribe();
