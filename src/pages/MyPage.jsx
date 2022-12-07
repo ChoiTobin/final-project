@@ -31,15 +31,7 @@ const MyPage = () => {
   const myPic = useSelector((state) => state.mypage.myPic);
   const myPets = useSelector((state) => state.mypage.myPets);
 
-  console.log("전체 셀렉터", all);
 
-  console.log("셀렉터post", post);
-  console.log("셀렉터myInfo", all);
-  console.log("셀렉터myPosts", myPosts);
-  console.log("셀렉터myPic", myPic);
-  console.log("셀렉터myPets", myPets);
-
-  console.log("프사 이미지 가져오나", myInfo.userImage);
 
   const [photo, setPhoto] = useState(false);
 

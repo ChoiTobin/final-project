@@ -11,12 +11,12 @@ function Rating() {
   const dispatch = useDispatch();
 
   const listReducer = useSelector((state) => state.chatting.room);
-  // console.log("chatList:",chatList) //joinNickname 셀렉터로 가져옴
+
 
   const ARRAY = [0, 1, 2, 3, 4];
   const [rating, setRating] = useState([true, false, false, false, false]);
   const [ratingIndex, setRatingIndex] = useState(1);
-  console.log("rating:", rating);
+
 
   const handleStarClick = (index) => {
     let clickStates = [...rating];
@@ -36,7 +36,7 @@ function Rating() {
   //filter(Boolean)을 통해 true값만 반환해줄 수 있음.
   //length까지 붙여서 결국 "true=별을 클릭한 갯수"을 구현한 것.
   const onClickStars = () => {
-    console.log("진짜마지막",listReducer.postId)
+  
     dispatch(__complete(listReducer.postId))
     dispatch(__getPostRating(obj));
 
