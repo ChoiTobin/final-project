@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __postMyImg } from "../../../redux/modules/mypageSlice";
 import useImgUpload from "../../hooks/useImgUpload";
-import { ReactComponent as Upload } from "../../../img/form-add.svg";
-import { ReactComponent as UserPic } from "../../../img/user-my.svg";
+import { ReactComponent as Upload } from "../../../img/previewPic.svg";
+import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
+import { __postMyImg } from "../../../redux/modules/mypageSlice";
 
 const AddUserPic = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -36,11 +36,12 @@ const AddUserPic = ({ onClose }) => {
     // API 날리기
     dispatch(__postMyImg(formData));
     window.alert("프로필 사진이 수정되었습니다!");
-    navigate("/mypage");
+    window.location.reload("/mypage");
   };
+
   return (
     <Layout>
-      <Content>
+      <div>
         <label htmlFor="imgFile">
           {/* 이미지 업로더 */}
           <input
@@ -59,36 +60,43 @@ const AddUserPic = ({ onClose }) => {
               imgRef.current.click();
             }}
           >
+            {/* <img src={upload} style={{ width: "30px" }} alt="" /> */}
+            <Upload />
           </ImgUpload>
         </label>
-        <ImgPreview>
-          {/* 이미지 미리보기 Preview */}
-          <Upload />
-          {userImage.length !== 0 ? <img src={imgsUrls} alt="" /> : <UserPic />}
-        </ImgPreview>
-      </Content>
+      </div>
 
-      <PlaceBtn>
+      <ImgPreview>
+        {/* 이미지 미리보기 Preview */}
+        {/* <img src={imgsUrls} style={imgsUrls !== "" ? { visibility: "visible"} : {visibility: "hidden"}} alt="" /> */}
+        {imgsUrls.length !== 0 ? (
+          imgsUrls.map((imgs, id) => {
+            return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
+          })
+        ) : (
+          <PicNote>
+            <Photo /> <span>이미지 미리보기</span>
+          </PicNote>
+        )}
+      </ImgPreview>
+      <Btns>
         <button
           onClick={onClose}
-          style={{
-            backgroundColor: "rgba(175, 175, 175, 1)",
-            borderRadius: "0px 0px 0px 4px",
-          }}
+          style={{ borderRadius: "0 0 0 10px", backgroundColor: "#E6E6E6" }}
         >
           취소
         </button>
         <button
           onClick={writeSubmit}
           style={{
-            backgroundColor: "rgba(237, 144, 113, 1)",
-            color: "rgba(255, 255, 255, 1)",
-            borderRadius: "0px 0px 4px 0px",
+            borderRadius: "0 0 10px 0",
+            backgroundColor: "#ED9071",
+            color: "#fff",
           }}
         >
           저장
         </button>
-      </PlaceBtn>
+      </Btns>
     </Layout>
   );
 };
@@ -96,38 +104,34 @@ const AddUserPic = ({ onClose }) => {
 export default AddUserPic;
 
 const Layout = styled.div`
-  width: 271px;
-  height: 190.08px;
+  width: 330px;
+  height: 250px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto;
-  background-color: #FFF;
-  border-radius: 12px;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 218.45px;
-  height: 139.25px;
 `;
 
 const ImgUpload = styled.button`
-  margin: 0px 0 10px 100px;
+  /* margin: 10px 0 10px 100px; */
   border: none;
   border-radius: 10px;
+  background-color: #e5e5e5;
+  margin: 10px auto 12px;
   img {
     align-items: center;
     justify-content: center;
-    margin: 10px 0 0 10px;
+    /* margin: 10px 0 0 10px; */
   }
 `;
 
 const ImgPreview = styled.div`
-  width: 170px;
-  height: 220px;
+  width: 200px;
+  height: 120px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -136,24 +140,39 @@ const ImgPreview = styled.div`
 
   border: 1px solid #e2e2e2;
   border-radius: 10px;
-  margin: 0 auto 50px;
+  background-color: #fff;
+
+  margin: 0 auto 30px;
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
   }
 `;
 
-const PlaceBtn = styled.div`
-  margin-bottom: -22px;
+const Btns = styled.div`
   button {
-    width: 135.07px;
-    height: 27.42px;
+    width: 165px;
+    height: 40px;
     border: none;
     font-family: "Pretendard", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 14.32px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.09px;
+  }
+`;
+const PicNote = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 65.33px; */
+  span {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    color: rgba(57, 57, 57, 0.93);
   }
 `;
