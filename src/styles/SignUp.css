@@ -1,0 +1,159 @@
+.DuplicateCheckEmail{
+    position: absolute;
+    width: 75px;
+    font-size: 15px;
+    right: 10px;
+    top: 17px;
+    border: 1px solid #929292;
+    border-radius: 4px;
+    background: #fafafa;
+    color: #929292;
+}
+.DuplicateCheckEmail:focus{    
+    outline: 1px solid #adadad;
+
+}
+.DuplicateCheckNick{
+    position: absolute;
+    width: 75px;
+    font-size: 15px;
+    right: 10px;
+    top: 17px;
+    border: 1px solid #929292;
+    border-radius: 4px;
+    background: #fafafa;
+    color: #929292;
+
+}
+.DuplicateCheckNick:focus{
+    outline: 1px solid #adadad;
+}
+.LoGoSignUp{
+    margin-left: 40px;
+    color: #ed9071;
+}
+.LoGoSignUp1{
+    margin-left: 30px;
+    color: #ed9071;
+    font-weight: 500;
+    font-size: 30px;
+}
+.LogoBox{
+    width: 175px;
+
+
+}
+.Green{
+    color: green;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.ErrorMessageWrap{
+    color: #ef0000;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.FlexInput{
+    position: relative;
+}
+.FlexInput2{
+    position: relative;
+}
+
+.SignupContainer{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #f6f0ee;
+    justify-content: center;
+    flex-direction: column;
+}
+.SignupBox{
+    background-color: #f6f0ee;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 0px;
+}
+.LoginBox{
+    width: 235px;
+    /* svg {
+        width: 100%;
+        height: 100%;
+      } */
+}
+.SignupButton{
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    width: 253px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    cursor: pointer;
+    background-color: #ed9071;
+}
+.InputBox{
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+.Input{
+    border: 1px solid #929292;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #fafafa;
+}
+.Input2{
+    border: 1px solid #929292;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #fafafa;
+
+}
+.Input3{
+    border: 1px solid #929292;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #fafafa;
+}
+
+.Input4{
+    border: 1px solid #929292;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    background: #fafafa;
+}
+.root{
+    margin: 0 auto;
+    background-color: red;
+}
+.blackSpan{
+    color:black;
+    font-weight: bold;
+}
