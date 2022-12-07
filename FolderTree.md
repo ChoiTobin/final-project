@@ -4,6 +4,9 @@ yarn add pretendard
 ```
 final-project
 ├─ .gitignore
+├─ .vscode
+│  ├─ extensions.json
+│  └─ settings.json
 ├─ db.json
 ├─ FolderTree.md
 ├─ package-lock.json
@@ -11,10 +14,10 @@ final-project
 ├─ public
 │  ├─ favicon.ico
 │  ├─ index.html
-│  ├─ logo192.png
-│  ├─ logo512.png
 │  ├─ manifest.json
-│  └─ robots.txt
+│  ├─ robots.txt
+│  └─ static
+│     └─ ogimage.png
 ├─ README.md
 ├─ src
 │  ├─ App.css
@@ -22,21 +25,28 @@ final-project
 │  ├─ App.test.js
 │  ├─ components
 │  │  ├─ element
-│  │  │  ├─ button.jsx
 │  │  │  ├─ Carousel.jsx
+│  │  │  ├─ ChatModal
+│  │  │  │  ├─ Modal.css
+│  │  │  │  └─ Modal2.js
 │  │  │  ├─ Image.jsx
-│  │  │  ├─ Modal.css
-│  │  │  ├─ Modal.jsx
 │  │  │  ├─ ModalPortal.jsx
 │  │  │  ├─ myApp.js
 │  │  │  ├─ MyModal.css
 │  │  │  ├─ MyModal.jsx
-│  │  │  └─ MyPetModal.css
+│  │  │  ├─ MyPetModal.css
+│  │  │  ├─ MyPicModal.css
+│  │  │  └─ Responsible
+│  │  │     ├─ index.js
+│  │  │     ├─ ReactResponsible.jsx
+│  │  │     ├─ ResponsibleCarousel.jsx
+│  │  │     └─ ResponsibleModal.jsx
 │  │  ├─ features
 │  │  │  ├─ Login
 │  │  │  │  ├─ KakaoLogin.js
 │  │  │  │  ├─ NaverLogin.js
-│  │  │  │  └─ OAuth2RedirectHandler.js
+│  │  │  │  ├─ OAuth2RedirectHandler.js
+│  │  │  │  └─ OAuthNaverLogin.js
 │  │  │  ├─ Mypage
 │  │  │  │  ├─ AddPetInfo.jsx
 │  │  │  │  ├─ AddUserPic.jsx
@@ -50,69 +60,90 @@ final-project
 │  │  │     ├─ Content.jsx
 │  │  │     ├─ Form.jsx
 │  │  │     ├─ PostList.jsx
+│  │  │     ├─ Rating.jsx
+│  │  │     ├─ RatingModal
+│  │  │     │  ├─ Modal.css
+│  │  │     │  └─ RatingModal.js
 │  │  │     └─ SearchList.jsx
 │  │  ├─ hooks
 │  │  │  ├─ useImgUpload.jsx
 │  │  │  └─ useInput.jsx
 │  │  └─ Layout
+│  │     ├─ Footer.css
 │  │     ├─ Footer.jsx
 │  │     ├─ Header.jsx
 │  │     └─ Layout.jsx
 │  ├─ fonts
 │  │  ├─ globalFont.js
-│  │  ├─ SpoqaHanSansNeo-Bold.woff2
-│  │  ├─ SpoqaHanSansNeo-Light.woff2
-│  │  ├─ SpoqaHanSansNeo-Medium.woff2
-│  │  ├─ SpoqaHanSansNeo-Regular.woff2
-│  │  └─ SpoqaHanSansNeo-Thin.woff2
+│  │  ├─ Pretendard-Black.woff2
+│  │  ├─ Pretendard-Bold.woff2
+│  │  ├─ Pretendard-ExtraBold.woff2
+│  │  ├─ Pretendard-ExtraLight.woff2
+│  │  ├─ Pretendard-Light.woff2
+│  │  ├─ Pretendard-Medium.woff2
+│  │  ├─ Pretendard-Regular.woff2
+│  │  ├─ Pretendard-SemiBold.woff2
+│  │  └─ Pretendard-Thin.woff2
 │  ├─ FullHTML.css
 │  ├─ img
 │  │  ├─ all.png
-│  │  ├─ backArrow.png
-│  │  ├─ backarrow.svg
 │  │  ├─ banner.png
+│  │  ├─ banner.svg
 │  │  ├─ big.png
-│  │  ├─ calender.png
-│  │  ├─ chat-f.svg
-│  │  ├─ chat-fo.svg
-│  │  ├─ colorarrow.svg
-│  │  ├─ date.svg
-│  │  ├─ datecolor.svg
-│  │  ├─ delete.svg
-│  │  ├─ edit.svg
-│  │  ├─ Form.png
-│  │  ├─ home-f.svg
-│  │  ├─ home-fo.svg
-│  │  ├─ kakao.svg
-│  │  ├─ logoImg.svg
-│  │  ├─ logoWhite.svg
-│  │  ├─ markup.png
+│  │  ├─ chat-c.svg
+│  │  ├─ chat-g.svg
+│  │  ├─ form-add.svg
+│  │  ├─ form-drop.svg
+│  │  ├─ form-preview.svg
+│  │  ├─ header-backarrow.svg
+│  │  ├─ home-c.svg
+│  │  ├─ home-g.svg
+│  │  ├─ intro-arrow.svg
+│  │  ├─ intro-walk.svg
+│  │  ├─ list-date.svg
+│  │  ├─ list-local.svg
+│  │  ├─ logo-chat.svg
+│  │  ├─ logo-header.svg
+│  │  ├─ logo-sign.svg
+│  │  ├─ logo-w.svg
 │  │  ├─ medium.png
-│  │  ├─ menu.svg
-│  │  ├─ middle.png
-│  │  ├─ mykakao.svg
-│  │  ├─ mypage-f.svg
-│  │  ├─ mypage-fo.svg
-│  │  ├─ naver.svg
-│  │  ├─ notice-arrow.svg
-│  │  ├─ photo.svg
-│  │  ├─ place.svg
-│  │  ├─ postImg.png
+│  │  ├─ my-arrow.svg
+│  │  ├─ my-c.svg
+│  │  ├─ my-cmung.svg
+│  │  ├─ my-date.svg
+│  │  ├─ my-delete.svg
+│  │  ├─ my-edit.svg
+│  │  ├─ my-g.svg
+│  │  ├─ my-kakao.svg
+│  │  ├─ my-naver.svg
+│  │  ├─ my-star.svg
+│  │  ├─ my-stars.svg
+│  │  ├─ post-c.svg
+│  │  ├─ post-content.svg
+│  │  ├─ post-date.svg
+│  │  ├─ post-g.svg
+│  │  ├─ post-local.svg
+│  │  ├─ post-pic.svg
 │  │  ├─ search.svg
-│  │  ├─ send.png
+│  │  ├─ send.svg
+│  │  ├─ sign-kakao.svg
+│  │  ├─ sign-naver.svg
 │  │  ├─ small.png
-│  │  ├─ StartImg.svg
-│  │  ├─ state-b.png
-│  │  ├─ state-g.png
-│  │  ├─ text.png
-│  │  ├─ user.png
-│  │  ├─ Vector5.png
-│  │  ├─ write-f.svg
-│  │  └─ write-fo.svg
+│  │  ├─ star-co.svg
+│  │  ├─ star-no.svg
+│  │  ├─ state-b.svg
+│  │  ├─ state-g.svg
+│  │  ├─ user-chat.svg
+│  │  ├─ user-my.svg
+│  │  └─ user-post.svg
 │  ├─ index.css
 │  ├─ index.js
 │  ├─ pages
+│  │  ├─ ChatList.jsx
+│  │  ├─ ChatModal
+│  │  │  └─ Modal2.js
 │  │  ├─ ChatRoomPage.jsx
+│  │  ├─ Desc.jsx
 │  │  ├─ Detail.jsx
 │  │  ├─ Home.jsx
 │  │  ├─ Intro.jsx
@@ -129,11 +160,23 @@ final-project
 │  │     ├─ postSlice.js
 │  │     └─ userSlice.js
 │  ├─ serviceWorker.js
-│  └─ shared
-│     ├─ Apis.js
-│     ├─ Cookie.js
-│     ├─ regex.js
-│     └─ Router.js
+│  ├─ setupTests.js
+│  ├─ shared
+│  │  ├─ Apis.js
+│  │  ├─ Cookie.js
+│  │  ├─ regex.js
+│  │  └─ Router.js
+│  └─ styles
+│     ├─ ChatList.css
+│     ├─ ChatRoomPage.css
+│     ├─ detail.css
+│     ├─ form.css
+│     ├─ Intro.css
+│     ├─ List.css
+│     ├─ Modal.css
+│     ├─ postlist.css
+│     ├─ rating.css
+│     └─ searchlist.css
 └─ yarn.lock
 
 ```
