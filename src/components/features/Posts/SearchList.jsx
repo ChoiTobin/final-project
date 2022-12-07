@@ -49,9 +49,11 @@ const Content = () => {
   };
   const onClickMiddle = () => {
     dispatch(__getCategory("중형"));
+
   };
   const onClickSmall = () => {
     dispatch(__getCategory("소형"));
+
   };
 
   return (

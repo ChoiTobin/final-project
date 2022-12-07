@@ -1,132 +1,101 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import "./ChatList.css";
+import React, { useEffect } from "react";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
+import Layouts from "../components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { __getinitialChatList, __getRoomList } from "../redux/modules/chattingSlice";
-import { ReactComponent as UserPic } from "../img/user-chat.svg";
-import { ReactComponent as PostImg } from "../img/post-pic.svg";
+import { useNavigate, useParams} from "react-router-dom";
+import {__getinitialChatList2, __getRoomList } from "../redux/modules/chattingSlice";
+
+
 
 
 const ChatList = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const {id}  = useParams()
   const navigator = useNavigate();
+  const dispatch = useDispatch();
   const Room = useSelector((state) => state.chatting.roomList);
-
+  
   useEffect(() => {
-    dispatch(__getRoomList());
-  }, []);
+  dispatch(__getRoomList());}, 
+  []);
+
 
   const onClickChatting = (item) => {
-    navigator(`/ChatRoomPage/${item.postId}`);
-
-    dispatch(
-      __getinitialChatList({
-        postId: item.postId,
-        roomId: item.roomId,
-      })
-    );
-  };
-  //들어갈때 get요청
-
-  return (
-    <Layout>
-      {Room !== undefined &&
-        Room !== [] &&
-        Room.map((item, i) => {
-          return (
-            <List key={i} onClick={() => onClickChatting(item)}>
-              <Content>
-                <UserPic style={{ marginRight: '18px' }} />
-                <Info>
-                  <Title>{item.title}</Title>
-                  <Text>{item.title}</Text>
-                </Info>
-              </Content>
-              <Pic>
-                <PostImg/>
-              </Pic>
-            </List>
-          );
-        })}
-    </Layout>
+  navigator(`/ChatRoomPage/${item.roomId}`)
+  setTimeout(
+  function () {
+  dispatch(__getinitialChatList2(item.roomId)
   );
-};
-
-export default ChatList;
-
-const Layout = styled.div`
-  width: 360px;
-  max-height: 526.06px;
-  background-color: #f6f0ee;
-  border-top: 1px solid #ee8b6a;
-  margin: auto;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* 스크롤바 영역에 대한 설정 */
-  ::-webkit-scrollbar {
-    width: 5px;
+  }
+  ,200 
+  );
   }
 
-  /* 스크롤바 막대에 대한 설정 */
-  ::-webkit-scrollbar-thumb {
-    height: 20%;
-    background-color: #d8d8d8;
-    border-radius: 20px;
-  }
 
-  /* 스크롤바 뒷 배경에 대한 설정 */
-  ::-webkit-scrollbar-track {
-    background-color: #f6f0ee;
-  }
-`;
+  //리스트방에서 빠져나오면 로컬스토리에서 최근 날짜 없앰 그리고 로컬스토리지 단한번 만실행 
+  //채팅 샌드할때
+  return (
+      
+  <Layouts>
+    <Header />
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
+      <div className="line"></div>
+      <div className="overflow">
+      
+        {Room !== undefined && Room !==null ?
+          Room.map((item,i)=>{       
+            return(
+          <div className="root" key={i}>
+              <div className="flexDiv">
+                <img className="Userimg" src={require("../img/user.png")} alt=""  onClick={()=>onClickChatting(item)}  />
+                  <div className="marginDiv">
+                    <p className="boldText" onClick={()=>onClickChatting(item)}>
+                      {
+                      localStorage.getItem("user-nickname") == item.joinNickname? 
+                      item.postNickname
+                      :
+                      item.joinNickname 
+                      //내 아이디명이 아닌 상대방 아이디
+                      }
+                    </p>
+                      <div className="chatlength"  onClick={()=>onClickChatting(item)}>
+                      {
+                      item.chatList[item.chatList.length-1] !== undefined &&
+                      item.chatList[item.chatList.length-1].message
 
-const List = styled.div`
-  width: 360px;
-  height: 61.76px;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 0px 13px 24px;
-`;
+                      }
 
-const Title = styled.span`
-  font-family: "Pretentard", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 20.83px;
-  width: 186px;
-  padding: 0 5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const Text = styled.span`
-  font-family: 'Pretentard', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 20.83px;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: left;
-`;
-
-const Pic = styled.span`
-  margin-right: 21px;
-`
+                      </div>
+                      
+                      <span className="whiteTime">
+                      {
+                      item.chatList[item.chatList.length-1] !== undefined &&
+                      `${item.chatList[item.chatList.length-1].sendDate.substring(5,7)}월`
+                      }
+                      {item.chatList[item.chatList.length-1] !== undefined &&
+                      `${item.chatList[item.chatList.length-1].sendDate.substring(8,10)}일`
+                      }
+                      </span>
+                  </div>
+                  {item.post.image.length !== 0 && 
+                  <img className="img" src={`${item.post.image[0].image}`}/>}
+              </div>          
+          </div>
+        )})
+              :
+          <>
+            <div>
+            채팅내역이 없습니다.
+            </div>
+            <button onClick={ () =>navigator(-1)}>
+              이전으로
+            </button>
+          </>
+      } 
+      </div>
+    <Footer/>
+  </Layouts>
+  )
+}
+export default ChatList ;

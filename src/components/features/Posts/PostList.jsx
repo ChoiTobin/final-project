@@ -11,10 +11,15 @@ const PostList = () => {
   const dispatch = useDispatch()
   const posts = useSelector((state) => state.post.post.response)
   // console.log("유즈셀렉",posts)
+  
+
+
   useEffect(() => {
+
     dispatch(
       __getPostTime()
     );
+
   }, [dispatch]);
   
   return (	

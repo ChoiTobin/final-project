@@ -15,6 +15,8 @@ import Desc from "../pages/Desc.jsx"
 // 추가
 import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
 import MainLogin from "../pages/MainLogin";
+import OAuthNaverLogin from "../components/features/Login/OAuthNaverLogin"
+// 추가
 
 
 const Router = () => {
@@ -37,6 +39,9 @@ const Router = () => {
       <Route path="/chat" element={<ChatList/>} />
       <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
       <Route path="/Rating" element={<Rating />} />
+       {/* 네이버 */}
+       <Route path="/auth/member/naver/callback" element={<OAuthNaverLogin />} />
+
 
 
       </Routes>

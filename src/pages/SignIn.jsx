@@ -8,6 +8,7 @@ import { ReactComponent as Logo } from "../img/logo-sign.svg";
 
 
 const SignIn = () => {
+  //확인용
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const account = useSelector((state) => state.account);
