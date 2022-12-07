@@ -6,30 +6,20 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import styled from "styled-components";
-import postSlice, { __getDetail } from "../redux/modules/postSlice";
-import mypageSlice, { __getMyPage } from "../redux/modules/mypageSlice";
+import { __getDetail } from "../redux/modules/postSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
-import { __CreateRoom } from "../../src/redux/modules/chattingSlice";
-// import FullHTML from '../FullHTML.css'
 import User from "../img/user.png";
 import { FaStar } from "react-icons/fa";
 import "../styles/detail.css";
 const Detail = () => {
-  const navigator = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.post);
-  // console.log("post",post)
 
   useEffect(() => {
     dispatch(__getDetail(id));
   }, [dispatch]);
-
-  const onClickMove = () => {
-    navigator(-1);
-  };
-  // const ARRAY = [0, 1, 2, 3, 4];
 
   return (
     <Layout>

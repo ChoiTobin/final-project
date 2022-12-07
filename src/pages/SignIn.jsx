@@ -55,7 +55,6 @@ const SignIn = () => {
         <Wrap>
           <div>
             <LoginBox>
-              {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
               <Logo />
               <LogoLogin>LOGIN</LogoLogin>
 

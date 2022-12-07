@@ -131,27 +131,11 @@ const Green = styled.div`
   width: 270px;
   padding: 5px;
 `;
-/*const Green2 = styled.div`
-  color: green;
-  font-size:12px;
-  margin-bottom: 5px;
-  margin-right:100px;
-  margin-top:5px;
-`;
-*/
 
 const ErrorMessageWrap = styled.div`
   color: #ef0000;
 `;
-/*const ErrorMessageWrap2 = styled.div`
-  color:#ef0000;
-  font-size:12px;
-  margin-right:20px;
-  margin-top:5px;
-  margin-bottom: 5px;
 
-  `;
-  */
 const LoginContainer = styled.div`
   display: flex;
   align-items: center;
@@ -167,7 +151,6 @@ const LoginBox = styled.div`
   align-items: center;
   justify-content: center;
   width: 350px;
-  /* margin: 0 auto; */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -213,24 +196,4 @@ const SignButton = styled.button`
   // 버튼 누르면 손모양 나오게 하는 마우스 커서
   cursor: pointer;
   background-color: #838383;
-`;
-const SignupBox = styled.div`
-  background-color: white;
-  width: 350px;
-  height: 80px;
-  border: 1px solid #eee;
-  margin-top: 20px;
-  /* margin: 0 auto; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const LogoBox = styled.div`
-  width: 175px;
-  height: 51px;
-  margin-bottom: 36px;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;

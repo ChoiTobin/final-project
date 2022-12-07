@@ -44,7 +44,6 @@ function Modal2() {
         count === true?
         <>
           <P>
-            {/* <Himg2 onClick={toggleModal} src={require("../../img/20221121_141959.png")}/> */}
             <Done/>
             <Span>완료</Span>
           </P> 
@@ -53,7 +52,6 @@ function Modal2() {
           :
         <> 
           <P>
-            {/* <Himg onClick={toggleModal} src={require("../../img/20221121_141505.png")}/> */}
             <Accept/>
             <Span>수락</Span>
           </P>

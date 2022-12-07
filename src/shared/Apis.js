@@ -6,14 +6,12 @@ const cookies = new Cookies()
 const noToken = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL: process.env.REACT_APP_URL, 
-  //process.env.REACT_APP_URL,
   withCredentials: true,
 })
 
 const token = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL:process.env.REACT_APP_URL, 
-  //process.env.REACT_APP_URL,
   headers: {
     Access_Token:
       localStorage.getItem("Access_Token") === undefined
@@ -26,7 +24,6 @@ const token = axios.create({
 const file = axios.create({
   // 추후에 로컬에서 서버 주소로 변경해야 함
   baseURL:process.env.REACT_APP_URL,
-  //process.env.REACT_APP_URL,
   headers: {
     enctype: "multipart/form-data",
     Access_Token:
@@ -57,15 +54,11 @@ export const Apis = {
   getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
   
   // 게시글 작성
-  // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
   // 게시글 수정
   putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload),
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
-  
-  // getPostTimeAX: () => token.get(`/api/posts`),
-
 
   // 게시글 전체 조회
   getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload}`),
@@ -73,13 +66,6 @@ export const Apis = {
   getKeywordAX: (searchKeyword) => token.get(`/api/search?&content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
   getFilterAX: (categoryKeyword) => token.get(`/api/filter?&category=${categoryKeyword}`),
-  // // 게시글 검색 - 특정 단어 포함 게시글 조회
-  // getKeywordAX: (searchKeyword) => token.get(`/api/search?&size=5&page=${searchKeyword.obj.page}&content=${searchKeyword}`),
-  // // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
-  // getFilterAX: (categoryKeyword) => token.get(`/api/filter?&size=5&page=${categoryKeyword.obj.page}&category=${categoryKeyword.obj.petsize}`),
-
-
-
 
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
@@ -87,7 +73,6 @@ export const Apis = {
   getStateAX: (id) => token.put(`/api/posts/${id}/state`),
   
   // 마이페이지 조회
-  
   getMyPageAX: () => token.get(`/api/mypage`),
   // 마이페이지 내 게시글 조회
   getMyPostAX: () => token.get(`/api/mypage/posts`),
@@ -110,7 +95,6 @@ export const Apis = {
   // 다른회원 마이페이지 게시글 조회
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
- 
   // 평점
   getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }

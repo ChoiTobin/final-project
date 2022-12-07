@@ -2,11 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  __getDetail,
   __getPostTime,
-  __deletePost,
 } from "../../../redux/modules/postSlice";
-import styled from "styled-components";
 import "../../../App.css";
 import { useInView } from "react-intersection-observer";
 import "../../../styles/postlist.css";
@@ -14,7 +11,6 @@ const PostList = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts);
-  const post = useSelector((state) => state.post.post);
   // console.log("posts",posts)
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState();
@@ -23,7 +19,7 @@ const PostList = () => {
   // 서버에서 아이템을 가지고 오는 함수
 
   const getItems = useCallback(async () => {
-    if (localStorage.getItem("전체검색") == "전체") {
+    if (localStorage.getItem("전체검색") === "전체") {
       dispatch(__getPostTime(page));
     }
   }, [page]);

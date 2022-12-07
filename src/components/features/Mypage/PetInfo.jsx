@@ -54,7 +54,6 @@ const PetInfo = ({ myPets }) => {
                     </Text>
                   </Info>
                   <Icon>
-                    {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
                     <Edit
                       onClick={openEditModal}
                       style={{ cursor: "pointer" }}

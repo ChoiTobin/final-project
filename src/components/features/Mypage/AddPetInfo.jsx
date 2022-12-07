@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { __addMyPet } from "../../../redux/modules/mypageSlice";
 import "../../element/MyModal.css";
 
