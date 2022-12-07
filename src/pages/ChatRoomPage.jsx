@@ -1,20 +1,18 @@
 import styled from "styled-components";
+import "../styles/ChatRoomPage.css";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   __getinitialChatList2,
   ListReducer,
 } from "../redux/modules/chattingSlice";
 import { v4 as uuidv4 } from "uuid";
+import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
 import { off } from "process";
-import { ReactComponent as BackArrow } from "../img/header-backarrow.svg";
-import { ReactComponent as Send } from "../img/send.svg";
-import { ReactComponent as User } from "../img/user-chat.svg";
-import "../styles/ChatRoomPage.css";
 
 function ChatRoomPage() {
   const { id } = useParams();
@@ -149,8 +147,7 @@ function ChatRoomPage() {
       <div className="row">
         <div className="flexBox">
           <div>
-            {/* <img className="photoImg" src={require("../img/user.png")} alt=""  /> */}
-            <User />
+            <img className="photoImg" src={require("../img/user.png")} alt="" />
           </div>
           <div>
             <div className="flexBox2">
@@ -196,143 +193,19 @@ function ChatRoomPage() {
           onKeyPress={appKeyPress}
           onChange={inputHandler}
         ></input>
-        {/* <img className="ArrowImg"
-      onSubmit={appKeyPress}
-      onClick={onSubmitHandler}
-      src={require("../img/send.png")}/> */}
-        <Send onSubmit={appKeyPress} onClick={onSubmitHandler} />
+        <img
+          className="ArrowImg"
+          onSubmit={appKeyPress}
+          onClick={onSubmitHandler}
+          src={require("../img/send.png")}
+        />
       </div>
     </div>
   );
 }
-export default ChatRoomPage;
-
-const LoginContainer = styled.div`
-  width: 340px;
-  height: 640px;
-  background-color: #f6f0ee;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-`;
-
-const Header = styled.div`
-  border-bottom: 1px solid #ed9071;
-  width: 340px;
-  height: 70px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-left: 22.79px;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-`;
-
-const Btn = styled.span`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Section = styled.div`
-  width: 100%;
-  height: 59px;
-  display: flex;
-  border-bottom: 1px solid rgba(237, 144, 113, 0.41);
-`;
-
-const Time = styled.span`
-  font-size: 6px;
-`;
-const Nickname = styled.p`
-  font-weight: bold;
-  font-size: 15px;
-`;
-
-const Profile = styled.div`
-  margin-top: 5px;
-  margin-right: 5px;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  text-align: center;
-  line-height: 50px;
-`;
-
-const Chatput = styled.div`
-  border-radius: 20%;
-  position: relative;
-`;
-const Input = styled.input`
-  width: 100%;
-  height: 30px;
-  outline: none;
-  text-indent: 8px;
-  border: 2px solid #ed9071;
-  border-radius: 30px;
-  display: inline-block;
-  font-weight: lighter;
-  font-size: 12px;
-  max-width: calc(100% - 32px);
-  min-width: 50px;
-`;
-const Colorspan2 = styled.div`
-  background: gray;
-  color: black;
-  padding: 6px;
-  border-radius: 7px;
-  font-size: 12px;
-  display: flex;
-  flex-direction: left;
-  text-align: left;
-  width: 170px;
-  margin-bottom: 3px;
-  float: right;
-
-  overflow: hidden;
-`;
-const Colorspan = styled.div`
-  background: #ed9071;
-  color: black;
-  padding: 8px;
-  box-sizing: border-box;
-  border-radius: 7px;
-  font-size: 12px;
-  display: flex;
-  text-align: left;
-  width: 150px;
-  margin-bottom: 3px;
-
-  overflow: hidden;
-`;
-
-const TextBox = styled.div`
-  /* padding: 4px; */
-  min-height: 20.26px;
-  width: 318.82px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: left;
-`;
-
-const Top = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
-`;
-
+{
+  /* footer */
+}
 const OverFlow = styled.div`
   overflow: auto;
 
@@ -349,50 +222,5 @@ const OverFlow = styled.div`
     display: none;
   }
 `;
-const DivAt = styled.div`
-  margin-top: 10px;
-  text-align: center;
-  color: #787878;
-  font-size: 12px;
-  /* background: #f6f0ee; */
-`;
-const Money = styled.p`
-  font-weight: bold;
-`;
-const Title = styled.span`
-  width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 12px;
-`;
-const Span = styled.span`
-  width: 30px;
-  margin-left: 10px;
-`;
-const OrangeSpan = styled.span`
-  color: #ed9071;
-  font-size: 16px;
-  font-weight: 900;
-  line-height: 15.51px;
-`;
-const Img = styled.img`
-  margin-top: 6px;
-  height: 25px;
-  width: 25px;
-  margin-left: 10px;
-`;
-const Img2 = styled.img`
-  height: 33px;
-  width: 30px;
-`;
 
-const Chating = styled.div`
-  height: 400px;
-  over-flow: hidden;
-  background-color: #ffecef;
-  text-align: center;
-  line-height: 400px;
-`;
+export default ChatRoomPage;

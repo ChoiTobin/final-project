@@ -49,25 +49,13 @@ export const Apis = {
   // 소셜 로그인 - 카카오
   loginKakaoAX: (loginInfo) => token.post(`auth/kakaoLogin`, loginInfo), 
 
-  //채팅방 생성
+  //createRoom
   CreateRoom: (createRoom) => token.post(`/room`, createRoom),
-  // 채팅방 목록 조회,
+  // getRoomList: () => token.get(`/roomList`),
   getRoomList: () => token.get(`/roomList`),
 
-
-
-  naverloginAX: (loginData) =>noToken.get(`/auth/member/naver/callback?code=${loginData.code}&state=${loginData.state}`
-  ),
-/// * 밑으로는 따로 올려주기 깃허브
+  getInitialChatList: (getInitialList) => token.post(`/roomInfo`,getInitialList),
   
-
-  //모달
-  complete: (complete) => token.put(`/room/${complete}`),
-  //채팅방입장 룸정보
-
-  //받아온 리스폰스로 뿌려줄거
-  getInitialChatList2: (getInitialList2) => token.get(`/roomInfo/${getInitialList2}`),
-
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
@@ -122,7 +110,7 @@ export const Apis = {
   // 다른회원 마이페이지 게시글 조회
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
-
+ 
   // 평점
   getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }

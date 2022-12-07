@@ -1,3 +1,4 @@
+import "../styles/ChatList.css";
 import React, { useEffect } from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
@@ -8,8 +9,6 @@ import {
   __getinitialChatList2,
   __getRoomList,
 } from "../redux/modules/chattingSlice";
-import { ReactComponent as User } from "../img/user-chat.svg";
-import "../styles/ChatList.css";
 
 const ChatList = () => {
   const { id } = useParams();
@@ -41,8 +40,12 @@ const ChatList = () => {
             return (
               <div className="root" key={i}>
                 <div className="flexDiv">
-                  {/* <img className="Userimg" src={require("../img/user.png")} alt=""  onClick={()=>onClickChatting(item)}  /> */}
-                  <User onClick={() => onClickChatting(item)} />
+                  <img
+                    className="Userimg"
+                    src={require("../img/user.png")}
+                    alt=""
+                    onClick={() => onClickChatting(item)}
+                  />
                   <div className="marginDiv">
                     <p
                       className="boldText"
@@ -76,11 +79,7 @@ const ChatList = () => {
                     </span>
                   </div>
                   {item.post.image.length !== 0 && (
-                    <img
-                      className="img"
-                      src={`${item.post.image[0].image}`}
-                      alt=""
-                    />
+                    <img className="img" src={`${item.post.image[0].image}`} />
                   )}
                 </div>
               </div>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { __getPostRating } from "../../../redux/modules/postSlice";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 import "../../../styles/rating.css";
 
 function Rating() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const chatList = useSelector((state) => state.chatting.chatList);

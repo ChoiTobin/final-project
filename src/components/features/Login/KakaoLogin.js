@@ -1,8 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 import { ReactComponent as Naver } from "../../../img/sign-naver.svg";
 import { ReactComponent as Kakao } from "../../../img/sign-kakao.svg";
+import { useNavigate } from 'react-router-dom'
 
 const KakaoLogin = () => {
     const navigate  = useNavigate();
@@ -34,13 +34,6 @@ const KakaoLogin = () => {
 
 
 export default KakaoLogin
-
-const Btns = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content:center ;
-`
 
 const Img2 = styled.img`  
 width:45px;

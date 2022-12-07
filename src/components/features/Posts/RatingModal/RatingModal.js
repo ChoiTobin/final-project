@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
 import Rating from "../Rating";
@@ -56,4 +57,3 @@ function RatingModal() {
 
 
 export default RatingModal
-
