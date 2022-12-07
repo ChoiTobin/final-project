@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.0.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@stomp/stompjs": "^6.1.2",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,7 +13,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
-    "axios": "^1.1.3",
+    "axios": "^1.2.0",
     "bootstrap": "^5.2.2",
     "browser-image-compression": "^2.0.0",
     "env-cmd": "^10.1.0",
@@ -34,14 +35,16 @@
     "redux": "^4.2.0",
     "sockjs-client": "^1.6.1",
     "styled-components": "^5.3.6",
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34",
     "webstomp-client": "^1.2.6"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -61,5 +64,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }

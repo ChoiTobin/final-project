@@ -6,7 +6,7 @@ import Rating from "../Rating";
 
 
 
- function RatingModal(modal2,setModal2 ) {
+ function RatingModal() {
   const [modal, setModal] = useState(false);
   
   const dispatch = useDispatch();
@@ -16,10 +16,10 @@ import Rating from "../Rating";
   })
 
   const toggleModal = () => {
-    setModal(!modal2);
+    setModal(!modal);
   };
   
-  if(modal2) {
+  if(modal) {
     document.body.classList.add('active-modal')
     
   } else{
@@ -40,7 +40,7 @@ import Rating from "../Rating";
       {/* 모달창 승인버튼 green OR black */}
       
       {
-      modal2 && ( 
+      modal && ( 
         <div className="Rating">
           <div className="center">
             <div onClick={toggleModal} className="RatingOverlay"></div>
@@ -59,3 +59,4 @@ import Rating from "../Rating";
 
 
 export default RatingModal
+

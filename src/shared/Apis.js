@@ -79,8 +79,24 @@ export const Apis = {
   putPostAX: (payload) => file.put(`/api/posts/${payload.id}`, payload),
   // 게시글 삭제
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
+  
+  // getPostTimeAX: () => token.get(`/api/posts`),
+
+
   // 게시글 전체 조회
-  getPostTimeAX: () => token.get(`/api/posts`),
+  getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload}`),
+  // 게시글 검색 - 특정 단어 포함 게시글 조회
+  getKeywordAX: (searchKeyword) => token.get(`/api/search?&content=${searchKeyword}`),
+  // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
+  getFilterAX: (categoryKeyword) => token.get(`/api/filter?&category=${categoryKeyword}`),
+  // // 게시글 검색 - 특정 단어 포함 게시글 조회
+  // getKeywordAX: (searchKeyword) => token.get(`/api/search?&size=5&page=${searchKeyword.obj.page}&content=${searchKeyword}`),
+  // // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
+  // getFilterAX: (categoryKeyword) => token.get(`/api/filter?&size=5&page=${categoryKeyword.obj.page}&category=${categoryKeyword.obj.petsize}`),
+
+
+
+
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
   // 게시글 진행 상태 수정
@@ -110,10 +126,7 @@ export const Apis = {
   // 다른회원 마이페이지 게시글 조회
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
-  // 게시글 검색 - 특정 단어 포함 게시글 조회
-  getKeywordAX: (searchKeyword) => token.get(`/api/search?content=${searchKeyword}`),
-  // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
-  getFilterAX: (categoryKeyword) => token.get(`/api/filter?category=${categoryKeyword}`),
+ 
   // 평점
   getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }

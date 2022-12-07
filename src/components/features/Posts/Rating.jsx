@@ -5,13 +5,12 @@ import { __getPostRating } from "../../../redux/modules/postSlice";
 import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
 import '../../../css/rating.css'
-import { __complete } from "../../../redux/modules/chattingSlice";
 
 function Rating() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const listReducer = useSelector((state) => state.chatting.room);
 
+  const chatList = useSelector((state) => state.chatting.chatList)
   // console.log("chatList:",chatList) //joinNickname 셀렉터로 가져옴
 
   const ARRAY = [0, 1, 2, 3, 4];
@@ -30,7 +29,7 @@ function Rating() {
   let score = rating.filter(Boolean).length;
 
   let obj = {
-    joinUser:listReducer.joinUser,
+    joinUser:chatList.joinUser,
     rating:score,
   }
 
@@ -38,13 +37,11 @@ function Rating() {
   //length까지 붙여서 결국 "true=별을 클릭한 갯수"을 구현한 것.
   const onClickStars = () => {
     dispatch(__getPostRating(obj));	
-    dispatch(__complete(listReducer.postId))
-    window.location.replace("/home")
   };
 
   return (
     <div className='Rating-wrap'>
-        <p>"{listReducer.joinNickname}"님에게</p>  
+        <p>"{chatList.joinNickname}"님에게</p>  
         <p>소중한 평점을 남겨주세요.</p>  
         <Stars>
           {ARRAY.map((el, idx) => {
@@ -91,3 +88,4 @@ const Stars = styled.div`
     color: #ED9071;
   }
 `;
+

@@ -13,6 +13,9 @@ import { ReactComponent as Place } from "../img/post-local.svg";
 import { ReactComponent as Post } from "../img/post-content.svg";
 import { ReactComponent as User } from "../img/user-post.svg";
 import '../FullHTML.css'
+import User from "../img/user.png";
+import { FaStar } from 'react-icons/fa';
+import "../css/detail.css"
 const Detail = () => {
   const navigator = useNavigate();
   const {id}  = useParams()

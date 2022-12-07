@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  __getPostTime,
-  __getKeyword,
-  __getCategory,
-} from "../../../redux/modules/postSlice";
+import { useDispatch , useSelector } from "react-redux";
+import {__getPostTime,__getKeyword,__getCategory,} from "../../../redux/modules/postSlice";
 import styled from "styled-components";
-import "../../../App.css";
-import Carousel from "react-bootstrap/Carousel";
-import { ReactComponent as Search } from "../../../img/search.svg";
-import '../../../styles/List.css'
-
+import { ButtonGroup } from "react-bootstrap";
+import '../../../App.css';
+import Carousel from 'react-bootstrap/Carousel';
 const Content = () => {
-  const dispatch = useDispatch();
-  // const searchposts = useSelector((state) => state.post.post.response)
-  // const {posts} = useSelector((state)=>state.post)
+  const dispatch = useDispatch()
 
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
@@ -29,8 +21,9 @@ const Content = () => {
       return alert("내용을 입력해주세요.");
     }
     dispatch(__getKeyword(getSearch.search));
+    console.log("검색:",getSearch.search)
   };
-
+  
   const appKeyPress = (e) => {
     if (e.key === "Enter") {
       onClickSearch();
@@ -44,17 +37,38 @@ const Content = () => {
     // console.log("vmfka",props.state)
     dispatch(__getPostTime()); //문제 온클릭했을때 셋이되기전에 겟을 먼저한다
   };
+  }
+  // const [page, setPage] = useState(0);
+  // const [petsize, setPetsize] = useState();
+  // let obj = {
+  //   page:page,
+  //   petsize:petsize
+  // }
+
+  let All = '전체검색'
+  localStorage.setItem(All,"전체")
+  const onClickAll = () =>{ //전체검색
+    //dispatch(__getPostTime(setPage));//문제 온클릭했을때 셋이되기전에 겟을 먼저한다
+    window.location.replace("/home")
+    localStorage.setItem(All,"전체")
+
+    //전체조회 눌렀을때 배열을 비우고 다시 0페이지인 배열을 
+    //뿌려줘야하는데... 어떻게해야할지 고민해봐야할듯 
+  } 
   const onClickBig = () => {
     dispatch(__getCategory("대형"));
+    localStorage.removeItem(All)
   };
   const onClickMiddle = () => {
     dispatch(__getCategory("중형"));
-
+    localStorage.removeItem(All)
   };
   const onClickSmall = () => {
     dispatch(__getCategory("소형"));
-
+    localStorage.removeItem(All)
   };
+   
+  
 
   return (
     <div className="list-wrap">

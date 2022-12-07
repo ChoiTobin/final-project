@@ -18,17 +18,17 @@ import { ReactComponent as Preview } from "../../../img/form-preview.svg";
 const Post = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [conimal, setConimal] = useState({
-    title: "",
-    price: "",
-    content: "",
-    category: "크기선택",
-    state: "진행중",
-    local: "",
-    date: "",
-    imgs: [""],
-  });
-
+  const [conimal , setConimal] = useState({
+    title:"",
+    price:"",
+    content:"",
+    category:"대형",
+    state:"진행중",
+    local:"",
+    date:"",
+    imgs:[""]
+  })
+  
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setConimal({ ...conimal, [name]: value });
@@ -62,7 +62,20 @@ const Post = () => {
       alert("의뢰비용을 입력해주세요.");
       return;
     }
-    setConimal("");
+    if (conimal.date === "") {
+      alert("희망날짜를 선택해주세요.")
+      return
+    }
+    if (conimal.local === "") {
+      alert("의뢰지역을 선택해주세요.")
+      return
+    }
+    if (conimal.category === "") {
+      alert("견종크기를 선택해주세요.")
+      return
+    }
+    
+    setConimal("")
 
     const data = {
       title: conimal.title,
@@ -75,22 +88,19 @@ const Post = () => {
     };
 
     //폼 데이터에 글작성 데이터 넣기
-    formData.append("postImg", fileUrls);
-    formData.append(
-      "postRequestDto",
-      new Blob([JSON.stringify(data)], {
-        type: "application/json",
-      })
-    );
-    dispatch(__addPost(formData));
-    // console.log("이게가는지?",formData)
-  };
-
+    formData.append("postImg",fileUrls);
+    formData.append("postRequestDto", new Blob([JSON.stringify(data)], {
+      type: "application/json"
+    }));
+    dispatch(__addPost(formData));	  
+  // console.log("이게가는지?",formData)  
+  }
   return (
     <Layout>
       <Header />
       <Bg>
         <Form>
+          <h1>POST</h1>
           <label htmlFor="imgFile" />
           <Carousel fade>
             {fileUrls !== undefined &&
@@ -136,20 +146,8 @@ const Post = () => {
             />
             <span>사진 업로드</span>
           </ImgUpload>
-          <Select
-            name="category"
-            value={conimal.category || ""}
-            onChange={onChangeHandler}
-            required
-          >
-            <option default value="크기">
-              크기 선택
-            </option>
-            <option value="대형">대형- 15kg초과</option>
-            <option value="중형">중형- 7kg초과</option>
-            <option value="소형">소형- 5kg초과</option>
-          </Select>
-          <Input
+          <span className="desk">*최대 사진 5장 업로드 가능</span>
+          <input
             type="text"
             maxLength={30}
             name="title"
@@ -158,32 +156,38 @@ const Post = () => {
             required
             placeholder="제목"
           />
-          <Input2
+          <textarea
+            name="content"
+            value={conimal.content || ""}
+            onChange={onChangeHandler}
+            required
+            placeholder="내용"
+          />
+          <input
+            type="number"
+            name="price"
+            value={conimal.price || ""}
+            onChange={onChangeHandler}
+            placeholder="희망가격"
+            required
+          />
+          <input
+            className="date"
             type="date"
             name="date"
+            data-placeholder="희망 날짜를 입력해주세요."
+            required aria-required="ture"
             value={conimal.date || ""}
             onChange={onChangeHandler}
           />
-          <One>
-            <Input
-              style={{ width: "100%" }}
-              type="number"
-              name="price"
-              value={conimal.price || ""}
-              onChange={onChangeHandler}
-              placeholder="희망가격"
-              required
-            />
-            <P2>원</P2>
-          </One>
-          <Select2
+          <select
             name="local"
             value={conimal.local || ""}
             required
             onChange={onChangeHandler}
           >
-            <option default value="지역을 선택해주세요">
-              위치
+            <option default value="지역을 선택해주세요.">
+              희망 위치를 선택해주세요.
             </option>
             <option value="서울특별시">서울특별시</option>
             <option value="강원도">강원도</option>
@@ -200,35 +204,31 @@ const Post = () => {
             <option value="전라북도">전라북도</option>
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
-          </Select2>
-          <Textarea
-            style={{
-              width: "100%",
-              height: "8em",
-              resize: "none",
-              textIndent: 10,
-              // outline: "none",
-            }}
-            name="content"
-            value={conimal.content || ""}
+          </select>
+          <select
+            name="category"
+            value={conimal.category || ""}
             onChange={onChangeHandler}
             required
-            placeholder="내용"
-          />
+          >
+            <option default value="">견종의 크기를 선택해주세요.</option>
+            <option value="대형">대형- 15kg초과</option>
+            <option value="중형">중형- 7kg초과</option>
+            <option value="소형">소형- 5kg초과</option>
+          </select>
           <input
             type="hidden"
             name="state"
             value="진행중"
             onChange={onChangeHandler}
           />
-        </Form>
-      </Bg>
-
-      <ButtonGroup style={{ marginTop: 14 }}>
-        <FormBtn1 onClick={() => navigate("/home")}>취소하기</FormBtn1>
-        <FormBtn2 onClick={writeSubmit}>업로드</FormBtn2>
-      </ButtonGroup>
-      <Footer />
+          </Form>  
+        </Bg>
+        <div className="btngroup">
+            <button onClick={() => navigate("/home")}>취소하기</button>
+            <button onClick={writeSubmit}>업로드</button>
+          </div>
+      <Footer/>
     </Layout>
   );
 };
@@ -288,8 +288,8 @@ const ImgUpload = styled.button`
   align-items: center;
   justify-content: center;
   margin: 12.59px auto 12.23px;
-  background-color: rgba(243, 243, 243, 0.64);
-  /* img {
+   background-color: rgba(243, 243, 243, 0.64); 
+   img {
     align-items: center;
     justify-content: center;
     margin: 10px 0 0 10px;
@@ -429,7 +429,7 @@ const Textarea = styled.textarea`
 const InputImg = styled.input`
   display: none;
   height: 40px;
-  background: #fff;
+  /* background: #fff; */
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
