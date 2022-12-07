@@ -1,0 +1,82 @@
+.LoginContainer{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;  
+}
+.wrap{
+    display: flex;
+}
+.LoginBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    /* margin: 0 auto; */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.LogoLogin{
+    color: #ed9071;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+.Red{
+color: #ef0000;
+font-size: 12px;
+text-align: left;
+width: 270px;
+padding: 5px;  
+}
+.Green{
+    color: green;
+    font-size: 12px;
+    text-align: left;
+    width: 270px;
+    padding: 5px;
+}
+.ErrorMessageWrap{
+    color: #ef0000;
+}
+.Input{
+    border: 1px solid #929292;
+    width: 250px;
+    height: 40px;
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 10px;
+    background: #fafafa;
+    border-radius: 3px;
+}
+.Input:focus{
+    outline: 1px solid #adadad;
+}
+.LoginButton{
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    width: 253px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 70px;
+    cursor: pointer;
+    background-color: #ed9071;
+}
+.SignButton{
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    width: 253px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: #838383;
+}
