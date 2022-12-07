@@ -22,5 +22,8 @@ export default Home ;
 const HomePage = styled.div`
   /* width: 90%; */
   max-width: 100vw;
+  max-height: 100vh;
   margin: auto;
+  background-color: #FFF;
+  /* background-color: #F6F0EE; */
 `

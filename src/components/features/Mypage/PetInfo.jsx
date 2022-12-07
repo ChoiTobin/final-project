@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __deleteMyPet, __getMyPet } from "../../../redux/modules/mypageSlice";
-import { ReactComponent as Edit } from "../../../img/edit.svg";
-import { ReactComponent as Delete } from "../../../img/delete.svg";
+import { ReactComponent as Edit } from "../../../img/my-edit.svg";
+import { ReactComponent as Delete } from "../../../img/my-delete.svg";
 import ModalPortal from "../../element/ModalPortal";
 import EditPetInfo from "../Mypage/EditPetInfo"
 import "../../element/MyModal.css";
@@ -11,9 +11,6 @@ import "../../element/MyModal.css";
 
 const PetInfo = ({ myPets }) => {
   const dispatch = useDispatch();
-
-  console.log("형태가 뭐야 대체", myPets);
-  console.log("길이가 나오나", myPets.length);
 
   // 나의 반려동물 삭제
   const onDeleteMyPet = (id) => {
@@ -47,9 +44,6 @@ const PetInfo = ({ myPets }) => {
                 <Content key={pet.id}>
                   <Info>
                     <Category>{pet.category}</Category>
-                    {/* <Category>
-                      
-                    </Category> */}
                     <Text>
                       <Main>
                         <Name>{pet.name}</Name>
@@ -60,7 +54,6 @@ const PetInfo = ({ myPets }) => {
                     </Text>
                   </Info>
                   <Icon>
-                    {/* 여기서 수정하기 버튼을 누르면 "EditPetInfo.jsx"로 이동해야 한다 */}
                     <Edit
                       onClick={openEditModal}
                       style={{ cursor: "pointer" }}
@@ -144,7 +137,7 @@ const Main = styled.div`
 
 const Category = styled.span`
   color: #ed9071;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 14px;
   font-weight: 510;
   line-height: 16.71px;
@@ -158,7 +151,7 @@ const Name = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 16.71px;
@@ -170,7 +163,7 @@ const Down = styled.div`
   align-items: center;
   width: 129.49px;
   height: 12.01px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 10px;
   color: "#B0B0B0";
   margin-top: 8.32px;
@@ -179,7 +172,7 @@ const Down = styled.div`
 
 const Age = styled.span`
   color: rgba(176, 176, 176, 1);
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 10px;
   line-height: 11.93px;
   margin-top: -4px;

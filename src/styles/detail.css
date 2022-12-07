@@ -1,0 +1,87 @@
+.item-box {
+  border-bottom: 1px solid #ed9071;
+  border-top: 1px solid #ed9071;
+  padding: 20px 30px;
+}
+.item-box > h3 {
+  font-size: 18px;
+  font-weight: 900;
+  color: #ed9071;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.item-box > p {
+  font-size: 16px;
+  font-weight: 900;
+  color: #4e4e4e;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+.item-box > p > span {
+  font-weight: 500;
+}
+.item-box > .date {
+  position: relative;
+  display: flex;
+  margin: 0;
+  gap: 15px;
+}
+.item-box > .date > p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 27px;
+  margin-right: 20px;
+  color: #696969;
+}
+.item-box > .date > p > img {
+  margin-right: 5px;
+  margin-top: -3px;
+}
+.item-box > .date > p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 27px;
+  margin: 0;
+  color: #696969;
+}
+.item-box > .date > .createdAt {
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0;
+  color: #696969;
+  line-height: 27px;
+  position: absolute;
+  left: 250px;
+}
+.content {
+  margin: 0;
+  font-size: 14px;
+  border-bottom: 1px solid #ed9071;
+  padding: 20px 30px;
+}
+.profile {
+  display: flex;
+  border-bottom: 1px solid #ed9071;
+  padding: 20px 30px;
+}
+.profile > .profile-name {
+  display: flex;
+  flex-direction: column;
+}
+.profile > .profile-name > p {
+  margin: 0;
+  margin-left: 10px;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+.chatBtn {
+  border: none;
+  width: 360px;
+  height: 45px;
+  line-height: 45px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 900;
+  background: #ed9071;
+}

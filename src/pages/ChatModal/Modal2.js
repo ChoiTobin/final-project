@@ -1,99 +1,103 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
-import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
-// import { trueChat,postChat } from "../../redux/modules/chattingSlice";
 import { __complete } from "../../redux/modules/chattingSlice";
 import RatingModal from "./../../components/features/Posts/RatingModal/RatingModal";
+import { ReactComponent as Accept } from '../../img/state-b.svg';
+import { ReactComponent as Complete } from '../../img/state-g.svg';
+import '../../styles/Modal.css'
 
- function Modal2() {
-  const [modal, setModal] = useState(false);
-  
+function Modal2() {
   const dispatch = useDispatch();
-
-  const listReducer = useSelector((state) => state.chatting.chatList);
-
+  const listReducer = useSelector((state) => state.chatting.room);
   const complete = useSelector((state) => state.chatting.complete);
 
-
-  // const count = useSelector((state) => state.chatting.chatTrueFalse)
-  const [WriteTrue,setWriteTrue ] =useState ({
-    mode:false
-  })
-
   const onClickButton = (e) => {
-    e.preventDefault()
-    setModal(!modal);
-    setWriteTrue(WriteTrue.mode=true)
+
     dispatch(__complete(listReducer.postId))
-    // dispatch(trueChat(WriteTrue))
+    setModal(false)
 
-    //false로 바뀐다.
-    }
+
+
+    setTimeout(
+      function () {
+        window.location.reload();
+      }
+      ,200 
+      );
+  
+  }
+
+  const [modal,setModal] = useState(false);
+  const [modal2,setModal2] = useState(false);
+      
   const toggleModal = () => {
-    setModal(!modal);
-
-
-  };
-  if(modal) {
-    document.body.classList.add('active-modal')
-    
-  } else{
-    document.body.classList.remove('active-modal')
+        setModal(!modal);
+    };
+  const toggleModal2 = () => {
+        setModal2(!modal2);
   }
 
 
+    return (
+      <>  
 
-  let str = "진행중"
-  let UserBoxMessage ="20221121_141505"
-  if(complete== "진행중")
   {
-     str = "진행중"
-     UserBoxMessage="20221121_141505"
-  }else if(complete == "완료")
-  {
-     str = "완료"
-     UserBoxMessage= "20221121_141959"
+      listReducer.state === "완료" ? 
+      <Complete /> 
+      :   
+      listReducer.state === "산책중" ? 
+      <>
+      <div className="flexZone">
+          <div>
+          <Complete onClick={toggleModal2} /> 
+
+          </div>  
+          <div>
+            <div className="clearName">완료</div>
+          </div>  
+      </div>
+      </>
+      :
+      <div className="flexZone">
+      <div>
+      <Accept onClick={toggleModal} />
+
+      </div>  
+      <div>
+        <div className="clearName">수락</div>
+      </div>  
+  </div>
+      
+
   }
 
-//완료버튼일때 클릭하면 내모달이아니고 현진님 모달.
+  {
+  modal2 &&(
+    <RatingModal modal2 setModal2></RatingModal>
+    )
+  }
 
 
-  return (
-    <>
-      { str == "완료" ? 
-        <RatingModal></RatingModal>
-          :
-            <>
-          <Himg2 onClick={toggleModal} src={require(`../../img/${UserBoxMessage}.png`)}/>
-          <Span>{str}</Span>
-          </>  
-          
-      }
-
-
-
-      {/* 모달창 승인버튼 green OR black */}
-
-      {
-      modal && ( 
-        <div className="modal2">
-            <div onClick={toggleModal} className="overlay2"></div>
-          <div className="modal2-content2">
-            <div className="modalTwo2">
-              <div className="content2">
-                <span  className="pink">'서폿구책'</span>님의
-                <span className="pink">'저와 산서폿'</span>
-                <br/>를 수락하시겠습니까?
-              </div>
+  {  
+  modal && (
+      <div className="modal2">
+          <div onClick={toggleModal} className="overlay2"></div>
+        <div className="modal2-content2">
+          <div className="modalTwo2">
+            <div className="content2">
+              <span  className="pink2">{listReducer.joinUserNickname}</span>님의
+              <span className="pink">'{listReducer.title}'</span>
+              <br/>를 수락하시겠습니까?
             </div>
-            <button className="falseButton" onClick={toggleModal}>취소</button>
-            <button className="trueButton" onClick={onClickButton}>수락</button>
           </div>
+          <button className="falseButton" onClick={toggleModal}>취소</button>
+          <button className="trueButton" onClick={onClickButton}>수락</button>
         </div>
+      </div>
       )
-      }
-    </>
+    }   
+  </>
   );
 }
 

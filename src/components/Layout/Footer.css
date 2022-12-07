@@ -1,0 +1,13 @@
+.footer {
+  width: 360px;
+  height: 55.7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding-left: 10px;
+
+  background-color: #FFF;
+  border: 0.5px solid rgba(248, 209, 197, 0.5);
+}

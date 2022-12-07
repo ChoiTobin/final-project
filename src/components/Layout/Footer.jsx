@@ -1,56 +1,28 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ReactComponent as HomeColor } from "../../img/home-f.svg";
-import { ReactComponent as HomeMono } from "../../img/home-fo.svg";
-import { ReactComponent as ChatColor } from "../../img/chat-f.svg";
-import { ReactComponent as ChatMono } from "../../img/chat-fo.svg";
-import { ReactComponent as WriteColor } from "../../img/write-f.svg";
-import { ReactComponent as WriteMono } from "../../img/write-fo.svg";
-import { ReactComponent as MypageColor } from "../../img/my-f.svg";
-import { ReactComponent as MypageMono } from "../../img/my-fo.svg";
-import { useNavigate } from "react-router-dom/dist";
+import { useNavigate } from "react-router-dom";
+import Home from "../../img/home-g.svg";
+import AHome from "../../img/home-c.svg";
+import Chat from "../../img/chat-g.svg";
+import AChat from "../../img/chat-c.svg";
+import Posting from "../../img/post-g.svg";
+import APosting from "../../img/post-c.svg";
+import Mypage  from "../../img/my-g.svg";
+import AMypage  from "../../img/my-c.svg";
+import "./Footer.css";
 
 const Footer = () => {
   const navigate = useNavigate();
 
-  const onClickChat = () => {
-    navigate(`/chat`);
-  };
-
-  const onClickHome = () => {
-    navigate(`/home`);
-  };
-
-  const onClickWrite = () => {
-    navigate(`/form`);
-  };
-
-  const onClickMy = () => {
-    navigate(`/mypage`);
-  };
-
+  
   return (
-    <Layout>
-      <HomeMono onClick={onClickHome} id="home" />
-      <ChatMono onClick={onClickChat} id="chat" />
-      <WriteMono onClick={onClickWrite} id="write" />
-      <MypageMono onClick={onClickMy} id="mypage" />
-    </Layout>
+    <div className="footer">
+      <img src={Home} alt="" onClick={() => navigate("/home")} className="home" />
+      <img src={Chat} alt="" onClick={() => navigate("/chat")} className="chat" />
+      <img src={Posting} alt="" onClick={() => navigate("/form")} className="post" />
+      <img src={Mypage} alt="" onClick={() => navigate("/mypage")} className="mypage" />
+    </div>
   );
 };
 
 export default Footer;
-
-const Layout = styled.div`
-  height: 55.7px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  gap: 58px;
-  cursor: pointer;
-  background-color: #fff;
-
-  border: 1px solid #ED9071;
-`;

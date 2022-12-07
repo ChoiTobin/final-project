@@ -5,14 +5,13 @@ import styled from "styled-components";
 
 // React BootStrap Library Import
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ButtonGroup } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
-
 import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
-import { ReactComponent as Photo } from "../../../img/photo.svg";
+import { ReactComponent as Photo } from "../../../img/form-preview.svg";
+import "../../../styles/form.css";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ const Post = () => {
     title: "",
     price: "",
     content: "",
-    category: "크기선택",
+    category: "대형",
     state: "진행중",
     local: "",
     date: "",
@@ -61,6 +60,19 @@ const Post = () => {
       alert("의뢰비용을 입력해주세요.");
       return;
     }
+    if (conimal.date === "") {
+      alert("희망날짜를 선택해주세요.");
+      return;
+    }
+    if (conimal.local === "") {
+      alert("의뢰지역을 선택해주세요.");
+      return;
+    }
+    if (conimal.category === "") {
+      alert("견종크기를 선택해주세요.");
+      return;
+    }
+
     setConimal("");
 
     const data = {
@@ -82,14 +94,14 @@ const Post = () => {
       })
     );
     dispatch(__addPost(formData));
-    // console.log("이게가는지?",formData)
-  };
 
+  };
   return (
     <Layout>
       <Header />
       <Bg>
         <Form>
+          <h1>POST</h1>
           <label htmlFor="imgFile" />
           <Carousel fade>
             {fileUrls.map((img) => {
@@ -101,7 +113,7 @@ const Post = () => {
                     objectFit: "contain",
                   }}
                 >
-                  <Img style={{ width: "550px" }} src={img ? img : ""} />
+                  <Img src={img ? img : ""} />
                 </Carousel.Item>
               );
             })}
@@ -130,20 +142,8 @@ const Post = () => {
             />
             <span>사진 업로드</span>
           </ImgUpload>
-          <Select
-            name="category"
-            value={conimal.category || ""}
-            onChange={onChangeHandler}
-            required
-          >
-            <option default value="대형">
-              크기 선택
-            </option>
-            <option value="대형">대형- 15kg초과</option>
-            <option value="중형">중형- 7kg초과</option>
-            <option value="소형">소형- 5kg초과</option>
-          </Select>
-          <Input
+          <span className="desk">*최대 사진 5장 업로드 가능</span>
+          <input
             type="text"
             maxLength={30}
             name="title"
@@ -152,32 +152,39 @@ const Post = () => {
             required
             placeholder="제목"
           />
-          <Input2
+          <textarea
+            name="content"
+            value={conimal.content || ""}
+            onChange={onChangeHandler}
+            required
+            placeholder="내용"
+          />
+          <input
+            type="number"
+            name="price"
+            value={conimal.price || ""}
+            onChange={onChangeHandler}
+            placeholder="희망가격"
+            required
+          />
+          <input
+            className="date"
             type="date"
             name="date"
+            data-placeholder="희망 날짜를 입력해주세요."
+            required
+            aria-required="ture"
             value={conimal.date || ""}
             onChange={onChangeHandler}
           />
-          <One>
-            <Input
-              style={{ width: "100%" }}
-              type="number"
-              name="price"
-              value={conimal.price || ""}
-              onChange={onChangeHandler}
-              placeholder="희망가격"
-              required
-            />
-            <P2>원</P2>
-          </One>
-          <Select2
+          <select
             name="local"
             value={conimal.local || ""}
             required
             onChange={onChangeHandler}
           >
-            <option default value="지역을 선택해주세요">
-              위치
+            <option default value="지역을 선택해주세요.">
+              희망 위치를 선택해주세요.
             </option>
             <option value="서울특별시">서울특별시</option>
             <option value="강원도">강원도</option>
@@ -194,21 +201,20 @@ const Post = () => {
             <option value="전라북도">전라북도</option>
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
-          </Select2>
-          <Textarea
-            style={{
-              width: "100%",
-              height: "8em",
-              resize: "none",
-              textIndent: 10,
-              // outline: "none",
-            }}
-            name="content"
-            value={conimal.content || ""}
+          </select>
+          <select
+            name="category"
+            value={conimal.category || ""}
             onChange={onChangeHandler}
             required
-            placeholder="내용"
-          />
+          >
+            <option default value="">
+              견종의 크기를 선택해주세요.
+            </option>
+            <option value="대형">대형- 15kg초과</option>
+            <option value="중형">중형- 7kg초과</option>
+            <option value="소형">소형- 5kg초과</option>
+          </select>
           <input
             type="hidden"
             name="state"
@@ -217,11 +223,10 @@ const Post = () => {
           />
         </Form>
       </Bg>
-
-      <ButtonGroup style={{ marginTop: 14 }}>
-        <FormBtn1 onClick={() => navigate("/home")}>취소하기</FormBtn1>
-        <FormBtn2 onClick={writeSubmit}>업로드</FormBtn2>
-      </ButtonGroup>
+      <div className="btngroup">
+        <button onClick={() => navigate("/home")}>취소하기</button>
+        <button onClick={writeSubmit}>업로드</button>
+      </div>
       <Footer />
     </Layout>
   );
@@ -231,27 +236,17 @@ export default Post;
 
 const Layout = styled.div`
   width: 360px;
-  min-height: 638px;
-  max-height: 640px;
   margin: 0 auto;
   background-color: #f6f0ee;
 `;
-
-const One = styled.div`
+const Form = styled.div`
+  width: 318.82px;
+  margin: 12.59px auto 0;
   display: flex;
-  position: relative;
-  font-family: "Pretendard", sans-serif;
-  font-size: 16px;
-`;
-const P2 = styled.p`
-  position: absolute;
-  right: 0;
-  left: 290px;
-  top: 5px;
-  color: #787878;
+  flex-direction: column;
 `;
 const Bg = styled.div`
-  max-height: 456.38px;
+  max-height: 514.32px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -270,6 +265,7 @@ const Bg = styled.div`
   ::-webkit-scrollbar-track {
     background-color: #f6f0ee;
   }
+  // background-color: purple;
 `;
 
 const ImgUpload = styled.button`
@@ -283,11 +279,11 @@ const ImgUpload = styled.button`
   justify-content: center;
   margin: 12.59px auto 12.23px;
   background-color: rgba(243, 243, 243, 0.64);
-  /* img {
+  img {
     align-items: center;
     justify-content: center;
     margin: 10px 0 0 10px;
-  } */
+  }
   span {
     font-family: "Pretendard", sans-serif;
     font-size: 16px;
@@ -296,109 +292,6 @@ const ImgUpload = styled.button`
     margin-left: 11px;
   }
   ::placeholder {
-    font-family: "Pretendard", sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 19.09px;
-  }
-`;
-
-const Form = styled.div`
-  width: 318.82px;
-  margin: 12.59px auto 0;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Img = styled.img`
-  object-fit: contain;
-`;
-const FormBtn1 = styled.button`
-  display: block;
-  border: none;
-  width: 180px;
-  height: 50px;
-  cursor: pointer;
-  font-family: "Pretendard", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  background-color: #838383;
-  color: #fff;
-`;
-const FormBtn2 = styled.button`
-  display: block;
-  border: none;
-  width: 180px;
-  height: 50px;
-  cursor: pointer;
-  font-family: "Pretendard", sans-serif;
-  font-size: 18px;
-  font-weight: 510;
-  background-color: #ed9071;
-`;
-
-const Input = styled.input`
-  height: 36px;
-  margin-bottom: 12px;
-  text-indent: 8px;
-  outline: none;
-  border: 1px solid rgba(146, 146, 146, 0.95);
-  border-radius: 3px;
-  background-color: transparent;
-  ::placeholder {
-    font-family: "Pretendard", sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 19.09px;
-  }
-`;
-
-const Input2 = styled.input`
-  height: 36px;
-  margin-bottom: 12px;
-  text-indent: 5px;
-  border: none;
-  outline: none;
-  border: 1px solid #333;
-  border-radius: 3px;
-  background-color: transparent;
-  font-family: "Pretendard", sans-serif;
-  ::placeholder {
-    font-family: "Pretendard", sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 19.09px;
-  }
-`;
-
-const Select = styled.select`
-  margin-bottom: 12px;
-  border-radius: 3px;
-  height: 36px;
-  text-indent: 5px;
-  outline: none;
-  border: 1px solid rgba(105, 105, 105, 1);
-  background-color: rgba(243, 243, 243, 0.64);
-  font-family: "Pretendard", sans-serif;
-  select {
-    font-family: "Pretendard", sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 19.09px;
-  }
-`;
-
-const Select2 = styled.select`
-  margin-bottom: 12px;
-  height: 36px;
-  text-indent: 8px;
-  outline: none;
-  border: none;
-  border: 1px solid #666;
-  border-radius: 3px;
-  background-color: rgba(243, 243, 243, 0.64);
-  font-family: "Pretendard", sans-serif;
-  select {
     font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
@@ -423,9 +316,17 @@ const Textarea = styled.textarea`
 const InputImg = styled.input`
   display: none;
   height: 40px;
-  background: #fff;
+  /* background: #fff; */
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
   background-color: #ed9071;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;

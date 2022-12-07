@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
-import { trueChat,postChat } from "../../../redux/modules/chattingSlice";
+import { trueChat } from "../../../redux/modules/chattingSlice";
+import "./Modal.css";
+import styled from "styled-components";
 import { ReactComponent as Accept } from "../../../img/state-b.svg";
 import { ReactComponent as Done } from "../../../img/state-g.svg";
-
-
 
 function Modal2() {
   const [modal, setModal] = useState(false);
@@ -22,13 +20,10 @@ function Modal2() {
     setModal(!modal);
     setWriteTrue(WriteTrue.mode=true)
     dispatch(trueChat(WriteTrue))
-
     //false로 바뀐다.
     }
 
-    
-
-    //true값 넘겨주기 =>modal색깔 그린 
+  //true값 넘겨주기 =>modal색깔 그린 
   //count가 true일때 이제 visible moddal창 
   //true일때 색깔바뀌는것만 하기 창닫는거 말고.
   const toggleModal = () => {
@@ -44,26 +39,27 @@ function Modal2() {
   }
   return (
     <>
-      {
-      count== true?
-      <>
-        <P>
-          {/* <Himg2 onClick={toggleModal} src={require("../../img/20221121_141959.png")}/> */}
-          <Done/>
-          <Span>완료</Span>
-        </P> 
-      </>
+      <Btns>
+        {
+        count === true?
+        <>
+          <P>
+            <Done/>
+            <Span>완료</Span>
+          </P> 
+        </>
 
-        :
-      <> 
-        <P>
-          {/* <Himg onClick={toggleModal} src={require("../../img/20221121_141505.png")}/> */}
-          <Accept/>
-          <Span>수락</Span>
-        </P>
-      </>
-      }
-      {/* 모달창 승인버튼 green OR black */}
+          :
+        <> 
+          <P>
+            <Accept/>
+            <Span>수락</Span>
+          </P>
+        </>
+        }
+        {/* 모달창 승인버튼 green OR black */}
+      </Btns>
+      
 
       {
       modal && ( 
@@ -90,52 +86,22 @@ function Modal2() {
 
 export default Modal2
 
+const Btns = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+`
+
 const Span = styled.span`
-margin-left:1px;
-font-size:10px;
-font-weight:600;
-`
+  font-size: 10px;
+  font-weight: 600;
+`;
+
 const P = styled.span`
-display:flex;
-width:60px;
-height:60px;
-flex-direction:column;
-margin-top:5px;
-margin-left:90px;
-`
-const Himg2 = styled.img`  
-  width:26px;
-  height:26px;
-  margin-right:20px;
-
-  background-color:green;
-`
-const Himg = styled.img`  
-  width:26px;
-  height:26px;
-  margin-right:20px;
-
-  background-color:#303030
-`
-const Button = styled. button`
-  width:0px;
-  border:none;
-  background:transparent;
-`
-const HeadRight2 = styled.button`
-font-size: 0.9rem;
-width: 30px;
-height: 40px;
-color: #00251a;
-border: 0;
-cursor: pointer;
-font-weight: 600;
-background-color: transparent;
-justify-content: center;
-.head-ico {
-  font-size: 1.6rem;
-  margin: 5px;
-  color: white;
-  background-color: transparent;
-}
-`
+  display:flex;
+  width:60px;
+  height:60px;
+  flex-direction:column;
+`;

@@ -5,8 +5,8 @@ import axios from "axios";
 import { __putPost } from "./mypageSlice";	
 const initialState = {	
   isLoading: false,	
-  post: {},	
-  // posts:[], //공배열로 바꿔야함
+  post:{},
+  posts:[], //공배열로 바꿔야함
   error: null,	
 }
 
@@ -14,10 +14,11 @@ const initialState = {
 export const __getPostRating = createAsyncThunk(	
   "api/posts/getPostRating",	
   async (payload, thunkAPI) => {
-    // console.log("페이로드야",payload)	
+
     try {	
       const response = await Apis.getPostRatingAX(payload)	
-      console.log("전체조회",response.data)
+
+      window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -29,12 +30,15 @@ export const __getPostRating = createAsyncThunk(
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {
-    // console.log("페이로드야",payload)	
+
     try {	
+      
       const response = await Apis.getPostTimeAX(payload)	
-      console.log("전체조회",response.data)
+      
+
+
       return thunkAPI.fulfillWithValue(response.data);	
-    } catch (error) {	
+    } catch (error) {
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
@@ -44,10 +48,10 @@ export const __getPostTime = createAsyncThunk(
 export const __getDetail = createAsyncThunk(	
   "api/post/getDetail",	
   async (payload, thunkAPI) => {	
-    console.log("상세조회payload",payload)	
+
     try {	
       const response = await Apis.getDetailAX(payload)
-      console.log("상세조회payload2",response.data)	
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -59,14 +63,13 @@ export const __getDetail = createAsyncThunk(
 export const __addPost = createAsyncThunk(	
   "api/posts/addPost",	
   async (payload, thunkAPI) => {	
-    // console.log("제발페이로드야",payload)
+
     try {	
       const response = await Apis.postFileAX(payload)	
-      //console.log("게시글작성완료",response)
+
       alert("작성완료하였습니다.")
-      window.location.href('/home')
+      window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
-      
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
@@ -90,8 +93,10 @@ export const __editState = createAsyncThunk(
 export const __getKeyword = createAsyncThunk(	
   "/api/search/getSearch",	
   async (payload, thunkAPI) => {	
+
     try {	
       const response = await Apis.getKeywordAX(payload)	
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -103,10 +108,10 @@ export const __getKeyword = createAsyncThunk(
 export const __getCategory = createAsyncThunk(	
   "/api/search/getCategory",	
   async (payload, thunkAPI) => {	
-    // console.log("이건페이로드",payload)
+
     try {	
       const response = await Apis.getFilterAX(payload)	
-      //console.log("카테고리검색완료",response)
+
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -124,12 +129,10 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostRating.fulfilled]: (state, action) => {	
-      // console.log("페이로드야",action.payload)
+
       state.isLoading = false;	
       state.isSuccess = false;	
       state.post.response = action.payload.data;
-      // console.log("pay",action.payload.data)
-      // state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
     },	
     [__getPostRating.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -141,12 +144,11 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostTime.fulfilled]: (state, action) => {	
-      // console.log("페이로드야",action.payload)
+
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;
-      // console.log("pay",action.payload.data)
-      // state.posts.push(...action.payload.data);	// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
+
+      state.posts.push(...action.payload.data);	
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -160,9 +162,7 @@ const postSlice = createSlice({
     [__getDetail.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      console.log("제발하나만들어와라",action.payload)
       state.post = action.payload.data;	
-      console.log("제발하나만들어와라2",state.post)
     },	
     [__getDetail.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -174,12 +174,9 @@ const postSlice = createSlice({
       state.isLoading = false;	
     },	
     [__addPost.fulfilled]: (state, action) => {	
-      console.log("이난",action.payload)
       state.isLoading = false;	
       state.isSuccess = false;	
-      // state.post.response.push(action.payload.data)	
       state.posts = action.payload
-      // window.location.replace("/home")
     },	
     [__addPost.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -205,10 +202,11 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
-      // console.log("검색",action.payload)
+
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;	
+      state.posts = action.payload.data;	
+      // state.posts.push(...action.payload.data);
     },	
     [__getKeyword.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -222,8 +220,10 @@ const postSlice = createSlice({
     [__getCategory.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;	
-    },	
+
+      state.posts = action.payload.data;	
+      // state.posts.push(...action.payload.data);
+    },
     [__getCategory.rejected]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
