@@ -285,16 +285,30 @@ const ImgUpload = styled.button`
     margin: 10px 0 0 10px;
   }
   span {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
     margin-left: 11px;
   }
   ::placeholder {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
+    line-height: 19.09px;
+  }
+`;
+
+const Textarea = styled.textarea`
+  border: 1px solid rgba(146, 146, 146, 0.95);
+  border-radius: 3px;
+  background-color: transparent;
+  padding: 13.85px 0 0 3px;
+  margin-bottom: 14px;
+  ::placeholder {
+    font-family: "Pretendard", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
     line-height: 19.09px;
   }
 `;

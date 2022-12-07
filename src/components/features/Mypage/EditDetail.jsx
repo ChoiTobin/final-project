@@ -81,20 +81,6 @@ const EditDetail = ({ onClose }) => {
             <div>
               <label htmlFor="imgFile">
                 <ImgPreview>
-                  {/* 이미지 미리보기 Preview */}
-                  {/* {imgUrls.length !== 0 ? (
-                    imgUrls.map((imgs, id) => {
-                      return (
-                        <img src={imgs} alt="업로드 사진 미리보기" key={id} />
-                      );
-                    })
-                  ) : (
-                    <PicNote>
-                      <Photo /> <span>이미지 미리보기</span>
-                    </PicNote>
-                  )} */}
-                  {/* <Carousels imgUrls={imgUrls} /> */}
-
                   <Carousel fade>
                     {imgUrls.map((img) => {
                       return (
@@ -335,7 +321,6 @@ const Price = styled.input`
     -webkit-appearance: none;
   }
   padding-left: -10px;
-  /* margin-left: -20px; */
 `;
 
 const Won = styled.span`

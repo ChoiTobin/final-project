@@ -171,35 +171,35 @@ final-project
 ### 📝 기술스택 및 라이브러리 사용 이유
 <!-- ![]() -->
 <details>
-<summary>WireFrame</summary>
+<summary>WireFra</summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>WireFrame</summary>
+<summary>Wirrame</summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>WireFrame</summary>
+<summary>Wireame</summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>WireFrame</summary>
+<summary>WireFre</summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>WireFrame</summary>
+<summary>Wireame</summary>
 <div markdown="1">
 
 ![](0)

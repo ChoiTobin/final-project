@@ -59,8 +59,6 @@ const AddUserPic = ({ onClose }) => {
               imgRef.current.click();
             }}
           >
-            {/* <img src={upload} style={{ width: "30px" }} alt="" /> */}
-            {/* <Upload/> */}
           </ImgUpload>
         </label>
         <ImgPreview>

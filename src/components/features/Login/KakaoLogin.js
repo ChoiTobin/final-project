@@ -25,7 +25,7 @@ const KakaoLogin = () => {
         <div>
             <Naver onClick={handleNaverLogin} />
             <a id="kakao-login-btn" onClick={handleLogin}>
-            <Kakao/>
+            <Kakao style={{ width: "41px", height: "38px", cursor: "pointer"}}/>
             </a>
             <p id="token-result"></p>
         </div>

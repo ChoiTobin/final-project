@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
@@ -12,26 +11,20 @@ import styled from "styled-components";
 import "../components/element/MyPetModal.css";
 import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
-import { ReactComponent as User } from "../img/user-my.svg";
-// import { ReactComponent as Banner } from "../img/banner.svg";
+import { ReactComponent as UserPic } from "../img/user-my.svg";
+import User from "../img/user.png"
 import Banner from "../img/banner.png";
 
 
 //별추가
 import { FaStar } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const all = useSelector((state) => state.mypage);
-  const post = useSelector((state) => state.mypage.post);
   const myInfo = useSelector((state) => state.mypage.myInfo);
-  const myPosts = useSelector((state) => state.mypage.myPost);
-  const myPic = useSelector((state) => state.mypage.myPic);
-  const myPets = useSelector((state) => state.mypage.myPets);
-
-
 
   const [photo, setPhoto] = useState(false);
 
@@ -87,7 +80,6 @@ const MyPage = () => {
         </Notice>
         <Title>
           <UserImg
-            // src={myInfo.userImage}
             src={myInfo.userImage !== undefined ? myInfo.userImage : User}
             alt="myPic"
           />
@@ -103,15 +95,17 @@ const MyPage = () => {
                   color: "#989593",
                   marginBottom: "10.04px",
                 }}
-              > 
-                평점: 
-                {	
-                  ARRAY.map((id,i) => { 
-                      return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
-                    <FaStar key={id} style={i < myInfo.rating ? { color: "#fcc419"}:{}} />
-                    )
-                  })
-                }
+              >
+                평점:
+                {ARRAY.map((id, i) => {
+                  return (
+                    //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
+                    <FaStar
+                      key={id}
+                      style={i < myInfo.rating ? { color: "#fcc419" } : {}}
+                    />
+                  );
+                })}
                 {myInfo.rating}
               </span>
             </Account>
@@ -138,8 +132,8 @@ const MyPage = () => {
             {photo && (
               <ModalPortal>
                 <div className="MyModal">
-                  <AddUserPic onClose={closePicModal}/>
-                </div>                
+                  <AddUserPic onClose={closePicModal} />
+                </div>
               </ModalPortal>
             )}
           </StateBtn>
@@ -149,7 +143,7 @@ const MyPage = () => {
           {pets && (
             <ModalPortal>
               <div className="MyModal">
-                <AddPetInfo onClose={closePetModal}/>
+                <AddPetInfo onClose={closePetModal} />
               </div>
             </ModalPortal>
           )}
@@ -208,6 +202,7 @@ const Notice = styled.div`
     color: rgba(79, 79, 79, 1);
 
     margin-left: 30.84px;
+    margin-top: 15px;
   }
 `;
 

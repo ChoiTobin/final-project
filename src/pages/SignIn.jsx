@@ -11,7 +11,7 @@ const SignIn = () => {
   //확인용
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const account = useSelector((state) => state.account);
+  // const account = useSelector((state) => state.account);
   const initialState = {
     email: "",
     password: "",
@@ -55,7 +55,6 @@ const SignIn = () => {
         <Wrap>
           <div>
             <LoginBox>
-              {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
               <Logo />
               <LogoLogin>LOGIN</LogoLogin>
 
