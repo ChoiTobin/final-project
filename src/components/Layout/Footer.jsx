@@ -44,7 +44,7 @@ const Footer = ({ onChange, checked }) => {
                   type="radio"
                   value={page.item}
                   onChange={onChange}
-                  checked={checked === page.item}
+                  //checked={checked === page.item}
                   style={{ display: "none" }}
                 />
                 {page.item}

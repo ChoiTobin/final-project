@@ -43,7 +43,7 @@ export const __getRoomList = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getRoomList()
-      
+      console.log(response,"들어오는지")
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -79,7 +79,7 @@ export const __complete = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
 
-
+      console.log("추격전",payload)
       const response = await Apis.complete(payload)
     
       console.log("컴플리트22222222222",response)

@@ -29,6 +29,14 @@ const Detail = () => {
   const onClickMove = () => {
     navigator(-1);
   };
+
+  const onClickChatting = (post) =>{
+    dispatch(__CreateRoom({
+      postId:post.id,
+      postTitle:post.title,
+      postNickName:post.nickname,
+    }));
+  }
   // const ARRAY = [0, 1, 2, 3, 4];
 
   return (
@@ -102,7 +110,12 @@ const Detail = () => {
           </div>
         </Form>
       </Bg>
-      <button class="chatBtn">크멍톡</button>
+      { 
+          post.nickname == localStorage.getItem("user-nickname")  ?
+          null:
+          <button class="chatBtn" onClick={()=>onClickChatting(post)}>크멍톡</button>
+        }
+
       <Footer />
     </Layout>
   );

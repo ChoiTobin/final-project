@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
 import { off } from "process";
+import { ReactComponent as Complete } from '../img/state-g.svg';
 
 function ChatRoomPage() {
   const { id } = useParams();
@@ -21,6 +22,7 @@ function ChatRoomPage() {
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const room = useSelector((state) => state.chatting.room);
+console.log("룸!",room)
 
   useEffect(() => {
     //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
@@ -120,6 +122,7 @@ function ChatRoomPage() {
   }, [room]);
   //채팅창 치면 맨 밑으로 내려감.
 
+
   const original = `${room.price}`;
   const fomatting = original.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   //가격 3째자리수 마다 ,붙이는 정규식
@@ -137,12 +140,32 @@ function ChatRoomPage() {
           <BackArrow onClick={() => navigate(-1)} />
         </div>
         <div className="Nickname">
-          {localStorage.getItem("user-nickname") == room.joinNickname
-            ? room.postNickname
-            : room.joinNickname}
+          {localStorage.getItem("user-nickname") == room.joinUserNickname
+            ? room.postUserNickname
+            : room.joinUserNickname}
         </div>
-        <Modal2></Modal2>
+        {
+        localStorage.getItem("user-nickname") === room.postUserNickname && room.state !=="완료"  
+        ? 
+        <Modal2/> 
+        :
+        room.state =="완료"  ?
+        <>
+      <div className="flexZone">
+          <div>
+          <Complete /> 
+          </div>  
+          <div>
+            <div className="clearName">완료</div>
+          </div>  
       </div>
+        </>  
+        :  <img /> 
+
+        }
+     
+      </div>
+
       {/* header */}
       <div className="row">
         <div className="flexBox">
