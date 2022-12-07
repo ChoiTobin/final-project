@@ -86,14 +86,14 @@ const Content = () => {
       <div className="btn-group">
         <button type="button" onClick={onClickAll}>
           전체
-        </button>
-        <button type="button" name="대형" onClick={onClickBig}>
+        </Button>
+        <Button type="button" name="대형" onClick={onClickBig}>
           대형
-        </button>
-        <button type="button" name="중형" onClick={onClickMiddle}>
+        </Button>
+        <Button type="button" name="중형" onClick={onClickMiddle}>
           중형
-        </button>
-        <button type="button" name="소형" onClick={onClickSmall}>
+        </Button>
+        <Button type="button" name="소형" onClick={onClickSmall}>
           소형
         </button>
       </div>
@@ -115,7 +115,7 @@ const Content = () => {
           </Carousel.Item>
         </Carousel>
       </Carouselwrap>
-    </div>
+    </SearchListWrap>
   );
 };
 

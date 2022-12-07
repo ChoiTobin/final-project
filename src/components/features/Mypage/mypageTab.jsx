@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import MyContent from "./MyContent";
 import PetInfo from "./PetInfo";
 
+// 마이페이지에서 반려동물과 내가 쓴 글을 볼 수 있는 탭
 export default function Mytab() {
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPets = useSelector((state) => state.mypage.myPets);
@@ -19,7 +20,7 @@ export default function Mytab() {
     setActiveIndex(index);
     setColors(!colors)
   };
-
+      //
   const tabContArr = [
     {
       tabTitle: (
@@ -31,7 +32,7 @@ export default function Mytab() {
           }}
           style={colors ? { color: "#3C3C3C" } : { color: "#787878" }}
         >
-          내가 쓴 글
+          내 게시글
         </TabTitle>
       ),
       tabCont: <MyContent myPost={myPosts} />,
@@ -46,7 +47,7 @@ export default function Mytab() {
           }}
           style={colors ? { color: "#787878" } : { color: "#3C3C3C" }}
         >
-          반려동물 정보
+          나의 반려동물
         </TabTitle>
       ),
       tabCont: <PetInfo myPets={myPets} />,

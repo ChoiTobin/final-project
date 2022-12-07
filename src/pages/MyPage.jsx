@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { __getMyPage, __getMyPet, __getMyPost } from "../redux/modules/mypageSlice";
 import Mytab from "../components/features/Mypage/mypageTab";
 import Header from "../components/Layout/Header";
@@ -118,7 +117,6 @@ const MyPage = () => {
               로그아웃
             </button>
             <button
-              onClick={openPicModal}
               style={{
                 color: "rgba(108, 108, 108, 1)",
                 border: "1px solid rgba(108, 108, 108, 1)",

@@ -32,6 +32,9 @@ export const __naverLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     
     try {
+            console.log("갔나?",payload)
+
+
       const res = await Apis.naverloginAX(payload)
       const Access_Token = res.headers.access_token;
       localStorage.setItem("Access_Token", Access_Token);
@@ -45,7 +48,7 @@ export const __naverLogin = createAsyncThunk(
       return thunkAPI.rejectWithValue(error)
     }
   }
-)
+);
 
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
@@ -65,6 +68,8 @@ export const __kakaoLogin = (code) => {
           })
   }
 };
+
+
 //tobin카카오톡 로그인-----------------------------------------------------------------------
 export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
@@ -105,7 +110,7 @@ export const __NickCheck = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-  }
+  } 
 );
 //tobin닉네임 중복검사------------------------------------------------------------------------
 export const __userLogin = createAsyncThunk(
@@ -141,7 +146,8 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [__naverLogin.pending]: (state) => {
+     [__naverLogin.pending]: (state) => {
+
       state.isLoading = true
     },
     [__naverLogin.fulfilled]: (state, action) => {

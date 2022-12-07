@@ -21,7 +21,7 @@ const Carousels = ({ imgUrls }) => {
         })
         ) : (
             <div>
-              <Photo/> <span>이미지 미리보기</span>
+              <Photo/> <span>이미지들</span>
             </div>
         )
         }
