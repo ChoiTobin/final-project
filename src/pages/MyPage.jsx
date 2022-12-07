@@ -13,7 +13,6 @@ import "../components/element/MyPetModal.css";
 import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
 import { ReactComponent as User } from "../img/user-my.svg";
-// import { ReactComponent as Banner } from "../img/banner.svg";
 import Banner from "../img/banner.png";
 
 
@@ -24,14 +23,7 @@ import { FaStar } from 'react-icons/fa';
 const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const all = useSelector((state) => state.mypage);
-  const post = useSelector((state) => state.mypage.post);
   const myInfo = useSelector((state) => state.mypage.myInfo);
-  const myPosts = useSelector((state) => state.mypage.myPost);
-  const myPic = useSelector((state) => state.mypage.myPic);
-  const myPets = useSelector((state) => state.mypage.myPets);
-
-
 
   const [photo, setPhoto] = useState(false);
 
@@ -87,7 +79,6 @@ const MyPage = () => {
         </Notice>
         <Title>
           <UserImg
-            // src={myInfo.userImage}
             src={myInfo.userImage !== undefined ? myInfo.userImage : User}
             alt="myPic"
           />
@@ -208,6 +199,7 @@ const Notice = styled.div`
     color: rgba(79, 79, 79, 1);
 
     margin-left: 30.84px;
+    margin-top: 15px;
   }
 `;
 
