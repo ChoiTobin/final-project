@@ -216,6 +216,7 @@ const Notice = styled.div`
     color: rgba(79, 79, 79, 1);
 
     margin-left: 30.84px;
+    margin-top: 15px;
   }
 `;
 
