@@ -285,14 +285,14 @@ const ImgUpload = styled.button`
     margin: 10px 0 0 10px;
   }
   span {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 19.09px;
     margin-left: 11px;
   }
   ::placeholder {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 19.09px;
