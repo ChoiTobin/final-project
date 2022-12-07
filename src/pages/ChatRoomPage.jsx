@@ -22,7 +22,6 @@ function ChatRoomPage() {
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const room = useSelector((state) => state.chatting.room);
-console.log("룸!",room)
 
   useEffect(() => {
     //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
@@ -78,7 +77,6 @@ console.log("룸!",room)
         { Access_Token: localStorage.getItem("Access_Token") }
       );
     } catch (e) {
-      // console.log("연결구독해체 에러", e);
     }
   };
 
@@ -133,6 +131,9 @@ console.log("룸!",room)
   var day = ("0" + today.getDate()).slice(-2);
   let dateString = year + "-" + month + "-" + day;
 
+
+
+
   return (
     <div className="LoginContainer">
       <div className="Header">
@@ -163,14 +164,13 @@ console.log("룸!",room)
         :  <img /> 
 
         }
-     
       </div>
 
       {/* header */}
       <div className="row">
         <div className="flexBox">
           <div>
-            <img className="photoImg" src={require("../img/user.png")} alt="" />
+            <img className="photoImg" src={(`${room.postImg}`)} alt="" />
           </div>
           <div>
             <div className="flexBox2">

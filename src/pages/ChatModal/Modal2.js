@@ -13,7 +13,7 @@ function Modal2() {
   const complete = useSelector((state) => state.chatting.complete);
 
   const onClickButton = (e) => {
-    console.log(listReducer.postId)
+
     dispatch(__complete(listReducer.postId))
     setModal(false)
 
@@ -48,12 +48,10 @@ function Modal2() {
       :   
       listReducer.state === "산책중" ? 
       <>
-      {/* <img className="clearTrade" onClick={toggleModal2} src={require(`../../img/20221121_141959.png`)}/>  */}
-     
       <div className="flexZone">
           <div>
           <Complete onClick={toggleModal2} /> 
-            {/* <img className="clearTrade" src={require(`../img/20221121_141959.png`)}/> */}
+
           </div>  
           <div>
             <div className="clearName">완료</div>
@@ -61,12 +59,10 @@ function Modal2() {
       </div>
       </>
       :
-      // <img className="clearTrade" onClick={toggleModal} src={require(`../../img/20221121_141505.png`)}/>
-    
       <div className="flexZone">
       <div>
       <Accept onClick={toggleModal} />
-        {/* <img className="clearTrade" src={require(`../img/20221121_141959.png`)}/> */}
+
       </div>  
       <div>
         <div className="clearName">수락</div>

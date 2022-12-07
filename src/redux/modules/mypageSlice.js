@@ -248,7 +248,6 @@ const mypageSlice = createSlice({
     [__postMyImg.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("프사 이미지는", action.payload);
       state.myPic = action.payload;
     },
     [__postMyImg.rejected]: (state, action) => {
@@ -262,7 +261,6 @@ const mypageSlice = createSlice({
     [__getMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("이거는?", action.payload)
       state.myPets = action.payload;
     },
     [__getMyPet.rejected]: (state, action) => {
@@ -277,7 +275,6 @@ const mypageSlice = createSlice({
     [__addMyPet.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("1도 없어?", action.payload)
       state.myPets = action.payload;
     },
     [__addMyPet.rejected]: (state, action) => {

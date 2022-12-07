@@ -16,7 +16,6 @@ const ChatList = () => {
   const dispatch = useDispatch();
   const Room = useSelector((state) => state.chatting.roomList);
 
-  console.log("이상하다",Room)
   useEffect(() => {
     dispatch(__getRoomList());
   }, []);
@@ -48,12 +47,12 @@ const ChatList = () => {
                 <div className="flexDiv">
                   <img
                     className="Userimg"
-                    src={require("../img/user.png")}
+                    src={`${item.postUserImg}`}
                     alt=""
                     onClick={() => onClickChatting(item)}
                   />
                   <div className="marginDiv">
-                    <p
+                    <span
                       className="boldText"
                       onClick={() => onClickChatting(item)}
                     >
@@ -65,7 +64,7 @@ const ChatList = () => {
 
                         //내 아이디명이 아닌 상대방 아이디
                       }
-                    </p>
+                    </span>
                     <div
                       className="chatlength"
                       onClick={() => onClickChatting(item)}
@@ -87,7 +86,12 @@ const ChatList = () => {
                         ].sendDate.substring(8, 10)}일`} 
                     </span>
                   </div>
-
+                  {
+                    item.postImg.length !== 0 && 
+                    
+                  <img className="img" src={`${item.postImg}`}/>
+                  
+                  } 
                 </div>
               </div>
             );
