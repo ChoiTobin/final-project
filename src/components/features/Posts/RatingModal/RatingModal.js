@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
 import Rating from "../Rating";
 
-
-
- function RatingModal() {
+function RatingModal() {
   const [modal, setModal] = useState(false);
   
   const dispatch = useDispatch();
@@ -33,7 +30,7 @@ import Rating from "../Rating";
           <button onClick={toggleModal}>완료</button>
       </>
         :
-       <> 
+      <> 
           <button onClick={toggleModal}>별점</button>
       </>
       }

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
-import { trueChat,postChat } from "../../../redux/modules/chattingSlice";
+import { trueChat } from "../../../redux/modules/chattingSlice";
+import "./Modal.css";
+import styled from "styled-components";
 import { ReactComponent as Accept } from "../../../img/state-b.svg";
 import { ReactComponent as Done } from "../../../img/state-g.svg";
-
-
 
 function Modal2() {
   const [modal, setModal] = useState(false);
@@ -22,13 +20,10 @@ function Modal2() {
     setModal(!modal);
     setWriteTrue(WriteTrue.mode=true)
     dispatch(trueChat(WriteTrue))
-
     //false로 바뀐다.
     }
 
-    
-
-    //true값 넘겨주기 =>modal색깔 그린 
+  //true값 넘겨주기 =>modal색깔 그린 
   //count가 true일때 이제 visible moddal창 
   //true일때 색깔바뀌는것만 하기 창닫는거 말고.
   const toggleModal = () => {

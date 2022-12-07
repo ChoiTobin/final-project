@@ -5,14 +5,11 @@ import { useDispatch } from "react-redux";
 // React BootStrap Library Import
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
-
 import useImgUpload from "../../hooks/useImgUpload";
 import { ReactComponent as Photo } from "../../../img/form-add.svg";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
-// import "../../element/MyModal.css";
 
 // 내가 쓴 게시글 수정 및 삭제
-
 const EditDetail = ({ onClose }) => {
   const [myPost, setMyPost] = useState({
     category: "",
@@ -29,8 +26,6 @@ const EditDetail = ({ onClose }) => {
     setMyPost({ ...myPost, [name]: value });
   };
 
-  console.log("온체인지 포스트", myPost);
-
   // 이미지 업로드 훅
   const [imgs, imgUrls, uploadHandle] = useImgUpload(5, true, 0.3, 1000);
 
@@ -44,14 +39,11 @@ const EditDetail = ({ onClose }) => {
     // FormData에 파일 담기
     if (imgs.length > 0) {
       imgs.forEach((file) => {
-        console.log("이미지 파일 올라가나", file);
         formData.append("imgs", file);
       });
     } else {
       formData.append("imgs", null);
     }
-
-    console.log("폼데이터에 이미지 넣기", formData);
 
     const myPostData = {
       id: myPost.id,
@@ -62,9 +54,6 @@ const EditDetail = ({ onClose }) => {
       local: myPost.local,
     };
 
-    console.log("전체내용", myPostData);
-    console.log("이미지들", imgUrls);
-
     formData.append("imgs", imgUrls);
 
     // formData에 작성한 데이터 넣기
@@ -74,8 +63,6 @@ const EditDetail = ({ onClose }) => {
         type: "application/json",
       })
     );
-
-    console.log("폼데이터 글 넣어서 디스패치", formData);
 
     // API 날리기
     dispatch(__putMyPost(formData));
@@ -227,16 +214,6 @@ const EditDetail = ({ onClose }) => {
               </div>
             </Content>
           </Form>
-
-          {/* <FormBtn
-            onClick={onClose}
-            style={{ backgroundColor: "#838383", color: "#fff" }}
-          >
-            취소
-          </FormBtn>
-          <FormBtn onClick={writeSubmit} style={{ backgroundColor: "#ED9071" }}>
-            저장
-          </FormBtn> */}
         </div>
         <div>
           <FormBtn
@@ -259,7 +236,6 @@ const Layouts = styled.div`
   width: 340px;
   min-height: 514px;
   height: 514.3px;
-  /* background-color: yellow; */
   background-color: #f6f0ee;
   margin-bottom: 150px;
 
@@ -288,7 +264,6 @@ const Form = styled.div`
   flex-direction: column;
   width: 318.82px;
   margin: 9.7px 0 0 -6px;
-  /* background-color: lightpink; */
 `;
 
 const Top = styled.span`
@@ -303,21 +278,6 @@ const Top = styled.span`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  }
-`;
-
-const PicNote = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 65.33px;
-  span {
-    font-family: "Pretendard", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.09px;
-    color: rgba(57, 57, 57, 0.93);
   }
 `;
 
@@ -418,7 +378,6 @@ const Textarea = styled.textarea`
   }
 `;
 
-// 버튼 누르면 손모양 나오게 하는 마우스 커서
 const FormBtn = styled.button`
   cursor: pointer;
   margin: 8.805px auto 0;

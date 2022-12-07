@@ -14,7 +14,6 @@ import "../../element/MyModal.css";
 const MyContent = ({ myPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("들어올까요", { myPost });
   
   // 내가 쓴 글 삭제
   const onDeleteMyPost = (id) => {
@@ -149,7 +148,7 @@ const Main = styled.div`
 
 const State = styled.span`
   /* color: #ed9071; */
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 14px;
   font-weight: 510;
   line-height: 16.71px;
@@ -162,7 +161,7 @@ const Title = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 16.71px;
@@ -177,14 +176,14 @@ const Down = styled.div`
 const CreatedAt = styled.span`
   width: 129.49px;
   height: 12.01px;
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 10px;
   color: "#B0B0B0";
   margin-top: 8.32px;
   gap: 18.84px;
   span {
     color: #606060;
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 10px;
     line-height: 11.93px;
     margin-left: 10px;

@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import { __userSignUp,__userCheck,__NickCheck } from '../../src/redux/modules/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import {
+  __userSignUp,
+  __userCheck,
+  __NickCheck,
+} from "../../src/redux/modules/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as Logo } from "../img/logo-sign.svg";
 
 const SignUp = () => {
@@ -13,16 +17,14 @@ const SignUp = () => {
     email: "",
     nickname: "",
     password: "",
-    passwordCheck:"",    
+    passwordCheck: "",
   };
-
 
   const [join, setJoin] = useState(initialState);
   const [IdValid, setIdValid] = useState(false);
   const [nickValid, setNickValid] = useState(false);
   const [PwValid, setPwValid] = useState(false);
   const [PwCValid, setPwCValid] = useState(false);
-
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -31,8 +33,8 @@ const SignUp = () => {
     const regexId =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
     //이메일 체크
-  //https://velog.io/@gym/React-721
-    if(regexId.test(join.email)){
+    //https://velog.io/@gym/React-721
+    if (regexId.test(join.email)) {
       setIdValid(true);
     } else {
       setIdValid(false);
@@ -58,17 +60,17 @@ const SignUp = () => {
     } else {
       setPwCValid(false);
     }
-  }
-
+  };
 
   const obj = {
     email: join.email,
     nickname: join.nickname,
     password: join.password,
     passwordCheck: join.passwordCheck,
-  }
+  };
 
-  const userIdCheck =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+  const userIdCheck =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
   //이메일 체크
   //https://velog.io/@gym/React-721
   const usernicknameCheck = /^[가-힣ㄱ-ㅎa-zA-Z0-9._]{1,19}$/;
@@ -76,24 +78,22 @@ const SignUp = () => {
   const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,19}$/;
   //if (!regPass.test(password)) alert("영문, 숫자, 특수기호 조합으로 8-20자리 이상 입력해주세요.")
 
-
-
   const onSubmitHandler = (event) => {
-    event.preventDefault()
-    
-    if(!userIdCheck.test(obj.email)){
-      return alert("아이디 양식에 맞춰주세요")
+    event.preventDefault();
+
+    if (!userIdCheck.test(obj.email)) {
+      return alert("아이디 양식에 맞춰주세요");
     }
 
-    if(!usernicknameCheck.test(obj.nickname)){
-      return alert("닉네임 양식에 맞춰주세요")
+    if (!usernicknameCheck.test(obj.nickname)) {
+      return alert("닉네임 양식에 맞춰주세요");
     }
     if (!passwordCheck.test(obj.passwordCheck)) {
       return alert("비밀번호 양식에 맞춰주세요");
     }
-    
-    if(obj.email === "" || obj.email === undefined) {
-      return alert("빈칸을 입력해주세요.")
+
+    if (obj.email === "" || obj.email === undefined) {
+      return alert("빈칸을 입력해주세요.");
     }
     if (obj.nickname === "" || obj.nickname === undefined) {
       return alert("빈칸을 입력해주세요.");
@@ -104,35 +104,39 @@ const SignUp = () => {
     if (obj.passwordCheck === "" || obj.passwordCheck === undefined) {
       return alert("빈칸을 입력해주세요.");
     }
-    if( account.nickCheck.status !== 200){
-    alert("닉네임 중복확인을 해주세요")
+    if (account.nickCheck.status !== 200) {
+      alert("닉네임 중복확인을 해주세요");
     }
-    if(account.idCheck.status !== 200 ){
-      alert("아이디 중복확인을 해주세요")
-      }
+    if (account.idCheck.status !== 200) {
+      alert("아이디 중복확인을 해주세요");
+    }
     // 중복확인이 true이고 true일때 그리고 dispatch를 보내서
-    // account statusCode 회원가입이 response로 왔을때 가입됨. 
-    
-    dispatch(__userSignUp(obj))
-    if(account.idCheck.status ===200 && account.nickCheck.status === 200 &&obj.password === obj.passwordCheck){
-      alert("회원가입이 완료되었습니다.")  
-    window.location.replace("/")
+    // account statusCode 회원가입이 response로 왔을때 가입됨.
+
+    dispatch(__userSignUp(obj));
+    if (
+      account.idCheck.status === 200 &&
+      account.nickCheck.status === 200 &&
+      obj.password === obj.passwordCheck
+    ) {
+      alert("회원가입이 완료되었습니다.");
+      window.location.replace("/");
     }
-  }
-  
-    // useEffect(() => {
-      
-    //   if(account.statusCode === 200){
-    //     alert("회원가입이 완료되었습니다.")
-    //     setJoin({
-    //       email : "",
-    //       nickname: "",
-    //       password: "",
-    //       passwordCheck: "",
-    //     })
-    //       window.location.replace("/SignIn")
-    //   }
-    // },[account])
+  };
+
+  // useEffect(() => {
+
+  //   if(account.statusCode === 200){
+  //     alert("회원가입이 완료되었습니다.")
+  //     setJoin({
+  //       email : "",
+  //       nickname: "",
+  //       password: "",
+  //       passwordCheck: "",
+  //     })
+  //       window.location.replace("/SignIn")
+  //   }
+  // },[account])
 
   return (
     <SignupContainer>
@@ -261,7 +265,6 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
 
 const SignupContainer = styled.div`
   width: 360px;

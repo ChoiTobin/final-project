@@ -44,13 +44,14 @@
   top: 40px;
   margin-left: -24.5px;
 
-  input[type='radio'] {
+  input[type="radio"] {
     border: 2px solid brown;
     display: none;
   }
-  input[type='radio']:checked, label {
-    background-color: #ED9071;
-    color: #000
+  input[type="radio"]:checked,
+  label {
+    background-color: #ed9071;
+    color: #000;
   }
 }
 
@@ -61,7 +62,7 @@
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  color: #5A5A5A;
+  color: #5a5a5a;
   border: none;
   border-radius: 9px 9px 0 0;
   font-family: "Pretendard", sans-serif;

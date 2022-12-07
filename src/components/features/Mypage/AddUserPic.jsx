@@ -7,7 +7,6 @@ import useImgUpload from "../../hooks/useImgUpload";
 import { ReactComponent as Upload } from "../../../img/form-add.svg";
 import { ReactComponent as UserPic } from "../../../img/user-my.svg";
 
-
 const AddUserPic = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -99,8 +98,6 @@ const AddUserPic = ({ onClose }) => {
 export default AddUserPic;
 
 const Layout = styled.div`
-  /* width: 100%; */
-  /* height: 100%; */
   width: 271px;
   height: 190.08px;
   display: flex;
@@ -113,10 +110,8 @@ const Layout = styled.div`
 `;
 
 const Content = styled.div`
-  /* background-color: lightgreen; */
   display: flex;
   flex-direction: column;
-  /* justify-content: left; */
   width: 218.45px;
   height: 139.25px;
 `;
@@ -140,11 +135,9 @@ const ImgPreview = styled.div`
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  /* background-color: lightsalmon; */
 
   border: 1px solid #e2e2e2;
   border-radius: 10px;
-
   margin: 0 auto 50px;
 
   img {
@@ -160,7 +153,7 @@ const PlaceBtn = styled.div`
     width: 135.07px;
     height: 27.42px;
     border: none;
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 12px;
     font-weight: 700;
     line-height: 14.32px;

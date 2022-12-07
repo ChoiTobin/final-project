@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __putMyPet } from "../../../redux/modules/mypageSlice";
 import { useNavigate } from "react-router-dom";
+import { __putMyPet } from "../../../redux/modules/mypageSlice";
+import styled from "styled-components";
+
 
 // 마이페이지 반려동물 정보 수정
-
 const EditPetInfo = ({ onClose }) => {
   const [myPet, setMyPet] = useState("");
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ const EditPetInfo = ({ onClose }) => {
   // 프로필 등록 - 반려동물 정보(이름, 나이, 종류)
   const onChangePetInfo = (event) => {
     const { name, value } = event.target;
-    console.log("온체인지 펫", event.target);
     setMyPet({
       ...myPet,
       [name]: value,
@@ -23,7 +22,6 @@ const EditPetInfo = ({ onClose }) => {
 
   // 프로필 수정 - 반려동물 정보(이름, 나이, 종류)
   const onUpdateMyPets = () => {
-    console.log("마이펫 디스패치", myPet);
     dispatch(__putMyPet(myPet));
     window.alert("반려동물 정보수정이 완료되었습니다!");
     navigate("/mypage");

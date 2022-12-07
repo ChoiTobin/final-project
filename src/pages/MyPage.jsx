@@ -24,7 +24,6 @@ import { FaStar } from 'react-icons/fa';
 const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const all = useSelector((state) => state.mypage);
   const post = useSelector((state) => state.mypage.post);
   const myInfo = useSelector((state) => state.mypage.myInfo);
@@ -81,13 +80,6 @@ const MyPage = () => {
   useEffect(() => {
     dispatch(__getMyPet());
   }, []);
-
-  const Logout =() => {
-    localStorage.clear()
-    navigate("/")
-    console.log("우뜨케나오는지?")
-
-  }
   
   //별점 배열
   const ARRAY = [0, 1, 2, 3, 4];

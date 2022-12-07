@@ -1,0 +1,81 @@
+.postwrap {
+  width: 360px;
+  /* max-height: 413px;   */
+  max-height: 315px;
+  overflow: auto;
+}
+.postwrap::-webkit-scrollbar {
+  display: none;
+}
+.listwrap {
+  position: relative;
+  background-color: #fff;
+  width: 360px;
+  height: 120px;
+  padding: 22px 22px;
+  border: 0.5px solid rgba(237, 144, 113, 0.41);
+}
+.text-box {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0;
+}
+.text-box > h3 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+}
+.text-box > .txt {
+  display: flex;
+  font-size: 15px;
+  margin: 0;
+  color: #ed9071;
+  line-height: 27px;
+}
+.text-box > .txt > p {
+  margin: 0;
+  text-indent: 8px;
+  color: #333;
+}
+.text-box > p {
+  font-size: 11px;
+  margin: 0;
+  font-weight: 100;
+  color: #696969;
+}
+.text-box > .date {
+  display: flex;
+  margin: 0;
+  gap: 15px;
+}
+.text-box > .date > p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 27px;
+  margin-right: 20px;
+  color: #696969;
+}
+.text-box > .date > p > img {
+  margin-right: 5px;
+  margin-top: -3px;
+}
+.text-box > .date > p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 27px;
+  margin: 0;
+  color: #696969;
+}
+.flexbox {
+  display: flex;
+}
+.text-box > .price {
+  width: 150px;
+  position: absolute;
+  top: 80px;
+  left: 181px;
+  color: #ed9071;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+}

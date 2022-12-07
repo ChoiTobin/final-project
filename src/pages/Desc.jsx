@@ -33,7 +33,7 @@ const Desc = () => {
                 <div className="text">
                   <div className="title">
                     산책 맡기고 싶은데 안심할 수 있는<br/>
-                    사람을 찾고 싶을 떄가 있으셨나요?
+                    사람을 찾고 싶을 때가 있으셨나요?
                   </div>
                   <div className="explain">
                     크멍을 통해 믿고 맡기고,<br/>

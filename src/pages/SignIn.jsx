@@ -6,7 +6,6 @@ import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
 import { ReactComponent as Logo } from "../img/logo-sign.svg";
 
-
 const SignIn = () => {
   //확인용
   const navigate = useNavigate();
@@ -20,12 +19,13 @@ const SignIn = () => {
   const [IdValid, setIdValid] = useState(false);
   const [PwValid, setPwValid] = useState(false);
   const onChangeHandler = (event) => {
-    const {name, value} = event.target
-    setLogin({...login, [name] : value})
-    
-    const regexId = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
-    
-    if(regexId.test(login.email)){
+    const { name, value } = event.target;
+    setLogin({ ...login, [name]: value });
+
+    const regexId =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+
+    if (regexId.test(login.email)) {
       setIdValid(true);
     } else {
       setIdValid(false);
@@ -39,9 +39,8 @@ const SignIn = () => {
   };
   //유효성검사 red 체크
   const onSubmitHandler = (event) => {
-    event.preventDefault()
-    const obj = 
-    {
+    event.preventDefault();
+    const obj = {
       email: login.email,
       password: login.password,
     };
@@ -121,7 +120,6 @@ const SignIn = () => {
     </div>
   );
 };
-
 
 export default SignIn;
 

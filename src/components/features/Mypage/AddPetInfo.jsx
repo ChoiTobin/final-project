@@ -10,8 +10,6 @@ const AddPetInfo = ({ onClose }) => {
   const [myPet, setMyPet] = useState("");
   const dispatch = useDispatch();
 
-  const myPets = useSelector((state) => state.mypage.myPets);
-
   // 프로필 등록 - 반려동물 정보(이름, 나이, 종류)
   const onChangePetInfo = (event) => {
     const { name, value } = event.target;
@@ -21,14 +19,11 @@ const AddPetInfo = ({ onClose }) => {
     });
   };
 
-  console.log("우리강아지", myPet);
-
   const onAddMyPets = (event) => {
     event.preventDefault();
     if (myPet.name === "" || myPet.age === "" || myPet.category === "") {
       return alert("모든 항목을 입력해주세요!");
     }
-    console.log("마이펫", myPet);
     dispatch(__addMyPet(myPet));
     window.location.reload("/mypage");
   };
@@ -121,14 +116,14 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: left;
   span {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 15px;
     font-weight: 700;
     line-height: 17.9px;
     margin: 15.06px 0 19.39px 0px;
   }
   label {
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 12px;
     font-weight: 700;
     line-height: 14.32px;
@@ -140,7 +135,7 @@ const Content = styled.div`
     border-radius: 4px;
     margin: 2.95px 0 2.95px 0;
     ::placeholder {
-      font-family: "Spoqa Han Sans Neo", sans-serif;
+      font-family: "Pretendard", sans-serif;
       font-size: 10px;
       font-weight: 400;
       line-height: 11.93px;
@@ -153,7 +148,7 @@ const Content = styled.div`
     border: 0.5px solid rgba(237, 144, 113, 1);
     border-radius: 4px;
     margin: 2.95px 0 20.04px 0;
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 10px;
     font-weight: 400;
     line-height: 11.93px;
@@ -167,12 +162,12 @@ const Form = styled.div`
 `
 
 const PlaceBtn = styled.div`
-margin-top: -5px;
+  margin-top: -5px;
   button {
     width: 135.07px;
     height: 27.42px;
     border: none;
-    font-family: "Spoqa Han Sans Neo", sans-serif;
+    font-family: "Pretendard", sans-serif;
     font-size: 12px;
     font-weight: 700;
     line-height: 14.32px;

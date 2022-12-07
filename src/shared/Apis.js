@@ -68,10 +68,6 @@ export const Apis = {
   //받아온 리스폰스로 뿌려줄거
   getInitialChatList2: (getInitialList2) => token.get(`/roomInfo/${getInitialList2}`),
 
-
-
-
-
   // 게시글 작성
   // postFileAX: (payload) => file.post(`/api/posts/${payload}`),
   postFileAX: (payload) => file.post(`/api/posts`,payload),
@@ -126,7 +122,7 @@ export const Apis = {
   // 다른회원 마이페이지 게시글 조회
   getPostInfoAX: (email) => token.get(`api/users/${email}/posts`),
   
- 
+
   // 평점
   getPostRatingAX: (payload) => token.put(`/rating`,payload),
 }

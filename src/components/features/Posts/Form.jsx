@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 // React BootStrap Library Import
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ButtonGroup } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 
 import Header from "../../Layout/Header";

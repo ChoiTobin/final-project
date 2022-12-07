@@ -1,20 +1,13 @@
 import React, { useState,useEffect } from "react";
 import styled from "styled-components";
-import "./Modal.css";
 import { useSelector,useDispatch  } from "react-redux";
 import { __complete } from "../../redux/modules/chattingSlice";
 import RatingModal from "./../../components/features/Posts/RatingModal/RatingModal";
- function Modal2() {
+import { ReactComponent as Accept } from '../../img/state-b.svg';
+import { ReactComponent as Complete } from '../../img/state-g.svg';
+import '../../styles/Modal.css'
 
-
-
-
-
-
-
-
-
-
+function Modal2() {
   const dispatch = useDispatch();
   const listReducer = useSelector((state) => state.chatting.room);
   const complete = useSelector((state) => state.chatting.complete);
@@ -26,74 +19,72 @@ import RatingModal from "./../../components/features/Posts/RatingModal/RatingMod
   
   }
 
+  const [modal,setModal] = useState(false);
+  const [modal2,setModal2] = useState(false);
+      
+  const toggleModal = () => {
+        setModal(!modal);
+    };
+  const toggleModal2 = () => {
+        setModal2(!modal2);
+  }
 
+  //       let mode = true
 
-const [modal,setModal] = useState(false);
-const [modal2,setModal2] = useState(false);
-    
-const toggleModal = () => {
-      setModal(!modal);
-  };
-const toggleModal2 = () => {
-      setModal2(!modal2);
-}
+  // const ModalOpen = () =>{
 
-//       let mode = true
+  //   console.log(mode)
+  //   if(listReducer.state == "진행중"){
+  //       mode = true
 
-// const ModalOpen = () =>{
+  //   }else{
+  //     mode = false
+  //   }
 
-//   console.log(mode)
-//   if(listReducer.state == "진행중"){
-//       mode = true
+  //   } 
+  //<RatingModal></RatingModal>
+    return (
+      <>  
 
-//   }else{
-//     mode = false
-//   }
+  {
+      listReducer.state === "완료" ? 
+      <Complete /> 
+      :   
+      listReducer.state === "산책중" ? 
+      // <img className="clearTrade" onClick={toggleModal2} src={require(`../../img/20221121_141959.png`)}/> 
+      <Complete onClick={toggleModal2} /> 
+      :
+      // <img className="clearTrade" onClick={toggleModal} src={require(`../../img/20221121_141505.png`)}/>
+      <Accept onClick={toggleModal} />
+      
+  }
 
-//   } 
-//<RatingModal></RatingModal>
-  return (
-    <>  
-
-{
-    listReducer.state == "완료" ? 
-    <img className="clearTrade"  src={require(`../../img/20221121_141959.png`)}/> 
-    :   
-    listReducer.state == "산책중" ? 
-    <img className="clearTrade" onClick={toggleModal2} src={require(`../../img/20221121_141959.png`)}/> 
-    :
-    <img className="clearTrade" onClick={toggleModal} src={require(`../../img/20221121_141505.png`)}/>
-    
-}
-
-{
-modal2 &&(
-   <RatingModal modal2 setModal2></RatingModal>
-   )
-}
-
-
- {  
- modal && (
-    <div className="modal2">
-        <div onClick={toggleModal} className="overlay2"></div>
-      <div className="modal2-content2">
-        <div className="modalTwo2">
-          <div className="content2">
-            <span  className="pink2">{listReducer.joinNickname}</span>님의
-            <span className="pink">'{listReducer.title}'</span>
-            <br/>를 수락하시겠습니까?
-          </div>
-        </div>
-        <button className="falseButton" onClick={toggleModal}>취소</button>
-        <button className="trueButton" onClick={onClickButton}>수락</button>
-      </div>
-    </div>
+  {
+  modal2 &&(
+    <RatingModal modal2 setModal2></RatingModal>
     )
-  } 
+  }
 
-  
-    </>
+
+  {  
+  modal && (
+      <div className="modal2">
+          <div onClick={toggleModal} className="overlay2"></div>
+        <div className="modal2-content2">
+          <div className="modalTwo2">
+            <div className="content2">
+              <span  className="pink2">{listReducer.joinNickname}</span>님의
+              <span className="pink">'{listReducer.title}'</span>
+              <br/>를 수락하시겠습니까?
+            </div>
+          </div>
+          <button className="falseButton" onClick={toggleModal}>취소</button>
+          <button className="trueButton" onClick={onClickButton}>수락</button>
+        </div>
+      </div>
+      )
+    }   
+  </>
   );
 }
 

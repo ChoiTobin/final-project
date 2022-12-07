@@ -1,76 +1,84 @@
-import React, { useState,useEffect,useCallback } from 'react'	
-import { useNavigate } from 'react-router-dom'		
-import { useDispatch, useSelector } from 'react-redux'
-import { __getPostTime } from"../../../redux/modules/postSlice"	
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { __getPostTime } from "../../../redux/modules/postSlice";
 import styled from "styled-components";
 import { ReactComponent as Date } from "../../../img/list-date.svg";
 import { ReactComponent as Place } from "../../../img/list-local.svg";
-import { useInView } from "react-intersection-observer"
-import '../../../css/postlist.css'
-const PostList = () => {	
-  
-  const navigator = useNavigate();	
-  const dispatch = useDispatch()
-  const posts = useSelector((state) => state.post.posts)
-  const post = useSelector((state) => state.post.post)
+import { useInView } from "react-intersection-observer";
+import "../../../styles/postlist.css";
+const PostList = () => {
+  const navigator = useNavigate();
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.post.posts);
+  const post = useSelector((state) => state.post.post);
   // console.log("posts",posts)
-  const [page, setPage] = useState(0) 
-  const [loading, setLoading] = useState()
-  const [ref, inView] = useInView()
-  
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState();
+  const [ref, inView] = useInView();
+
   // 서버에서 아이템을 가지고 오는 함수
-
   const getItems = useCallback(async () => {
-    
-    if(localStorage.getItem("전체검색")=="전체"){
-    dispatch(
-      __getPostTime(page)
-    );
-  }
-  }, [page])
-  
-  //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행 
+    if (localStorage.getItem("전체검색") == "전체") {
+      dispatch(__getPostTime(page));
+    }
+  }, [page]);
 
+  //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-  
-    getItems()
-  }, [getItems])
+    getItems();
+  }, [getItems]);
 
-  
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      setPage(prevState => prevState + 1)
+      setPage((prevState) => prevState + 1);
     }
-  }, [inView, loading])
-  return (	
-      <div className='postwrap'>
-          { posts !== undefined && 
-            posts.map((post) =>  {	
-              return(	
-                <div className='listwrap' key={post.idx} onClick={()=>{navigator(`/Detail/${post.id}`)}} >
-                  <div className='text-box'>
-                      <h3>{post.category}</h3>
-                      <div className='txt'>{post.state}<p>{post.title}</p></div>
-                      <p>{post.createdAt}</p>
-                  </div>
-                  <div className='text-box flexbox'>
-                    <div className='date'> 
-                      <p><img src={require("../../../img/calender.png")} alt="" />{post.date}</p>
-                      <p><img src={require("../../../img/markup.png")} alt="" />{post.local}</p>
-                    </div>
-                    <p className='price'>{post.price.toLocaleString('ko-KR')}원</p>
-                  </div>
+  }, [inView, loading]);
+  return (
+    <div className="postwrap">
+      {posts !== undefined &&
+        posts.map((post) => {
+          return (
+            <div
+              className="listwrap"
+              key={post.idx}
+              onClick={() => {
+                navigator(`/Detail/${post.id}`);
+              }}
+            >
+              <div className="text-box">
+                <h3>{post.category}</h3>
+                <div className="txt">
+                  {post.state}
+                  <p>{post.title}</p>
                 </div>
-            )
-          })   
-          }
-          <div ref={ref}></div>
-      </div>
-  )	
-}	
-export default PostList ;	
+                <p>{post.createdAt}</p>
+              </div>
+              <div className="text-box flexbox">
+                <div className="date">
+                  {/* <p><img src={require("../../../img/calender.png")} alt="" />{post.date}</p> */}
+                  <p>
+                    <Date />
+                    {post.date}
+                  </p>
+                  {/* <p><img src={require("../../../img/markup.png")} alt="" />{post.local}</p> */}
+                  <p>
+                    <Place />
+                    {post.local}
+                  </p>
+                </div>
+                <p className="price">{post.price.toLocaleString("ko-KR")}원</p>
+              </div>
+            </div>
+          );
+        })}
+      <div ref={ref}></div>
+    </div>
+  );
+};
+export default PostList;
 
 const Layouts = styled.div`
   width: 360px;
@@ -107,9 +115,9 @@ const Body = styled.div`
   background-color: #fff;
   width: 360px;
   height: 111px;
-  border-width:  0.1px 1px;
-  border-style: solid; 
-  border-color: #F8D1C5;
+  border-width: 0.1px 1px;
+  border-style: solid;
+  border-color: #f8d1c5;
   margin: 0 auto;
   padding-top: 12px;
   display: flex;
@@ -155,7 +163,7 @@ const Category = styled.div`
 `;
 
 const State = styled.div`
-  color: #FD9071;
+  color: #fd9071;
   font-weight: 600;
   font-size: 16px;
   line-height: 16.24px;
@@ -247,12 +255,12 @@ const DownRight = styled.div`
   font-size: 16px;
   font-weight: 600;
   line-height: 19.09px;
-  color: #ED9071;
+  color: #ed9071;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: right;
   margin-top: -10px;
-  margin-right: 10px
+  margin-right: 10px;
 `;

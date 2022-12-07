@@ -1,44 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import styled from "styled-components";
-import { __getDetail } from"../redux/modules/postSlice"
+import { __getDetail } from "../redux/modules/postSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Carousel from 'react-bootstrap/Carousel';
-import { __CreateRoom } from "../../src/redux/modules/chattingSlice"
+import Carousel from "react-bootstrap/Carousel";
+import { __CreateRoom } from "../../src/redux/modules/chattingSlice";
 import { ReactComponent as Date } from "../img/post-date.svg";
 import { ReactComponent as Place } from "../img/post-local.svg";
 import { ReactComponent as Post } from "../img/post-content.svg";
 import { ReactComponent as User } from "../img/user-post.svg";
-import '../FullHTML.css'
-import User from "../img/user.png";
-import { FaStar } from 'react-icons/fa';
-import "../css/detail.css"
+import "../FullHTML.css";
+import { FaStar } from "react-icons/fa";
+import "../styles/detail.css";
 const Detail = () => {
   const navigator = useNavigate();
-  const {id}  = useParams()
-  const dispatch = useDispatch()	
-  const post = useSelector((state)=>state.post.post)
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post.post);
 
+  useEffect(() => {
+    dispatch(__getDetail(id));
+  }, [dispatch]);
 
-
-  useEffect(() => {	
-    dispatch(__getDetail(id));	
-  }, [dispatch]);	
-  
   const onClickMove = () => {
     navigator(-1);
-    
   };
 
-  const onClickChatting = (post) =>{
-    dispatch(__CreateRoom({
-      postId:post.id,
-      postTitle:post.title,
-      postNickName:post.nickname,
-    }));
+  const onClickChatting = (post) => {
+    dispatch(
+      __CreateRoom({
+        postId: post.id,
+        postTitle: post.title,
+        postNickName: post.nickname,
+      })
+    );
     // navigator(`/ChatRoomPage/${post.id}`);
     setTimeout(
       function () {
@@ -47,12 +45,10 @@ const Detail = () => {
       },
       300 // 밀리초 간격으로 실행
     );
-  }
+  };
 
-  
   //채팅방 입장시 바로 연결이 안됨 데이터를 보내는게 이동하는것 보다 느려서 그럴거라 판단이되서 setTimeout을 줌
-  
-  
+
   return (
     <Layout>
       <Header />
@@ -100,7 +96,7 @@ const Detail = () => {
               <span>{post.createdAt}</span>
             </Info>
           </Top>
-          <Hr/>
+          <Hr />
           <Body>
             <Post style={{ margin: "13.93px 0 0 24.5px" }} />
             <div style={{ margin: "11.25px 0 0 8.1px" }}>
@@ -108,10 +104,16 @@ const Detail = () => {
               {post.content}
             </div>
           </Body>
-          <Hr/>
+          <Hr />
           <Profile>
             {/* <Userimg style={{marginRight:5}} src={require("../img/user.png")} alt=""  /> */}
-            <User style={{ width: "32.3px", height: "32.25px", margin: "11.15px 13.82px 11.24px 22.79px" }} />
+            <User
+              style={{
+                width: "32.3px",
+                height: "32.25px",
+                margin: "11.15px 13.82px 11.24px 22.79px",
+              }}
+            />
             <MyInfo>
               <span>&nbsp;{post.nickname}</span>
               <span>⭐4.2</span>
@@ -131,7 +133,7 @@ const Detail = () => {
       <Footer />
     </Layout>
   );
-}
+};
 
 export default Detail;
 
@@ -184,7 +186,7 @@ const Price = styled.span`
   font-size: 20px;
   font-weight: 600;
   line-height: 19.09px;
-  color: #ED9071;
+  color: #ed9071;
   margin: 11.24px 0 7.43px 0;
 `;
 
@@ -223,8 +225,8 @@ const Plan = styled.div`
 
 const Hr = styled.hr`
   width: 360px;
-  border: 0.24px solid #EE8B6A;
-`
+  border: 0.24px solid #ee8b6a;
+`;
 
 const Body = styled.div`
   width: 340px;
@@ -273,4 +275,3 @@ const ChatBtn = styled.div`
     letter-spacing: 0.055cm;
   }
 `;
-
