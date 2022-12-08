@@ -16,7 +16,7 @@ const Footer = () => {
 
   
   return (
-    <div className="footer">
+    <div className="footer" style={{cursor: 'pointer'}}>
       <img src={Home} alt="" onClick={() => navigate("/home")} className="home" />
       <img src={Chat} alt="" onClick={() => navigate("/chat")} className="chat" />
       <img src={Posting} alt="" onClick={() => navigate("/form")} className="post" />

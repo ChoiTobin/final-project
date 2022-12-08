@@ -14,7 +14,6 @@ const Header = () => {
     <Layout>
       <Logo
         onClick={() => onClickHome()}
-        style={{ margin: "20.41px -10px 13.59px" }}
       />
     </Layout>
   );
@@ -24,12 +23,13 @@ export default Header;
 
 const Layout = styled.div`
   background-color: #F6F0EE;
-  height: 60px;
+  width: 360px;
+  height: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  margin: 0 auto 0;
   gap: 116px;
 
   /* border: 1px solid #ed9071; */

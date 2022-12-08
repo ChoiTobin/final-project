@@ -62,6 +62,7 @@ const Content = () => {
     <div className="wrap">
       <div className="search">
         <input
+          className="search-input"
           onKeyPress={appKeyPress}
           type="text"
           name="search"
@@ -69,6 +70,7 @@ const Content = () => {
           onChange={onChangeHandler}
         />
         <img
+          className="search-icon"
           onKeyPress={appKeyPress}
           onClick={onClickSearch}
           src={require("../../../img/search.png")}
@@ -76,7 +78,7 @@ const Content = () => {
         />
       </div>
 
-      <div className="btn-group">
+      {/* <div className="btn-group">
         <button type="button" onClick={onClickAll}>
           전체
         </button>
@@ -89,22 +91,44 @@ const Content = () => {
         <button type="button" name="소형" onClick={onClickSmall}>
           소형
         </button>
+      </div> */}
+
+      <div className="tab-menu">
+        <input type="radio" style={{ display: "none" }} checked />
+        <label onClick={onClickAll} htmlFor="category" className="tab-btn">
+          전체
+        </label>
+
+        <input type="radio" style={{ display: "none" }} name="대형" />
+        <label onClick={onClickBig} htmlFor="category" className="tab-btn">
+          대형
+        </label>
+
+        <input type="radio" style={{ display: "none" }} name="중형" />
+        <label onClick={onClickMiddle} htmlFor="category" className="tab-btn">
+          중형
+        </label>
+
+        <input type="radio" style={{ display: "none" }} name="소형" />
+        <label onClick={onClickSmall} htmlFor="category" className="tab-btn">
+          소형
+        </label>
       </div>
 
       {/* 캐러셀슬라이드 */}
       <Carouselwrap>
         <Carousel>
           <Carousel.Item>
-            <img src={require("../../../img/all.png")} alt="" />
+            <SlideImg src={require("../../../img/all.png")} alt="" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={require("../../../img/big.png")} alt="" />
+            <SlideImg src={require("../../../img/big.png")} alt="" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={require("../../../img/middle.png")} alt="" />
+            <SlideImg src={require("../../../img/middle.png")} alt="" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={require("../../../img/small.png")} alt="" />
+            <SlideImg src={require("../../../img/small.png")} alt="" />
           </Carousel.Item>
         </Carousel>
       </Carouselwrap>
@@ -113,4 +137,20 @@ const Content = () => {
 };
 
 export default Content;
-const Carouselwrap = styled.div``;
+
+const Carouselwrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 360px;
+  height: 120px;
+  margin-top: 17px;
+`;
+
+const SlideImg = styled.img`
+  object-fit: cover;
+  width: 360px;
+  height: 140px;
+`;

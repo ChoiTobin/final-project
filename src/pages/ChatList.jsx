@@ -103,10 +103,10 @@ const ChatList = () => {
             );
           })
         ) : (
-          <>
+          <div className="chat-none">
             <div>채팅내역이 없습니다.</div>
             <button onClick={() => navigator(-1)}>이전으로</button>
-          </>
+          </div>
         )}
       </div>
       <Footer />

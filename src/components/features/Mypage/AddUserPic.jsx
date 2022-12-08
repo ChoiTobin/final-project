@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useImgUpload from "../../hooks/useImgUpload";
-import { ReactComponent as Upload } from "../../../img/previewPic.svg";
+import { ReactComponent as Upload } from "../../../img/form-add.svg";
 import { ReactComponent as Photo } from "../../../img/uploadPic.svg";
 import { __postMyImg } from "../../../redux/modules/mypageSlice";
 
@@ -42,7 +42,7 @@ const AddUserPic = ({ onClose }) => {
   return (
     <Layout>
       <div>
-        <label htmlFor="imgFile">
+        <label htmlFor="imgFile" style={{backgroundColor: "#FFF"}}>
           {/* 이미지 업로더 */}
           <input
             type="file"
@@ -75,21 +75,21 @@ const AddUserPic = ({ onClose }) => {
           })
         ) : (
           <PicNote>
-            <Photo /> <span>이미지 미리보기</span>
+            <Photo /> <span>&nbsp;이미지 미리보기</span>
           </PicNote>
         )}
       </ImgPreview>
-      <Btns>
+      <Btns >
         <button
           onClick={onClose}
-          style={{ borderRadius: "0 0 0 10px", backgroundColor: "#E6E6E6" }}
+          style={{ borderRadius: "0 0 0 15px", backgroundColor: "#E6E6E6" }}
         >
           취소
         </button>
         <button
           onClick={writeSubmit}
           style={{
-            borderRadius: "0 0 10px 0",
+            borderRadius: "0 0 15px 0",
             backgroundColor: "#ED9071",
             color: "#fff",
           }}
@@ -120,8 +120,8 @@ const ImgUpload = styled.button`
   /* margin: 10px 0 10px 100px; */
   border: none;
   border-radius: 10px;
-  background-color: #e5e5e5;
   margin: 10px auto 12px;
+  background-color: #E2E2E2;
   img {
     align-items: center;
     justify-content: center;

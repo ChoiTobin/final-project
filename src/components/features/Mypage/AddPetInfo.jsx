@@ -111,7 +111,7 @@ const Layout = styled.div`
 `;
 
 const Content = styled.div`
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -123,6 +123,7 @@ const Content = styled.div`
     margin: 15.06px 0 19.39px 0px;
   }
   label {
+    background-color: #F6F0EE;
     font-family: "Pretendard", sans-serif;
     font-size: 12px;
     font-weight: 700;

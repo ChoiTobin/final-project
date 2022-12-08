@@ -149,7 +149,9 @@ const MyPage = () => {
           )}
         </PetBtn>
         <Ad>
-          <img src={Banner} alt="banner" />
+          <a href="https://www.instagram.com/cmung.official/" style={{ cursor: "pointer" }} >
+            <img src={Banner} alt="banner" />
+          </a>          
           {/* <Banner/> */}
         </Ad>
 
