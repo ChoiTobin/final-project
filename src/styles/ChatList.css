@@ -1,0 +1,96 @@
+
+.root {
+  height: 30px;
+  margin: 17px;
+  margin-bottom: 50px;
+}
+.line {
+  background-color: #ee8b6a;
+  width: 100%;
+  height: 0.24px;
+  
+
+}
+.overflow {
+  width: 100%;
+  height: 570px;
+  overflow: auto;
+  
+}
+.overflow::-webkit-scrollbar {
+  display: none;
+  
+}
+.boldText {
+  
+  line-height: 30px;
+  width: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:#4E4E4E;
+}
+.flexDiv {
+  position: relative;
+  display: flex;
+
+  background-color: #f6f0ee;
+  width: 100%;
+}
+
+.Userimg {
+  width: 47px;
+  height: 47px;
+  /* margin-top: 10px; */
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 50%;
+  
+}
+.marginDiv {
+  justify-content: space-between;
+  margin-left: 10px;
+  
+
+}
+.img {
+  margin-top: 0px;
+  margin-left: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10%;
+  background-size: cover;
+  
+
+}
+.whiteTime {
+  position: absolute;
+  top:45px;
+  left:226px;
+  font-size: 10px;
+  color: #4e4e4e;
+  
+}
+.chatlength {
+  width: 210px;
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:#4E4E4E;
+
+}
+.Nickname {
+  text-align: center;
+}
+.clearTrade {
+  align-items: center;
+}
+.flexZone {
+  text-align: center;
+
+  align-items: center;
+}
