@@ -19,6 +19,7 @@
 .boldText {
   line-height: 30px;
   width: 100px;
+  font-family: "Pretendard", sans-serif;
   font-weight: 700;
   font-size: 16px;
   white-space: nowrap;
@@ -27,15 +28,17 @@
   color:#4E4E4E;
 }
 .flexDiv {
+  width: 330px;
   position: relative;
   display: flex;
-  /* background-color: aqua; */
-
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: left;
+  background-color: #F6F0EE;
 }
 .Userimg {
   width: 47px;
   height: 47px;
-  /* margin-top: 10px; */
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 50%;
@@ -45,22 +48,31 @@
   margin-left: 10px;
 }
 .img {
-  /* margin-top: 10px; */
   width: 50px;
   height: 50px;
   border-radius: 10%;
   background-size: cover;
-
+  margin-left: 10px;
 }
+
+.chat-content {
+  display: flex;
+  flex-direction: row;
+}
+
 .whiteTime {
-  position: absolute;
+  /* position: absolute; */
+  width: 40px;
   top:32px;
-  left:226px;
+  left:220px;
+  font-family: "Pretendard", sans-serif;
   font-size: 10px;
   color: #4e4e4e;
+  margin-left: 5px;
 }
 .chatlength {
-  width: 210px;
+  width: 140px;
+  font-family: "Pretendard", sans-serif;
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
@@ -76,7 +88,6 @@
 }
 .flexZone {
   text-align: center;
-
   align-items: center;
 }
 

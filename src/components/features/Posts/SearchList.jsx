@@ -35,12 +35,6 @@ const Content = () => {
       onClickSearch();
     }
   };
-  // const [page, setPage] = useState(0);
-  // const [petsize, setPetsize] = useState();
-  // let obj = {
-  //   page:page,
-  //   petsize:petsize
-  // }
 
   let All = "전체검색";
   localStorage.setItem(All, "전체");
@@ -50,8 +44,6 @@ const Content = () => {
     window.location.replace("/home");
     localStorage.setItem(All, "전체");
 
-    //전체조회 눌렀을때 배열을 비우고 다시 0페이지인 배열을
-    //뿌려줘야하는데... 어떻게해야할지 고민해봐야할듯
   };
   const onClickBig = () => {
     dispatch(__getCategory("대형"));
@@ -80,6 +72,7 @@ const Content = () => {
           onKeyPress={appKeyPress}
           onClick={onClickSearch}
           src={require("../../../img/search.png")}
+          alt=""
         />
       </div>
 
@@ -102,16 +95,16 @@ const Content = () => {
       <Carouselwrap>
         <Carousel>
           <Carousel.Item>
-            <img src={require("../../../img/all.png")} />
+            <img src={require("../../../img/all.png")} alt="" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={require("../../../img/big.png")} />
+            <img src={require("../../../img/big.png")} alt="" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={require("../../../img/middle.png")} />
+            <img src={require("../../../img/middle.png")} alt="" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={require("../../../img/small.png")} />
+            <img src={require("../../../img/small.png")} alt="" />
           </Carousel.Item>
         </Carousel>
       </Carouselwrap>

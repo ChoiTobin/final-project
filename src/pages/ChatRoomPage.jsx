@@ -222,6 +222,7 @@ function ChatRoomPage() {
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
           src={require("../img/send.png")}
+          alt=""
         />
       </div>
     </div>

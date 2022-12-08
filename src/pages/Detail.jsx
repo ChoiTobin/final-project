@@ -107,7 +107,7 @@ const Detail = () => {
         </Form>
       </Bg>
       { 
-          post.nickname == localStorage.getItem("user-nickname")  ?
+          post.nickname === localStorage.getItem("user-nickname")  ?
           null:
           <button className="chatBtn" onClick={()=>onClickChatting(post)}>크멍톡</button>
         }

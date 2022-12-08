@@ -16,8 +16,9 @@
   border: 0.5px solid rgba(237, 144, 113, 0.41);
 }
 .text-box {
+  font-family: "Pretendard", sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
 }
 .text-box > h3 {
@@ -27,6 +28,7 @@
 }
 .text-box > .txt {
   display: flex;
+  font-family: "Pretendard", sans-serif;
   font-size: 15px;
   margin: 0;
   color: #ed9071;
@@ -38,6 +40,7 @@
   color: #333;
 }
 .text-box > p {
+  font-family: "Pretendard", sans-serif;
   font-size: 11px;
   margin: 0;
   font-weight: 100;
@@ -49,6 +52,7 @@
   gap: 15px;
 }
 .text-box > .date > p {
+  font-family: "Pretendard", sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 27px;
@@ -60,6 +64,7 @@
   margin-top: -3px;
 }
 .text-box > .date > p {
+  font-family: "Pretendard", sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 27px;

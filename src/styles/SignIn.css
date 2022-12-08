@@ -2,7 +2,7 @@
   width: 360px;
   height: 638px;
   max-height: 640px;
-  background-color: #f6f0ee;
+  /* background-color: #f6f0ee; */
   margin: auto;
 }
 
@@ -14,17 +14,23 @@
 
 .wrap {
   display: flex;
+}
+
+.Logos {
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #ed9071; */
 }
 
 .LoginBox {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
   align-items: center;
-  margin: auto;
-  width: 350px;  
+  justify-content: center;
+  width: 350px;
+  text-align: center;
 }
 
 .LogoLogin {
@@ -80,11 +86,12 @@
   line-height: 20.03px;
 }
 
-.input-box {
+.InputBox {
   justify-content: left;
+  /* background-color: #4db173; */
 }
 
-.social-login {
+.SocialLogin {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,11 +104,15 @@
   color: rgba(120, 120, 120, 1);
 }
 
-.social-login > span {
+.SocialLogin > span {
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
   margin-bottom: 22px;
 }
 
-.hr {
+.Hr {
   border: 1px solid rgba(153, 153, 153, 0.54);
   margin-bottom: 30.42px;
 }
@@ -110,6 +121,11 @@
   width: 100px;
   height: 38px;
 }
+
+.Btn-Sign {
+  /* background-color: #fd6e7f; */
+}
+
 
 .LoginButton {
   width: 320px;
@@ -121,6 +137,7 @@
   font-family: "Pretendard", sans-serif;
   font-size: 20px;
   font-weight: 600;
+  text-align: center;
   margin: 22.58px auto 22px 14px;
 }
 
@@ -135,9 +152,4 @@
   font-size: 20px;
   font-weight: 600;
   margin: 0 auto 36px 14px;
-}
-
-.hr {
-  border: 1px solid rgba(153, 153, 153, 0.54);
-  margin-bottom: 30.42px;
 }

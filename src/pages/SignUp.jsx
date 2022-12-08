@@ -130,31 +130,37 @@ const SignUp = () => {
   return (
     <div className="SignupContainer">
       <form className="SignupBox" onSubmit={onSubmitHandler}>
-        <div className="LogoBox">
-          <span className="LoGoSignUp">
-            {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-            <Logo />
-          </span>
-          <span className="LoGoSignUp">
-            SIGN UP
-          </span>
-        </div>
+        <span className="LoGoSignUp">
+          {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+          <Logo
+            style={{
+              width: "58.75px",
+              height: "44.43px",
+              margin: "36.84px auto 18.68px",
+            }}
+          />
+        </span>
+          <span className="LoGoSignUp1">SIGN UP</span>
         <div className="InputBox">
-          <span className="FlexInput">
-            <input className="Input"
-              name="email"
-              placeholder="아이디"
-              onChange={onChangeHandler}
-            />
-            <button className="DuplicateCheckEmail"
-              type="button"
-              onClick={() => {
-                dispatch(__userCheck({ email: join.email }));
-              }}
-            >
-              중복확인
-            </button>
-            <div className="ErrorMessageWrap">
+          <div className="Insert">
+            <div className="Duplicate">
+              <input
+                className="InputTop"
+                name="email"
+                placeholder="아이디"
+                onChange={onChangeHandler}
+              />
+              <button
+                className="CheckBtn"
+                type="button"
+                onClick={() => {
+                  dispatch(__userCheck({ email: join.email }));
+                }}
+              >
+                중복확인
+              </button>
+            </div>
+            <div>
               {!IdValid
                 ? !IdValid &&
                   join.email.length > 0 && <div>이메일 형식을 입력해주세요</div>
@@ -163,82 +169,97 @@ const SignUp = () => {
                     <div className="Green">올바른 이메일 형식 입니다.</div>
                   )}
             </div>
-          </span>
-          <span className="FlexInput2">
-            <input className="Input2"
-              name="nickname"
-              placeholder="닉네임"
-              onChange={onChangeHandler}
-            ></input>
-            <button className="DuplicateCheckNick"
-              type="button"
-              onClick={() => {
-                dispatch(__NickCheck({ nickname: join.nickname }));
-              }}
-            >
-              중복확인
-            </button>
-            <div className="ErrorMessageWrap">
-              {!nickValid
-                ? !nickValid &&
-                  join.nickname.length > 0 && (
-                    <div>닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</div>
-                  )
-                : nickValid &&
-                  join.nickname.length > 0 && (
-                    <div className="Green">올바른 닉네임 형식 입니다.</div>
-                  )}
+          </div>
+          <div className="Insert">
+            <div className="Duplicate">
+              <input
+                className="InputTop"
+                name="nickname"
+                placeholder="닉네임"
+                onChange={onChangeHandler}
+              />
+              <button
+                className="CheckBtn"
+                type="button"
+                onClick={() => {
+                  dispatch(__NickCheck({ nickname: join.nickname }));
+                }}
+              >
+                중복확인
+              </button>
             </div>
-          </span>
-          <span >
-            <input className="Input3"
+          </div>
+          <div>
+            {!nickValid
+              ? !nickValid &&
+                join.nickname.length > 0 && (
+                  <div className="Red">
+                    닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자
+                  </div>
+                )
+              : nickValid &&
+                join.nickname.length > 0 && (
+                  <div className="Green">올바른 닉네임 형식 입니다.</div>
+                )}
+          </div>
+          <div className="Insert">
+            <input
+              className="InputDown"
               placeholder="비밀번호"
               type="password"
               name="password"
               onChange={onChangeHandler}
             />
-            <div className="ErrorMessageWrap">
+            <div>
               {!PwValid
                 ? !PwValid &&
                   join.password.length > 0 && (
-                    <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
+                    <div className="Red">
+                      비밀번호 영문 숫자 특수기호 포함 8자~20자
+                    </div>
                   )
                 : PwValid &&
                   join.password.length > 0 && (
                     <div className="Green">사용 가능한 비밀번호 입니다.</div>
                   )}
             </div>
-          </span>
-          <span>
-            <input className="Input4"
+          </div>
+          <div className="Insert">
+            <input
+              className="InputDown"
               placeholder="비밀번호 확인"
               type="password"
               name="passwordCheck"
               onChange={onChangeHandler}
             />
             <div className="ErrorMessageWrap">
-              {!PwCValid
-                ? !PwCValid &&
-                  join.passwordCheck.length > 0 && (
-                    <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
-                  )
-                : PwCValid &&
-                  join.passwordCheck.length > 0 &&
-                  (join.passwordCheck === join.password ? (
-                    <div className="Green">사용 가능한 비밀번호 입니다.</div>
-                  ) : (
-                    <div>비밀번호가 일치하지 않습니다.</div>
-                  ))
-                  //위에 비밀번호와 일치하는지 대조.
+              {
+                !PwCValid
+                  ? !PwCValid &&
+                    join.passwordCheck.length > 0 && (
+                      <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
+                    )
+                  : PwCValid &&
+                    join.passwordCheck.length > 0 &&
+                    (join.passwordCheck === join.password ? (
+                      <div className="Green">사용 가능한 비밀번호 입니다.</div>
+                    ) : (
+                      <div className="Red">비밀번호가 일치하지 않습니다.</div>
+                    ))
+                //위에 비밀번호와 일치하는지 대조.
               }
             </div>
-          </span>
-          <button className="SignupButton" onClick={onSubmitHandler}>회원가입</button>
+          </div>
+          <button className="SignupButton" onClick={onSubmitHandler}>
+            회원가입
+          </button>
         </div>
         <div className="LoginBox">
           {" "}
           이미 계정이 있으신가요?{" "}
-          <span className="blackSpan" onClick={() => navigate("/")}>로그인</span>
+          <span onClick={() => navigate("/")}>
+            <span style={{ color: "#FD6E7F" }}>&nbsp;로그인</span>
+          </span>
         </div>
       </form>
     </div>
