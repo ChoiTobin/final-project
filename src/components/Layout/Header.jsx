@@ -13,6 +13,7 @@ const Header = () => {
   return (
     <Layout>
       <Logo
+        style={{cursor: "pointer"}}
         onClick={() => onClickHome()}
       />
     </Layout>

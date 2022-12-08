@@ -39,7 +39,7 @@ const ChatList = () => {
       <Header />
 
       <div className="line"></div>
-      <div className="overflow">
+      <div className="overflow" style={{cursor: "pointer"}}>
         {Room !== undefined && Room !== null ? (
           Room.map((item, i) => {
             return (

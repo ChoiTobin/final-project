@@ -40,7 +40,7 @@ const Detail = () => {
       <Header />
       <Bg>
         <Form>
-          <Carousel fade>
+          <Carousel fade style={{height: "206px"}}>
             {post.imgs !== undefined &&
               post.imgs.map((pic) => {
                 if (post.imgs.length !== 0) {
@@ -121,6 +121,8 @@ export default Detail;
 
 const Layout = styled.div`
   width: 360px;
+  min-height: 638px;
+  max-height: 640px;
   margin: 0 auto;
   background-color: #f6f0ee;
 `;

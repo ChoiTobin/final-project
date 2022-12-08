@@ -135,39 +135,36 @@ function ChatRoomPage() {
 
 
   return (
-
-
-    
     <div className="chattingContainer">
       <div className="Header">
         <div>
-          <BackArrow onClick={() => navigate(-1)} />
+          <BackArrow
+            onClick={() => navigate(-1)}
+            style={{ cursor: "pointer" }}
+          />
         </div>
         <div className="Nickname">
           {localStorage.getItem("user-nickname") == room.joinUserNickname
             ? room.postUserNickname
             : room.joinUserNickname}
         </div>
-        {
-        localStorage.getItem("user-nickname") === room.postUserNickname && room.state !=="완료"  
-        ? 
-        <Modal2/> 
-        :
-        room.state =="완료"  ?
-        <>
-      <div className="flexZone">
-        <div >
-          <Complete /> 
-        </div>  
-          <div>
-            <div className="clearName">완료</div>
-          </div>  
-      </div>
-        </>  
-        :  
-        <img /> 
-
-        }
+        {localStorage.getItem("user-nickname") === room.postUserNickname &&
+        room.state !== "완료" ? (
+          <Modal2 />
+        ) : room.state == "완료" ? (
+          <>
+            <div className="flexZone">
+              <div>
+                <Complete />
+              </div>
+              <div>
+                <div className="clearName">완료</div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <img />
+        )}
       </div>
 
       {/* header */}
@@ -219,13 +216,8 @@ function ChatRoomPage() {
           value={chatBody}
           onKeyPress={appKeyPress}
           onChange={inputHandler}
-         
-        >
-          
-
-        </input>
+        ></input>
         <img
-         
           className="ArrowImg"
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
@@ -233,7 +225,7 @@ function ChatRoomPage() {
         />
       </div>
     </div>
-  )
+  );
 }
 {
   /* footer */
