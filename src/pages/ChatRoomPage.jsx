@@ -16,6 +16,7 @@ import { off } from "process";
 import { ReactComponent as Complete } from '../img/state-g.svg';
 
 function ChatRoomPage() {
+
   const { id } = useParams();
   const navigate = useNavigate();
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
@@ -133,10 +134,11 @@ function ChatRoomPage() {
   let dateString = year + "-" + month + "-" + day;
 
 
-
-
   return (
-    <div className="LoginContainer">
+
+
+    
+    <div className="chattingContainer">
       <div className="Header">
         <div>
           <BackArrow onClick={() => navigate(-1)} />
@@ -154,15 +156,16 @@ function ChatRoomPage() {
         room.state =="완료"  ?
         <>
       <div className="flexZone">
-          <div>
+        <div >
           <Complete /> 
-          </div>  
+        </div>  
           <div>
             <div className="clearName">완료</div>
           </div>  
       </div>
         </>  
-        :  <img /> 
+        :  
+        <img /> 
 
         }
       </div>
@@ -171,7 +174,7 @@ function ChatRoomPage() {
       <div className="row">
         <div className="flexBox">
           <div>
-            <img className="photoImg" src={(`${room.postImg}`)} alt="" />
+            <img className="photoImg" src={require("../img/user.png")} alt="" />
           </div>
           <div>
             <div className="flexBox2">
@@ -216,17 +219,21 @@ function ChatRoomPage() {
           value={chatBody}
           onKeyPress={appKeyPress}
           onChange={inputHandler}
-        ></input>
+         
+        >
+          
+
+        </input>
         <img
+         
           className="ArrowImg"
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
           src={require("../img/send.png")}
-          alt=""
         />
       </div>
     </div>
-  );
+  )
 }
 {
   /* footer */

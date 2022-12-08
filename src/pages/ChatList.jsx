@@ -45,9 +45,10 @@ const ChatList = () => {
             return (
               <div className="root" key={i}>
                 <div className="flexDiv">
-                  <img
+
+                <img
                     className="Userimg"
-                    src={`${item.postUserImg}`}
+                    src={require("../img/user.png")}
                     alt=""
                     onClick={() => onClickChatting(item)}
                   />
@@ -57,7 +58,7 @@ const ChatList = () => {
                       onClick={() => onClickChatting(item)}
                     >
                       {
-                        localStorage.getItem("user-nickname") ===
+                        localStorage.getItem("user-nickname") ==
                         item.joinUserNickname
                           ? item.postUserNickname
                           : item.joinUserNickname
@@ -65,39 +66,35 @@ const ChatList = () => {
                         //내 아이디명이 아닌 상대방 아이디
                       }
                     </span>
-                    <div className="chat-content">
-                      <div
-                        className="chatlength"
-                        onClick={() => onClickChatting(item)}
-                      >
-                        {item.chatList[item.chatList.length - 1] !== undefined &&
-                          item.chatList[item.chatList.length - 1].message}
-                      </div>
-
-                      <span className="whiteTime">
-                        {item.chatList[item.chatList.length - 1] !== undefined &&
-                          `${item.chatList[
-                            item.chatList.length - 1
-                          ].sendDate.substring(5, 7)}월`}
-
-                        {item.chatList[item.chatList.length - 1] !== undefined &&
-                          `${item.chatList[
-                            item.chatList.length - 1
-                          ].sendDate.substring(8, 10)}일`}
-                      </span>
-                    </div>
+ 
+                    <div
+                      className="chatlength"
+                      onClick={() => onClickChatting(item)}
+                    >
+                      {item.chatList[item.chatList.length - 1] !== undefined  && item.chatList[item.chatList.length - 1].length !== 0 &&
+                        item.chatList[item.chatList.length - 1].message
+                        }
                     
-                  </div>
-                  <div className="img">
-                    {item.postImg !== undefined &&
-                      (item.postImg.length !== 0 ? (
-                        <img src={`${item.postImg}`} alt="" />
-                    ) : (
-                        <img src={require("../img/chatPic.png")} alt="" />
-                      )
+                    </div>
+
+                    {/* <span className="whiteTime">
                       
-                    )}
+                    {item.chatList[item.chatList.length - 1] !== undefined &&
+                        `${item.chatList[item.chatList.length - 1].sendDate.substring(5, 7)}월`}
+                      {item.chatList[item.chatList.length - 1] !== undefined &&
+                        `${item.chatList[
+                          item.chatList.length - 1
+                        ].sendDate.substring(8, 10)}일`} 
+                    </span> */}
+
                   </div>
+                  <img className="img" src={require("../img/KakaoTalk_20221208_132549478.png")}/>
+                  {/* {
+                    item.postImg.length !== 0 && 
+                    
+                  <img className="img" src={`${item.postImg}`}/>
+                  
+                  }  */}
                 </div>
               </div>
             );
