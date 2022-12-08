@@ -8,7 +8,7 @@ const initialState = {
   post:{},
   posts:[], //공배열로 바꿔야함
   error: null,	
-}
+} 
 
 // 평점넘기기
 export const __getPostRating = createAsyncThunk(	
