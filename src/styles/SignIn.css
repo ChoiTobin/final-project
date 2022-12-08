@@ -1,82 +1,143 @@
-.LoginContainer{
-    display: flex;
+.layout {
+  width: 360px;
+  height: 638px;
+  max-height: 640px;
+  background-color: #f6f0ee;
+  margin: auto;
+}
+
+.LoginContainer {
+  display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;  
 }
-.wrap{
-    display: flex;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
 }
-.LoginBox{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 350px;
-    /* margin: 0 auto; */
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.LoginBox {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 350px;  
 }
-.LogoLogin{
-    color: #ed9071;
-    font-size: 30px;
-    margin-bottom: 50px;
+
+.LogoLogin {
+  font-family: "Pretendard", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38.19px;
+  margin: 5.57px auto 34px;
 }
-.Red{
-color: #ef0000;
-font-size: 12px;
-text-align: left;
-width: 270px;
-padding: 5px;  
+
+.Red {
+  color: #fd6e7f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 13px;
+  line-height: 11.93px;
+  font-weight: 700;
+  text-align: left;
+  width: 270px;
+  padding: 5px;
 }
-.Green{
-    color: green;
-    font-size: 12px;
-    text-align: left;
-    width: 270px;
-    padding: 5px;
+
+.Green {
+  color: #4db173;
+  font-family: "Pretendard", sans-serif;
+  font-size: 13px;
+  line-height: 11.93px;
+  font-weight: 700;
+  text-align: left;
+  padding: 5px;
 }
-.ErrorMessageWrap{
-    color: #ef0000;
+
+.ErrorMessageWrap {
+  color: #fd6e7f;
 }
-.Input{
-    border: 1px solid #929292;
-    width: 250px;
-    height: 40px;
-    font-size: 12px;
-    border-radius: 2px;
-    padding: 10px;
-    background: #fafafa;
-    border-radius: 3px;
+
+.Input {
+  border: 1px solid #929292;
+  width: 280px;
+  height: 40px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 14.69px;
+  margin: 9px auto 9px;
 }
-.Input:focus{
-    outline: 1px solid #adadad;
+
+.Input::placeholder {
+  color: rgba(120, 120, 120, 1);
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20.03px;
 }
-.LoginButton{
-    font-size: 18px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    font-weight: bold;
-    width: 253px;
-    height: 40px;
-    margin-top: 30px;
-    margin-bottom: 70px;
-    cursor: pointer;
-    background-color: #ed9071;
+
+.input-box {
+  justify-content: left;
 }
-.SignButton{
-    font-size: 18px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    font-weight: bold;
-    width: 253px;
-    height: 40px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    background-color: #838383;
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  margin-bottom: 24px;
+  color: rgba(120, 120, 120, 1);
+}
+
+.social-login > span {
+  margin-bottom: 22px;
+}
+
+.hr {
+  border: 1px solid rgba(153, 153, 153, 0.54);
+  margin-bottom: 30.42px;
+}
+
+.LogoBtns {
+  width: 100px;
+  height: 38px;
+}
+
+.LoginButton {
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ed9071;
+  color: #fff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 22.58px auto 22px 14px;
+}
+
+.SignButton {
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  background-color: #aeaeae;
+  color: #fff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 auto 36px 14px;
+}
+
+.hr {
+  border: 1px solid rgba(153, 153, 153, 0.54);
+  margin-bottom: 30.42px;
 }

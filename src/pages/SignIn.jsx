@@ -52,55 +52,75 @@ const SignIn = () => {
 
   return (
     <div>
-      <div className="LoginContainer">
-        <div className="wrap">
-          <div>
-            <div className="LoginBox">
-              <Logo />
-              <span className="LogoLogin">LOGIN</span>
-              <KakaoLogin />
-              <input className="Input"
-                placeholder="아이디"
-                type="text"
-                name="email"
-                value={login.email}
-                onChange={onChangeHandler}
-              />
-              <div className="ErrorMessageWrap">
-                {!IdValid
-                  ? !IdValid &&
-                    login.email.length > 0 && (
-                      <div className="Red">올바른 아이디를 입력해주세요.</div>
-                    )
-                  : IdValid &&
-                    login.email.length > 0 && (
-                      <div className="Green">올바른 아이디 형식입니다.</div>
-                    )}
+      <div className="layout">
+        <div className="LoginContainer">
+          <div className="wrap">
+            <div>
+              <div className="LoginBox">
+                <Logo style={{ marginTop: "36.84px" }} />
+                <span className="LogoLogin">LOGIN</span>
+
+                <div className="input-box">
+                  <input
+                    className="Input"
+                    placeholder="아이디"
+                    type="text"
+                    name="email"
+                    value={login.email}
+                    onChange={onChangeHandler}
+                  />
+                  <div className="ErrorMessageWrap">
+                    {!IdValid
+                      ? !IdValid &&
+                        login.email.length > 0 && (
+                          <div className="Red">
+                            올바른 아이디를 입력해주세요.
+                          </div>
+                        )
+                      : IdValid &&
+                        login.email.length > 0 && (
+                          <div className="Green">올바른 아이디 형식입니다.</div>
+                        )}
+                  </div>
+                  <input
+                    className="Input"
+                    placeholder="비밀번호"
+                    type="password"
+                    name="password"
+                    value={login.password}
+                    onChange={onChangeHandler}
+                  />
+                  <div className="ErrorMessageWrap">
+                    {!PwValid
+                      ? !PwValid &&
+                        login.password.length > 0 && (
+                          <div className="Red">
+                            영문,숫자,특수문자 포함 8자 이상 입력해주세요
+                          </div>
+                        )
+                      : PwValid &&
+                        login.password.length > 0 && (
+                          <div className="Green">
+                            올바른 비밀번호 형식입니다.
+                          </div>
+                        )}
+                  </div>
+                </div>
               </div>
-              <input className="Input"
-                placeholder="비밀번호"
-                type="password"
-                name="password"
-                value={login.password}
-                onChange={onChangeHandler}
-              />
-              <div className="ErrorMessageWrap">
-                {!PwValid
-                  ? !PwValid &&
-                    login.password.length > 0 && (
-                      <div className="Red">영문,숫자,특수문자 포함 8자 이상 입력해주세요</div>
-                    )
-                  : PwValid &&
-                    login.password.length > 0 && (
-                      <div className="Green">올바른 비밀번호 형식입니다.</div>
-                    )}
-              </div>
-              <button className="LoginButton" onClick={onSubmitHandler}>로그인</button>
-              <button className="SignButton" onClick={() => navigate("/signup")}>
-                회원가입
+              <button onClick={onSubmitHandler} className="LoginButton">
+                로그인
               </button>
+              <div className="social-login">
+                <span>또는</span>
+                <div className="LogoBtns">
+                  <KakaoLogin />
+                </div>
+              </div>
+
+              <hr className="hr" />
+              <button onClick={() => navigate("/signup")} className="SignButton">회원가입</button>
+              <p id="token-result"></p>
             </div>
-            <p id="token-result"></p>
           </div>
         </div>
       </div>
