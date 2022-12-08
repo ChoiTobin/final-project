@@ -148,7 +148,8 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
 
-      state.posts.push(...action.payload.data);	
+      // state.posts.push(...action.payload.data);	
+      state.post.response = action.payload.data;
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -205,7 +206,7 @@ const postSlice = createSlice({
 
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.posts = action.payload.data;	
+      state.post = action.payload.data;	
       // state.posts.push(...action.payload.data);
     },	
     [__getKeyword.rejected]: (state, action) => {	
@@ -221,7 +222,7 @@ const postSlice = createSlice({
       state.isLoading = false;	
       state.isSuccess = false;	
 
-      state.posts = action.payload.data;	
+      state.post = action.payload.data;	
       // state.posts.push(...action.payload.data);
     },
     [__getCategory.rejected]: (state, action) => {	

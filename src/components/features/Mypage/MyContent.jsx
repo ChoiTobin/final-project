@@ -104,10 +104,11 @@ const MyContent = ({ myPost }) => {
 export default MyContent;
 
 const Layout = styled.div`
-  min-height: 225px;
-  max-height: 226px;
+  min-height: 218px;
+  max-height: 219px;
   overflow-x: hidden;
   overflow-y: auto;
+  /* border: 2px solid #ed9071; */
   /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
     width: 5px;
