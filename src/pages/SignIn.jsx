@@ -55,13 +55,11 @@ const SignIn = () => {
         <div className="LoginContainer">
           <div className="wrap">
             <div>
-              {/* 로고즈 */}
               <div className="Logos">
                 <Logo style={{ marginTop: "36.84px" }} />
                 <span className="LogoLogin">LOGIN</span>
               </div>
 
-              {/* 인풋박스 */}
               <div className="InputBox">
                 <input
                   className="Input"
@@ -108,7 +106,6 @@ const SignIn = () => {
                       )}
                 </div>
               </div>
-              {/* 버튼친구들 */}
               <div className="Btn-Sign">
                 <button className="LoginButton" onClick={onSubmitHandler}>
                   로그인
