@@ -154,6 +154,7 @@ const Post = () => {
           />
           <textarea
             name="content"
+            maxLength={200}
             value={conimal.content || ""}
             onChange={onChangeHandler}
             required

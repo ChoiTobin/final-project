@@ -5,10 +5,8 @@ import {
   __getPostTime,
 } from "../../../redux/modules/postSlice";
 import "../../../App.css";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import { ReactComponents as PostDate } from "../../../img/post-date.svg";
-import { ReactComponents as PostLocal } from "../../../img/post-local.svg";
 // import "../../../styles/postlist.css";
 const PostList = () => {
   const navigator = useNavigate();
