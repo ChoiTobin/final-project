@@ -1,7 +1,12 @@
+.layout {
+  width: 360px;
+  height: 640px;
+}
+
 h1 {
-  font-family: "SF Pro";
+  font-family: "Pretendard", sans-serif;
   font-style: normal;
-  font-weight: 110;
+  font-weight: 150;
   font-size: 32px;
   text-align: center;
   text-transform: uppercase;

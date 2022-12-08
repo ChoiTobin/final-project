@@ -38,7 +38,7 @@ const PostList = () => {
                     <TopLeft className="top-left">
                       <Category>{post.category}</Category>
                       <Main className="title">
-                        <State>{post.state}</State>
+                        <State style={{width: "50px"}}>{post.state}</State>
                         &nbsp;
                         <Title>{post.title}</Title>
                       </Main>
@@ -75,12 +75,10 @@ export default PostList;
 
 const Layouts = styled.div`
   width: 360px;
-  height: 315.96px;
-  margin: -30px auto 0;
+  height: 288px;
+  margin: -50px auto 0;
   background-color: #fff;
   opacity: 96%;
-
-
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -145,6 +143,8 @@ const TopLeft = styled.div`
   font-weight: 500;
   font-size: 19px;
   line-height: 16.24px;
+  /* border: 1px solid #D3D3D3; */
+  margin-top: -10px;
 `;
 
 const Category = styled.div`
@@ -165,10 +165,16 @@ const State = styled.div`
 `;
 
 const Title = styled.div`
+  /* border: 1px solid #ed9071; */
+  max-width: 170px;
+  height: 20px;
   font-family: "Pretendard", sans-serif;
   font-size: 17px;
   font-weight: 500;
   line-height: 16.24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Main = styled.div`
@@ -235,8 +241,9 @@ const DownLeft = styled.div`
   justify-content: left;
   font-size: 10px;
   gap: 8px;
-  margin-top: -18px;
+  margin-top: -36px;
   margin-left: 10px;
+  /* border: 1px solid #ED4576; */
 `;
 
 const DownRight = styled.div`

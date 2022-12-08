@@ -246,7 +246,7 @@ const Form = styled.div`
   flex-direction: column;
 `;
 const Bg = styled.div`
-  max-height: 514.32px;
+  max-height: 457.43px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */

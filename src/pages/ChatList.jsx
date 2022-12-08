@@ -2,7 +2,6 @@ import "../styles/ChatList.css";
 import React, { useEffect } from "react";
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
-import Layouts from "../components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -35,7 +34,7 @@ const ChatList = () => {
   //채팅 샌드할때
 
   return (
-    <Layouts>
+    <div className="layout">
       <Header />
 
       <div className="line"></div>
@@ -107,7 +106,7 @@ const ChatList = () => {
         )}
       </div>
       <Footer />
-    </Layouts>
+    </div>
   );
 };
 export default ChatList;

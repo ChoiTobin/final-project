@@ -84,8 +84,8 @@ const PetInfo = ({ myPets }) => {
 export default PetInfo;
 
 const Layout = styled.div`
-  min-height: 225px;
-  max-height: 226px;
+  min-height: 218px;
+  max-height: 219px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
