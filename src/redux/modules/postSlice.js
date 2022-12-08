@@ -6,7 +6,7 @@ import { __putPost } from "./mypageSlice";
 const initialState = {	
   isLoading: false,	
   post:{},
-  posts:[], //공배열로 바꿔야함
+  // posts:[], //공배열로 바꿔야함
   error: null,	
 } 
 
@@ -30,15 +30,10 @@ export const __getPostRating = createAsyncThunk(
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {
-
     try {	
-      
       const response = await Apis.getPostTimeAX(payload)	
-      
-
-
       return thunkAPI.fulfillWithValue(response.data);	
-    } catch (error) {
+    } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
@@ -110,8 +105,9 @@ export const __getCategory = createAsyncThunk(
   async (payload, thunkAPI) => {	
 
     try {	
+      console.log("payload:",payload)
       const response = await Apis.getFilterAX(payload)	
-
+      console.log("response.data:",response.data)
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -144,11 +140,9 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostTime.fulfilled]: (state, action) => {	
-
       state.isLoading = false;	
       state.isSuccess = false;	
-
-      state.posts.push(...action.payload.data);	
+      state.post.response = action.payload.data;
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -202,11 +196,9 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
-
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.posts = action.payload.data;	
-      // state.posts.push(...action.payload.data);
+      state.post.response = action.payload.data;
     },	
     [__getKeyword.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -220,9 +212,7 @@ const postSlice = createSlice({
     [__getCategory.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-
-      state.posts = action.payload.data;	
-      // state.posts.push(...action.payload.data);
+      state.post.response = action.payload.data;
     },
     [__getCategory.rejected]: (state, action) => {	
       state.isLoading = false;	

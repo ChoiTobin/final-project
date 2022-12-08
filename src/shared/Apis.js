@@ -66,7 +66,7 @@ export const Apis = {
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
 
   // 게시글 전체 조회
-  getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload}`),
+  getPostTimeAX: () => token.get(`/api/posts`),
   // 게시글 검색 - 특정 단어 포함 게시글 조회
   getKeywordAX: (searchKeyword) => token.get(`/api/search?&content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
