@@ -3,32 +3,86 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   __getPostTime,
+  __getKeyword,
+  __getCategory,
 } from "../../../redux/modules/postSlice";
 import "../../../App.css";
-// import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 // import "../../../styles/postlist.css";
-const PostList = () => {
+const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.post.response)
-  
+    const posts = useSelector((state) => state.post.posts)
+
+  const [page, setPage] = useState(0) 
+  const [loading, setLoading] = useState(false)
+  const [ref, inView] = useInView()
+  // 서버에서 아이템을 가지고 오는 함수
+
+  const getItems = useCallback(
+    async () => 
+    {
+      if(categoryState==="검색"){
+        return dispatch(
+          __getKeyword({searchKeyword:searchState,pageNumber: page})
+        );
+      }else if(categoryState==="전체"){
+        return dispatch(
+          __getPostTime({pageNumber:page})
+        );
+      }else if(categoryState==="대형"){
+        return dispatch(
+          __getCategory({categoryKeyword:"대형",pageNumber: page})
+        );
+      }else if(categoryState==="중형"){
+        return dispatch(
+          __getCategory({categoryKeyword:"중형",pageNumber: page})
+        );
+      }else if(categoryState==="소형") {
+        return dispatch(
+          __getCategory({categoryKeyword:"소형",pageNumber: page})
+        );
+      }
+       
+  }, [page,categoryState])
+
+
+
+  // console.log("page:",page)
+  //렌더링시 처음화면에 나타남2
+  //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행 
+
+  // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    dispatch(
-      __getPostTime()
-    );
-  }, [dispatch]);
+    getItems()
+    console.log("카테고리가 뭘까요?:",categoryState)
+    console.log("page:",page)
+  }, [getItems])
+  //렌더링시 처음화면에 나타남
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      setPage(prevState => prevState + 1)
+    }
+  }, [inView,loading])
+
+  useEffect(() => {
+    setPage(0)
+  }, [categoryState])
+
 
   return (
     <Layouts className="postwrap">
       {posts !== undefined &&
-        posts.map((post) => {
+        posts.map((post,i) => {
           return (
             <Content
               onClick={() => {
                 navigator(`/Detail/${post.id}`);
               }}
-              key={post.id}
+              key={i}
             >
               <Body className="wrap">
                 <Text>
@@ -66,6 +120,7 @@ const PostList = () => {
             </Content>
           );
         })}
+        <div ref={ref}></div> 
     </Layouts>
   );
 };
@@ -73,7 +128,7 @@ export default PostList;
 
 const Layouts = styled.div`
   width: 360px;
-  height: 288px;
+  height: 800px;
   margin: -50px auto 0;
   background-color: #fff;
   opacity: 96%;
