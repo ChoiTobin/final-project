@@ -73,8 +73,8 @@ export default PostList;
 
 const Layouts = styled.div`
   width: 360px;
-  height: 288px;
-  margin: -50px auto 0;
+  height: 453.96px;
+  margin: -178px auto 0;
   background-color: #fff;
   opacity: 96%;
   overflow-x: hidden;

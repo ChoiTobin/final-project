@@ -3,12 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import Apis from "../../shared/Apis"
 import axios from "axios";
 import { __putPost } from "./mypageSlice";	
-const initialState = {	
-  isLoading: false,	
-  post:{},
-  // posts:[], //공배열로 바꿔야함
-  error: null,	
-} 
+
 
 // 평점넘기기
 export const __getPostRating = createAsyncThunk(	
@@ -117,7 +112,12 @@ export const __getCategory = createAsyncThunk(
 
 const postSlice = createSlice({	
   name: "post",	
-  initialState,	
+  initialState: {	
+    isLoading: false,	
+    post:{},
+    posts:[], //공배열로 바꿔야함
+    error: null,	
+  }, 
   reducers: {},	
   extraReducers: {	
     // 평점넘기기
@@ -142,7 +142,7 @@ const postSlice = createSlice({
     [__getPostTime.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;
+      state.posts.response = action.payload.data;
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -198,7 +198,7 @@ const postSlice = createSlice({
     [__getKeyword.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;
+      state.posts.response = action.payload.data;
     },	
     [__getKeyword.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -212,7 +212,7 @@ const postSlice = createSlice({
     [__getCategory.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      state.post.response = action.payload.data;
+      state.posts.response = action.payload.data;
     },
     [__getCategory.rejected]: (state, action) => {	
       state.isLoading = false;	

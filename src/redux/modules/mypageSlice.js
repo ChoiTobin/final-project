@@ -6,6 +6,8 @@ const initialState = {
   post: {id: 0,},
   myInfo: {
     id: 0,
+    kakaoId: 0,
+    naverId: 0,
     nickname: "",
     userImage: "",
   },

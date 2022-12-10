@@ -108,12 +108,14 @@ const Layout = styled.div`
   height: 250px;
   margin: auto;
   background-color: #fff;
+    /* background-color: yellow; */
   border-radius: 10px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 `;
 
 const ImgUpload = styled.button`
@@ -152,6 +154,7 @@ const ImgPreview = styled.div`
 `;
 
 const Btns = styled.div`
+  margin-bottom: -20px;
   button {
     width: 165px;
     height: 40px;

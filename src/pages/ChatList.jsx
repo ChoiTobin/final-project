@@ -65,7 +65,7 @@ const ChatList = () => {
                         //내 아이디명이 아닌 상대방 아이디
                       }
                     </span>
- 
+
                     <div
                       className="chatlength"
                       onClick={() => onClickChatting(item)}

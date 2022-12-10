@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   __getPostTime,
   __getKeyword,
@@ -11,7 +11,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "../../../../src/index.css";
 import "../../../styles/searchlist.css";
 
-const Content = () => {
+const SearchList = () => {
   const dispatch = useDispatch()
   // const searchposts = useSelector((state) => state.post.post.response)
   // const {posts} = useSelector((state)=>state.post)
@@ -39,19 +39,16 @@ const Content = () => {
     }
   }
   
-  
-  const onClickAll = () =>{ //전체검색
-    // props.setState(0)
-    // console.log("vmfka",props.state)
+  const onClickAll = (e) => { //전체검색
     dispatch(__getPostTime());//문제 온클릭했을때 셋이되기전에 겟을 먼저한다
-  }
-  const onClickBig = () => {
-    dispatch(__getCategory("대형",));
   };
-  const onClickMiddle = () => {
+  const onClickBig = (e) => {
+    dispatch(__getCategory("대형"));
+  };
+  const onClickMiddle = (e) => {
     dispatch(__getCategory("중형"));
   };
-  const onClickSmall = () => {
+  const onClickSmall = (e) => {
     dispatch(__getCategory("소형"));
   };
 
@@ -113,7 +110,7 @@ const Content = () => {
       </div>
 
       {/* 캐러셀슬라이드 */}
-      <Carouselwrap>
+      {/* <Carouselwrap>
         <Carousel>
           <Carousel.Item>
             <SlideImg src={require("../../../img/all.png")} alt="" />
@@ -129,11 +126,27 @@ const Content = () => {
           </Carousel.Item>
         </Carousel>
       </Carouselwrap>
+      <Carouselwrap>
+        <Carousel>
+          <Carousel.Item>
+            <SlideImg src={require("../../../img/all.png")} alt="" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <SlideImg src={require("../../../img/big.png")} alt="" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <SlideImg src={require("../../../img/middle.png")} alt="" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <SlideImg src={require("../../../img/small.png")} alt="" />
+          </Carousel.Item>
+        </Carousel>
+      </Carouselwrap> */}
     </div>
   );
 };
 
-export default Content;
+export default SearchList;
 
 const Carouselwrap = styled.div`
   display: flex;

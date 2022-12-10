@@ -19,6 +19,19 @@ const PetInfo = ({ myPets }) => {
     window.location.reload();
   };
 
+  const type = (item) => {
+    switch (item) {
+      case "big":
+        return "대형";
+      case "medium":
+        return "중형";
+      case "small":
+        return "소형";
+      default:
+        return null;
+    }
+  }
+
   const [edit, setEdit] = useState(false);
 
   const openEditModal = () => {
@@ -43,7 +56,7 @@ const PetInfo = ({ myPets }) => {
               return (
                 <Content key={pet.id}>
                   <Info>
-                    <Category>{pet.category}</Category>
+                    <Category>{type(pet.category)}</Category>
                     <Text>
                       <Main>
                         <Name>{pet.name}</Name>
