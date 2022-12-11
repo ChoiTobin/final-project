@@ -17,6 +17,7 @@ import { ReactComponent as Complete } from '../img/state-g.svg';
 
 function ChatRoomPage() {
 
+
   const { id } = useParams();
   const navigate = useNavigate();
   const sock = new SockJS(`${process.env.REACT_APP_URL}/ws/chat`);
@@ -24,6 +25,7 @@ function ChatRoomPage() {
   const dispatch = useDispatch();
   const room = useSelector((state) => state.chatting.room);
 
+ 
   useEffect(() => {
     //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
     //heelo
@@ -89,7 +91,7 @@ function ChatRoomPage() {
 
   const onSubmitHandler = (event) => {
     //event.preventDefault()
-    if (chatBody === "" || chatBody === " ") {
+    if (chatBody === "" ) {
       return alert("내용을 입력해주세요.");
     }
     waitForConnection(ws, function () {
@@ -134,12 +136,25 @@ function ChatRoomPage() {
   let dateString = year + "-" + month + "-" + day;
 
 
+ 
+  console.log("룸",room)
+
+ 
+
+
   return (
     <div className="chattingContainer">
       <div className="Header">
         <div>
           <BackArrow
-            onClick={() => navigate(-1)}
+            onClick={() => {
+              navigate(-1)
+              
+            }
+
+              //navigate(-1)
+              
+            }
             style={{ cursor: "pointer" }}
           />
         </div>
@@ -171,8 +186,28 @@ function ChatRoomPage() {
       <div className="row">
         <div className="flexBox">
           <div>
-            <img className="photoImg" src={require("../img/user.png")} alt="" />
-          </div>
+          {/* {
+          localStorage.getItem("user-nickname") ==  room.joinUserNickname?
+                <img className="photoImg" 
+                src={(room.postUserImg)} 
+                alt="" 
+              />
+               :
+              <img className="photoImg" 
+                src={(room.joinUserImg)} 
+                alt="" />
+            } */}
+            
+          {/* {
+               room.joinUserImg == null ?
+             <img className="photoImg" src={require("../img/user.png")} alt="" />
+               :
+
+               <img className="photoImg" src={(room.joinUserImg)} alt="" />
+           }  */}
+           
+             <img className="photoImg" src={require("../img/user.png")} alt="" />
+            </div>
           <div>
             <div className="flexBox2">
               <span className="colorSpan">{room.state}</span>
