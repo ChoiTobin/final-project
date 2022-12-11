@@ -144,14 +144,14 @@ function ChatRoomPage() {
           />
         </div>
         <div className="Nickname">
-          {localStorage.getItem("user-nickname") == room.joinUserNickname
+          {localStorage.getItem("user-nickname") === room.joinUserNickname
             ? room.postUserNickname
             : room.joinUserNickname}
         </div>
         {localStorage.getItem("user-nickname") === room.postUserNickname &&
         room.state !== "완료" ? (
           <Modal2 />
-        ) : room.state == "완료" ? (
+        ) : room.state === "완료" ? (
           <>
             <div className="flexZone">
               <div>
@@ -163,7 +163,7 @@ function ChatRoomPage() {
             </div>
           </>
         ) : (
-          <img />
+          <img alt="" />
         )}
       </div>
 
@@ -222,6 +222,7 @@ function ChatRoomPage() {
           onSubmit={appKeyPress}
           onClick={onSubmitHandler}
           src={require("../img/send.png")}
+          alt=""
         />
       </div>
     </div>

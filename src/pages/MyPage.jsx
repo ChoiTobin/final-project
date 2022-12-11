@@ -14,42 +14,45 @@ import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
 import { ReactComponent as UserPic } from "../img/user-my.svg";
 import User from "../img/user.png"
 import Banner from "../img/banner.png";
-
-
 //별추가
 import { FaStar } from 'react-icons/fa';
-import { useNavigate } from "react-router-dom";
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const myInfo = useSelector((state) => state.mypage.myInfo);
+  console.log("내정보", myInfo);
+
+  //별점 배열
+  const ARRAY = [0, 1, 2, 3, 4];
 
   const [photo, setPhoto] = useState(false);
 
   const openPicModal = () => {
-    setPhoto(true)
-  }
+    setPhoto(true);
+  };
 
   const closePicModal = () => {
-    setPhoto(false)
-  }
+    setPhoto(false);
+  };
 
-  const [pets, setPets] = useState(false)
+  const [pets, setPets] = useState(false);
 
   const openPetModal = () => {
-    setPets(true)
-  }
+    setPets(true);
+  };
 
   const closePetModal = () => {
-    setPets(false)
-  }
+    setPets(false);
+  };
 
+  // 로그아웃
   const Logout = () => {
-    localStorage.clear()
-    navigate("/")
-  }
+    window.confirm("로그아웃 하시겠습니까?")
+    localStorage.clear();
+    window.alert("로그아웃되었습니다!")
+    window.location.replace('/');
+  };
 
   // 마이페이지 회원정보 조회
   useEffect(() => {
@@ -65,10 +68,7 @@ const MyPage = () => {
   useEffect(() => {
     dispatch(__getMyPet());
   }, []);
-  
-  //별점 배열
-  const ARRAY = [0, 1, 2, 3, 4];
-  
+
   return (
     <Layouts>
       <Header />
@@ -114,8 +114,8 @@ const MyPage = () => {
             <button
               onClick={Logout}
               style={{
-                color: "rgba(185, 185, 185, 1)",
-                border: "1px solid rgba(185, 185, 185, 1)",
+                color: "#4db173",
+                border: "1px solid #4db173",
               }}
             >
               로그아웃
@@ -149,9 +149,12 @@ const MyPage = () => {
           )}
         </PetBtn>
         <Ad>
-          <a href="https://www.instagram.com/cmung.official/" style={{ cursor: "pointer" }} >
+          <a
+            href="https://www.instagram.com/cmung.official/"
+            style={{ cursor: "pointer" }}
+          >
             <img src={Banner} alt="banner" />
-          </a>          
+          </a>
           {/* <Banner/> */}
         </Ad>
 

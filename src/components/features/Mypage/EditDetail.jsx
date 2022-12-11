@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-
 // React BootStrap Library Import
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
@@ -67,6 +66,7 @@ const EditDetail = ({ onClose }) => {
     // API 날리기
     dispatch(__putMyPost(formData));
     window.alert("게시글이 수정되었습니다!");
+    window.location.reload('/mypage')
   };
 
   return (
@@ -79,9 +79,9 @@ const EditDetail = ({ onClose }) => {
               <span>POST</span>
             </Top>
             <div>
-              <label htmlFor="imgFile">
+              <label htmlFor="imgFile" style={{backgroundColor: "#F6F0EE"}}>
                 <ImgPreview>
-                  <Carousel fade>
+                  {/* <Carousel fade>
                     {imgUrls.map((img) => {
                       return (
                         <Carousel.Item
@@ -96,7 +96,7 @@ const EditDetail = ({ onClose }) => {
                         </Carousel.Item>
                       );
                     })}
-                  </Carousel>
+                  </Carousel> */}
                 </ImgPreview>
 
                 {/* 이미지 업로더 */}
@@ -294,8 +294,9 @@ const ImgUpload = styled.button`
 const ImgPreview = styled.div`
   width: 318.82px;
   height: 166px;
-  border: 1px solid #000;
+  border: 1px solid #696969;
   border-radius: 5px;
+  background-color: #f3f3f3;
 `;
 
 const Content = styled.div`

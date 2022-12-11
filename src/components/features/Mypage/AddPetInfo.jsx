@@ -21,10 +21,15 @@ const AddPetInfo = ({ onClose }) => {
 
   const onAddMyPets = (event) => {
     event.preventDefault();
-    if (myPet.name === "" || myPet.age === "" || myPet.category === "") {
+    if (
+      myPet.name.trim() === "" ||
+      myPet.age.trim() === "" ||
+      myPet.category.trim() === ""
+    ) {
       return alert("모든 항목을 입력해주세요!");
     }
     dispatch(__addMyPet(myPet));
+    alert("반려동물 등록이 완료되었습니다!")
     window.location.reload("/mypage");
   };
 
@@ -40,9 +45,9 @@ const AddPetInfo = ({ onClose }) => {
               <input
                 type="text"
                 name="name"
-                value={myPet.name || ""}
+                // value={myPet.name || ""}
+                value={myPet.name}
                 onChange={onChangePetInfo}
-                placeholder="백호"
                 style={{ width: "159.51px", height: "20px" }}
               />
             </div>
@@ -51,9 +56,9 @@ const AddPetInfo = ({ onClose }) => {
               <input
                 type="text"
                 name="age"
-                value={myPet.age || ""}
+                // value={myPet.age || ""}
+                value={myPet.age}
                 onChange={onChangePetInfo}
-                placeholder="4"
                 style={{ width: "136.72px", height: "20px" }}
               />
               &nbsp;&nbsp;&nbsp;살
@@ -62,7 +67,8 @@ const AddPetInfo = ({ onClose }) => {
               <label>종류</label>
               <select
                 name="category"
-                value={myPet.category || ""}
+                // value={myPet.category || ""}
+                value={myPet.category}
                 onChange={onChangePetInfo}
                 style={{ width: "159.51px", height: "20px" }}
               >
