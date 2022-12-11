@@ -147,8 +147,8 @@ const ImgPreview = styled.div`
   margin: 0 auto 30px;
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
   }
 `;

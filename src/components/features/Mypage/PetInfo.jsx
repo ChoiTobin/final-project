@@ -126,10 +126,10 @@ const Content = styled.div`
   border-radius: 4px;
   margin: 9px auto 1.59px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 17.39px 27.14px 14.68px 19.14px;
+  padding: 17.39px 27.14px 14.68px 35.14px;
   display: flex;
   flex-direction: row;
-  gap: 33.72px;
+  gap: 43.72px;
 `;
 
 const Info = styled.div`

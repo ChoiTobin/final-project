@@ -19,7 +19,20 @@ const MyContent = ({ myPost }) => {
   const onDeleteMyPost = (id) => {
     dispatch(__deleteMyPost(id));
     window.confirm("해당 게시글을 삭제하시겠습니까?");
-    window.location.reload();
+    // window.location.reload();
+  };
+
+  const status = (item) => {
+    switch (item) {
+      case "진행중":
+        return "#ED9071";
+      case "산책중":
+        return "#4db173";
+      case "완료":
+        return "#AFAFAF";
+      default:
+        return null;
+    }
   };
 
   const [modify, setModify] = useState(false);
@@ -52,13 +65,7 @@ const MyContent = ({ myPost }) => {
                         navigate(`/Detail/${post.id}`);
                       }}
                     >
-                      <State
-                        style={
-                          post.state
-                            ? { color: "#ED9071" }
-                            : { color: "#A1A1A1" }
-                        }
-                      >
+                      <State style={{ color: status(post.state) }}>
                         {post.state}
                       </State>
                       <Title>{post.title}</Title>
