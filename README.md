@@ -176,7 +176,7 @@ final-project
 </div>
 </details>
 <details>
-<summary>Wirrame</summary>
+<summary>Wirra</summary>
 <div markdown="1">
 
 ![](0)
