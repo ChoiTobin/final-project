@@ -15,7 +15,7 @@ const PetInfo = ({ myPets }) => {
   // 나의 반려동물 삭제
   const onDeleteMyPet = (id) => {
     dispatch(__deleteMyPet(id));
-    window.alert("반려동물 정보를 삭제하시겠습니까?");
+    window.confirm("반려동물 정보를 삭제하시겠습니까?");
     window.location.reload();
   };
 

@@ -44,8 +44,20 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
           __getCategory({categoryKeyword:"소형",pageNumber: page})
         );
       }
-       
-  }, [page,categoryState])
+    }, [page, categoryState])
+  
+  const status = (item) => {
+    switch (item) {
+      case "진행중":
+        return "#ED9071";
+      case "산책중":
+        return "#4db173";
+      case "완료":
+        return "#AFAFAF";
+      default:
+        return null;
+    }
+  };
 
 
 
@@ -90,8 +102,12 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
                     <TopLeft className="top-left">
                       <Category>{post.category}</Category>
                       <Main className="title">
-                        <State style={{width: "50px"}}>{post.state}</State>
-                        &nbsp;
+                        <State
+                          style={{color: status(post.state)}}
+                        >
+                          {post.state}
+                        </State>
+                        {/* &nbsp; */}
                         <Title>{post.title}</Title>
                       </Main>
                       <Created>{post.createdAt}</Created>
@@ -103,12 +119,12 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
                       <When>
                         {/* <PostDate/>{post.date} */}
                         <img src={require("../../../img/date.png")} alt="" />
-                        {post.date}
+                        &nbsp;{post.date}
                       </When>
                       <Places>
                         {/* <PostLocal/>{post.local} */}
                         <img src={require("../../../img/place.png")} alt="" />
-                        {post.local}
+                        &nbsp;{post.local}
                       </Places>
                     </DownLeft>
                     <DownRight className="right">
@@ -234,6 +250,8 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 2.78px;
+  gap: 5px;
+  /* background-color: lightgreen; */
 `;
 
 const Created = styled.div`
@@ -260,9 +278,11 @@ const Places = styled.div`
 
 const Price = styled.span`
   font-family: "Pretendard", sans-serif;
-  font-size: 18px;
+  font-size: 16.5px;
   font-weight: 600;
   line-height: 19.09px;
+  letter-spacing: -1px;
+  /* background-color: lightgreen; */
 `;
 
 const Down = styled.div`
