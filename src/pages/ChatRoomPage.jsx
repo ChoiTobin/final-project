@@ -121,7 +121,7 @@ function ChatRoomPage() {
     }
   }, [room]);
   //채팅창 치면 맨 밑으로 내려감.
-
+ 
 
   const original = `${room.price}`;
   const fomatting = original.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
