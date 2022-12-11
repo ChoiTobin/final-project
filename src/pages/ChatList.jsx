@@ -33,7 +33,7 @@ const ChatList = () => {
   //리스트방에서 빠져나오면 로컬스토리에서 최근 날짜 없앰 그리고 로컬스토리지 단한번 만실행
   //채팅 샌드할때
 
-console.log(Room,"좌지우지하늣삶")
+
 
   return (
     <div className="layout">

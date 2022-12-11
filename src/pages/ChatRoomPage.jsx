@@ -137,7 +137,6 @@ function ChatRoomPage() {
 
 
  
-  console.log("룸",room)
 
  
 
