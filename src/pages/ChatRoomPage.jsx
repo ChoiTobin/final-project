@@ -198,7 +198,7 @@ function ChatRoomPage() {
         {room.chatList !== undefined &&
           room.chatList !== null &&
           room.chatList.map((item, i) => {
-            return localStorage.getItem("user-nickname") == item.sender ? (
+            return localStorage.getItem("user-nickname") === item.sender ? (
               <div className="textBox" key={uuidv4()}>
                 <div className="textColorDiv2">{item.message}</div>
               </div>

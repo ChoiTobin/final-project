@@ -57,7 +57,7 @@ const ChatList = () => {
                       onClick={() => onClickChatting(item)}
                     >
                       {
-                        localStorage.getItem("user-nickname") ==
+                        localStorage.getItem("user-nickname") ===
                         item.joinUserNickname
                           ? item.postUserNickname
                           : item.joinUserNickname
