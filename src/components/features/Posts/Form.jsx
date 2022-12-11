@@ -20,7 +20,7 @@ const Post = () => {
     title: "",
     price: "",
     content: "",
-    category: "대형",
+    category: "",
     state: "진행중",
     local: "",
     date: "",
@@ -166,6 +166,7 @@ const Post = () => {
             value={conimal.price || ""}
             onChange={onChangeHandler}
             placeholder="희망가격"
+            min="1" max="999999"
             required
           />
           <input
@@ -209,7 +210,7 @@ const Post = () => {
             onChange={onChangeHandler}
             required
           >
-            <option default value="">
+            <option default value="견종의 크기를 선택해주세요.">
               견종의 크기를 선택해주세요.
             </option>
             <option value="대형">대형- 15kg초과</option>

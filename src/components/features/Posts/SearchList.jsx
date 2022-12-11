@@ -11,7 +11,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "../../../../src/index.css";
 import "../../../styles/searchlist.css";
 
-const SearchList = () => {
+const SearchList = ({setCategoryState,setSearchState}) => {
   const dispatch = useDispatch()
   // const searchposts = useSelector((state) => state.post.post.response)
   // const {posts} = useSelector((state)=>state.post)
@@ -28,28 +28,18 @@ const SearchList = () => {
     if (getSearch.search.trim() === "") {
       return alert("내용을 입력해주세요.");
     }
-    dispatch(__getKeyword(getSearch.search));
+    setSearchState(getSearch.search);
+    setCategoryState("검색");
   };
 
   const appKeyPress = (e) => {
     if (e.key === 'Enter') {
     onClickSearch()
-    // setGetSearch("")
-    
-    }
+        }
   }
   
-  const onClickAll = (e) => { //전체검색
-    dispatch(__getPostTime());//문제 온클릭했을때 셋이되기전에 겟을 먼저한다
-  };
-  const onClickBig = (e) => {
-    dispatch(__getCategory("대형"));
-  };
-  const onClickMiddle = (e) => {
-    dispatch(__getCategory("중형"));
-  };
-  const onClickSmall = (e) => {
-    dispatch(__getCategory("소형"));
+  const onClickHandler = (data) => {
+    setCategoryState(data);
   };
 
   return (
@@ -65,8 +55,7 @@ const SearchList = () => {
         />
         <img
           className="search-icon"
-          onKeyPress={appKeyPress}
-          onClick={onClickSearch}
+          onClick={()=>onClickSearch()}
           src={require("../../../img/search.png")}
           alt=""
         />
@@ -88,45 +77,29 @@ const SearchList = () => {
       </div> */}
 
       <div className="tab-menu">
-        <input type="radio" style={{ display: "none" }} checked />
-        <label value="전체" onClick={onClickAll} htmlFor="category" className="tab-btn">
+        <input type="radio" style={{ display: "none" }}  />
+        <label value="전체" onClick={()=>onClickHandler("전체")} htmlFor="category" className="tab-btn">
           전체
         </label>
 
         <input value="대형" type="radio" style={{ display: "none" }} name="대형" />
-        <label onClick={onClickBig} htmlFor="category" className="tab-btn">
+        <label onClick={()=>onClickHandler("대형")} htmlFor="category" className="tab-btn">
           대형
         </label>
 
         <input value="중형" type="radio" style={{ display: "none" }} name="중형" />
-        <label onClick={onClickMiddle} htmlFor="category" className="tab-btn">
+        <label onClick={()=>onClickHandler("중형")} htmlFor="category" className="tab-btn">
           중형
         </label>
 
         <input value="소형" type="radio" style={{ display: "none" }} name="소형" />
-        <label onClick={onClickSmall} htmlFor="category" className="tab-btn">
+        <label onClick={()=>onClickHandler("소형")} htmlFor="category" className="tab-btn">
           소형
         </label>
       </div>
 
       {/* 캐러셀슬라이드 */}
       {/* <Carouselwrap>
-        <Carousel>
-          <Carousel.Item>
-            <SlideImg src={require("../../../img/all.png")} alt="" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <SlideImg src={require("../../../img/big.png")} alt="" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <SlideImg src={require("../../../img/middle.png")} alt="" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <SlideImg src={require("../../../img/small.png")} alt="" />
-          </Carousel.Item>
-        </Carousel>
-      </Carouselwrap>
-      <Carouselwrap>
         <Carousel>
           <Carousel.Item>
             <SlideImg src={require("../../../img/all.png")} alt="" />

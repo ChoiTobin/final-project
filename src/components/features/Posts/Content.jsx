@@ -4,30 +4,26 @@ import PostList from "../Posts/PostList";
 import SearchList from "../Posts/SearchList";
 
 const Content = () => {
-  const [categoryState, setCategoryState] = useState("")
-  const [searchState, setSearchState] = useState("")
+
+
+  const [categoryState,setCategoryState] = useState("전체")
+  const [searchState,setSearchState] = useState("")
+
+
+  useEffect(() => {
+    setCategoryState(categoryState)
+    console.log("카테고리 바뀌었나?",categoryState);
+  }, [categoryState])
 
   useEffect(() => {
     setSearchState(searchState)
+    console.log("검색어는?",searchState);
   }, [searchState])
-  useEffect(() => {
-    setCategoryState(categoryState)
-  }, [categoryState])
 
   return (
     <>
-      <SearchList
-        categoryState={categoryState}
-        setCategoryState={setCategoryState}
-        searchState={searchState}
-        setSearchState={setSearchState}
-      />
-      <PostList
-        categoryState={categoryState}
-        setCategoryState={setCategoryState}
-        searchState={searchState}
-        setSearchState={setSearchState}
-      />
+      <SearchList setCategoryState={setCategoryState} setSearchState={setSearchState}/>
+      <PostList categoryState={categoryState} setCategoryState={setCategoryState} searchState={searchState} setSearchState={setSearchState}/>
     </>
   );
 };
