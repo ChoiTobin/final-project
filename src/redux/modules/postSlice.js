@@ -4,7 +4,6 @@ import Apis from "../../shared/Apis"
 import axios from "axios";
 import { __putPost } from "./mypageSlice";	
 
-
 // 평점넘기기
 export const __getPostRating = createAsyncThunk(	
   "api/posts/getPostRating",	
