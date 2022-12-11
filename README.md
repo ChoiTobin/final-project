@@ -152,10 +152,8 @@ final-project
 <!-- ![]() -->
 #### 🖥️ Front-End
 
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"/></a> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/></a> <img src="https://img.shields.io/badge/Create%20React%20App-09D3AC?style=for-the-badge&logo=Create%20React%20App&logoColor=white"/></a> <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=React%20Router&logoColor=white"/></a> 
-<img src="https://img.shields.io/badge/React%20Hook%20Form-EC5990?style=for-the-badge&logo=React%20Hook%20Form&logoColor=white"/></a> <img src="https://img.shields.io/badge/React%20Redux-0088CC?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Redux.js%20Toolkit-4000BF?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/></a>  
-<img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styled%20components&logoColor=white"/></a> <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/></a> <img src="https://img.shields.io/badge/.ENV-ECD53F?style=for-the-badge&logo=.ENV&logoColor=white"/></a> <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white"/></a> <img src="https://img.shields.io/badge/@stomp/stompjs-66595C?style=for-the-badge&logo=@stomp/stompjs&logoColor=white"/></a>
-<img src="https://img.shields.io/badge/React%20Intersection%20Observer-68BC71?style=for-the-badge&logo=React&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"/></a> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/></a> <img src="https://img.shields.io/badge/Create%20React%20App-09D3AC?style=for-the-badge&logo=Create%20React%20App&logoColor=white"/></a> <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=React%20Router&logoColor=white"/></a> <img src="https://img.shields.io/badge/React%20Redux-0088CC?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Redux.js%20Toolkit-4000BF?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/></a>  
+<img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styled%20components&logoColor=white"/></a> <img src="https://img.shields.io/badge/React%20BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/></a> <img src="https://img.shields.io/badge/React%20Intersection%20Observer-68BC71?style=for-the-badge&logo=React&logoColor=white"/></a> <img src="https://img.shields.io/badge/.ENV-ECD53F?style=for-the-badge&logo=.ENV&logoColor=white"/></a>  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white">
 <br/>
 
 #### 🎨 Front-End & Web Design
@@ -178,7 +176,7 @@ final-project
 </div>
 </details>
 <details>
-<summary>Wirrame</summary>
+<summary>Wirra</summary>
 <div markdown="1">
 
 ![](0)
@@ -217,15 +215,19 @@ final-project
 
 #### ⚙️ Front-End
 |스택 및 라이브러리|Ver|사용이유|
-|------|---|---|
-|<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/></a> <img src="https://img.shields.io/badge/Create%20React%20App-09D3AC?style=for-the-badge&logo=Create%20React%20App&logoColor=white"/></a>|<img src="https://img.shields.io/badge/18.2.0-E8E8E8?style=flat-square&logo=React&logoColor=black"/></a> <img src="https://img.shields.io/badge/5.0.1-E8E8E8?style=flat-square&logo=Create%20React%20App&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=React%20Router&logoColor=white"/></a>|<img src="https://img.shields.io/badge/6.4.3-E8E8E8?style=flat-square&logo=React&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/React%20Redux-0088CC?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/></a>|<img src="https://img.shields.io/badge/8.0.4-E8E8E8?style=flat-square&logo=Redux&logoColor=black"/></a> <img src="https://img.shields.io/badge/4.2.0-E8E8E8?style=flat-square&logo=Redux&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/Redux.js%20Toolkit-4000BF?style=for-the-badge&logo=Redux&logoColor=white"/></a> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/></a>|<img src="https://img.shields.io/badge/1.8.6-E8E8E8?style=flat-square&logo=Redux&logoColor=black"/></a> <img src="https://img.shields.io/badge/1.1.3-E8E8E8?style=flat-square&logo=Axios&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styled%20components&logoColor=white"/></a> <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/></a>|<img src="https://img.shields.io/badge/5.3.6-E8E8E8?style=flat-square&logo=Styled%20Components&logoColor=black"/></a> <img src="https://img.shields.io/badge/5.2.2-E8E8E8?style=flat-square&logo=Bootstrap&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/.ENV-ECD53F?style=for-the-badge&logo=.ENV&logoColor=white"/></a>|<img src="https://img.shields.io/badge/10.1.0-E8E8E8?style=flat-square&logo=.ENV&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white"/></a> <img src="https://img.shields.io/badge/@stomp/stompjs-66595C?style=for-the-badge&logo=@stomp/stompjs&logoColor=white"/></a>|<img src="https://img.shields.io/badge/1.6.1-E8E8E8?style=flat-square&logo=Socket.Io&logoColor=black"/></a> <img src="https://img.shields.io/badge/6.1.2-E8E8E8?style=flat-square&logo=@Stomp/Stompjs&logoColor=black"/></a>|테스트3|
-|<img src="https://img.shields.io/badge/React%20Intersection%20Observer-68BC71?style=for-the-badge&logo=React&logoColor=white"/></a>|<img src="https://img.shields.io/badge/9.4.1-E8E8E8?style=flat-square&logo=React&logoColor=black"/></a>|테스트3|
+|--------|---|---|
+|<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"></a> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"></a> <img src="https://img.shields.io/badge/Create%20React%20App-52e0c4?style=for-the-badge&logo=Create%20React%20App&logoColor=black"></a>|<img src="https://img.shields.io/badge/ES6-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/18.2.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/5.0.1-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/ReactDOM-6fd4e9?style=for-the-badge&logo=React&logoColor=black"></a> <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=React%20Router&logoColor=white">|<img src="https://img.shields.io/badge/18.2.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/6.4.3-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/React%20Cookie-e6be7f?style=for-the-badge&logo=Cookiecutter&logoColor=black">|<img src="https://img.shields.io/badge/4.1.1-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/React%20Redux-4a57bc?style=for-the-badge&logo=Redux&logoColor=white"></a> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"></a> <img src="https://img.shields.io/badge/Redux%20Toolkit-533287?style=for-the-badge&logo=Redux&logoColor=white"></a> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">|<img src="https://img.shields.io/badge/8.0.4-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/8.0.4-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/1.8.6-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/1.2.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/React%20Icons-0088CC?style=for-the-badge&logo=React&logoColor=white"></a> <img src="https://img.shields.io/badge/React%20Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white"></a> <img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">|<img src="https://img.shields.io/badge/4.6.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/2.6.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/5.3.6-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/Websocket-E57000?style=for-the-badge&logo=Binance&logoColor=white"></a> <img src="https://img.shields.io/badge/Sock/Js%20Client-F5455C?style=for-the-badge&logo=Socket.io&logoColor=white"></a> <img src="https://img.shields.io/badge/WebStomp%20Client-41454A?style=for-the-badge&logo=Power%20Virtual%20Agents&logoColor=white">|<img src="https://img.shields.io/badge/1.0.34-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/1.6.1-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/1.2.6-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/Uuid-7fa9cf?style=for-the-badge&logo=SecurityScorecard&logoColor=white">|<img src="https://img.shields.io/badge/9.0.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/Browser%20Image%20Compression-56B366?style=for-the-badge&logo=ProtonVPN&logoColor=white">|<img src="https://img.shields.io/badge/2.0.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=PWA&logoColor=white">|<img src="https://img.shields.io/badge/100.0.0.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/.ENV-ECD53F?style=for-the-badge&logo=.ENV&logoColor=black"></a> <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white">|<img src="https://img.shields.io/badge/10.1.0-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a> <img src="https://img.shields.io/badge/vercel%20CLI-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+|<img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=Yarn&logoColor=white">|<img src="https://img.shields.io/badge/1.22.19-E8E8E8?style=flat-square&logo=Vitess&logoColor=black"/></a>|---|
+
 <br/>
 
 #### ⚙️ Back-End
@@ -241,19 +243,22 @@ final-project
 
 ## ⚔️ 트러블슈팅
 <!-- ![]() -->
-##### 🚀 01) 트러블슈팅 1
+#### 🚀 01) 리사이징으로 포스팅 다중이미지 생성
+- Case : 최대 5장의 사진을 각 상세페이지마다 전부 로딩해야 하는데, 이 과정에서 사용자가 불편함을 느끼지 않고, 로딩시간을 단축해서 퍼포먼스 효율성을 높여야 했다.
+<br/>
+- Solve: 클라이언트에서 원본 이미지를 전달 할 경우, 게시글 작성 완료버튼을 누른 다음에 이미지가 모두 전송될 때 까지 사용자가 기다려야 하는 시간이 발생하게 되고, 상세글에서도 로딩시간이 오래 걸리디 때문에, 최대 1920*1920크기와 1mb의 용량으로 줄여서 보내기로 함
+<br/>
+
+#### 🚀 02) 유저간의 서비스 이용 연결을 위한 플랫폼 내 소통 수단 필요
+- Case : 반려동물에 대한 일을 부탁하고 싶은 작성자가 의뢰한 일을 하길 원하는 많은 지원자들과 바로 매칭되는 것이 아니라, 서로 의논하고 수락여부를 결정할 수 있어야 했다. 이 과정에서 이용자들간의 소통을 할 수 있는 플랫폼 내의 기술적 요소의 도입이 필요했다.
+<br/>
+- Solve : 댓글을 통해서 이용자간에 소통할 경우, 개인의 신상과 관련된 정보들이 유출될 수 있다는 점이 우려되었음. 지역을 기반으로 일이 성사되기 때문에, 플랫폼 내에서 유저의 개인정보들이 악용될 수 없도록 보안을 위한 다른 방법을 적용해야 한다고 판단했고, 게시자와 지원자 상호간에 소통할 수 있는 별도의 공간을 마련해 줄 수 있는 채팅기능을 웹소켓을 통해 구현하기로 함. 클라이언트와 서버간의 통신 효율을 높여줄 수 있는 stomp를 이용한 채팅 기능 구현하고, 유저별 채팅 목록을 보여줌.
+
+#### 🚀 03) 트러블슈팅 3
 - Case :
 - Solve :
 
-##### 🚀 02) 트러블슈팅 2
-- Case :
-- Solve :
-
-##### 🚀 03) 트러블슈팅 3
-- Case :
-- Solve :
-
-##### 🚀 04) 트러블슈팅 4
+#### 🚀 04) 트러블슈팅 4
 - Case :
 - Solve :
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../FullHTML.css";
 import PostList from "../Posts/PostList";
 import SearchList from "../Posts/SearchList";

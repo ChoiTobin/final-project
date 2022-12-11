@@ -57,7 +57,7 @@ const ChatList = () => {
                       onClick={() => onClickChatting(item)}
                     >
                       {
-                        localStorage.getItem("user-nickname") ==
+                        localStorage.getItem("user-nickname") ===
                         item.joinUserNickname
                           ? item.postUserNickname
                           : item.joinUserNickname
@@ -65,7 +65,7 @@ const ChatList = () => {
                         //내 아이디명이 아닌 상대방 아이디
                       }
                     </span>
- 
+
                     <div
                       className="chatlength"
                       onClick={() => onClickChatting(item)}
