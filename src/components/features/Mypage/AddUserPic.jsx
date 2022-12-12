@@ -41,7 +41,7 @@ const AddUserPic = ({ onClose }) => {
 
   return (
     <Layout>
-      <div>
+      <div> 
         <label htmlFor="imgFile" style={{backgroundColor: "#FFF"}}>
           {/* 이미지 업로더 */}
           <input
