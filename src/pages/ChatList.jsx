@@ -8,7 +8,7 @@ import {
   __getinitialChatList2,
   __getRoomList,
 } from "../redux/modules/chattingSlice";
-
+import imgDefault from "../img/user.png";
 const ChatList = () => {
   const { id } = useParams();
   const navigator = useNavigate();
@@ -45,12 +45,14 @@ const ChatList = () => {
               <div className="root" key={i}>
                 <div className="flexDiv">
 
-                <img
-                    className="Userimg"
-                    src={require("../img/user.png")}
-                    alt=""
-                    onClick={() => onClickChatting(item)}
-                  />
+
+            {
+              item.joinUserNickname == localStorage.getItem("user-nickname")
+             ?
+             <img className="photoImg" src={(item.postUserImg !==null ? item.postUserImg:imgDefault)} alt="" />
+             :
+             <img className="photoImg" src={(item.joinUserImg !== null ? item.joinUserImg: imgDefault)} alt="" />
+            }
                   <div className="marginDiv">
                     <span
                       className="boldText"
@@ -65,26 +67,27 @@ const ChatList = () => {
                         //내 아이디명이 아닌 상대방 아이디
                       }
                     </span>
-
                     <div
                       className="chatlength"
                       onClick={() => onClickChatting(item)}
                     >
-                      {item.chatList[item.chatList.length - 1] !== undefined  && item.chatList[item.chatList.length - 1].length !== 0 &&
+                      {
+                      item.chatList[item.chatList.length - 1] !== undefined  && item.chatList[item.chatList.length - 1].length !== 0 &&
                         item.chatList[item.chatList.length - 1].message
                         }
+ 
                     
                     </div>
 
-                    {/* <span className="whiteTime">
-                      
-                    {item.chatList[item.chatList.length - 1] !== undefined &&
-                        `${item.chatList[item.chatList.length - 1].sendDate.substring(5, 7)}월`}
-                      {item.chatList[item.chatList.length - 1] !== undefined &&
-                        `${item.chatList[
-                          item.chatList.length - 1
-                        ].sendDate.substring(8, 10)}일`} 
-                    </span> */}
+                    <span className="whiteTime">
+                        
+                        {item.chatList[item.chatList.length - 1] !== undefined &&
+                            `${item.chatList[item.chatList.length - 1].sendDate.substring(5, 7)}월`}
+                          {item.chatList[item.chatList.length - 1] !== undefined &&
+                            `${item.chatList[
+                              item.chatList.length - 1
+                            ].sendDate.substring(8, 10)}일`} 
+                        </span>
 
                   </div>
                   <img className="img" src={require("../img/KakaoTalk_20221208_132549478.png")}/>

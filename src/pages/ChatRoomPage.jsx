@@ -14,7 +14,7 @@ import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
 import { off } from "process";
 import { ReactComponent as Complete } from '../img/state-g.svg';
-
+import imgDefault from "../img/user.png";
 function ChatRoomPage() {
 
   const { id } = useParams();
@@ -23,6 +23,8 @@ function ChatRoomPage() {
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const room = useSelector((state) => state.chatting.room);
+
+
 
   useEffect(() => {
     //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
@@ -204,7 +206,16 @@ function ChatRoomPage() {
       <div className="row">
         <div className="flexBox">
           <div>
-            <img className="photoImg" src={require("../img/user.png")} alt="" />
+            {
+              room.joinUserNickname == localStorage.getItem("user-nickname")
+             ?
+
+             <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
+             :
+
+             <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
+            }
+             {/* <img className="photoImg" src={require("../img/user.png")} alt="" /> */}
           </div>
           <div>
             <div className="flexBox2">
