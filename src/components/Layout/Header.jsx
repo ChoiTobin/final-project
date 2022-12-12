@@ -30,7 +30,7 @@ const Layout = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0;
+  margin: 0 auto;
   gap: 116px;
 
   /* border: 1px solid #ed9071; */

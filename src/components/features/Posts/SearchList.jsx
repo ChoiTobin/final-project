@@ -61,21 +61,6 @@ const SearchList = ({setCategoryState,setSearchState}) => {
         />
       </div>
 
-      {/* <div className="btn-group">
-        <button type="button" onClick={onClickAll}>
-          전체
-        </button>
-        <button type="button" name="대형" onClick={onClickBig}>
-          대형
-        </button>
-        <button type="button" name="중형" onClick={onClickMiddle}>
-          중형
-        </button>
-        <button type="button" name="소형" onClick={onClickSmall}>
-          소형
-        </button>
-      </div> */}
-
       <div className="tab-menu">
         <input type="radio" style={{ display: "none" }}  />
         <label value="전체" onClick={()=>onClickHandler("전체")} htmlFor="category" className="tab-btn">

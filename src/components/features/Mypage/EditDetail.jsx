@@ -66,7 +66,7 @@ const EditDetail = ({ onClose }) => {
     // API 날리기
     dispatch(__putMyPost(formData));
     window.alert("게시글이 수정되었습니다!");
-    window.location.reload('/mypage')
+    // window.location.reload('/mypage')
   };
 
   return (
@@ -81,7 +81,7 @@ const EditDetail = ({ onClose }) => {
             <div>
               <label htmlFor="imgFile" style={{backgroundColor: "#F6F0EE"}}>
                 <ImgPreview>
-                  {/* <Carousel fade>
+                  <Carousel fade>
                     {imgUrls.map((img) => {
                       return (
                         <Carousel.Item
@@ -96,7 +96,7 @@ const EditDetail = ({ onClose }) => {
                         </Carousel.Item>
                       );
                     })}
-                  </Carousel> */}
+                  </Carousel>
                 </ImgPreview>
 
                 {/* 이미지 업로더 */}
