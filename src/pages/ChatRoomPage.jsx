@@ -14,7 +14,7 @@ import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
 import { off } from "process";
 import { ReactComponent as Complete } from '../img/state-g.svg';
-
+import imgDefault from "../img/user.png";
 function ChatRoomPage() {
 
   const { id } = useParams();
@@ -204,7 +204,16 @@ function ChatRoomPage() {
       <div className="row">
         <div className="flexBox">
           <div>
-            <img className="photoImg" src={require("../img/user.png")} alt="" />
+            {/* <img className="photoImg" src={require("../img/user.png")} alt="" /> */}
+            {
+              room.joinUserNickname == localStorage.getItem("user-nickname")
+             ?
+
+             <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
+             :
+
+             <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
+            }
           </div>
           <div>
             <div className="flexBox2">

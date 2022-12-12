@@ -8,7 +8,7 @@ import {
   __getinitialChatList2,
   __getRoomList,
 } from "../redux/modules/chattingSlice";
-
+import imgDefault from "../img/user.png";
 const ChatList = () => {
   const { id } = useParams();
   const navigator = useNavigate();
@@ -45,12 +45,19 @@ const ChatList = () => {
               <div className="root" key={i}>
                 <div className="flexDiv">
 
-                <img
+                {/* <img
                     className="Userimg"
                     src={require("../img/user.png")}
                     alt=""
                     onClick={() => onClickChatting(item)}
-                  />
+                  /> */}
+                  {
+              item.joinUserNickname == localStorage.getItem("user-nickname")
+             ?
+             <img className="photoImg" src={(item.postUserImg !==null ? item.postUserImg:imgDefault)} alt="" />
+             :
+             <img className="photoImg" src={(item.joinUserImg !== null ? item.joinUserImg: imgDefault)} alt="" />
+            }
 
                   <div className="marginDiv">
                     <span
