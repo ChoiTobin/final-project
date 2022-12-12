@@ -15,68 +15,73 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts)
 
-  const [page, setPage] = useState(0) 
-  const [loading, setLoading] = useState(false)
-  const [ref, inView] = useInView()
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView();
   // 서버에서 아이템을 가지고 오는 함수
 
-  const getItems = useCallback(
-    async () => 
-    {
-      if(categoryState==="검색"){
-        return dispatch(
-          __getKeyword({searchKeyword:searchState,pageNumber: page})
-        );
-      }else if(categoryState==="전체"){
-        return dispatch(
-          __getPostTime({pageNumber:page})
-        );
-      }else if(categoryState==="대형"){
-        return dispatch(
-          __getCategory({categoryKeyword:"대형",pageNumber: page})
-        );
-      }else if(categoryState==="중형"){
-        return dispatch(
-          __getCategory({categoryKeyword:"중형",pageNumber: page})
-        );
-      }else if(categoryState==="소형") {
-        return dispatch(
-          __getCategory({categoryKeyword:"소형",pageNumber: page})
-        );
-      }
-       
-  }, [page,categoryState])
+  const getItems = useCallback(async () => {
+    if (categoryState === "검색") {
+      return dispatch(
+        __getKeyword({ searchKeyword: searchState, pageNumber: page })
+      );
+    } else if (categoryState === "전체") {
+      return dispatch(__getPostTime({ pageNumber: page }));
+    } else if (categoryState === "대형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "대형", pageNumber: page })
+      );
+    } else if (categoryState === "중형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "중형", pageNumber: page })
+      );
+    } else if (categoryState === "소형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "소형", pageNumber: page })
+      );
+    }
+  }, [page, categoryState]);
 
-
+  const status = (item) => {
+    switch (item) {
+      case "진행중":
+        return "#ED9071";
+      case "산책중":
+        return "#4db173";
+      case "완료":
+        return "#AFAFAF";
+      default:
+        return null;
+    }
+  };
 
   // console.log("page:",page)
   //렌더링시 처음화면에 나타남2
-  //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행 
+  //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    getItems()
-    console.log("카테고리가 뭘까요?:",categoryState)
-    console.log("page:",page)
-  }, [getItems])
+    getItems();
+    console.log("카테고리가 뭘까요?:", categoryState);
+    console.log("page:", page);
+  }, [getItems]);
   //렌더링시 처음화면에 나타남
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
-      setPage(prevState => prevState + 1)
+      setPage((prevState) => prevState + 1);
     }
-  }, [inView,loading])
+  }, [inView, loading]);
 
   useEffect(() => {
-    setPage(0)
-  }, [categoryState])
-
+    setPage(0);
+  }, [categoryState]);
 
   return (
     <Layouts className="postwrap">
       {posts !== undefined &&
-        posts.map((post,i) => {
+        posts.map((post, i) => {
           return (
             <Content
               onClick={() => {
@@ -90,8 +95,10 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
                     <TopLeft className="top-left">
                       <Category>{post.category}</Category>
                       <Main className="title">
-                        <State style={{width: "50px"}}>{post.state}</State>
-                        &nbsp;
+                        <State style={{ color: status(post.state) }}>
+                          {post.state}
+                        </State>
+                        {/* &nbsp; */}
                         <Title>{post.title}</Title>
                       </Main>
                       <Created>{post.createdAt}</Created>
@@ -103,12 +110,12 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
                       <When>
                         {/* <PostDate/>{post.date} */}
                         <img src={require("../../../img/date.png")} alt="" />
-                        {post.date}
+                        &nbsp;{post.date}
                       </When>
                       <Places>
                         {/* <PostLocal/>{post.local} */}
                         <img src={require("../../../img/place.png")} alt="" />
-                        {post.local}
+                        &nbsp;{post.local}
                       </Places>
                     </DownLeft>
                     <DownRight className="right">
@@ -120,7 +127,7 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
             </Content>
           );
         })}
-        <div ref={ref}></div> 
+      <div ref={ref}></div>
     </Layouts>
   );
 };
@@ -128,8 +135,8 @@ export default PostList;
 
 const Layouts = styled.div`
   width: 360px;
-  height: 800px;
-  margin: -50px auto 0;
+  height: 454.24px;
+  margin: 9px auto 0;
   background-color: #fff;
   opacity: 96%;
   overflow-x: hidden;
@@ -234,6 +241,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 2.78px;
+  gap: 5px;
 `;
 
 const Created = styled.div`
@@ -260,13 +268,13 @@ const Places = styled.div`
 
 const Price = styled.span`
   font-family: "Pretendard", sans-serif;
-  font-size: 18px;
+  font-size: 16.5px;
   font-weight: 600;
   line-height: 19.09px;
+  letter-spacing: -1px;
 `;
 
 const Down = styled.div`
-  /* background-color: lightcoral; */
   width: 317.9px;
   height: 27.95px;
 
@@ -280,7 +288,6 @@ const Down = styled.div`
 `;
 
 const DownLeft = styled.div`
-  /* background-color: lightyellow; */
   width: 160px;
   height: 17px;
 
@@ -296,7 +303,6 @@ const DownLeft = styled.div`
   gap: 8px;
   margin-top: -36px;
   margin-left: 10px;
-  /* border: 1px solid #ED4576; */
 `;
 
 const DownRight = styled.div`

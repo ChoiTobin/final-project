@@ -146,8 +146,7 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-     [__naverLogin.pending]: (state) => {
-
+    [__naverLogin.pending]: (state) => {
       state.isLoading = true
     },
     [__naverLogin.fulfilled]: (state, action) => {

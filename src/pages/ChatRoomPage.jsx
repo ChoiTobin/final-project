@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "../styles/ChatRoomPage.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
@@ -135,6 +135,39 @@ function ChatRoomPage() {
   var day = ("0" + today.getDate()).slice(-2);
   let dateString = year + "-" + month + "-" + day;
 
+  const [textareaHeight, setTextareaHeight] = useState({
+    row: 1,
+    lineBreak: {},
+  });
+
+  const resizeTextarea = (e) => {
+    const { scrollHeight, clientHeight, value } = e.target;
+
+    // 줄바꿈이 일어날 때
+    if (scrollHeight > clientHeight) {
+      setTextareaHeight((prev) => ({
+        row: prev.row + 1,
+        lineBreak: { ...prev.lineBreak, [value.length - 1]: true },
+      }));
+    }
+
+    // 텍스트 지워서 줄바꿈 지점에 도달했을 때
+    if (textareaHeight.lineBreak[value.length]) {
+      setTextareaHeight((prev) => ({
+        row: prev.row - 1,
+        lineBreak: { ...prev.lineBreak, [value.length]: false },
+      }));
+    }
+  };
+
+  const onKeyEnter = (e) => {
+    if (e.code === "Enter") {
+      setTextareaHeight((prev) => ({
+        row: prev.row + 1,
+        lineBreak: { ...prev.lineBreak, [e.target.value.length]: true },
+      }));
+    }
+  };
 
  
 
@@ -219,16 +252,24 @@ function ChatRoomPage() {
         </div>
       </div>
       {/* section */}
-      <div>
+      {/* <div>
         {room !== undefined && room !== [] && (
           <>
             <div className="atTime">{dateString}</div>
           </>
         )}
-      </div>
+      </div> */}
 
       {/* section 과 채팅 사이 시간*/}
-      <OverFlow sx={{ height: "80%", overflow: "scroll" }}>
+      {/* <OverFlow sx={{ height: "80%", overflow: "scroll" }}> */}
+      <OverFlow>
+        <div className="chat-date">
+          {room !== undefined && room !== [] && (
+            <>
+              <div className="atTime">{dateString}</div>
+            </>
+          )}
+        </div>
         {room.chatList !== undefined &&
           room.chatList !== null &&
           room.chatList.map((item, i) => {
@@ -245,12 +286,20 @@ function ChatRoomPage() {
         <div ref={scrollRef}></div>
       </OverFlow>
       <div className="foot">
-        <input
+        {/* <textarea
           className="INPUT"
           value={chatBody}
           onKeyPress={appKeyPress}
           onChange={inputHandler}
-        ></input>
+          placeholder="내용을 입력하세요"
+        /> */}
+        <InputText
+          autoComplete="off"
+          onChange={inputHandler}
+          onKeyDown={onKeyEnter}
+          row={textareaHeight.row}
+          resizeTextarea={resizeTextarea}
+        />
         <img
           className="ArrowImg"
           onSubmit={appKeyPress}
@@ -262,24 +311,67 @@ function ChatRoomPage() {
     </div>
   );
 }
+
+export default ChatRoomPage;
+
 {
   /* footer */
 }
 const OverFlow = styled.div`
-  overflow: auto;
-
-  height: 460px;
-
+  width: 360px;
+  height: 454px;
+  background-color: #f6f0ee;
+  opacity: 96%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* border: 2px solid cornflowerblue; */
+  /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
-    width: 1vw;
+    width: 5px;
   }
+
+  /* 스크롤바 막대에 대한 설정 */
   ::-webkit-scrollbar-thumb {
-    background-color: hsla(0, 0%, 42%, 0.49);
-    border-radius: 7px;
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
   }
-  ::-webkit-scrollbar {
-    display: none;
+
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
   }
 `;
 
-export default ChatRoomPage;
+
+
+const InputText = styled.textarea`
+  all: unset;
+  display: block;
+  /* width: 100%; */
+  width: 324.41px;
+  height: ${({ row, theme }) => +theme.listSize * row + 4}px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  resize: none;
+  /* background-color: lightblue; */
+  background-color: white;
+  /* border: 1px solid #ed9071; */
+  border-radius: 15px;
+  padding: 5px 47.48px 0 12.93px;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
