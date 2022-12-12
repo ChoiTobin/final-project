@@ -13,8 +13,7 @@ import styled from "styled-components";
 const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.posts);
-  console.log("들어와??", posts);
+  const posts = useSelector((state) => state.post.posts)
 
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
