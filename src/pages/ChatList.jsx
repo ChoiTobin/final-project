@@ -51,6 +51,7 @@ const ChatList = () => {
                     alt=""
                     onClick={() => onClickChatting(item)}
                   />
+
                   <div className="marginDiv">
                     <span
                       className="boldText"
@@ -65,29 +66,30 @@ const ChatList = () => {
                         //내 아이디명이 아닌 상대방 아이디
                       }
                     </span>
-
-                    <div
-                      className="chatlength"
-                      onClick={() => onClickChatting(item)}
-                    >
-                      {item.chatList[item.chatList.length - 1] !== undefined  && item.chatList[item.chatList.length - 1].length !== 0 &&
-                        item.chatList[item.chatList.length - 1].message
-                        }
-                    
-                    </div>
-
-                    {/* <span className="whiteTime">
+                    <div className="chat-text">
+                      <div
+                        className="chatlength"
+                        onClick={() => onClickChatting(item)}
+                      >
+                        {item.chatList[item.chatList.length - 1] !== undefined  && item.chatList[item.chatList.length - 1].length !== 0 &&
+                          item.chatList[item.chatList.length - 1].message
+                          }
                       
-                    {item.chatList[item.chatList.length - 1] !== undefined &&
-                        `${item.chatList[item.chatList.length - 1].sendDate.substring(5, 7)}월`}
+                      </div>
+
+                      <span className="whiteTime">
+                        
                       {item.chatList[item.chatList.length - 1] !== undefined &&
-                        `${item.chatList[
-                          item.chatList.length - 1
-                        ].sendDate.substring(8, 10)}일`} 
-                    </span> */}
+                          `${item.chatList[item.chatList.length - 1].sendDate.substring(5, 7)}월`}
+                        {item.chatList[item.chatList.length - 1] !== undefined &&
+                          `${item.chatList[
+                            item.chatList.length - 1
+                          ].sendDate.substring(8, 10)}일`} 
+                      </span>
+                    </div>
+                    
 
                   </div>
-                  <img className="img" src={require("../img/KakaoTalk_20221208_132549478.png")}/>
                   {/* {
                     item.postImg.length !== 0 && 
                     
@@ -95,6 +97,7 @@ const ChatList = () => {
                   
                   }  */}
                 </div>
+                <img className="img" src={require("../img/KakaoTalk_20221208_132549478.png")}/>
               </div>
             );
           })

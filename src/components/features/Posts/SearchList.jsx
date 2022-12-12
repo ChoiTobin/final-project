@@ -42,6 +42,10 @@ const SearchList = ({setCategoryState,setSearchState}) => {
     setCategoryState(data);
   };
 
+  const data = [ "전체", "대형", "중형", "소형" ]
+
+  const [active, setActive] = useState(data[0]);
+
   return (
     <div className="wrap">
       <div className="search">
@@ -61,9 +65,9 @@ const SearchList = ({setCategoryState,setSearchState}) => {
         />
       </div>
 
-      <div className="tab-menu">
+      {/* <div className="tab-menu">
         <input type="radio" style={{ display: "none" }}  />
-        <label value="전체" onClick={()=>onClickHandler("전체")} htmlFor="category" className="tab-btn">
+        <label value="전체" onClick={() => {onClickHandler("전체")}} htmlFor="category" className="tab-btn">
           전체
         </label>
 
@@ -81,6 +85,30 @@ const SearchList = ({setCategoryState,setSearchState}) => {
         <label onClick={()=>onClickHandler("소형")} htmlFor="category" className="tab-btn">
           소형
         </label>
+      </div> */}
+
+      <div className="btn-wrap">
+        {data.map((type) => {
+          return (
+            <div className="tab-menu" key={type}>
+              <input
+                type="radio"
+                style={{ display: "none" }}
+              />
+              <Tab
+                active={active === type}
+                onClick={() => {
+                  onClickHandler(type);
+                  setActive(type)
+                }}
+                htmlFor="category"
+                className="tab-btn"
+              >
+                {type}
+              </Tab>
+            </div>
+          );
+        })}
       </div>
 
       {/* 캐러셀슬라이드 */}
@@ -121,4 +149,14 @@ const SlideImg = styled.img`
   object-fit: cover;
   width: 360px;
   height: 140px;
+`;
+
+const Tab = styled.div`
+  ${({ active }) =>
+    active &&
+    `
+    opacity: 1;
+    color: #5A5A5A;
+    background-color: #ED9071;
+  `}
 `;

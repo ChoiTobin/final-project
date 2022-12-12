@@ -76,23 +76,32 @@
   background-color: #ed9071;
 }
 
+.btn-wrap {
+  width: 360px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .tab-menu {
   width: 360px;
   height: 26px;
   display: flex;
   border: none;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-top: 12px;
 }
 
-.tab-menu > input[type='radio'] {
+/* .tab-menu > input[type='radio'] {
   display: none;
 }
 .tab-menu > input[type='radio']:checked + label {
   background-color: #ED9071;
   color: #000
-}
+} */
 
 .tab-btn {
   width: 90.02px;
