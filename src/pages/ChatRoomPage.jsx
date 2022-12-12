@@ -252,20 +252,20 @@ function ChatRoomPage() {
         <div ref={scrollRef}></div>
       </OverFlow>
       <div className="foot">
-        {/* <textarea
+        <input
           className="INPUT"
           value={chatBody}
           onKeyPress={appKeyPress}
           onChange={inputHandler}
           placeholder="내용을 입력하세요"
-        /> */}
-        <InputText
+        />
+        {/* <InputText
           autoComplete="off"
           onChange={inputHandler}
           onKeyDown={onKeyEnter}
           row={textareaHeight.row}
           resizeTextarea={resizeTextarea}
-        />
+        /> */}
         <img
           className="ArrowImg"
           onSubmit={appKeyPress}
