@@ -166,7 +166,7 @@ const Post = () => {
             value={conimal.price || ""}
             onChange={onChangeHandler}
             placeholder="희망가격"
-            min="1" max="999999"
+            min="1" max="99999"
             required
           />
           <input

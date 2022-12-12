@@ -13,8 +13,6 @@ import "../../../styles/searchlist.css";
 
 const SearchList = ({setCategoryState,setSearchState}) => {
   const dispatch = useDispatch()
-  // const searchposts = useSelector((state) => state.post.post.response)
-  // const {posts} = useSelector((state)=>state.post)
 
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
@@ -37,7 +35,7 @@ const SearchList = ({setCategoryState,setSearchState}) => {
     onClickSearch()
         }
   }
-  
+
   const onClickHandler = (data) => {
     setCategoryState(data);
   };
@@ -60,6 +58,21 @@ const SearchList = ({setCategoryState,setSearchState}) => {
           alt=""
         />
       </div>
+
+      {/* <div className="btn-group">
+        <button type="button" onClick={onClickAll}>
+          전체
+        </button>
+        <button type="button" name="대형" onClick={onClickBig}>
+          대형
+        </button>
+        <button type="button" name="중형" onClick={onClickMiddle}>
+          중형
+        </button>
+        <button type="button" name="소형" onClick={onClickSmall}>
+          소형
+        </button>
+      </div> */}
 
       <div className="tab-menu">
         <input type="radio" style={{ display: "none" }}  />

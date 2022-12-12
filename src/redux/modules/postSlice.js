@@ -102,7 +102,7 @@ export const __getCategory = createAsyncThunk(
     try {	
       const response = await Apis.getFilterAX(payload)	
             const payloadData = {page:payload.pageNumber , responseData:response.data.data}
-            console.log("뭐가들어오나????",response.data.data);
+            //console.log("뭐가들어오나????",response.data.data);
             return thunkAPI.fulfillWithValue(payloadData);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
@@ -115,9 +115,9 @@ const postSlice = createSlice({
   initialState : {	
     isLoading: false,	
     post:{},
-    posts:[], //공배열로 바꿔야함
+    posts:[],
     error: null,	
-  } ,	
+  },	
   
   reducers: {},	
   extraReducers: {	
@@ -204,7 +204,6 @@ const postSlice = createSlice({
     [__getKeyword.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      
       if (action.payload.page === 0) {
         state.posts.splice(0)
         state.posts.push(...action.payload.responseData)
@@ -230,7 +229,7 @@ const postSlice = createSlice({
       } else {
         state.posts.push(...action.payload.responseData)// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
       }
-          },
+    },
     [__getCategory.rejected]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	

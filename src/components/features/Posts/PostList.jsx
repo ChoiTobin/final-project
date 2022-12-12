@@ -9,8 +9,8 @@ import {
 import "../../../App.css";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-// import "../../../styles/postlist.css";
-const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
+
+const PostList = ({categoryState,searchState}) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts)
@@ -19,7 +19,7 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
   const [loading, setLoading] = useState(false)
   const [ref, inView] = useInView()
   // 서버에서 아이템을 가지고 오는 함수
-
+  
   const getItems = useCallback(
     async () => 
     {
@@ -56,8 +56,8 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
     getItems()
-    console.log("카테고리가 뭘까요?:",categoryState)
-    console.log("page:",page)
+    // console.log("카테고리가 뭘까요?:",categoryState)
+    // console.log("page:",page)
   }, [getItems])
   //렌더링시 처음화면에 나타남
 
