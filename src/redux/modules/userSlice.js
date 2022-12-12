@@ -32,7 +32,7 @@ export const __naverLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     
     try {
-            // console.log("갔나?",payload)
+            console.log("갔나?",payload)
 
 
       const res = await Apis.naverloginAX(payload)
