@@ -322,7 +322,22 @@ const InputText = styled.textarea`
   white-space: pre-wrap;
   resize: none;
   /* background-color: lightblue; */
+  background-color: white;
   /* border: 1px solid #ed9071; */
   border-radius: 15px;
   padding: 5px 47.48px 0 12.93px;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
 `;
