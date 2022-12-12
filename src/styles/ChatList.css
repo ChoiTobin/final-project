@@ -3,6 +3,10 @@
   height: 30px;
   margin: 17px;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .line {
   background-color: #ee8b6a;
@@ -21,26 +25,24 @@
   display: none;
   
 }
-.photoImg{
-  border-radius: 50%;
-  margin-left: 0px;
-
-}
 .boldText {
-  width: 80px;
+  
+  line-height: 30px;
+  width: 100px;
   font-weight: 700;
   font-size: 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color:#4E4E4E;
+  /* background-color: salmon; */
 }
 .flexDiv {
   position: relative;
   display: flex;
-
-  background-color: #f6f0ee;
-  width: 100;
+  /* background-color: #f6f0ee; */
+  /* background-color: yellow; */
+  width: 263px;
 }
 
 .Userimg {
@@ -53,43 +55,54 @@
   
 }
 .marginDiv {
-  justify-content: space-between;
-  margin-left: 15px;
-  margin-top: 10px;
-  
-  
+  /* justify-content: space-between; */
+  margin-left: 10px;
+  /* background-color: dodgerblue; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
 
 }
 .img {
-  margin-top: 5px;
+  margin-top: 0px;
   margin-left: 10px;
-  width: 100%;
-  height: 50px;
+  width: 43px;
+  height: 43px;
   border-radius: 10%;
   background-size: cover;
-  
-
+  align-items: center;
+  justify-content: center;
 }
 .whiteTime {
-  position: absolute;
-  top:53px;
-  left:2px;
+  /* position: absolute; */
+  width: 45px;
+  top: 25.5px;
+  left: 220px;
   font-size: 10px;
   color: #4e4e4e;
+  text-align: center;
+  /* background-color: yellowgreen; */
   
 }
 .chatlength {
-
-  width: 220px;
+  max-width: 144px;
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-right: 5px;
   color:#4E4E4E;
-
+  /* background-color: aquamarine; */
 }
 
+.chat-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .Nickname {
   text-align: center;
 }
