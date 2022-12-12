@@ -166,12 +166,12 @@ const Content = styled.div`
 const Body = styled.div`
   background-color: #fff;
   width: 360px;
-  height: 111px;
+  height: 105px;
   border-width: 0.1px 1px;
   border-style: solid;
   border-color: #f8d1c5;
   margin: 0 auto;
-  padding-top: 12px;
+  padding: 21px 0 17px;
   display: flex;
   flex-direction: row;
   align-items: center;
