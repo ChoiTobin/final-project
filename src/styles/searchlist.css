@@ -1,24 +1,25 @@
 .wrap {
-  /* border: 20px solid aqua; */
-  position: relative;
-  height: 272px;
-  margin-top: 5px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6.06px;
+  /* background-color: yellowgreen; */
 }
 .search {
   width: 313.93px;
-  height: 24.99px;
-  position: relative;
   align-items: center;
-  /* margin-bottom: 50.5px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: -10px;
+  margin-right: 10px;
 }
 
 .search-icon {
-  margin-left: 310px;
-  margin-top: 10px;
+  /* background-color: yellowgreen; */
+  margin-left: 150px;
+  margin-top: 5px;
   z-index: 1;
   position: absolute;
   cursor: pointer;
@@ -78,17 +79,14 @@
 .tab-menu {
   width: 360px;
   height: 26px;
-  display: inline-flex;
+  display: flex;
   border: none;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  margin-left: -28px;
-  top: 55.5px;
+  margin-top: 12px;
 }
 
 .tab-menu > input[type='radio'] {
-  border: 2px solid brown;
   display: none;
 }
 .tab-menu > input[type='radio']:checked + label {

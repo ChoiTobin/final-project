@@ -7,6 +7,7 @@ import Footer from "../components/Layout/Footer";
 import ModalPortal from "../components/element/ModalPortal";
 import AddPetInfo from "../components/features/Mypage/AddPetInfo";
 import AddUserPic from "../components/features/Mypage/AddUserPic";
+import Notice from "../components/features/Mypage/Notice"
 import styled from "styled-components";
 import "../components/element/MyPetModal.css";
 import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
@@ -25,6 +26,16 @@ const MyPage = () => {
 
   //별점 배열
   const ARRAY = [0, 1, 2, 3, 4];
+
+  const [notie, setNotie] = useState(false);
+
+  const openNotieModal = () => {
+    setNotie(true);
+  };
+
+  const closeNotieModal = () => {
+    setNotie(false);
+  };
 
   const [photo, setPhoto] = useState(false);
 
@@ -73,11 +84,18 @@ const MyPage = () => {
     <Layouts>
       <Header />
       <div className="user-info">
-        <Notice>
+        <Noticed onClick={openNotieModal}>
           <span>공지</span>
           <p>리뉴얼 업데이트 1.4v 관련</p>
           <NoticeArrow style={{ marginLeft: "82.78px" }} />
-        </Notice>
+        </Noticed>
+        {notie && (
+          <ModalPortal>
+            <div className="MyModal">
+              <Notice onClose={closeNotieModal} />
+            </div>
+          </ModalPortal>
+        )}
         <Title>
           <UserImg
             src={myInfo.userImage !== undefined ? myInfo.userImage : User}
@@ -114,8 +132,8 @@ const MyPage = () => {
             <button
               onClick={Logout}
               style={{
-                color: "#4db173",
-                border: "1px solid #4db173",
+                color: "#A1A1A1",
+                border: "1px solid #A1A1A1",
               }}
             >
               로그아웃
@@ -178,7 +196,7 @@ const Layouts = styled.div`
   background-color: #f6f0ee;
 `;
 
-const Notice = styled.div`
+const Noticed = styled.div`
   width: 314.39px;
   height: 27.84px;
   display: flex;
@@ -189,6 +207,8 @@ const Notice = styled.div`
 
   border: 1px solid rgba(173, 173, 173, 1);
   border-radius: 4px;
+
+  cursor: pointer;
 
   span {
     font-family: "Pretendard", sans-serif;

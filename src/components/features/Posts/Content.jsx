@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../../FullHTML.css";
+import Footer from "../../Layout/Footer";
+import Header from "../../Layout/Header";
 import PostList from "../Posts/PostList";
 import SearchList from "../Posts/SearchList";
 
@@ -22,8 +24,10 @@ const Content = () => {
 
   return (
     <>
+      <Header/>
       <SearchList setCategoryState={setCategoryState} setSearchState={setSearchState}/>
-      <PostList categoryState={categoryState} setCategoryState={setCategoryState} searchState={searchState} setSearchState={setSearchState}/>
+      <PostList categoryState={categoryState} setCategoryState={setCategoryState} searchState={searchState} setSearchState={setSearchState} />
+      <Footer/>
     </>
   );
 };
