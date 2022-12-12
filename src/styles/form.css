@@ -95,3 +95,7 @@ textarea {
   font-size: 12px;
   font-weight: 600;
 }
+.address_search{}
+.address_search>input{
+  width:100%;
+}

@@ -9,8 +9,8 @@ import {
 import "../../../App.css";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-
-const PostList = ({categoryState,searchState}) => {
+// import "../../../styles/postlist.css";
+const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts)
@@ -19,35 +19,41 @@ const PostList = ({categoryState,searchState}) => {
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView();
   // 서버에서 아이템을 가지고 오는 함수
-  
-  const getItems = useCallback(
-    async () => 
-    {
-      if(categoryState==="검색"){
-        return dispatch(
-          __getKeyword({searchKeyword:searchState,pageNumber: page})
-        );
-      }else if(categoryState==="전체"){
-        return dispatch(
-          __getPostTime({pageNumber:page})
-        );
-      }else if(categoryState==="대형"){
-        return dispatch(
-          __getCategory({categoryKeyword:"대형",pageNumber: page})
-        );
-      }else if(categoryState==="중형"){
-        return dispatch(
-          __getCategory({categoryKeyword:"중형",pageNumber: page})
-        );
-      }else if(categoryState==="소형") {
-        return dispatch(
-          __getCategory({categoryKeyword:"소형",pageNumber: page})
-        );
-      }
-       
-  }, [page,categoryState])
 
+  const getItems = useCallback(async () => {
+    if (categoryState === "검색") {
+      return dispatch(
+        __getKeyword({ searchKeyword: searchState, pageNumber: page })
+      );
+    } else if (categoryState === "전체") {
+      return dispatch(__getPostTime({ pageNumber: page }));
+    } else if (categoryState === "대형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "대형", pageNumber: page })
+      );
+    } else if (categoryState === "중형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "중형", pageNumber: page })
+      );
+    } else if (categoryState === "소형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "소형", pageNumber: page })
+      );
+    }
+  }, [page, categoryState]);
 
+  const status = (item) => {
+    switch (item) {
+      case "진행중":
+        return "#ED9071";
+      case "산책중":
+        return "#4db173";
+      case "완료":
+        return "#AFAFAF";
+      default:
+        return null;
+    }
+  };
 
   // console.log("page:",page)
   //렌더링시 처음화면에 나타남2
@@ -55,10 +61,10 @@ const PostList = ({categoryState,searchState}) => {
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    getItems()
-    // console.log("카테고리가 뭘까요?:",categoryState)
-    // console.log("page:",page)
-  }, [getItems])
+    getItems();
+    console.log("카테고리가 뭘까요?:", categoryState);
+    console.log("page:", page);
+  }, [getItems]);
   //렌더링시 처음화면에 나타남
 
   useEffect(() => {

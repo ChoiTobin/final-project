@@ -12,8 +12,24 @@ import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
 import { ReactComponent as Photo } from "../../../img/form-preview.svg";
 import "../../../styles/form.css";
-
+import Api from "../Posts/Api"
 const Post = () => {
+  const [enroll_company, setEnroll_company] = useState({
+    address:'',
+  });
+  
+  const [popup, setPopup] = useState(false);
+  
+  const handleInput = (e) => {
+    setEnroll_company({
+        ...enroll_company,
+          [e.target.name]:e.target.value,
+      })
+  }
+  
+  const handleComplete = () => {
+      setPopup(!popup);
+  }
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [conimal, setConimal] = useState({
@@ -179,7 +195,7 @@ const Post = () => {
             value={conimal.date || ""}
             onChange={onChangeHandler}
           />
-          <select
+          {/* <select
             name="local"
             value={conimal.local || ""}
             required
@@ -203,7 +219,11 @@ const Post = () => {
             <option value="전라북도">전라북도</option>
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
-          </select>
+          </select> */}
+          <div className="address_search" >
+              <input className="user_enroll_text" placeholder="주소"  onClick={handleComplete} type="text" required={true} name="address" onChange={handleInput} value={enroll_company.address}/>
+              {popup && <Api company={enroll_company} setcompany={setEnroll_company}></Api>}
+          </div>
           <select
             name="category"
             value={conimal.category || ""}
