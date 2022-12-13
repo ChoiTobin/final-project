@@ -7,10 +7,12 @@ import SockJS from "sockjs-client";
 import { useNavigate, useParams } from "react-router-dom";
 import {__getinitialChatList2,ListReducer,} from "../redux/modules/chattingSlice";
 import { v4 as uuidv4 } from "uuid";
-import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
-//import { ReactComponent as Complete } from '../img/state-g.svg';
+import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import Complete from '../img/state-g.png';
 import imgDefault from "../img/user2.png";
+
+
 function ChatRoomPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ function ChatRoomPage() {
   const ws = webstomp.over(sock);
   const dispatch = useDispatch();
   const room = useSelector((state) => state.chatting.room);
+
 
   useEffect(() => {
     //페이지가 마운트될때마다 띄어준후 연결 한뒤 나갓을때 끊어준다.
@@ -140,7 +143,7 @@ function ChatRoomPage() {
             <>
               <div className="flexZone">
                 <div>
-                  {/* <Complete /> */}
+                <img src={Complete} alt="" />
                 </div>
                 <div>
                   <div className="clearName">완료</div>
