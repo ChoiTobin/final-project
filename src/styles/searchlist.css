@@ -1,23 +1,22 @@
 .wrap {
-  /* border: 20px solid aqua; */
-  position: relative;
-  height: 272px;
-  margin-top: 5px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6.06px;
 }
 .search {
   width: 313.93px;
-  height: 24.99px;
-  position: relative;
   align-items: center;
-  /* margin-bottom: 50.5px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: -10px;
+  margin-right: 10px;
 }
 
 .search-icon {
-  margin-left: 310px;
+  margin-left: 290px;
   margin-top: 10px;
   z-index: 1;
   position: absolute;
@@ -75,25 +74,23 @@
   background-color: #ed9071;
 }
 
+.btn-wrap {
+  width: 360px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .tab-menu {
   width: 360px;
   height: 26px;
-  display: inline-flex;
+  display: flex;
   border: none;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  margin-left: -28px;
-  top: 55.5px;
-}
-
-.tab-menu > input[type='radio'] {
-  border: 2px solid brown;
-  display: none;
-}
-.tab-menu > input[type='radio']:checked + label {
-  background-color: #ED9071;
-  color: #000
+  margin-top: 12px;
 }
 
 .tab-btn {
@@ -114,12 +111,6 @@
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
-
-/* .tab-btn:hover {
-    background-color: #ed9071;
-    color: #fff;
-  } */
-
 
 .tab-btn:last-child {
     border-right: none;

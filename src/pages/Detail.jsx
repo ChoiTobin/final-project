@@ -11,7 +11,7 @@ import { __CreateRoom } from "../redux/modules/chattingSlice.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import User from "../img/user.png";
-import {ReactComponent as Back} from "../img/backarrow.svg"
+import Back from "../img/header-backarrow.png"
 import { FaStar } from "react-icons/fa";
 import "../styles/detail.css";
 
@@ -42,12 +42,18 @@ const Detail = () => {
   return (
     <Layout>
       <Head>
-        <Back onClick={() => navigate(-1)} style={{ position: 'absolute', zIndex: '10', marginLeft: '-290px', cursor: 'pointer' }} />
-        <Header style={{ position: 'relative' }} />
+        <img src={Back} alt="" onClick={() => navigate(-1)}
+          style={{
+            position: "absolute",
+            zIndex: "10",
+            marginLeft: "-290px",
+            cursor: "pointer",
+          }}/>
+        <Header style={{ position: "relative" }} />
       </Head>
       <Bg>
         <Form>
-          <Carousel fade style={{height: "206px"}}>
+          <Carousel fade style={{ height: "206px" }}>
             {post.imgs !== undefined &&
               post.imgs.map((pic) => {
                 if (post.imgs.length !== 0) {
@@ -100,12 +106,7 @@ const Detail = () => {
             <div className="profile-name">
               <p>{post.nickname}</p>
               <p>
-                {/* {	ARRAY.map((id,i) => { 
-                        return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
-                      <FaStar key={id} style={i < post.rating ? { color: "#fcc419"}:{}} />
-                      )
-                    })
-                  } */}
+                {/* 레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게 */}
                 <FaStar style={{ color: "#fcc419", marginRight: 6 }} />
                 {post.rating}
               </p>
@@ -113,11 +114,11 @@ const Detail = () => {
           </div>
         </Form>
       </Bg>
-      { 
-          post.nickname === localStorage.getItem("user-nickname")  ?
-          null:
-          <button className="chatBtn" onClick={()=>onClickChatting(post)}>크멍톡</button>
-        }
+      {post.nickname === localStorage.getItem("user-nickname") ? null : (
+        <button className="chatBtn" onClick={() => onClickChatting(post)}>
+          크멍톡
+        </button>
+      )}
 
       <Footer />
     </Layout>
@@ -152,7 +153,6 @@ const Bg = styled.div`
   max-height: 514.32px;
   overflow-x: hidden;
   overflow-y: auto;
-  /* background-color: lightblue; */
   margin-bottom: 8px;
   /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {

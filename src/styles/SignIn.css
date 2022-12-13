@@ -4,22 +4,18 @@
   max-height: 640px;
   background-color: #f6f0ee;
   margin: auto;
-  /* border: 10px solid darksalmon; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .LoginContainer {
-  margin-top: -340px;
   justify-content: center;
-  /* background-color: yellow; */
 }
 
 .wrap {
   display: flex;
   flex-direction: column;
-  /* background-color: #4db173; */
 }
 
 .Logos {
@@ -27,7 +23,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: #ed9071; */
 }
 
 .LoginBox {
@@ -94,7 +89,6 @@
 
 .InputBox {
   justify-content: left;
-  /* background-color: #4db173; */
 }
 
 .SocialLogin {
@@ -127,11 +121,6 @@
   width: 100px;
   height: 38px;
 }
-
-.Btn-Sign {
-  /* background-color: #fd6e7f; */
-}
-
 
 .LoginButton {
   width: 320px;

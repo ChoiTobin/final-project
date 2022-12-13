@@ -3,32 +3,88 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   __getPostTime,
+  __getKeyword,
+  __getCategory,
 } from "../../../redux/modules/postSlice";
 import "../../../App.css";
-// import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-// import "../../../styles/postlist.css";
-const PostList = () => {
+
+const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.post.response)
-  
+  const posts = useSelector((state) => state.post.posts)
+
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView();
+  // 서버에서 아이템을 가지고 오는 함수
+
+  const getItems = useCallback(async () => {
+    if (categoryState === "검색") {
+      return dispatch(
+        __getKeyword({ searchKeyword: searchState, pageNumber: page })
+      );
+    } else if (categoryState === "전체") {
+      return dispatch(__getPostTime({ pageNumber: page }));
+    } else if (categoryState === "대형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "대형", pageNumber: page })
+      );
+    } else if (categoryState === "중형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "중형", pageNumber: page })
+      );
+    } else if (categoryState === "소형") {
+      return dispatch(
+        __getCategory({ categoryKeyword: "소형", pageNumber: page })
+      );
+    }
+  }, [page, categoryState]);
+
+  const status = (item) => {
+    switch (item) {
+      case "진행중":
+        return "#ED9071";
+      case "산책중":
+        return "#4db173";
+      case "완료":
+        return "#AFAFAF";
+      default:
+        return null;
+    }
+  };
+
+  //렌더링시 처음화면에 나타남
+  //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행
+
+  // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    dispatch(
-      __getPostTime()
-    );
-  }, [dispatch]);
+    getItems();
+  }, [getItems]);
+  //렌더링시 처음화면에 나타남
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, loading]);
+
+  useEffect(() => {
+    setPage(0);
+  }, [categoryState]);
 
   return (
     <Layouts className="postwrap">
       {posts !== undefined &&
-        posts.map((post) => {
+        posts.map((post, i) => {
           return (
             <Content
               onClick={() => {
                 navigator(`/Detail/${post.id}`);
               }}
-              key={post.id}
+              key={i}
             >
               <Body className="wrap">
                 <Text>
@@ -36,8 +92,9 @@ const PostList = () => {
                     <TopLeft className="top-left">
                       <Category>{post.category}</Category>
                       <Main className="title">
-                        <State style={{width: "50px"}}>{post.state}</State>
-                        &nbsp;
+                        <State style={{ color: status(post.state) }}>
+                          {post.state}
+                        </State>
                         <Title>{post.title}</Title>
                       </Main>
                       <Created>{post.createdAt}</Created>
@@ -47,14 +104,12 @@ const PostList = () => {
                   <Down className="down">
                     <DownLeft className="left">
                       <When>
-                        {/* <PostDate/>{post.date} */}
                         <img src={require("../../../img/date.png")} alt="" />
-                        {post.date}
+                        &nbsp;{post.date}
                       </When>
                       <Places>
-                        {/* <PostLocal/>{post.local} */}
                         <img src={require("../../../img/place.png")} alt="" />
-                        {post.local}
+                        &nbsp;{post.local}
                       </Places>
                     </DownLeft>
                     <DownRight className="right">
@@ -66,6 +121,7 @@ const PostList = () => {
             </Content>
           );
         })}
+      <div ref={ref}></div>
     </Layouts>
   );
 };
@@ -73,8 +129,8 @@ export default PostList;
 
 const Layouts = styled.div`
   width: 360px;
-  height: 453.96px;
-  margin: -178px auto 0;
+  height: 454.24px;
+  margin: 9px auto 0;
   background-color: #fff;
   opacity: 96%;
   overflow-x: hidden;
@@ -104,12 +160,12 @@ const Content = styled.div`
 const Body = styled.div`
   background-color: #fff;
   width: 360px;
-  height: 111px;
+  height: 105px;
   border-width: 0.1px 1px;
   border-style: solid;
   border-color: #f8d1c5;
   margin: 0 auto;
-  padding-top: 12px;
+  padding: 21px 0 17px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -141,7 +197,6 @@ const TopLeft = styled.div`
   font-weight: 500;
   font-size: 19px;
   line-height: 16.24px;
-  /* border: 1px solid #D3D3D3; */
   margin-top: -10px;
 `;
 
@@ -163,7 +218,6 @@ const State = styled.div`
 `;
 
 const Title = styled.div`
-  /* border: 1px solid #ed9071; */
   max-width: 170px;
   height: 20px;
   font-family: "Pretendard", sans-serif;
@@ -179,6 +233,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 2.78px;
+  gap: 5px;
 `;
 
 const Created = styled.div`
@@ -205,13 +260,13 @@ const Places = styled.div`
 
 const Price = styled.span`
   font-family: "Pretendard", sans-serif;
-  font-size: 18px;
+  font-size: 16.5px;
   font-weight: 600;
   line-height: 19.09px;
+  letter-spacing: -1px;
 `;
 
 const Down = styled.div`
-  /* background-color: lightcoral; */
   width: 317.9px;
   height: 27.95px;
 
@@ -225,7 +280,6 @@ const Down = styled.div`
 `;
 
 const DownLeft = styled.div`
-  /* background-color: lightyellow; */
   width: 160px;
   height: 17px;
 
@@ -241,7 +295,6 @@ const DownLeft = styled.div`
   gap: 8px;
   margin-top: -36px;
   margin-left: 10px;
-  /* border: 1px solid #ED4576; */
 `;
 
 const DownRight = styled.div`
