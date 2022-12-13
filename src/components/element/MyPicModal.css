@@ -11,12 +11,9 @@
 }
 
 .MyModal .content {
-  /* background: #f6f0ee; */
-  /* background-color: aqua; */
   padding: 1rem;
   width: 270.59px;
   height: auto;
-  margin-left: 0px;
-  
+  margin-left: 0px;  
   border-radius: 4px 4px 0px 0px;
 }

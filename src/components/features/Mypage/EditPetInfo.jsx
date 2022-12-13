@@ -111,7 +111,6 @@ const Layout = styled.div`
 `;
 
 const Content = styled.div`
-  /* background-color: lightgreen; */
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -147,7 +146,6 @@ const Content = styled.div`
     }
   }
   select {
-    /* padding: 4px 0 4px 13.54px; */
     padding-left: 9.54px;
     border: 0.5px solid rgba(237, 144, 113, 1);
     border-radius: 4px;
@@ -161,7 +159,6 @@ const Content = styled.div`
 `;
 
 const Form = styled.div`
-  /* background-color: springgreen; */
   text-align: left;
   margin-left: -3px;
 `;

@@ -131,7 +131,6 @@ const SignUp = () => {
     <div className="SignupContainer">
       <form className="SignupBox" onSubmit={onSubmitHandler}>
         <span className="LoGoSignUp">
-          {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/>  */}
           <img src={Logo} alt="" style={{
               width: "58.75px",
               height: "44.43px",

@@ -318,7 +318,6 @@ const Textarea = styled.textarea`
 const InputImg = styled.input`
   display: none;
   height: 40px;
-  /* background: #fff; */
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;

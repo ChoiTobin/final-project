@@ -119,7 +119,6 @@ const Layout = styled.div`
   max-height: 219px;
   overflow-x: hidden;
   overflow-y: auto;
-  /* border: 2px solid #ed9071; */
   /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
     width: 5px;
@@ -159,7 +158,6 @@ const Main = styled.div`
 `;
 
 const State = styled.span`
-  /* color: #ed9071; */
   font-family: "Pretendard", sans-serif;
   font-size: 14px;
   font-weight: 510;

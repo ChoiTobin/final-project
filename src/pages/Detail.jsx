@@ -106,12 +106,7 @@ const Detail = () => {
             <div className="profile-name">
               <p>{post.nickname}</p>
               <p>
-                {/* {	ARRAY.map((id,i) => { 
-                        return( //레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게
-                      <FaStar key={id} style={i < post.rating ? { color: "#fcc419"}:{}} />
-                      )
-                    })
-                  } */}
+                {/* 레이팅이 아닐때는 색깔이없는거고 레이팅이면 노란색으로 나오게 */}
                 <FaStar style={{ color: "#fcc419", marginRight: 6 }} />
                 {post.rating}
               </p>
@@ -158,7 +153,6 @@ const Bg = styled.div`
   max-height: 514.32px;
   overflow-x: hidden;
   overflow-y: auto;
-  /* background-color: lightblue; */
   margin-bottom: 8px;
   /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {

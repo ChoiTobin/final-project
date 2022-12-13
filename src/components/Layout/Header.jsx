@@ -29,6 +29,4 @@ const Layout = styled.div`
   justify-content: center;
   margin: 0 auto;
   gap: 116px;
-
-  /* border: 1px solid #ed9071; */
 `;
