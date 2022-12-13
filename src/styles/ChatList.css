@@ -35,29 +35,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color:#4E4E4E;
-  /* background-color: salmon; */
 }
 .flexDiv {
   position: relative;
   display: flex;
-  /* background-color: #f6f0ee; */
-  /* background-color: yellow; */
   width: 263px;
 }
 
 .Userimg {
   width: 47px;
   height: 47px;
-  /* margin-top: 10px; */
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 50%;
   
 }
 .marginDiv {
-  /* justify-content: space-between; */
   margin-left: 10px;
-  /* background-color: dodgerblue; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -75,14 +69,12 @@
   justify-content: center;
 }
 .whiteTime {
-  /* position: absolute; */
   width: 45px;
   top: 25.5px;
   left: 220px;
   font-size: 10px;
   color: #4e4e4e;
   text-align: center;
-  /* background-color: yellowgreen; */
   
 }
 .chatlength {
@@ -94,7 +86,6 @@
   text-overflow: ellipsis;
   margin-right: 5px;
   color:#4E4E4E;
-  /* background-color: aquamarine; */
 }
 
 .chat-text {
@@ -124,7 +115,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: yellowgreen; */
 }
 
 .chat-none > button {

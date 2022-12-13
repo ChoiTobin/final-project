@@ -215,16 +215,8 @@ function ChatRoomPage() {
         </div>
       </div>
       {/* section */}
-      {/* <div>
-        {room !== undefined && room !== [] && (
-          <>
-            <div className="atTime">{dateString}</div>
-          </>
-        )}
-      </div> */}
 
       {/* section 과 채팅 사이 시간*/}
-      {/* <OverFlow sx={{ height: "80%", overflow: "scroll" }}> */}
       <OverFlow>
         <div className="chat-date">
           {room !== undefined && room !== [] && (
@@ -277,9 +269,6 @@ function ChatRoomPage() {
 
 export default ChatRoomPage;
 
-{
-  /* footer */
-}
 const OverFlow = styled.div`
   width: 360px;
   height: 454px;
@@ -287,7 +276,6 @@ const OverFlow = styled.div`
   opacity: 96%;
   overflow-x: hidden;
   overflow-y: auto;
-  /* border: 2px solid cornflowerblue; */
   /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
     width: 5px;
@@ -311,16 +299,13 @@ const OverFlow = styled.div`
 const InputText = styled.textarea`
   all: unset;
   display: block;
-  /* width: 100%; */
   width: 324.41px;
   height: ${({ row, theme }) => +theme.listSize * row + 4}px;
   overflow-wrap: break-word;
   word-break: break-all;
   white-space: pre-wrap;
   resize: none;
-  /* background-color: lightblue; */
   background-color: white;
-  /* border: 1px solid #ed9071; */
   border-radius: 15px;
   padding: 5px 47.48px 0 12.93px;
   /* 스크롤바 영역에 대한 설정 */

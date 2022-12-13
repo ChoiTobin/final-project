@@ -90,12 +90,6 @@ const ChatList = () => {
                     
 
                   </div>
-                  {/* {
-                    item.postImg.length !== 0 && 
-                    
-                  <img className="img" src={`${item.postImg}`}/>
-                  
-                  }  */}
                 </div>
                 <img className="img" src={require("../img/KakaoTalk_20221208_132549478.png")}/>
               </div>

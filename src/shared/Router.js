@@ -31,18 +31,12 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
-        {/* <Route path="/chat" element={<ChatList/>} /> */}
-      {/* 추가 */}  
-      <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
-      <Route path='/MainLogin' element={<MainLogin />} />
-      <Route path="/chat" element={<ChatList/>} />
-      <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
-      <Route path="/Rating" element={<Rating />} />
-       {/* 네이버 */}
-      <Route path="/auth/member/naver/callback" element={<OAuthNaverLogin />} />
-
-
-
+        <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
+        <Route path='/MainLogin' element={<MainLogin />} />
+        <Route path="/chat" element={<ChatList/>} />
+        <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
+        <Route path="/Rating" element={<Rating />} />
+        <Route path="/auth/member/naver/callback" element={<OAuthNaverLogin />} />
       </Routes>
     </BrowserRouter>
   );

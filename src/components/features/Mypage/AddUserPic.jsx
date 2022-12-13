@@ -67,7 +67,6 @@ const AddUserPic = ({ onClose }) => {
 
       <ImgPreview>
         {/* 이미지 미리보기 Preview */}
-        {/* <img src={imgsUrls} style={imgsUrls !== "" ? { visibility: "visible"} : {visibility: "hidden"}} alt="" /> */}
         {imgsUrls.length !== 0 ? (
           imgsUrls.map((imgs, id) => {
             return <img src={imgs} alt="업로드 사진 미리보기" key={id} />;
@@ -107,18 +106,15 @@ const Layout = styled.div`
   height: 250px;
   margin: auto;
   background-color: #fff;
-    /* background-color: yellow; */
   border-radius: 10px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
 `;
 
 const ImgUpload = styled.button`
-  /* margin: 10px 0 10px 100px; */
   border: none;
   border-radius: 10px;
   margin: 10px auto 12px;
@@ -126,7 +122,6 @@ const ImgUpload = styled.button`
   img {
     align-items: center;
     justify-content: center;
-    /* margin: 10px 0 0 10px; */
   }
 `;
 
@@ -169,7 +164,6 @@ const PicNote = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* margin-top: 65.33px; */
   span {
     font-family: "Pretendard", sans-serif;
     font-size: 16px;

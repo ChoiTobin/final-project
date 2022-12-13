@@ -29,7 +29,6 @@ const Notice = ({ onClose }) => {
               가족인 반려동물을 같이 보살펴주는 건 어떨까요? 지금 바로 글을
               작성해 보세요 :D
             </p>
-            {/* <br /> */}
             <span>
               작성자와 1:1 채팅으로 더 빠르게 대화하며 일정을 조율해 보세요
             </span>
@@ -39,7 +38,6 @@ const Notice = ({ onClose }) => {
               주고받는 채팅을 통해 빠르고 원활한 소통으로 새로운 일을
               시작해보세요.
             </p>
-            {/* <br /> */}
             <span>
               채팅방 내에서 수락 결정하고, 부탁한 일이 끝나면 바로 확인버튼으로
               간편하게~
@@ -89,7 +87,6 @@ const Layout = styled.div`
   height: 250px;
   margin: auto;
   background-color: #fff;
-  /* background-color: yellow; */
   border-radius: 10px;
 
   display: flex;
@@ -113,8 +110,6 @@ const Notiee = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto 20.07px;
-
-  /* border: 1px solid rgba(173, 173, 173, 1); */
   border-radius: 4px;
 
   cursor: pointer;
@@ -125,7 +120,6 @@ const Notiee = styled.div`
     font-weight: 900;
     line-height: 15.51px;
     color: rgba(238, 139, 106, 1);
-    /* margin-left: 15.68px; */
   }
 
   p {
@@ -146,7 +140,6 @@ const Content = styled.div`
   overflow: auto;
   flex-wrap: nowrap;
   word-break: keep-all;
-  /* background-color: lightcoral; */
   margin-left: 3px;
 
   /* 스크롤바 영역에 대한 설정 */

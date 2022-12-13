@@ -5,7 +5,6 @@
   align-items: center;
   justify-content: center;
   margin-top: 6.06px;
-  /* background-color: yellowgreen; */
 }
 .search {
   width: 313.93px;
@@ -17,7 +16,6 @@
 }
 
 .search-icon {
-  /* background-color: yellowgreen; */
   margin-left: 290px;
   margin-top: 10px;
   z-index: 1;
@@ -95,14 +93,6 @@
   margin-top: 12px;
 }
 
-/* .tab-menu > input[type='radio'] {
-  display: none;
-}
-.tab-menu > input[type='radio']:checked + label {
-  background-color: #ED9071;
-  color: #000
-} */
-
 .tab-btn {
   width: 90.02px;
   height: 26px;
@@ -121,12 +111,6 @@
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
-
-/* .tab-btn:hover {
-    background-color: #ed9071;
-    color: #fff;
-  } */
-
 
 .tab-btn:last-child {
     border-right: none;
