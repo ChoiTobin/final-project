@@ -73,7 +73,7 @@ const AddUserPic = ({ onClose }) => {
           })
         ) : (
           <PicNote>
-            <img src={Photo} alt="" /> <span>&nbsp;이미지 미리보기</span>
+            <img src={Photo} alt=""/> <span>&nbsp;이미지 미리보기</span>
           </PicNote>
         )}
       </ImgPreview>
@@ -170,5 +170,9 @@ const PicNote = styled.div`
     font-weight: 400;
     line-height: 19.09px;
     color: rgba(57, 57, 57, 0.93);
+  }
+  img {
+    width: 50px;
+    height: 50px;
   }
 `;
