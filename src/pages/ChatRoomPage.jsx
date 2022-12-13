@@ -14,7 +14,7 @@ import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Modal2 from "../pages/ChatModal/Modal2";
 import { off } from "process";
 import { ReactComponent as Complete } from '../img/state-g.svg';
-import imgDefault from "../img/user.png";
+import imgDefault from "../img/user2.png";
 function ChatRoomPage() {
 
   const { id } = useParams();
@@ -209,10 +209,10 @@ function ChatRoomPage() {
               room.joinUserNickname == localStorage.getItem("user-nickname")
              ?
 
-             <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
+             <img className="photoImg2" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
              :
 
-             <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
+             <img className="photoImg2" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
             }
           </div>
           <div>

@@ -8,7 +8,7 @@ import {
   __getinitialChatList2,
   __getRoomList,
 } from "../redux/modules/chattingSlice";
-import imgDefault from "../img/user.png";
+import imgDefault from "../img/user2.png";
 const ChatList = () => {
   const { id } = useParams();
   const navigator = useNavigate();
@@ -29,6 +29,7 @@ const ChatList = () => {
     ,200 
     );
     }
+    console.log("줘라좀..",Room)
   
   //리스트방에서 빠져나오면 로컬스토리에서 최근 날짜 없앰 그리고 로컬스토리지 단한번 만실행
   //채팅 샌드할때
