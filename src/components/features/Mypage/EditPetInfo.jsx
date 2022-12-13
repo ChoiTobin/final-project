@@ -34,32 +34,35 @@ const EditPetInfo = ({ onClose }) => {
           {/* 등록 누르면 신규 정보 입력, 수정 버튼을 눌렀을 때, 인풋창에 수정하고 싶은 내용을 작성할 수 있는 페이지 */}
           <Form className="edit-input">
             <div>
-              <label>이름 : &nbsp;</label>
+              <label>이름</label>
               <input
                 type="text"
                 onChange={onChangePetInfo}
                 name="name"
                 value={myPet.name}
+                style={{ width: "199.51px", height: "30px" }}
+                placeholder="예)    백호"
               />
             </div>
-            <br />
             <div>
-              <label>나이 : &nbsp;</label>
+              <label>나이</label>
               <input
                 type="text"
                 onChange={onChangePetInfo}
                 name="age"
                 value={myPet.age}
+                style={{ width: "176.72px", height: "31px" }}
+                placeholder="예)    4"
               />
               &nbsp;&nbsp;&nbsp;살
             </div>
-            <br />
             <div>
-              <label>종류 : &nbsp;</label>
+              <label>종류</label>
               <select
                 name="category"
                 value={myPet.category}
                 onChange={onChangePetInfo}
+                style={{ width: "199.51px", height: "30px" }}
               >
                 <option default value="all">
                   전체
@@ -69,10 +72,9 @@ const EditPetInfo = ({ onClose }) => {
                 <option value="big">대형 - 15kg 초과 | 80cm 초과</option>
               </select>
             </div>
-            <br />
           </Form>
         </Content>
-      
+
         {/* 정보등록 */}
         <PlaceBtn>
           <button
@@ -80,7 +82,10 @@ const EditPetInfo = ({ onClose }) => {
             style={{
               backgroundColor: "rgba(175, 175, 175, 1)",
               borderRadius: "0px 0px 0px 4px",
-            }}>취소</button>
+            }}
+          >
+            취소
+          </button>
           <button
             onClick={onUpdateMyPets}
             style={{
@@ -88,7 +93,9 @@ const EditPetInfo = ({ onClose }) => {
               color: "rgba(255, 255, 255, 1)",
               borderRadius: "0px 0px 4px 0px",
             }}
-          >완료</button>
+          >
+            완료
+          </button>
         </PlaceBtn>
       </Layout>
     </div>
@@ -127,13 +134,16 @@ const Content = styled.div`
     padding: 4px 0 4px 13.54px;
     border: 0.5px solid rgba(237, 144, 113, 1);
     border-radius: 4px;
-    margin: 2.95px 0 2.95px 0;
+    margin: 4.95px 0 4.95px 0;
     ::placeholder {
       font-family: "Pretendard", sans-serif;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 400;
       line-height: 11.93px;
-      color: rgba(86, 86, 86, 1);
+      color: #b9b9b9;
+    }
+    :focus::placeholder {
+      color: transparent;
     }
   }
   select {
@@ -141,25 +151,26 @@ const Content = styled.div`
     padding-left: 9.54px;
     border: 0.5px solid rgba(237, 144, 113, 1);
     border-radius: 4px;
-    margin: 2.95px 0 20.04px 0;
+    margin: 4.95px 0 20.04px 0;
     font-family: "Pretendard", sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 11.93px;
-    color: rgba(86, 86, 86, 1);
+    color: #565656;
   }
 `;
 
 const Form = styled.div`
   /* background-color: springgreen; */
   text-align: left;
+  margin-left: -3px;
 `;
 
 const PlaceBtn = styled.div`
   margin-top: -5px;
   button {
     width: 135.07px;
-    height: 27.42px;
+    height: 32.42px;
     border: none;
     font-family: "Pretendard", sans-serif;
     font-size: 12px;
