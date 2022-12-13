@@ -44,7 +44,7 @@ const ChatList = () => {
           Room.map((item, i) => {
             return (
               <div className="root" key={i}>
-                <div className="flexDiv">
+                <div onClick={() => onClickChatting(item)} className="flexDiv">
 
                 {/* <img
                     className="Userimg"
@@ -55,15 +55,15 @@ const ChatList = () => {
                   {
               item.joinUserNickname == localStorage.getItem("user-nickname")
              ?
-             <img className="photoImg" src={(item.postUserImg !==null ? item.postUserImg:imgDefault)} alt="" />
+             <img  className="photoImg" src={(item.postUserImg !==null ? item.postUserImg:imgDefault)} alt="" />
              :
-             <img className="photoImg" src={(item.joinUserImg !== null ? item.joinUserImg: imgDefault)} alt="" />
+             <img  className="photoImg" src={(item.joinUserImg !== null ? item.joinUserImg: imgDefault)} alt="" />
             }
 
                   <div className="marginDiv">
                     <span
                       className="boldText"
-                      onClick={() => onClickChatting(item)}
+                    
                     >
                       {
                         localStorage.getItem("user-nickname") ===
@@ -77,7 +77,7 @@ const ChatList = () => {
                     <div className="chat-text">
                       <div
                         className="chatlength"
-                        onClick={() => onClickChatting(item)}
+                       
                       >
                         {item.chatList[item.chatList.length - 1] !== undefined  && item.chatList[item.chatList.length - 1].length !== 0 &&
                           item.chatList[item.chatList.length - 1].message
