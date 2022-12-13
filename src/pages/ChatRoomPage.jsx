@@ -88,8 +88,8 @@ function ChatRoomPage() {
   };
 
   const onSubmitHandler = (event) => {
-    //event.preventDefault()
-    if (chatBody === "" || chatBody === " ") {
+    
+    if (chatBody === "" ) {
       return alert("내용을 입력해주세요.");
     }
     waitForConnection(ws, function () {

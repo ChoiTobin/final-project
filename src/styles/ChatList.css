@@ -1,7 +1,7 @@
 
 .root {
   height: 30px;
-  margin: 0px 10px 10px 0px;
+  margin:20px 10px 10px 0px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: row;
@@ -90,7 +90,7 @@
   top: 25.5px;
   left: 220px;
   font-size: 10px;
-  color: #4e4e4e;
+  color: #A6A6A6;
   text-align: center;
   /* background-color: yellowgreen; */
   
