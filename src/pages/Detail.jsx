@@ -11,7 +11,7 @@ import { __CreateRoom } from "../redux/modules/chattingSlice.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import User from "../img/user.png";
-import {ReactComponent as Back} from "../img/backarrow.svg"
+import Back from "../img/header-backarrow.png"
 import { FaStar } from "react-icons/fa";
 import "../styles/detail.css";
 
@@ -42,12 +42,18 @@ const Detail = () => {
   return (
     <Layout>
       <Head>
-        <Back onClick={() => navigate(-1)} style={{ position: 'absolute', zIndex: '10', marginLeft: '-290px', cursor: 'pointer' }} />
-        <Header style={{ position: 'relative' }} />
+        <img src={Back} alt="" onClick={() => navigate(-1)}
+          style={{
+            position: "absolute",
+            zIndex: "10",
+            marginLeft: "-290px",
+            cursor: "pointer",
+          }}/>
+        <Header style={{ position: "relative" }} />
       </Head>
       <Bg>
         <Form>
-          <Carousel fade style={{height: "206px"}}>
+          <Carousel fade style={{ height: "206px" }}>
             {post.imgs !== undefined &&
               post.imgs.map((pic) => {
                 if (post.imgs.length !== 0) {
@@ -113,11 +119,11 @@ const Detail = () => {
           </div>
         </Form>
       </Bg>
-      { 
-          post.nickname === localStorage.getItem("user-nickname")  ?
-          null:
-          <button className="chatBtn" onClick={()=>onClickChatting(post)}>크멍톡</button>
-        }
+      {post.nickname === localStorage.getItem("user-nickname") ? null : (
+        <button className="chatBtn" onClick={() => onClickChatting(post)}>
+          크멍톡
+        </button>
+      )}
 
       <Footer />
     </Layout>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __deleteMyPet, __getMyPet } from "../../../redux/modules/mypageSlice";
-import { ReactComponent as Edit } from "../../../img/my-edit.svg";
-import { ReactComponent as Delete } from "../../../img/my-delete.svg";
+import Edit from "../../../img/my-edit.png";
+import Delete from "../../../img/my-delete.png";
 import ModalPortal from "../../element/ModalPortal";
 import EditPetInfo from "../Mypage/EditPetInfo"
 import "../../element/MyModal.css";
@@ -67,7 +67,9 @@ const PetInfo = ({ myPets }) => {
                     </Text>
                   </Info>
                   <Icon>
-                    <Edit
+                    <img
+                      src={Edit}
+                      alt=""
                       onClick={openEditModal}
                       style={{ cursor: "pointer" }}
                     />
@@ -75,13 +77,11 @@ const PetInfo = ({ myPets }) => {
                       <ModalPortal>
                         <div className="MyModal">
                           <EditPetInfo onClose={closeEditModal} />
-                        </div>                        
+                        </div>
                       </ModalPortal>
                     )}
-                    <Delete
-                      onClick={() => onDeleteMyPet(pet.id)}
-                      style={{ cursor: "pointer" }}
-                    />
+                    <img src={Delete} alt="" onClick={() => onDeleteMyPet(pet.id)}
+                      style={{ cursor: "pointer" }} />
                   </Icon>
                 </Content>
               );

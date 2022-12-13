@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "../styles/ChatRoomPage.css";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
@@ -10,10 +10,9 @@ import {
   ListReducer,
 } from "../redux/modules/chattingSlice";
 import { v4 as uuidv4 } from "uuid";
-import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import BackArrow from "../img/header-backarrow.png";
 import Modal2 from "../pages/ChatModal/Modal2";
-import { off } from "process";
-import { ReactComponent as Complete } from '../img/state-g.svg';
+import Complete from '../img/state-g.png';
 
 function ChatRoomPage() {
 
@@ -171,10 +170,8 @@ function ChatRoomPage() {
     <div className="chattingContainer">
       <div className="Header">
         <div>
-          <BackArrow
-            onClick={() => navigate(-1)}
-            style={{ cursor: "pointer" }}
-          />
+          <img src={BackArrow} alt="" onClick={() => navigate(-1)}
+            style={{ cursor: "pointer" }}/>
         </div>
         <div className="Nickname">
           {localStorage.getItem("user-nickname") === room.joinUserNickname
@@ -188,7 +185,7 @@ function ChatRoomPage() {
           <>
             <div className="flexZone">
               <div>
-                <Complete />
+                <img src={Complete} alt="" />
               </div>
               <div>
                 <div className="clearName">완료</div>

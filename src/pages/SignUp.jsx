@@ -8,7 +8,7 @@ import {
   __NickCheck,
 } from "../../src/redux/modules/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as Logo } from "../img/logoImg.svg";
+import Logo from "../img/logo-sign.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -131,16 +131,14 @@ const SignUp = () => {
     <div className="SignupContainer">
       <form className="SignupBox" onSubmit={onSubmitHandler}>
         <span className="LoGoSignUp">
-          {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
-          <Logo
-            style={{
+          {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/>  */}
+          <img src={Logo} alt="" style={{
               width: "58.75px",
               height: "44.43px",
               margin: "36.84px auto 18.68px",
-            }}
-          />
+            }}/>
         </span>
-          <span className="LoGoSignUp1">SIGN UP</span>
+        <span className="LoGoSignUp1">SIGN UP</span>
         <div className="InputBox">
           <div className="Insert">
             <div className="Duplicate">
@@ -193,11 +191,15 @@ const SignUp = () => {
             {!nickValid
               ? !nickValid &&
                 join.nickname.length > 0 && (
-                  <div className="Red">닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</div>
+                  <div className="Red">
+                    닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자
+                  </div>
                 )
               : nickValid &&
                 join.nickname.length > 0 && (
-                  <div className="Green" style={{marginLeft: "-140px"}}>올바른 닉네임 형식 입니다.</div>
+                  <div className="Green" style={{ marginLeft: "-140px" }}>
+                    올바른 닉네임 형식 입니다.
+                  </div>
                 )}
           </div>
           <div className="Insert">

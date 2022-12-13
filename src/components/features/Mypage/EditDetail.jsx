@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import useImgUpload from "../../hooks/useImgUpload";
-import { ReactComponent as Photo } from "../../../img/form-add.svg";
+import Photo from "../../../img/form-add.png";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
 
 // 내가 쓴 게시글 수정 및 삭제
@@ -79,7 +79,7 @@ const EditDetail = ({ onClose }) => {
               <span>POST</span>
             </Top>
             <div>
-              <label htmlFor="imgFile" style={{backgroundColor: "#F6F0EE"}}>
+              <label htmlFor="imgFile" style={{ backgroundColor: "#F6F0EE" }}>
                 <ImgPreview>
                   <Carousel fade>
                     {imgUrls.map((img) => {
@@ -92,7 +92,7 @@ const EditDetail = ({ onClose }) => {
                             objectFit: "contain",
                           }}
                         >
-                          <img src={img ? img : ""} alt=""/>
+                          <img src={img ? img : ""} alt="" />
                         </Carousel.Item>
                       );
                     })}
@@ -116,7 +116,7 @@ const EditDetail = ({ onClose }) => {
                     imgRef.current.click();
                   }}
                 >
-                  <Photo />
+                  <img src={Photo} alt="" />
                   <span>&nbsp;사진 업로드</span>
                 </ImgUpload>
               </label>

@@ -54,12 +54,14 @@ const SearchList = ({setCategoryState,setSearchState}) => {
           onKeyPress={appKeyPress}
           type="text"
           name="search"
+          aria-labelledby="search"
           defaultValue={getSearch.search || ""}
           onChange={onChangeHandler}
         />
+        <label htmlFor="search" />
         <img
           className="search-icon"
-          onClick={()=>onClickSearch()}
+          onClick={() => onClickSearch()}
           src={require("../../../img/search.png")}
           alt=""
         />
@@ -91,15 +93,12 @@ const SearchList = ({setCategoryState,setSearchState}) => {
         {data.map((type) => {
           return (
             <div className="tab-menu" key={type}>
-              <input
-                type="radio"
-                style={{ display: "none" }}
-              />
+              <input type="radio" style={{ display: "none" }} />
               <Tab
                 active={active === type}
                 onClick={() => {
                   onClickHandler(type);
-                  setActive(type)
+                  setActive(type);
                 }}
                 htmlFor="category"
                 className="tab-btn"
@@ -156,7 +155,7 @@ const Tab = styled.div`
     active &&
     `
     opacity: 1;
-    color: #5A5A5A;
+    color: #FFF;
     background-color: #ED9071;
   `}
 `;

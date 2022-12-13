@@ -14,6 +14,14 @@ import "./Footer.css";
 const Footer = () => {
   const navigate = useNavigate();
 
+  const tabs = [
+    { id: 1, item: "Home" },
+    { id: 2, item: "Chat" },
+    { id: 3, item: "Posting" },
+    { id: 4, item: "Mypage" },
+  ];
+  
+
   
   return (
     <div className="footer" style={{cursor: 'pointer'}}>

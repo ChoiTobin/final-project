@@ -10,9 +10,8 @@ import AddUserPic from "../components/features/Mypage/AddUserPic";
 import Notice from "../components/features/Mypage/Notice"
 import styled from "styled-components";
 import "../components/element/MyPetModal.css";
-import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
+import MyKakao from "../img/my-kakao.png";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
-import { ReactComponent as UserPic } from "../img/user-my.svg";
 import User from "../img/user.png"
 import Banner from "../img/banner.png";
 //별추가
@@ -87,7 +86,7 @@ const MyPage = () => {
         <Noticed onClick={openNotieModal}>
           <span>공지</span>
           <p>리뉴얼 업데이트 1.4v 관련</p>
-          <NoticeArrow style={{ marginLeft: "82.78px" }} />
+          <NoticeArrow style={{ marginLeft: "82.78px" }}/>
         </Noticed>
         {notie && (
           <ModalPortal>
@@ -105,7 +104,7 @@ const MyPage = () => {
             <Account>
               <UserInfo>
                 <span>{myInfo.nickname}</span>
-                <MyKakao />
+                <img src={MyKakao} alt="" />
               </UserInfo>
               <span
                 style={{
