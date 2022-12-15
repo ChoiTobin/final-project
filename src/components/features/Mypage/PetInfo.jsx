@@ -76,7 +76,7 @@ const PetInfo = ({ myPets }) => {
                     {edit && (
                       <ModalPortal>
                         <div className="MyModal">
-                          <EditPetInfo onClose={closeEditModal} />
+                          <EditPetInfo onClose={closeEditModal} petId={pet.id} />
                         </div>
                       </ModalPortal>
                     )}

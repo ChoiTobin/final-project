@@ -6,7 +6,7 @@ import styled from "styled-components";
 import "../../element/MyModal.css";
 
 // 마이페이지 반려동물 정보 수정
-const EditPetInfo = ({ onClose }) => {
+const EditPetInfo = ({ petId, onClose }) => {
   const [myPet, setMyPet] = useState("");
   const dispatch = useDispatch();
 
@@ -21,9 +21,13 @@ const EditPetInfo = ({ onClose }) => {
 
   // 프로필 수정 - 반려동물 정보(이름, 나이, 종류)
   const onUpdateMyPets = () => {
-    dispatch(__putMyPet(myPet));
+    const data = {
+      id: petId,
+      myPet: myPet
+    }
+    dispatch(__putMyPet(data));
     window.alert("반려동물 정보수정이 완료되었습니다!");
-    window.location.reload("/mypage");
+    // window.location.reload("/mypage");
   };
 
   return (

@@ -8,6 +8,9 @@ import PetInfo from "./PetInfo";
 export default function Mytab() {
   const myPosts = useSelector((state) => state.mypage.myPost);
   const myPets = useSelector((state) => state.mypage.myPets);
+
+  console.log("마이탭포스트", myPosts);
+  console.log("마이탭펫등록", myPets);
   
   const [activeIndex, setActiveIndex] = useState(0);
 

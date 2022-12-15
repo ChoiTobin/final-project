@@ -280,7 +280,7 @@ const Down = styled.div`
 `;
 
 const DownLeft = styled.div`
-  width: 160px;
+  width: 380px;
   height: 17px;
 
   font-family: "Pretendard", sans-serif;
