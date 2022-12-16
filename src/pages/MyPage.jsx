@@ -10,9 +10,8 @@ import AddUserPic from "../components/features/Mypage/AddUserPic";
 import Notice from "../components/features/Mypage/Notice"
 import styled from "styled-components";
 import "../components/element/MyPetModal.css";
-import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
+import MyKakao from "../img/my-kakao.png";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
-import { ReactComponent as UserPic } from "../img/user-my.svg";
 import User from "../img/user.png"
 import Banner from "../img/banner.png";
 //별추가
@@ -22,7 +21,6 @@ import { FaStar } from 'react-icons/fa';
 const MyPage = () => {
   const dispatch = useDispatch();
   const myInfo = useSelector((state) => state.mypage.myInfo);
-  console.log("내정보", myInfo);
 
   //별점 배열
   const ARRAY = [0, 1, 2, 3, 4];
@@ -87,7 +85,7 @@ const MyPage = () => {
         <Noticed onClick={openNotieModal}>
           <span>공지</span>
           <p>리뉴얼 업데이트 1.4v 관련</p>
-          <NoticeArrow style={{ marginLeft: "82.78px" }} />
+          <NoticeArrow style={{ marginLeft: "82.78px" }}/>
         </Noticed>
         {notie && (
           <ModalPortal>
@@ -105,7 +103,7 @@ const MyPage = () => {
             <Account>
               <UserInfo>
                 <span>{myInfo.nickname}</span>
-                <MyKakao />
+                <img src={MyKakao} alt="" />
               </UserInfo>
               <span
                 style={{
@@ -216,7 +214,6 @@ const Noticed = styled.div`
     font-weight: 900;
     line-height: 15.51px;
     color: rgba(238, 139, 106, 1);
-    /* margin-left: 15.68px; */
   }
 
   p {
@@ -329,7 +326,6 @@ const Account = styled.div`
   height: 53.39px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   gap: 5.96px;
   span {
     font-family: "Pretendard", sans-serif;

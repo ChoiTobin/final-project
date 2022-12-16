@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom/dist";
 import styled from "styled-components";
-import { ReactComponent as Logo } from "../../img/logo-header.svg";
+import Logo from "../../img/logo-header.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,10 +12,7 @@ const Header = () => {
   
   return (
     <Layout>
-      <Logo
-        style={{cursor: "pointer"}}
-        onClick={() => onClickHome()}
-      />
+      <img src={Logo} alt="" style={{ cursor: "pointer" }} onClick={() => onClickHome()}/>
     </Layout>
   );
 };
@@ -32,6 +29,4 @@ const Layout = styled.div`
   justify-content: center;
   margin: 0 auto;
   gap: 116px;
-
-  /* border: 1px solid #ed9071; */
 `;

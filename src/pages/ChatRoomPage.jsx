@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "../styles/ChatRoomPage.css";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import webstomp from "webstomp-client";
 import SockJS from "sockjs-client";
@@ -10,11 +10,10 @@ import {
   ListReducer,
 } from "../redux/modules/chattingSlice";
 import { v4 as uuidv4 } from "uuid";
-import { ReactComponent as BackArrow } from "../img/backarrow.svg";
+import BackArrow from "../img/header-backarrow.png";
 import Modal2 from "../pages/ChatModal/Modal2";
-import { off } from "process";
-import { ReactComponent as Complete } from '../img/state-g.svg';
-import imgDefault from "../img/user.png";
+import Complete from '../img/state-g.png';
+import imgDefault from "../img/user2.png";
 function ChatRoomPage() {
 
   const { id } = useParams();
@@ -171,10 +170,8 @@ function ChatRoomPage() {
     <div className="chattingContainer">
       <div className="Header">
         <div>
-          <BackArrow
-            onClick={() => navigate(-1)}
-            style={{ cursor: "pointer" }}
-          />
+          <img src={BackArrow} alt="" onClick={() => navigate(-1)}
+            style={{ cursor: "pointer" }}/>
         </div>
         <div className="Nickname">
           {localStorage.getItem("user-nickname") === room.joinUserNickname
@@ -188,7 +185,7 @@ function ChatRoomPage() {
           <>
             <div className="flexZone">
               <div>
-                <Complete />
+                <img src={Complete} alt="" />
               </div>
               <div>
                 <div className="clearName">완료</div>
@@ -227,16 +224,8 @@ function ChatRoomPage() {
         </div>
       </div>
       {/* section */}
-      {/* <div>
-        {room !== undefined && room !== [] && (
-          <>
-            <div className="atTime">{dateString}</div>
-          </>
-        )}
-      </div> */}
 
       {/* section 과 채팅 사이 시간*/}
-      {/* <OverFlow sx={{ height: "80%", overflow: "scroll" }}> */}
       <OverFlow>
         <div className="chat-date">
           {room !== undefined && room !== [] && (
@@ -289,9 +278,6 @@ function ChatRoomPage() {
 
 export default ChatRoomPage;
 
-{
-  /* footer */
-}
 const OverFlow = styled.div`
   width: 360px;
   height: 454px;
@@ -299,7 +285,6 @@ const OverFlow = styled.div`
   opacity: 96%;
   overflow-x: hidden;
   overflow-y: auto;
-  /* border: 2px solid cornflowerblue; */
   /* 스크롤바 영역에 대한 설정 */
   ::-webkit-scrollbar {
     width: 5px;
@@ -323,16 +308,13 @@ const OverFlow = styled.div`
 const InputText = styled.textarea`
   all: unset;
   display: block;
-  /* width: 100%; */
   width: 324.41px;
   height: ${({ row, theme }) => +theme.listSize * row + 4}px;
   overflow-wrap: break-word;
   word-break: break-all;
   white-space: pre-wrap;
   resize: none;
-  /* background-color: lightblue; */
   background-color: white;
-  /* border: 1px solid #ed9071; */
   border-radius: 15px;
   padding: 5px 47.48px 0 12.93px;
   /* 스크롤바 영역에 대한 설정 */

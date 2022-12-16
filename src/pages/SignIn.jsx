@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { __userLogin } from "../../src/redux/modules/userSlice";
 import KakaoLogin from "../components/features/Login/KakaoLogin";
 
-import { ReactComponent as Logo } from "../img/logoImg.svg";
+import Logo from "../img/logo-sign.png";
 
 const SignIn = () => {
   //확인용
@@ -53,9 +53,8 @@ const SignIn = () => {
     <div className="layout">
       <div className="LoginContainer">
         <div className="wrap">
-
           <div className="Logos">
-            <Logo style={{ marginTop: "36.84px" }} />
+            <img src={Logo} alt="" style={{ marginTop: "36.84px" }}/>
             <span className="LogoLogin">LOGIN</span>
           </div>
 
@@ -102,7 +101,6 @@ const SignIn = () => {
             </div>
           </div>
 
-
           <div className="Btn-Sign">
             <button className="LoginButton" onClick={onSubmitHandler}>
               로그인
@@ -120,7 +118,6 @@ const SignIn = () => {
             </button>
             <p id="token-result"></p>
           </div>
-          
         </div>
       </div>
     </div>

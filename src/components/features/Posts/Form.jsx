@@ -10,7 +10,7 @@ import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
-import { ReactComponent as Photo } from "../../../img/form-preview.svg";
+import Photo from "../../../img/form-preview.png";
 import "../../../styles/form.css";
 import Api from "../Posts/Api"
 const Post = () => {
@@ -149,13 +149,11 @@ const Post = () => {
               imgRef.current.click();
             }}
           >
-            <Photo
-              style={{
+            <img src={Photo} alt="" style={{
                 width: "25.88px",
                 height: "24.18px",
                 objectFit: "cover",
-              }}
-            />
+              }}/>
             <span>사진 업로드</span>
           </ImgUpload>
           <span className="desk">*최대 사진 5장 업로드 가능</span>
@@ -182,7 +180,8 @@ const Post = () => {
             value={conimal.price || ""}
             onChange={onChangeHandler}
             placeholder="희망가격"
-            min="1" max="99999"
+            min="1"
+            max="999999"
             required
           />
           <input
@@ -191,7 +190,8 @@ const Post = () => {
             name="date"
             data-placeholder="희망 날짜를 입력해주세요."
             required
-            aria-required="ture"
+            aria-required="true"
+            aria-labelledby="date"
             value={conimal.date || ""}
             onChange={onChangeHandler}
           />
@@ -338,7 +338,6 @@ const Textarea = styled.textarea`
 const InputImg = styled.input`
   display: none;
   height: 40px;
-  /* background: #fff; */
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;

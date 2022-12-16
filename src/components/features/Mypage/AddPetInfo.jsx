@@ -37,7 +37,7 @@ const AddPetInfo = ({ onClose }) => {
     <div>
       <Layout>
         <Content className="content">
-          <span>반려동물 정보 등록 및 수정</span>
+          <span>반려동물 정보 등록</span>
           {/* 등록 누르면 신규 정보 입력, 수정 버튼을 눌렀을 때, 인풋창에 수정하고 싶은 내용을 작성할 수 있는 페이지 */}
           <Form className="edit-input">
             <div>
@@ -121,7 +121,6 @@ const Layout = styled.div`
 `;
 
 const Content = styled.div`
-  /* background-color: lightgreen; */
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -157,7 +156,6 @@ const Content = styled.div`
     }
   }
   select {
-    /* padding: 4px 0 4px 13.54px; */
     padding-left: 9.54px;
     border: 0.5px solid rgba(237, 144, 113, 1);
     border-radius: 4px;
@@ -171,7 +169,6 @@ const Content = styled.div`
 `;
 
 const Form = styled.div`
-  /* background-color: springgreen; */
   text-align: left;
   margin-left: -3px;
 `

@@ -9,7 +9,7 @@ import {
 import "../../../App.css";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-// import "../../../styles/postlist.css";
+
 const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
@@ -55,15 +55,12 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
     }
   };
 
-  // console.log("page:",page)
-  //렌더링시 처음화면에 나타남2
+  //렌더링시 처음화면에 나타남
   //스크롤내릴때 전체보기 인식 어느페이지에서든 조건 붙여서 전체보기 일때만 실행
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
     getItems();
-    console.log("카테고리가 뭘까요?:", categoryState);
-    console.log("page:", page);
   }, [getItems]);
   //렌더링시 처음화면에 나타남
 
@@ -98,7 +95,6 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
                         <State style={{ color: status(post.state) }}>
                           {post.state}
                         </State>
-                        {/* &nbsp; */}
                         <Title>{post.title}</Title>
                       </Main>
                       <Created>{post.createdAt}</Created>
@@ -108,12 +104,10 @@ const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) =
                   <Down className="down">
                     <DownLeft className="left">
                       <When>
-                        {/* <PostDate/>{post.date} */}
                         <img src={require("../../../img/date.png")} alt="" />
                         &nbsp;{post.date}
                       </When>
                       <Places>
-                        {/* <PostLocal/>{post.local} */}
                         <img src={require("../../../img/place.png")} alt="" />
                         &nbsp;{post.local}
                       </Places>
@@ -203,7 +197,6 @@ const TopLeft = styled.div`
   font-weight: 500;
   font-size: 19px;
   line-height: 16.24px;
-  /* border: 1px solid #D3D3D3; */
   margin-top: -10px;
 `;
 
@@ -225,7 +218,6 @@ const State = styled.div`
 `;
 
 const Title = styled.div`
-  /* border: 1px solid #ed9071; */
   max-width: 170px;
   height: 20px;
   font-family: "Pretendard", sans-serif;
@@ -288,7 +280,7 @@ const Down = styled.div`
 `;
 
 const DownLeft = styled.div`
-  width: 160px;
+  width: 380px;
   height: 17px;
 
   font-family: "Pretendard", sans-serif;
