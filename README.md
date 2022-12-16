@@ -142,11 +142,12 @@ final-project
 <br/>
 
 
-## 📢 개발 포인트
+
+<!-- ## 📢 개발 포인트 -->
 <!-- ![]() -->
-- s
-- s
-- s 
+<!-- - s -->
+<!-- - s -->
+<!-- - s  -->
 
 ## 🛠️ 기술 스택
 <!-- ![]() -->
@@ -169,7 +170,7 @@ final-project
 ### 📝 기술스택 및 라이브러리 사용 이유
 <!-- ![]() -->
 <details>
-<summary>WireFra</summary>
+<summary></summary>
 <div markdown="1">
 
 ![](0)
@@ -183,28 +184,28 @@ final-project
 </div>
 </details>
 <details>
-<summary>Wireame</summary>
+<summary></summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>WireFre</summary>
+<summary></summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>Wireame</summary>
+<summary></summary>
 <div markdown="1">
 
 ![](0)
 </div>
 </details>
 <details>
-<summary>WireFrame</summary>
+<summary></summary>
 <div markdown="1">
 
 ![](0)

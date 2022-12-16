@@ -112,10 +112,6 @@
   cursor: pointer;
 }
 
-/* .tab-btn:hover {
-    background-color: #ed9071;
-    color: #fff;
-  } */
 .tab-btn.active {
     background-color: #ed9071;
     color: #fff;
