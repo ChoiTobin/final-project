@@ -158,12 +158,12 @@ function ChatRoomPage() {
             {/* <img className="photoImg" src={require("../img/user.png")} alt="" /> */}
             {
               room.joinUserNickname == localStorage.getItem("user-nickname")
-             ?
+            ?
 
-             <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
-             :
+            <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
+            :
 
-             <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
+            <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
             }
           </div>
           <div>

@@ -14,7 +14,7 @@ import MyKakao from "../img/my-kakao.png";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
 import User from "../img/user.png"
 import Banner from "../img/banner.png";
-//별추가
+// 별추가
 import { FaStar } from 'react-icons/fa';
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 

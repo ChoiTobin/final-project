@@ -16,7 +16,7 @@
 </details>
 
 <details>
-<summary>Project Tree</summary>
+<summary>Project Trees</summary>
 <div markdown="1">
 
   ```

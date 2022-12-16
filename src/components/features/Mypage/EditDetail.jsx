@@ -7,15 +7,17 @@ import Carousel from "react-bootstrap/Carousel";
 import useImgUpload from "../../hooks/useImgUpload";
 import Photo from "../../../img/form-add.png";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
+import { useParams } from "react-router-dom";
+// myPost[{ id, title, content, price, categoryName, state, local, date, imgs: ["URL"] }];
 
 // 내가 쓴 게시글 수정 및 삭제
-const EditDetail = ({ onClose }) => {
+const EditDetail = ({ postId, onClose }) => {
   const [myPost, setMyPost] = useState({
-    category: "",
     title: "",
-    price: "",
-    local: "",
     content: "",
+    price: "",
+    category: "",
+    local: "",
   });
 
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ const EditDetail = ({ onClose }) => {
     // FormData에 파일 담기
     if (imgs.length > 0) {
       imgs.forEach((file) => {
+        console.log("imgs", imgs);
         formData.append("imgs", file);
       });
     } else {
@@ -45,7 +48,7 @@ const EditDetail = ({ onClose }) => {
     }
 
     const myPostData = {
-      id: myPost.id,
+      // id: postId,
       title: myPost.title,
       content: myPost.content,
       category: myPost.category,
@@ -53,19 +56,25 @@ const EditDetail = ({ onClose }) => {
       local: myPost.local,
     };
 
+    console.log("myPostData", myPostData);
+
     formData.append("imgs", imgUrls);
 
     // formData에 작성한 데이터 넣기
     formData.append(
-      "post",
+      "postRequestDto",
       new Blob([JSON.stringify(myPostData)], {
         type: "application/json",
       })
     );
 
+    const data = {
+      id: postId,
+      myPostData: myPostData,
+    };
+
     // API 날리기
-    dispatch(__putMyPost(formData));
-    window.alert("게시글이 수정되었습니다!");
+    dispatch(__putMyPost(data));
     // window.location.reload('/mypage')
   };
 
