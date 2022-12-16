@@ -97,7 +97,7 @@ const Post = () => {
       category: conimal.category,
       price: parseInt(conimal.price), // 문자를  string숫자로 변환해서 보내야할때 parseInt로 감싸서 보내주면된다.
       state: "진행중",
-      local: conimal.local,
+      local: enroll_company.address,
       date: conimal.date,
     };
 
