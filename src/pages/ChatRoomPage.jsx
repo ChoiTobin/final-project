@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import BackArrow from "../img/header-backarrow.png";
 import Modal2 from "../pages/ChatModal/Modal2";
 import Complete from '../img/state-g.png';
+import imgDefault from "../img/user2.png";
 
 function ChatRoomPage() {
 
@@ -204,12 +205,12 @@ function ChatRoomPage() {
             {/* <img className="photoImg" src={require("../img/user.png")} alt="" /> */}
             {
               room.joinUserNickname == localStorage.getItem("user-nickname")
-             ?
+            ?
 
-             <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
-             :
+            <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
+            :
 
-             <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
+            <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
             }
           </div>
           <div>

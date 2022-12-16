@@ -44,10 +44,6 @@ const SearchList = ({setCategoryState,setSearchState}) => {
 
   const [active, setActive] = useState(data[0]);
 
-  const data = [ "전체", "대형", "중형", "소형" ]
-
-  const [active, setActive] = useState(data[0]);
-
   return (
     <div className="wrap">
       <div className="search">
