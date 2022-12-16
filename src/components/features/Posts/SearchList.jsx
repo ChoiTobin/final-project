@@ -13,8 +13,6 @@ import "../../../styles/searchlist.css";
 
 const SearchList = ({setCategoryState,setSearchState}) => {
   const dispatch = useDispatch()
-  // const searchposts = useSelector((state) => state.post.post.response)
-  // const {posts} = useSelector((state)=>state.post)
 
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
@@ -37,10 +35,14 @@ const SearchList = ({setCategoryState,setSearchState}) => {
     onClickSearch()
         }
   }
-  
+
   const onClickHandler = (data) => {
     setCategoryState(data);
   };
+
+  const data = [ "전체", "대형", "중형", "소형" ]
+
+  const [active, setActive] = useState(data[0]);
 
   const data = [ "전체", "대형", "중형", "소형" ]
 

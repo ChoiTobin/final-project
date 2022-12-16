@@ -112,6 +112,12 @@
   cursor: pointer;
 }
 
+.tab-btn.active {
+    background-color: #ed9071;
+    color: #fff;
+  }
+
+
 .tab-btn:last-child {
     border-right: none;
   }

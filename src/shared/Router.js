@@ -11,6 +11,7 @@ import ChatRoomPage from "../pages/ChatRoomPage";
 import ChatList from "../pages/ChatList";
 import Rating from "../components/features/Posts/Rating";
 import Desc from "../pages/Desc.jsx"
+import Api from "../components/features/Posts/Api.jsx"
 
 // 추가
 import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
@@ -23,6 +24,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/Api" element={<Api />} />
         <Route path="/Rating" element={<Rating />} />
         <Route path="/" element={<Desc/>}/>
         <Route path="/signin" element={<SignIn />} />
