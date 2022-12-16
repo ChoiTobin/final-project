@@ -5,10 +5,15 @@ import {
   __getPostTime,
   __getKeyword,
   __getCategory,
+  __getKeyword,
+  __getCategory,
 } from "../../../redux/modules/postSlice";
 import "../../../App.css";
 import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
+
+const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
 
 const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
@@ -280,7 +285,7 @@ const Down = styled.div`
 `;
 
 const DownLeft = styled.div`
-  width: 160px;
+  width: 380px;
   height: 17px;
 
   font-family: "Pretendard", sans-serif;

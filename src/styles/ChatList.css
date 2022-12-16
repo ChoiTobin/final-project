@@ -49,7 +49,6 @@
 .Userimg {
   width: 47px;
   height: 47px;
-  /* margin-top: 10px; */
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 50%;
@@ -76,14 +75,13 @@
   justify-content: center;
 }
 .whiteTime {
-  /* position: absolute; */
   width: 45px;
   top: 25.5px;
   left: 220px;
   font-size: 10px;
-  color: #A6A6A6;
+  color: #4e4e4e;
   text-align: center;
-  /* background-color: yellowgreen; */
+  
 }
 .chatlength {
   max-width: 144px;
@@ -94,7 +92,6 @@
   text-overflow: ellipsis;
   margin-right: 5px;
   color:#4E4E4E;
-  /* background-color: aquamarine; */
 }
 
 .chat-text {
@@ -122,7 +119,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: yellowgreen; */
 }
 .chat-none > button {
   background-color: #ED9071;

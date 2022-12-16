@@ -7,12 +7,10 @@ import SockJS from "sockjs-client";
 import { useNavigate, useParams } from "react-router-dom";
 import {__getinitialChatList2,ListReducer,} from "../redux/modules/chattingSlice";
 import { v4 as uuidv4 } from "uuid";
+import BackArrow from "../img/header-backarrow.png";
 import Modal2 from "../pages/ChatModal/Modal2";
-import { ReactComponent as BackArrow } from "../img/backarrow.svg";
 import Complete from '../img/state-g.png';
 import imgDefault from "../img/user2.png";
-
-
 function ChatRoomPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -127,8 +125,7 @@ function ChatRoomPage() {
     <div className="chattingContainer">
       <div className="Header">
         <div>
-          <BackArrow
-            onClick={() => navigate(-1)}
+          <img src={BackArrow} alt="" onClick={() => navigate(-1)}
             style={{ cursor: "pointer" }}/>
         </div>
         <div className="Nickname">
@@ -139,31 +136,34 @@ function ChatRoomPage() {
           {localStorage.getItem("user-nickname") === room.postUserNickname &&
           room.state !== "완료" ? (
           <Modal2 />
-          ) : room.state === "완료" ? (
-            <>
-              <div className="flexZone">
-                <div>
+        ) : room.state === "완료" ? (
+          <>
+            <div className="flexZone">
+              <div>
                 <img src={Complete} alt="" />
-                </div>
-                <div>
-                  <div className="clearName">완료</div>
-                </div>
               </div>
-            </>
-          ) : (
-            <img alt="" />
-          )}
+              <div>
+                <div className="clearName">완료</div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <img alt="" />
+        )}
       </div>
       {/* header */}
       <div className="row">
         <div className="flexBox">
           <div>
+            {/* <img className="photoImg" src={require("../img/user.png")} alt="" /> */}
             {
-            room.joinUserNickname == localStorage.getItem("user-nickname")
-            ?
-            <img className="photoImg2" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
-            :
-            <img className="photoImg2" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
+              room.joinUserNickname == localStorage.getItem("user-nickname")
+             ?
+
+             <img className="photoImg" src={(room.postUserImg !==null ? room.postUserImg:imgDefault)} alt="" />
+             :
+
+             <img className="photoImg" src={(room.joinUserImg !== null ? room.joinUserImg: imgDefault)} alt="" />
             }
           </div>
           <div>
@@ -177,27 +177,29 @@ function ChatRoomPage() {
           </div>
         </div>
       </div>
+      {/* section */}
+
+      {/* section 과 채팅 사이 시간*/}
       <OverFlow>
-      <div className="chat-date">
-        {room !== undefined && room !== [] && (
-          <>
-            <div className="atTime">{dateString}</div>
-          </>
-        )}
-      </div>
-      {room.chatList !== undefined &&
-      room.chatList !== null &&
-      room.chatList.map((item, i) => {
-      return localStorage.getItem("user-nickname") === item.sender ? (
-        <div className="textBox" key={uuidv4()}>
-          <div className="textColorDiv2">{item.message}
-          </div>
+        <div className="chat-date">
+          {room !== undefined && room !== [] && (
+            <>
+              <div className="atTime">{dateString}</div>
+            </>
+          )}
         </div>
-          ) : (
-          <div className="textBox" key={uuidv4()}>
-            <div className="textColorDiv">{item.message}</div>
-          </div>
-          );
+        {room.chatList !== undefined &&
+          room.chatList !== null &&
+          room.chatList.map((item, i) => {
+            return localStorage.getItem("user-nickname") === item.sender ? (
+              <div className="textBox" key={uuidv4()}>
+                <div className="textColorDiv2">{item.message}</div>
+              </div>
+            ) : (
+              <div className="textBox" key={uuidv4()}>
+                <div className="textColorDiv">{item.message}</div>
+              </div>
+            );
           })}
         <div ref={scrollRef}></div>
       </OverFlow>
@@ -223,9 +225,6 @@ function ChatRoomPage() {
 
 export default ChatRoomPage;
 
-{
-  /* footer */
-}
 const OverFlow = styled.div`
   width: 360px;
   height: 454px;
@@ -254,4 +253,30 @@ const OverFlow = styled.div`
 
 
 
-
+const InputText = styled.textarea`
+  all: unset;
+  display: block;
+  width: 324.41px;
+  height: ${({ row, theme }) => +theme.listSize * row + 4}px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  resize: none;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px 47.48px 0 12.93px;
+  /* 스크롤바 영역에 대한 설정 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* 스크롤바 막대에 대한 설정 */
+  ::-webkit-scrollbar-thumb {
+    height: 20%;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+  }
+  /* 스크롤바 뒷 배경에 대한 설정 */
+  ::-webkit-scrollbar-track {
+    background-color: #f6f0ee;
+  }
+`;
