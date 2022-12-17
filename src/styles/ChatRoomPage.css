@@ -3,6 +3,7 @@
   height: 640px;
   margin: auto;
   background: #f6f0ee;
+  /* border: 3px solid #ED9071; */
 }
 
 .Header {
@@ -122,6 +123,8 @@
   font-weight: 400;
   margin-top: -1px;
   word-break: break-all;
+
+  /* background-color: yellowgreen; */
 }
 .foot {
   opacity: 80%;

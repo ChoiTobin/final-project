@@ -99,7 +99,6 @@ export const __getCategory = createAsyncThunk(
     try {	
       const response = await Apis.getFilterAX(payload)	
             const payloadData = {page:payload.pageNumber , responseData:response.data.data}
-            //console.log("뭐가들어오나????",response.data.data);
             return thunkAPI.fulfillWithValue(payloadData);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	

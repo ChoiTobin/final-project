@@ -16,7 +16,7 @@
 </details>
 
 <details>
-<summary>Project Tree</summary>
+<summary>Project Trees</summary>
 <div markdown="1">
 
   ```
@@ -148,7 +148,8 @@ final-project
 <br/>
 
 
-## 📢 개발 포인트
+
+<!-- ## 📢 개발 포인트 -->
 <!-- ![]() -->
 - OAuth 이용한 소셜로그인
 - React-Intersection-Observer 이용한 무한스크롤

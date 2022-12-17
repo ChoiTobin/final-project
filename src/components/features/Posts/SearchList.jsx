@@ -34,8 +34,9 @@ const SearchList = ({setCategoryState,setSearchState}) => {
     if (e.key === 'Enter') {
     onClickSearch()
         }
+        }
   }
-
+  
   const onClickHandler = (data) => {
     setCategoryState(data);
   };
@@ -53,18 +54,40 @@ const SearchList = ({setCategoryState,setSearchState}) => {
           type="text"
           name="search"
           aria-labelledby="search"
+          aria-labelledby="search"
           defaultValue={getSearch.search || ""}
           onChange={onChangeHandler}
         />
         <label htmlFor="search" />
+        <label htmlFor="search" />
         <img
           className="search-icon"
+          onClick={() => onClickSearch()}
           onClick={() => onClickSearch()}
           src={require("../../../img/search.png")}
           alt=""
         />
       </div>
 
+      <div className="btn-wrap">
+        {data.map((type) => {
+          return (
+            <div className="tab-menu" key={type}>
+              <input type="radio" style={{ display: "none" }} />
+              <Tab
+                active={active === type}
+                onClick={() => {
+                  onClickHandler(type);
+                  setActive(type);
+                }}
+                htmlFor="category"
+                className="tab-btn"
+              >
+                {type}
+              </Tab>
+            </div>
+          );
+        })}
       <div className="btn-wrap">
         {data.map((type) => {
           return (
@@ -91,6 +114,14 @@ const SearchList = ({setCategoryState,setSearchState}) => {
 
 export default SearchList;
 
+const Tab = styled.div`
+  ${({ active }) =>
+    active &&
+    `
+    opacity: 1;
+    color: #FFF;
+    background-color: #ED9071;
+  `}
 const Tab = styled.div`
   ${({ active }) =>
     active &&

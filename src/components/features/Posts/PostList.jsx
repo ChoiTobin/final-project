@@ -5,10 +5,15 @@ import {
   __getPostTime,
   __getKeyword,
   __getCategory,
+  __getKeyword,
+  __getCategory,
 } from "../../../redux/modules/postSlice";
 import "../../../App.css";
 import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
+
+const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
 
 const PostList = ({categoryState,setCategoryState,searchState,setSearchState}) => {
   const navigator = useNavigate();
