@@ -44,7 +44,6 @@ export const __getMyPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getMyPostAX()
-      console.log("내가쓴글보기", response.data.data);
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -58,8 +57,6 @@ export const __putMyPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.putPostAX(payload)
-      console.log("수정", response);
-      console.log("수정ss", payload);
       return thunkAPI.fulfillWithValue(response);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -74,11 +71,9 @@ export const __deleteMyPost = createAsyncThunk(
     try {
       await Apis.deletePostAX(payload)
         .then((response) => {
-          console.log("response", response.data)
       })
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
-      // alert(error.response.data)
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -109,7 +104,6 @@ export const __postMyImg = createAsyncThunk(
 
       await Apis.postMyImgAX(payload)
         .then((response) => {
-
           // return thunkAPI.fulfillWithValue(response)
       })
     } catch (error) {
@@ -219,7 +213,6 @@ const mypageSlice = createSlice({
     [__deleteMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      console.log("mypost filter", action.payload);
       state.myPost = state.myPost.filter((post) => post.id !== action.payload)
     },
     [__deleteMyPost.rejected]: (state, action) => {

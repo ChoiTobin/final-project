@@ -1,18 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  __getPostTime,
-  __getKeyword,
-  __getCategory,
-} from "../../../redux/modules/postSlice";
 import styled from "styled-components";
 import "../../../App.css";
-import Carousel from "react-bootstrap/Carousel";
 import "../../../../src/index.css";
 import "../../../styles/searchlist.css";
 
-const SearchList = ({setCategoryState,setSearchState}) => {
-  const dispatch = useDispatch()
+const SearchList = ({ setCategoryState, setSearchState }) => {
 
   //검색
   const [getSearch, setGetSearch] = useState({ search: "" });
@@ -20,7 +12,7 @@ const SearchList = ({setCategoryState,setSearchState}) => {
     const { name, value } = e.target;
     setGetSearch({ ...getSearch, [name]: value });
   };
-  
+
   //키워드검색 #제목 #내용 #지역
   const onClickSearch = () => {
     if (getSearch.search.trim() === "") {
@@ -31,17 +23,16 @@ const SearchList = ({setCategoryState,setSearchState}) => {
   };
 
   const appKeyPress = (e) => {
-    if (e.key === 'Enter') {
-    onClickSearch()
-        }
-        }
-  }
-  
+    if (e.key === "Enter") {
+      onClickSearch();
+    }
+  };
+
   const onClickHandler = (data) => {
     setCategoryState(data);
   };
 
-  const data = [ "전체", "대형", "중형", "소형" ]
+  const data = ["전체", "대형", "중형", "소형"];
 
   const [active, setActive] = useState(data[0]);
 
@@ -54,7 +45,6 @@ const SearchList = ({setCategoryState,setSearchState}) => {
           type="text"
           name="search"
           aria-labelledby="search"
-          aria-labelledby="search"
           defaultValue={getSearch.search || ""}
           onChange={onChangeHandler}
         />
@@ -63,31 +53,11 @@ const SearchList = ({setCategoryState,setSearchState}) => {
         <img
           className="search-icon"
           onClick={() => onClickSearch()}
-          onClick={() => onClickSearch()}
           src={require("../../../img/search.png")}
           alt=""
         />
       </div>
 
-      <div className="btn-wrap">
-        {data.map((type) => {
-          return (
-            <div className="tab-menu" key={type}>
-              <input type="radio" style={{ display: "none" }} />
-              <Tab
-                active={active === type}
-                onClick={() => {
-                  onClickHandler(type);
-                  setActive(type);
-                }}
-                htmlFor="category"
-                className="tab-btn"
-              >
-                {type}
-              </Tab>
-            </div>
-          );
-        })}
       <div className="btn-wrap">
         {data.map((type) => {
           return (
@@ -114,14 +84,6 @@ const SearchList = ({setCategoryState,setSearchState}) => {
 
 export default SearchList;
 
-const Tab = styled.div`
-  ${({ active }) =>
-    active &&
-    `
-    opacity: 1;
-    color: #FFF;
-    background-color: #ED9071;
-  `}
 const Tab = styled.div`
   ${({ active }) =>
     active &&
