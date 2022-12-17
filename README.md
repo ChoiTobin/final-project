@@ -128,28 +128,28 @@ final-project
 </div>
 </details>
 <br/>
-#### <a href="https://www.xn--922bn81b.com/">크멍 배포 사이트 보러가기</a>
+<a href="https://www.xn--922bn81b.com/">크멍 배포 사이트 보러가기</a>
 <br/>
 
 ## 🎯 주요 기능
 <!-- ![]() -->
 |소셜로그인|게시글 작성|게시글 상세조회|
 |------|---|---|
-|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9280267e-74ae-4ee7-a016-6efb94a1e3db/demo-%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=f28e5f83432c1a64e9c706a61f19ae77326de118ced4ba5bbb0cedf2d2eec5ce&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/eccf1f80-d336-4e86-84e3-18f3dad843f0/demo-%EA%B2%8C%EC%8B%9C%EA%B8%80%EC%9E%91%EC%84%B1_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=56390aa79c8abda4dc111a25550684457fbf45771a9df04cb2304c5b287b8566&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ae4eef87-a4a2-4552-9b92-b463a4abd278/demo-%EA%B2%8C%EC%8B%9C%EA%B8%80%EC%83%81%EC%84%B8%EC%A1%B0%ED%9A%8C_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=453fc5eb3184908ec1eff1bf13e15c3dd6557eb1ef6d656a71185e227453af74&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|
+|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9280267e-74ae-4ee7-a016-6efb94a1e3db/demo-%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=f28e5f83432c1a64e9c706a61f19ae77326de118ced4ba5bbb0cedf2d2eec5ce&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/eccf1f80-d336-4e86-84e3-18f3dad843f0/demo-%EA%B2%8C%EC%8B%9C%EA%B8%80%EC%9E%91%EC%84%B1_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=56390aa79c8abda4dc111a25550684457fbf45771a9df04cb2304c5b287b8566&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ae4eef87-a4a2-4552-9b92-b463a4abd278/demo-%EA%B2%8C%EC%8B%9C%EA%B8%80%EC%83%81%EC%84%B8%EC%A1%B0%ED%9A%8C_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=453fc5eb3184908ec1eff1bf13e15c3dd6557eb1ef6d656a71185e227453af74&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|
 <br/>
 
 |탭 메뉴와 무한스크롤|실시간 채팅|거래 상태|
 |------|---|---|
-|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7d17ca30-8d05-42c1-a0bb-beab81c53cc1/demo-%ED%83%AD%EB%A9%94%EB%89%B4%EC%99%80%EB%AC%B4%ED%95%9C%EC%8A%A4%ED%81%AC%EB%A1%A4_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=e4ab8a249f7e7ca520742144f03e6280dbfed3d9ba5122fc7b786c1258d63766&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/afedd6ae-16a3-4d5f-83ca-ddaaf70fcf97/demo-%EC%8B%A4%EC%8B%9C%EA%B0%84%EC%B1%84%ED%8C%85_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=886951fed061ceaa95523dc484acfab5befaf1f9e90c6ab6452c04d1f43980b4&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/511b9e03-9418-4af7-a5a9-eaa9bb9da811/demo-%EA%B1%B0%EB%9E%98%EC%83%81%ED%83%9C_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=f16c8c220091e89059ba4f8b7ef7123e6dc1a9fa4db742332f0e08dcf1644598&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|
+|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7d17ca30-8d05-42c1-a0bb-beab81c53cc1/demo-%ED%83%AD%EB%A9%94%EB%89%B4%EC%99%80%EB%AC%B4%ED%95%9C%EC%8A%A4%ED%81%AC%EB%A1%A4_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=e4ab8a249f7e7ca520742144f03e6280dbfed3d9ba5122fc7b786c1258d63766&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/afedd6ae-16a3-4d5f-83ca-ddaaf70fcf97/demo-%EC%8B%A4%EC%8B%9C%EA%B0%84%EC%B1%84%ED%8C%85_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=886951fed061ceaa95523dc484acfab5befaf1f9e90c6ab6452c04d1f43980b4&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/511b9e03-9418-4af7-a5a9-eaa9bb9da811/demo-%EA%B1%B0%EB%9E%98%EC%83%81%ED%83%9C_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=f16c8c220091e89059ba4f8b7ef7123e6dc1a9fa4db742332f0e08dcf1644598&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|
 
 |홍보 공지|프로필사진 수정|반려동물 등록|
 |------|---|---|
-|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4585a87b-6623-4247-ac9b-51f3324b6252/demo-%ED%99%8D%EB%B3%B4%EA%B3%B5%EC%A7%80_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=3793268d7da4818ece9fe36774c1f57e8f26e244b9605527df2368c97a73b96f&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0c4f6dd4-e45a-4660-8908-2ae45cb5a4c6/demo-%ED%94%84%EC%82%AC%EC%88%98%EC%A0%95_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=228789697560ac41eb549f52c8491ec89830513c1aeaad2d455f745b72f7d86e&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8f9d9c96-98df-4747-b34f-f23f4f490383/demo-%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=eaa56e77d66ed0ce1bc04d8eb80a7ae6cd46b0e42a45483335034bce2b7834ea&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="180"/>|
+|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4585a87b-6623-4247-ac9b-51f3324b6252/demo-%ED%99%8D%EB%B3%B4%EA%B3%B5%EC%A7%80_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=3793268d7da4818ece9fe36774c1f57e8f26e244b9605527df2368c97a73b96f&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0c4f6dd4-e45a-4660-8908-2ae45cb5a4c6/demo-%ED%94%84%EC%82%AC%EC%88%98%EC%A0%95_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=228789697560ac41eb549f52c8491ec89830513c1aeaad2d455f745b72f7d86e&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8f9d9c96-98df-4747-b34f-f23f4f490383/demo-%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_AdobeExpress.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221217%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221217T092252Z&X-Amz-Expires=86400&X-Amz-Signature=eaa56e77d66ed0ce1bc04d8eb80a7ae6cd46b0e42a45483335034bce2b7834ea&X-Amz-SignedHeaders=host&x-id=GetObject" width="200" height="260"/>|
 <br/>
 
 
 
-<!-- ## 📢 개발 포인트 -->
+## 📢 개발 포인트
 <!-- ![]() -->
 - OAuth 이용한 소셜로그인
 - React-Intersection-Observer 이용한 무한스크롤
@@ -294,28 +294,28 @@ final-project
 
 ## ⚔️ 트러블슈팅
 <!-- ![]() -->
-#### 🚀 01) 무한스크롤로 받아온 전체 리스트들이 렌더링이 안됨
+### 🚀 01) 무한스크롤로 받아온 전체 리스트들이 렌더링이 안됨
 - Case : 많은 양의 리스트를 한 번에 받아오기 보다, 여러번 나눠서 GET요청을 받는 것이 효율성이 좋다고 판단해서 구현하던 중에, offsetTop값은 받아 오는데 payload값은 response로 들어오는데, 화면단에 구현하는 과정에서 리스트가 늘어나지 않는 문제 발생
 <br/>
 
 - Solve: payload값을 axios를 이용해 thunk함수로 받아온 다음 extra reducer를 통해 스토어에 저장하는 과정에서, 게시글 목록 데이터가 객체 형태로 들어와서 이를 배열 형태로 바꾸고 기존의 리스트에서 추가할 수 있도록 push()를 적용해서 스토어에 저장했다. 
 <br/>
 
-#### 🚀 02) 포스트 다중이미지 로딩 과정에서 렌더링 시간이 오래 걸림
+### 🚀 02) 포스트 다중이미지 로딩 과정에서 렌더링 시간이 오래 걸림
 - Case : 최대 5장의 사진을 각 상세페이지마다 전부 로딩해야 하는데, 이 과정에서 사용자가 불편함을 느끼지 않고, 로딩시간을 단축해서 퍼포먼스 효율성을 높여야 했다. 게시글 상세 페이지에 게시이미지가 들어가는 부분이 큰데, 크기가 작은 사진만 받을 수도 없는 상황이었다.
 <br/>
 
 - Solve : browser-image-compression을 사용해서 클라이언트에서 서버로 보내는 과정에서 사용자로부터 받은 이미지를 최소 1920px, 크기는 최대 1MB를 넘지 않도록 압축해서 form-data에 실어서 보냄.
 <br/>
 
-#### 🚀 03) 웹 소켓을 이용한 양방향 통신 과정에서 연결 시도 중 에러 발생
+### 🚀 03) 웹 소켓을 이용한 양방향 통신 과정에서 연결 시도 중 에러 발생
 - Case : 기존 채팅 방에서 이전 버튼을 누르고 다시 채팅 방에 들어오고 메시지를 send 했을 때 send 보낸 메시지가 중첩 되어서 나타남
 <br/>
 
 - Solve : 채팅 방을 나갔을 때 stomp 연결을 끊어주지 않아서 메시지가 중복해서 쌓이는 현상이 나타남을 인지 하고, useEffect안에 return문을 사용하여 채팅 방을 나갈 때 소켓을 끊는 함수를 사용하여 소켓 통신을 끊음으로서 해결했다
 <br/>
 
-#### 🚀 04) 한글 도메인 등록 과정 중, 도메인 주소를 인식하지 못함
+### 🚀 04) 한글 도메인 등록 과정 중, 도메인 주소를 인식하지 못함
 - Case : “크멍.com”의 형식으로 한글 도메인으로 구입하여 등록하는 과정에서, 한글을 인코딩해서 인식하지 못하고, 도메인을 등록하려면 오류가 발생해서 등록하지 못함. 또한 gabia에서 구매한 도메인을 vercel domain 설정에서 등록하고 valid confirm받는 과정에서 계속해서 Invalid Configuration이 발생하였다.
 <br/>
 
