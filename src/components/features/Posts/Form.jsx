@@ -80,10 +80,10 @@ const Post = () => {
       alert("희망날짜를 선택해주세요.");
       return;
     }
-    if (conimal.local === "") {
-      alert("의뢰지역을 선택해주세요.");
-      return;
-    }
+    // if (conimal.local === "") {
+    //   alert("의뢰지역을 선택해주세요.");
+    //   return;
+    // }
     if (conimal.category === "") {
       alert("견종크기를 선택해주세요.");
       return;
