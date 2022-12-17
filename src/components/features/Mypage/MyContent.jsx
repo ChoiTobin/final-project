@@ -14,14 +14,12 @@ import "../../element/MyModal.css";
 const MyContent = ({ myPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log("내가쓴게시글", myPost);
   
   // 내가 쓴 글 삭제
   const onDeleteMyPost = (id) => {
     dispatch(__deleteMyPost(id));
     window.confirm("해당 게시글을 삭제하시겠습니까?");
-    // window.location.reload();
+    window.location.reload();
   };
 
   const status = (item) => {
