@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useSelector,useDispatch  } from "react-redux";
 import { __complete } from "../../redux/modules/chattingSlice";
 import RatingModal from "./../../components/features/Posts/RatingModal/RatingModal";
-import Accept from '../../img/state-b.png';
-import Complete from '../../img/state-g.png';
+import { ReactComponent as Accept } from '../../img/state-b.svg';
+import { ReactComponent as Complete } from '../../img/state-g.svg';
 import '../../styles/Modal.css'
 
 function Modal2() {
@@ -50,7 +50,8 @@ function Modal2() {
       <>
       <div className="flexZone">
           <div>
-            <img src={Complete} alt="" onClick={toggleModal2} />
+          <Complete onClick={toggleModal2} /> 
+
           </div>  
           <div>
             <div className="clearName">완료</div>
@@ -60,7 +61,8 @@ function Modal2() {
       :
       <div className="flexZone">
       <div>
-        <img src={Accept} alt="" onClick={toggleModal}/>
+      <Accept onClick={toggleModal} />
+
       </div>  
       <div>
         <div className="clearName">수락</div>

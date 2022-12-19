@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Apis from "../../shared/Apis";
 
+
 const initialState = {
   account : [],
   idCheck:[],
@@ -23,12 +24,17 @@ const initialState = {
   },  
 };
 
+
+
 //네이버 로그인
 export const __naverLogin = createAsyncThunk(
   "account/__naverLogin",
   async (payload, thunkAPI) => {
     
     try {
+            console.log("갔나?",payload)
+
+
       const res = await Apis.naverloginAX(payload)
       const Access_Token = res.headers.access_token;
       localStorage.setItem("Access_Token", Access_Token);
@@ -36,6 +42,7 @@ export const __naverLogin = createAsyncThunk(
       localStorage.setItem("user-nickname", res.data.data.nickname);
       localStorage.setItem("userImage", res.data.data.userImage);
       // // 토큰 받았고 로그인됐으니 메인으로 화면 전환시켜줌
+
       window.location.replace("/home")
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -43,7 +50,6 @@ export const __naverLogin = createAsyncThunk(
   }
 );
 
-// 카카오톡 로그인
 export const __kakaoLogin = (code) => {
   return function (dispatch, getState) {
       axios.get(`https://wepungsan.kro.kr/auth/member/kakao/callback?code=${code}`)
@@ -63,7 +69,8 @@ export const __kakaoLogin = (code) => {
   }
 };
 
-// 회원가입
+
+//tobin카카오톡 로그인-----------------------------------------------------------------------
 export const  __userSignUp = createAsyncThunk(
   "account/userSignUp",
   async (payload, thunkAPI) => {
@@ -77,8 +84,7 @@ export const  __userSignUp = createAsyncThunk(
     }
   }
 )
-
-//이메일중복검사
+//tobin회원가입------------------------------------------------------------------------
 export const __userCheck = createAsyncThunk(
   "idCheck/userCheck",
   // login : reducer name, 경로 정해줘야
@@ -92,8 +98,7 @@ export const __userCheck = createAsyncThunk(
     }
   }
 );
-
-//닉네임 중복검사
+//tobin이메일중복검사------------------------------------------------------------------------
 export const __NickCheck = createAsyncThunk(
   "account/NickCheck",
   // login : reducer name, 경로 정해줘야
@@ -107,8 +112,7 @@ export const __NickCheck = createAsyncThunk(
     }
   } 
 );
-
-//로그인
+//tobin닉네임 중복검사------------------------------------------------------------------------
 export const __userLogin = createAsyncThunk(
   "account/userLogin",
   // login : reducer name, 경로 정해줘야
@@ -136,13 +140,14 @@ export const __userLogin = createAsyncThunk(
     }
   }
 );
-
+//tobin로그인------------------------------------------------------------------------
 export const LoginSlice = createSlice({
   name: "account",
   initialState,
   reducers: {},
   extraReducers: {
-    [__naverLogin.pending]: (state) => {
+     [__naverLogin.pending]: (state) => {
+
       state.isLoading = true
     },
     [__naverLogin.fulfilled]: (state, action) => {
@@ -156,60 +161,61 @@ export const LoginSlice = createSlice({
       state.error = action.payload
     },
     [__userSignUp.pending]: (state) => {
-      state.isLoading = true; 
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
     [__userSignUp.fulfilled]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.account=action.payload; 
+      state.account=action.payload; //
     },
     [__userSignUp.rejected]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.error = action.payload; 
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
     [__userCheck.pending]: (state) => {
-      state.isLoading = true;
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
     [__userCheck.fulfilled]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.idCheck=action.payload; 
+      state.idCheck=action.payload; //
     },
     [__userCheck.rejected]: (state, action) => {
-      state.isLoading = false;
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.error = action.payload; 
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
     [__userLogin.pending]: (state) => {
-      state.isLoading = true; 
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
     [__userLogin.fulfilled]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.account=action.payload; 
+      state.account=action.payload; //
     },
     [__userLogin.rejected]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.error = action.payload; 
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
-
+   
     [__NickCheck.pending]: (state) => {
-      state.isLoading = true; 
+      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
     [__NickCheck.fulfilled]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.nickCheck=action.payload; 
+      state.nickCheck=action.payload; //
     },
     [__NickCheck.rejected]: (state, action) => {
-      state.isLoading = false; 
+      state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.isSuccess = false;
-      state.error = action.payload;
+      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
   }
 })
-
+// 액션크리에이터는 컴포넌트에서 사용하기 위해 export 하고
 export const { userLogin, userSignUp, userSignUpGet} = LoginSlice.actions;
+// reducer 는 configStore에 등록하기 위해 export default 합니다.
 export default LoginSlice.reducer;

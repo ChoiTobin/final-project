@@ -1,12 +1,7 @@
-.layout {
-  width: 360px;
-  height: 640px;
-}
-
 h1 {
-  font-family: "Pretendard", sans-serif;
+  font-family: "SF Pro";
   font-style: normal;
-  font-weight: 150;
+  font-weight: 110;
   font-size: 32px;
   text-align: center;
   text-transform: uppercase;
@@ -79,7 +74,7 @@ textarea {
 }
 .btngroup > button {
   width: 180px;
-  height: 45.16px;
+  height: 45px;
   border: none;
   outline: none;
   color: #fff;
@@ -94,8 +89,4 @@ textarea {
   margin: 0;
   font-size: 12px;
   font-weight: 600;
-}
-.address_search{}
-.address_search>input{
-  width:100%;
 }

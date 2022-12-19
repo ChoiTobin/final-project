@@ -1,12 +1,7 @@
-
 .root {
   height: 30px;
-  margin:20px 10px 10px 0px;
+  margin: 17px;
   margin-bottom: 50px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 .line {
   background-color: #ee8b6a;
@@ -15,14 +10,14 @@
 }
 .overflow {
   width: 100%;
-  height: 520.06px;
+  height: 570px;
   overflow: auto;
 }
 .overflow::-webkit-scrollbar {
   display: none;
 }
 .boldText {
-  margin-top:4px;
+  line-height: 30px;
   width: 100px;
   font-weight: 700;
   font-size: 16px;
@@ -30,75 +25,48 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color:#4E4E4E;
-  /* background-color: salmon; */
 }
 .flexDiv {
   position: relative;
   display: flex;
-  /* background-color: #f6f0ee; */
-  /* background-color: yellow; */
-  width: 285px;
-}
-.photoImg{
-  margin-top: 10px;
-  margin-left: 17px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  /* background-color: aqua; */
+
 }
 .Userimg {
   width: 47px;
   height: 47px;
+  /* margin-top: 10px; */
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 50%;
 }
 .marginDiv {
-  margin-top: 4px;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   margin-left: 10px;
-  /* background-color: dodgerblue; */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: left;
-
 }
 .img {
-  margin-top: 0px;
-  margin-left: 10px;
-  width: 43px;
-  height: 43px;
+  /* margin-top: 10px; */
+  width: 50px;
+  height: 50px;
   border-radius: 10%;
   background-size: cover;
-  align-items: center;
-  justify-content: center;
+
 }
 .whiteTime {
-  width: 45px;
-  top: 25.5px;
-  left: 220px;
+  position: absolute;
+  top:32px;
+  left:226px;
   font-size: 10px;
   color: #4e4e4e;
-  text-align: center;
-  
 }
 .chatlength {
-  max-width: 144px;
+  width: 210px;
   font-weight: 600;
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 5px;
   color:#4E4E4E;
-}
-
-.chat-text {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 .Nickname {
   text-align: center;
@@ -111,21 +79,7 @@
 
   align-items: center;
 }
+
 *{
   margin-bottom: 0px;
-}
-.chat-none {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.chat-none > button {
-  background-color: #ED9071;
-  color: white;
-  width: 70px;
-  height: 20px;
-  border: none;
-  border-radius: 3px;
-  font-size: 10px;
 }

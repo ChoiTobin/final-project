@@ -22,6 +22,7 @@
   width: 95%;
   min-width: 340px;
   text-indent: 12px;
+  /* margin-left: 10px; */
   margin-left: -13px;
   background-color: transparent;
 }
