@@ -7,61 +7,49 @@ import Footer from "../components/Layout/Footer";
 import ModalPortal from "../components/element/ModalPortal";
 import AddPetInfo from "../components/features/Mypage/AddPetInfo";
 import AddUserPic from "../components/features/Mypage/AddUserPic";
-import Notice from "../components/features/Mypage/Notice"
 import styled from "styled-components";
 import "../components/element/MyPetModal.css";
-import MyKakao from "../img/my-kakao.png";
+import { ReactComponent as MyKakao } from "../img/my-kakao.svg";
 import { ReactComponent as NoticeArrow } from "../img/my-arrow.svg";
+import { ReactComponent as UserPic } from "../img/user-my.svg";
 import User from "../img/user.png"
 import Banner from "../img/banner.png";
-// 별추가
+
+
+//별추가
 import { FaStar } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 // 전체 마이페이지 뷰 - 프로필사진, 닉네임, (평점), 내가 쓴 글 목록, 나의 반려동물 목록
 
 const MyPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const myInfo = useSelector((state) => state.mypage.myInfo);
-
-  //별점 배열
-  const ARRAY = [0, 1, 2, 3, 4];
-
-  const [notie, setNotie] = useState(false);
-
-  const openNotieModal = () => {
-    setNotie(true);
-  };
-
-  const closeNotieModal = () => {
-    setNotie(false);
-  };
 
   const [photo, setPhoto] = useState(false);
 
   const openPicModal = () => {
-    setPhoto(true);
-  };
+    setPhoto(true)
+  }
 
   const closePicModal = () => {
-    setPhoto(false);
-  };
+    setPhoto(false)
+  }
 
-  const [pets, setPets] = useState(false);
+  const [pets, setPets] = useState(false)
 
   const openPetModal = () => {
-    setPets(true);
-  };
+    setPets(true)
+  }
 
   const closePetModal = () => {
-    setPets(false);
-  };
+    setPets(false)
+  }
 
-  // 로그아웃
   const Logout = () => {
-    window.confirm("로그아웃 하시겠습니까?")
-    localStorage.clear();
-    window.alert("로그아웃되었습니다!")
-    window.location.replace('/');
-  };
+    localStorage.clear()
+    navigate("/")
+  }
 
   // 마이페이지 회원정보 조회
   useEffect(() => {
@@ -77,23 +65,19 @@ const MyPage = () => {
   useEffect(() => {
     dispatch(__getMyPet());
   }, []);
-
+  
+  //별점 배열
+  const ARRAY = [0, 1, 2, 3, 4];
+  
   return (
     <Layouts>
       <Header />
       <div className="user-info">
-        <Noticed onClick={openNotieModal}>
+        <Notice>
           <span>공지</span>
           <p>리뉴얼 업데이트 1.4v 관련</p>
-          <NoticeArrow style={{ marginLeft: "82.78px" }}/>
-        </Noticed>
-        {notie && (
-          <ModalPortal>
-            <div className="MyModal">
-              <Notice onClose={closeNotieModal} />
-            </div>
-          </ModalPortal>
-        )}
+          <NoticeArrow style={{ marginLeft: "82.78px" }} />
+        </Notice>
         <Title>
           <UserImg
             src={myInfo.userImage !== undefined ? myInfo.userImage : User}
@@ -103,7 +87,7 @@ const MyPage = () => {
             <Account>
               <UserInfo>
                 <span>{myInfo.nickname}</span>
-                <img src={MyKakao} alt="" />
+                <MyKakao />
               </UserInfo>
               <span
                 style={{
@@ -130,8 +114,8 @@ const MyPage = () => {
             <button
               onClick={Logout}
               style={{
-                color: "#A1A1A1",
-                border: "1px solid #A1A1A1",
+                color: "rgba(185, 185, 185, 1)",
+                border: "1px solid rgba(185, 185, 185, 1)",
               }}
             >
               로그아웃
@@ -165,12 +149,7 @@ const MyPage = () => {
           )}
         </PetBtn>
         <Ad>
-          <a
-            href="https://www.instagram.com/cmung.official/"
-            style={{ cursor: "pointer" }}
-          >
-            <img src={Banner} alt="banner" />
-          </a>
+          <img src={Banner} alt="banner" />
           {/* <Banner/> */}
         </Ad>
 
@@ -194,7 +173,7 @@ const Layouts = styled.div`
   background-color: #f6f0ee;
 `;
 
-const Noticed = styled.div`
+const Notice = styled.div`
   width: 314.39px;
   height: 27.84px;
   display: flex;
@@ -206,14 +185,13 @@ const Noticed = styled.div`
   border: 1px solid rgba(173, 173, 173, 1);
   border-radius: 4px;
 
-  cursor: pointer;
-
   span {
     font-family: "Pretendard", sans-serif;
     font-size: 13px;
     font-weight: 900;
     line-height: 15.51px;
     color: rgba(238, 139, 106, 1);
+    /* margin-left: 15.68px; */
   }
 
   p {
@@ -326,6 +304,7 @@ const Account = styled.div`
   height: 53.39px;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
   gap: 5.96px;
   span {
     font-family: "Pretendard", sans-serif;

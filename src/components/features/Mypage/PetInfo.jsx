@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __deleteMyPet, __getMyPet } from "../../../redux/modules/mypageSlice";
-import Edit from "../../../img/my-edit.png";
-import Delete from "../../../img/my-delete.png";
+import { ReactComponent as Edit } from "../../../img/my-edit.svg";
+import { ReactComponent as Delete } from "../../../img/my-delete.svg";
 import ModalPortal from "../../element/ModalPortal";
 import EditPetInfo from "../Mypage/EditPetInfo"
 import "../../element/MyModal.css";
@@ -15,22 +15,9 @@ const PetInfo = ({ myPets }) => {
   // 나의 반려동물 삭제
   const onDeleteMyPet = (id) => {
     dispatch(__deleteMyPet(id));
-    window.confirm("반려동물 정보를 삭제하시겠습니까?");
+    window.alert("반려동물 정보를 삭제하시겠습니까?");
     window.location.reload();
   };
-
-  const type = (item) => {
-    switch (item) {
-      case "big":
-        return "대형";
-      case "medium":
-        return "중형";
-      case "small":
-        return "소형";
-      default:
-        return null;
-    }
-  }
 
   const [edit, setEdit] = useState(false);
 
@@ -56,7 +43,7 @@ const PetInfo = ({ myPets }) => {
               return (
                 <Content key={pet.id}>
                   <Info>
-                    <Category>{type(pet.category)}</Category>
+                    <Category>{pet.category}</Category>
                     <Text>
                       <Main>
                         <Name>{pet.name}</Name>
@@ -67,21 +54,21 @@ const PetInfo = ({ myPets }) => {
                     </Text>
                   </Info>
                   <Icon>
-                    <img
-                      src={Edit}
-                      alt=""
+                    <Edit
                       onClick={openEditModal}
                       style={{ cursor: "pointer" }}
                     />
                     {edit && (
                       <ModalPortal>
                         <div className="MyModal">
-                          <EditPetInfo onClose={closeEditModal} petId={pet.id} />
-                        </div>
+                          <EditPetInfo onClose={closeEditModal} />
+                        </div>                        
                       </ModalPortal>
                     )}
-                    <img src={Delete} alt="" onClick={() => onDeleteMyPet(pet.id)}
-                      style={{ cursor: "pointer" }} />
+                    <Delete
+                      onClick={() => onDeleteMyPet(pet.id)}
+                      style={{ cursor: "pointer" }}
+                    />
                   </Icon>
                 </Content>
               );
@@ -97,8 +84,8 @@ const PetInfo = ({ myPets }) => {
 export default PetInfo;
 
 const Layout = styled.div`
-  min-height: 218px;
-  max-height: 219px;
+  min-height: 225px;
+  max-height: 226px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -126,10 +113,10 @@ const Content = styled.div`
   border-radius: 4px;
   margin: 9px auto 1.59px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 17.39px 27.14px 14.68px 35.14px;
+  padding: 17.39px 27.14px 14.68px 19.14px;
   display: flex;
   flex-direction: row;
-  gap: 43.72px;
+  gap: 33.72px;
 `;
 
 const Info = styled.div`

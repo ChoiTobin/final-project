@@ -18,6 +18,18 @@
   color: #FFF;
 }
 
+/* .desc {
+  mix-blend-mode: multiply;
+  opacity: 0;
+  animation: fadeInText 0.25s 0.05s ease-out forwards;
+}
+
+@keyframes fadeInText {
+  100% {
+    opacity: 1;
+  }
+} */
+
 .layout {
   width: 360px;
   height: 640px;
@@ -27,6 +39,10 @@
   align-items: center;
   justify-content: center;
   margin: auto;
+
+  /* mix-blend-mode: multiply;
+  opacity: 0;
+  animation: fadeInText 1.5s 0.5s ease-out forwards; */
 }
 
 .text {

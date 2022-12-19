@@ -1,23 +1,22 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+
 // React BootStrap Library Import
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import useImgUpload from "../../hooks/useImgUpload";
-import Photo from "../../../img/form-add.png";
+import { ReactComponent as Photo } from "../../../img/form-add.svg";
 import { __putMyPost } from "../../../redux/modules/mypageSlice";
-import { useParams } from "react-router-dom";
-// myPost[{ id, title, content, price, categoryName, state, local, date, imgs: ["URL"] }];
 
 // 내가 쓴 게시글 수정 및 삭제
-const EditDetail = ({ postId, onClose }) => {
+const EditDetail = ({ onClose }) => {
   const [myPost, setMyPost] = useState({
-    title: "",
-    content: "",
-    price: "",
     category: "",
+    title: "",
+    price: "",
     local: "",
+    content: "",
   });
 
   const dispatch = useDispatch();
@@ -40,7 +39,6 @@ const EditDetail = ({ postId, onClose }) => {
     // FormData에 파일 담기
     if (imgs.length > 0) {
       imgs.forEach((file) => {
-        console.log("imgs", imgs);
         formData.append("imgs", file);
       });
     } else {
@@ -48,7 +46,7 @@ const EditDetail = ({ postId, onClose }) => {
     }
 
     const myPostData = {
-      // id: postId,
+      id: myPost.id,
       title: myPost.title,
       content: myPost.content,
       category: myPost.category,
@@ -56,26 +54,19 @@ const EditDetail = ({ postId, onClose }) => {
       local: myPost.local,
     };
 
-    console.log("myPostData", myPostData);
-
     formData.append("imgs", imgUrls);
 
     // formData에 작성한 데이터 넣기
     formData.append(
-      "postRequestDto",
+      "post",
       new Blob([JSON.stringify(myPostData)], {
         type: "application/json",
       })
     );
 
-    const data = {
-      id: postId,
-      myPostData: myPostData,
-    };
-
     // API 날리기
-    dispatch(__putMyPost(data));
-    // window.location.reload('/mypage')
+    dispatch(__putMyPost(formData));
+    window.alert("게시글이 수정되었습니다!");
   };
 
   return (
@@ -88,7 +79,7 @@ const EditDetail = ({ postId, onClose }) => {
               <span>POST</span>
             </Top>
             <div>
-              <label htmlFor="imgFile" style={{ backgroundColor: "#F6F0EE" }}>
+              <label htmlFor="imgFile">
                 <ImgPreview>
                   <Carousel fade>
                     {imgUrls.map((img) => {
@@ -101,7 +92,7 @@ const EditDetail = ({ postId, onClose }) => {
                             objectFit: "contain",
                           }}
                         >
-                          <img src={img ? img : ""} alt="" />
+                          <img src={img ? img : ""} alt=""/>
                         </Carousel.Item>
                       );
                     })}
@@ -125,7 +116,7 @@ const EditDetail = ({ postId, onClose }) => {
                     imgRef.current.click();
                   }}
                 >
-                  <img src={Photo} alt="" />
+                  <Photo />
                   <span>&nbsp;사진 업로드</span>
                 </ImgUpload>
               </label>
@@ -303,9 +294,8 @@ const ImgUpload = styled.button`
 const ImgPreview = styled.div`
   width: 318.82px;
   height: 166px;
-  border: 1px solid #696969;
+  border: 1px solid #000;
   border-radius: 5px;
-  background-color: #f3f3f3;
 `;
 
 const Content = styled.div`

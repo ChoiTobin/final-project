@@ -66,12 +66,11 @@ export const Apis = {
   deletePostAX: (id) => token.delete(`/api/posts/${id}`),
 
   // 게시글 전체 조회
-  // getPostTimeAX: () => token.get(`/api/posts`),
-  getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload.pageNumber}`), 
+  getPostTimeAX: (payload) => token.get(`/api/posts?&size=5&page=${payload}`),
   // 게시글 검색 - 특정 단어 포함 게시글 조회
-  getKeywordAX: (payload) => token.get(`/api/search?&content=${payload.searchKeyword}&size=5&page=${payload.pageNumber}`),
+  getKeywordAX: (searchKeyword) => token.get(`/api/search?&content=${searchKeyword}`),
   // 게시글 검색 - 카테고리별 게시글 조회 (대형/중형/소형만 보기)
-  getFilterAX: (payload) => token.get(`/api/filter?&category=${payload.categoryKeyword}&size=5&page=${payload.pageNumber}`),
+  getFilterAX: (categoryKeyword) => token.get(`/api/filter?&category=${categoryKeyword}`),
 
   // 게시글 상세 조회
   getDetailAX: (id) => token.get(`/api/posts/${id}`),
