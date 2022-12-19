@@ -10,33 +10,17 @@ import Header from "../../Layout/Header";
 import Footer from "../../Layout/Footer";
 import useImgUpload from "../../hooks/useImgUpload";
 import { __addPost } from "../../../redux/modules/postSlice";
-import Photo from "../../../img/form-preview.png";
+import { ReactComponent as Photo } from "../../../img/form-preview.svg";
 import "../../../styles/form.css";
-import Api from "../Posts/Api"
+
 const Post = () => {
-  const [enroll_company, setEnroll_company] = useState({
-    address:'',
-  });
-  
-  const [popup, setPopup] = useState(false);
-  
-  const handleInput = (e) => {
-    setEnroll_company({
-        ...enroll_company,
-          [e.target.name]:e.target.value,
-      })
-  }
-  
-  const handleComplete = () => {
-      setPopup(!popup);
-  }
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [conimal, setConimal] = useState({
     title: "",
     price: "",
     content: "",
-    category: "",
+    category: "대형",
     state: "진행중",
     local: "",
     date: "",
@@ -80,10 +64,10 @@ const Post = () => {
       alert("희망날짜를 선택해주세요.");
       return;
     }
-    // if (conimal.local === "") {
-    //   alert("의뢰지역을 선택해주세요.");
-    //   return;
-    // }
+    if (conimal.local === "") {
+      alert("의뢰지역을 선택해주세요.");
+      return;
+    }
     if (conimal.category === "") {
       alert("견종크기를 선택해주세요.");
       return;
@@ -97,7 +81,7 @@ const Post = () => {
       category: conimal.category,
       price: parseInt(conimal.price), // 문자를  string숫자로 변환해서 보내야할때 parseInt로 감싸서 보내주면된다.
       state: "진행중",
-      local: enroll_company.address,
+      local: conimal.local,
       date: conimal.date,
     };
 
@@ -149,11 +133,13 @@ const Post = () => {
               imgRef.current.click();
             }}
           >
-            <img src={Photo} alt="" style={{
+            <Photo
+              style={{
                 width: "25.88px",
                 height: "24.18px",
                 objectFit: "cover",
-              }}/>
+              }}
+            />
             <span>사진 업로드</span>
           </ImgUpload>
           <span className="desk">*최대 사진 5장 업로드 가능</span>
@@ -168,7 +154,6 @@ const Post = () => {
           />
           <textarea
             name="content"
-            maxLength={200}
             value={conimal.content || ""}
             onChange={onChangeHandler}
             required
@@ -180,8 +165,6 @@ const Post = () => {
             value={conimal.price || ""}
             onChange={onChangeHandler}
             placeholder="희망가격"
-            min="1"
-            max="999999"
             required
           />
           <input
@@ -190,12 +173,11 @@ const Post = () => {
             name="date"
             data-placeholder="희망 날짜를 입력해주세요."
             required
-            aria-required="true"
-            aria-labelledby="date"
+            aria-required="ture"
             value={conimal.date || ""}
             onChange={onChangeHandler}
           />
-          {/* <select
+          <select
             name="local"
             value={conimal.local || ""}
             required
@@ -219,18 +201,14 @@ const Post = () => {
             <option value="전라북도">전라북도</option>
             <option value="충청남도">충청남도</option>
             <option value="충청북도">충청북도</option>
-          </select> */}
-          <div className="address_search" >
-              <input className="user_enroll_text" placeholder="주소"  onClick={handleComplete} type="text" required={true} name="address" onChange={handleInput} value={enroll_company.address}/>
-              {popup && <Api company={enroll_company} setcompany={setEnroll_company}></Api>}
-          </div>
+          </select>
           <select
             name="category"
             value={conimal.category || ""}
             onChange={onChangeHandler}
             required
           >
-            <option default value="견종의 크기를 선택해주세요.">
+            <option default value="">
               견종의 크기를 선택해주세요.
             </option>
             <option value="대형">대형- 15kg초과</option>
@@ -268,7 +246,7 @@ const Form = styled.div`
   flex-direction: column;
 `;
 const Bg = styled.div`
-  max-height: 457.43px;
+  max-height: 514.32px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -338,6 +316,7 @@ const Textarea = styled.textarea`
 const InputImg = styled.input`
   display: none;
   height: 40px;
+  /* background: #fff; */
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;

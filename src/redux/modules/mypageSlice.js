@@ -6,8 +6,6 @@ const initialState = {
   post: {id: 0,},
   myInfo: {
     id: 0,
-    kakaoId: 0,
-    naverId: 0,
     nickname: "",
     userImage: "",
   },
@@ -38,26 +36,15 @@ const initialState = {
 
 }
 
-// 마이페이지 내 게시글 조회
-export const __getMyPost = createAsyncThunk(
-  "mypage/__getmypost",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await Apis.getMyPostAX()
-      return thunkAPI.fulfillWithValue(response.data.data)
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error)
-    }
-  }
-)
-
 // 게시글 수정
 export const __putMyPost = createAsyncThunk(
   "posts/__putPost",
   async (payload, thunkAPI) => {
     try {
+
       const response = await Apis.putPostAX(payload)
-      return thunkAPI.fulfillWithValue(response);
+
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -69,11 +56,14 @@ export const __deleteMyPost = createAsyncThunk(
   "posts/__deletePost",
   async (payload, thunkAPI) => {
     try {
+
       await Apis.deletePostAX(payload)
         .then((response) => {
+
       })
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
+      // alert(error.response.data)
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -94,7 +84,19 @@ export const __getMyPage = createAsyncThunk(
   }
 )
 
+// 마이페이지 내 게시글 조회
+export const __getMyPost = createAsyncThunk(
+  "mypage/__getmypost",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await Apis.getMyPostAX()
 
+      return thunkAPI.fulfillWithValue(response.data.data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
 
 // 마이페이지 프로필 이미지 업로드
 export const __postMyImg = createAsyncThunk(
@@ -104,6 +106,7 @@ export const __postMyImg = createAsyncThunk(
 
       await Apis.postMyImgAX(payload)
         .then((response) => {
+
           // return thunkAPI.fulfillWithValue(response)
       })
     } catch (error) {
@@ -119,6 +122,7 @@ export const __getMyPet = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await Apis.getMyPetAX()
+
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -133,6 +137,7 @@ export const __addMyPet = createAsyncThunk(
 
     try {
       const response = await Apis.postMyPetAX(payload)
+
       return thunkAPI.fulfillWithValue(response.data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -148,7 +153,8 @@ export const __putMyPet = createAsyncThunk(
 
     try {
       const response = await Apis.putMyPetAX(payload)
-      return thunkAPI.fulfillWithValue(response)
+
+          return thunkAPI.fulfillWithValue(payload)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -175,20 +181,6 @@ const mypageSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // 마이페이지 내 게시글 조회 - myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
-    [__getMyPost.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [__getMyPost.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = false;
-      state.myPost = action.payload;
-    },
-    [__getMyPost.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = false;
-      state.error = action.payload;
-    },
     // 게시글 수정 - post{id}
     [__putMyPost.pending]: (state) => {
       state.isLoading = true;
@@ -196,14 +188,13 @@ const mypageSlice = createSlice({
     [__putMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.myPost.response.push(action.payload.data);
-      alert("수정되었습니다!")
+
+      state.myPost.response.push(action.payload.data)
       
     },
     [__putMyPost.rejected]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      alert("수정에 실패했습니다!")
       state.error = action.payload;
     },
     // 게시글 삭제 - post{id}
@@ -213,7 +204,7 @@ const mypageSlice = createSlice({
     [__deleteMyPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.myPost = state.myPost.filter((post) => post.id !== action.payload)
+      state.myPost = state.post.filter((post) => post.id !== action.payload)
     },
     [__deleteMyPost.rejected]: (state, action) => {
       state.isLoading = false;
@@ -227,9 +218,25 @@ const mypageSlice = createSlice({
     [__getMyPage.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
+
       state.myInfo = action.payload;
     },
     [__getMyPage.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.error = action.payload;
+    },
+    // 마이페이지 내 게시글 조회 - myPost[{id, title, content, price, categoryName, state, local, date, imgs:["URL"]}]
+    [__getMyPost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getMyPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+
+      state.myPost = action.payload;
+    },
+    [__getMyPost.rejected]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.error = action.payload;

@@ -3,8 +3,8 @@ import { useSelector,useDispatch  } from "react-redux";
 import { trueChat } from "../../../redux/modules/chattingSlice";
 import "./Modal.css";
 import styled from "styled-components";
-import Accept from "../../../img/state-b.png";
-import Done from "../../../img/state-g.png";
+import { ReactComponent as Accept } from "../../../img/state-b.svg";
+import { ReactComponent as Done } from "../../../img/state-g.svg";
 
 function Modal2() {
   const [modal, setModal] = useState(false);
@@ -44,7 +44,7 @@ function Modal2() {
         count === true?
         <>
           <P>
-            <img src={Done} alt="" />
+            <Done/>
             <Span>완료</Span>
           </P> 
         </>
@@ -52,7 +52,7 @@ function Modal2() {
           :
         <> 
           <P>
-                <img src={Accept} alt="" />
+            <Accept/>
             <Span>수락</Span>
           </P>
         </>

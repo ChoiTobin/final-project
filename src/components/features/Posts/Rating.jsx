@@ -28,8 +28,8 @@ function Rating() {
 
   let score = rating.filter(Boolean).length;
 
- let obj = {
-    joinUser: listReducer.joinUserId,
+  let obj = {
+    joinUser: listReducer.joinUser,
     rating: score,
   };
 
