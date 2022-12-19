@@ -73,7 +73,7 @@ const TabMain = styled.ul`
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  margin-top: 15.01px;
+  margin-top: 23.01px;
   margin-left: -22px;
 `;
 

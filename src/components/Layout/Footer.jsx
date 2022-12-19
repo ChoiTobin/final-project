@@ -14,17 +14,9 @@ import "./Footer.css";
 const Footer = () => {
   const navigate = useNavigate();
 
-  const tabs = [
-    { id: 1, item: "Home" },
-    { id: 2, item: "Chat" },
-    { id: 3, item: "Posting" },
-    { id: 4, item: "Mypage" },
-  ];
-  
-
   
   return (
-    <div className="footer" style={{cursor: 'pointer'}}>
+    <div className="footer">
       <img src={Home} alt="" onClick={() => navigate("/home")} className="home" />
       <img src={Chat} alt="" onClick={() => navigate("/chat")} className="chat" />
       <img src={Posting} alt="" onClick={() => navigate("/form")} className="post" />

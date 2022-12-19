@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import "../styles/SignUp.css";
 import { useNavigate } from "react-router-dom";
 import {
   __userSignUp,
@@ -8,7 +7,7 @@ import {
   __NickCheck,
 } from "../../src/redux/modules/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "../img/logo-sign.png";
+import { ReactComponent as Logo } from "../img/logoImg.svg";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -125,149 +124,317 @@ const SignUp = () => {
     }
   };
 
+  // useEffect(() => {
 
+  //   if(account.statusCode === 200){
+  //     alert("회원가입이 완료되었습니다.")
+  //     setJoin({
+  //       email : "",
+  //       nickname: "",
+  //       password: "",
+  //       passwordCheck: "",
+  //     })
+  //       window.location.replace("/SignIn")
+  //   }
+  // },[account])
 
   return (
-    <div className="SignupContainer">
-      <form className="SignupBox" onSubmit={onSubmitHandler}>
-        <span className="LoGoSignUp">
-          <img src={Logo} alt="" style={{
-              width: "58.75px",
-              height: "44.43px",
-              margin: "36.84px auto 18.68px",
-            }}/>
-        </span>
-        <span className="LoGoSignUp1">SIGN UP</span>
-        <div className="InputBox">
-          <div className="Insert">
-            <div className="Duplicate">
-              <input
-                className="InputTop"
-                name="email"
-                placeholder="아이디"
-                onChange={onChangeHandler}
-              />
-              <button
-                className="CheckBtn"
-                type="button"
-                onClick={() => {
-                  dispatch(__userCheck({ email: join.email }));
-                }}
-              >
-                중복확인
-              </button>
-            </div>
-            <div>
+    <SignupContainer>
+      <SignupBox onSubmit={onSubmitHandler}>
+        <LogoBox>
+          <LoGoSignUp>
+            {/* <img src={require("../img/LogoImg.png")} width="90px" height="70px"/> */}
+            <Logo />
+          </LoGoSignUp>
+          <LoGoSignUp1>SIGN UP</LoGoSignUp1>
+        </LogoBox>
+        <InputBox>
+          <FlexInput>
+            <Input
+              name="email"
+              placeholder="아이디"
+              onChange={onChangeHandler}
+            />
+            <DuplicateCheckEmail
+              type="button"
+              onClick={() => {
+                dispatch(__userCheck({ email: join.email }));
+              }}
+            >
+              중복확인
+            </DuplicateCheckEmail>
+            <ErrorMessageWrap>
               {!IdValid
                 ? !IdValid &&
                   join.email.length > 0 && <div>이메일 형식을 입력해주세요</div>
                 : IdValid &&
                   join.email.length > 0 && (
-                    <div className="Green">올바른 이메일 형식 입니다.</div>
+                    <Green>올바른 이메일 형식 입니다.</Green>
                   )}
-            </div>
-          </div>
-          <div className="Insert">
-            <div className="Duplicate">
-              <input
-                className="InputTop"
-                name="nickname"
-                placeholder="닉네임"
-                onChange={onChangeHandler}
-              />
-              <button
-                className="CheckBtn"
-                type="button"
-                onClick={() => {
-                  dispatch(__NickCheck({ nickname: join.nickname }));
-                }}
-              >
-                중복확인
-              </button>
-            </div>
-          </div>
-          <div>
-            {!nickValid
-              ? !nickValid &&
-                join.nickname.length > 0 && (
-                  <div className="Red">
-                    닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자
-                  </div>
-                )
-              : nickValid &&
-                join.nickname.length > 0 && (
-                  <div className="Green" style={{ marginLeft: "-140px" }}>
-                    올바른 닉네임 형식 입니다.
-                  </div>
-                )}
-          </div>
-          <div className="Insert">
-            <input
-              className="InputDown"
+            </ErrorMessageWrap>
+          </FlexInput>
+          <FlexInput2>
+            <Input2
+              name="nickname"
+              placeholder="닉네임"
+              onChange={onChangeHandler}
+            ></Input2>
+            <DuplicateCheckNick
+              type="button"
+              onClick={() => {
+                dispatch(__NickCheck({ nickname: join.nickname }));
+              }}
+            >
+              중복확인
+            </DuplicateCheckNick>
+            <ErrorMessageWrap>
+              {!nickValid
+                ? !nickValid &&
+                  join.nickname.length > 0 && (
+                    <div>닉네임 영문,한글,숫자,기호 특수문자(_) 2자~20자</div>
+                  )
+                : nickValid &&
+                  join.nickname.length > 0 && (
+                    <Green>올바른 닉네임 형식 입니다.</Green>
+                  )}
+            </ErrorMessageWrap>
+          </FlexInput2>
+          <FlexInput3>
+            <Input3
               placeholder="비밀번호"
               type="password"
               name="password"
               onChange={onChangeHandler}
             />
-            <div>
+            <ErrorMessageWrap>
               {!PwValid
                 ? !PwValid &&
                   join.password.length > 0 && (
-                    <div className="Red">
-                      비밀번호 영문 숫자 특수기호 포함 8자~20자
-                    </div>
+                    <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
                   )
                 : PwValid &&
                   join.password.length > 0 && (
-                    <div className="Green">사용 가능한 비밀번호 입니다.</div>
+                    <Green>사용 가능한 비밀번호 입니다.</Green>
                   )}
-            </div>
-          </div>
-          <div className="Insert">
-            <input
-              className="InputDown"
+            </ErrorMessageWrap>
+          </FlexInput3>
+          <FlexInput4>
+            <Input4
               placeholder="비밀번호 확인"
               type="password"
               name="passwordCheck"
               onChange={onChangeHandler}
             />
-            <div className="ErrorMessageWrap">
-              {
-                !PwCValid
-                  ? !PwCValid &&
-                    join.passwordCheck.length > 0 && (
-                      <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
-                    )
-                  : PwCValid &&
-                    join.passwordCheck.length > 0 &&
-                    (join.passwordCheck === join.password ? (
-                      <div className="Green">사용 가능한 비밀번호 입니다.</div>
-                    ) : (
-                      <div className="Red">비밀번호가 일치하지 않습니다.</div>
-                    ))
-                //위에 비밀번호와 일치하는지 대조.
+            <ErrorMessageWrap>
+              {!PwCValid
+                ? !PwCValid &&
+                  join.passwordCheck.length > 0 && (
+                    <div>비밀번호 영문 숫자 특수기호 포함 8자~20자</div>
+                  )
+                : PwCValid &&
+                  join.passwordCheck.length > 0 &&
+                  (join.passwordCheck === join.password ? (
+                    <Green>사용 가능한 비밀번호 입니다.</Green>
+                  ) : (
+                    <div>비밀번호가 일치하지 않습니다.</div>
+                  ))
+                  //위에 비밀번호와 일치하는지 대조.
               }
-            </div>
-          </div>
-          <button className="SignupButton" onClick={onSubmitHandler}>
-            회원가입
-          </button>
-        </div>
-        <div className="LoginBox">
+            </ErrorMessageWrap>
+          </FlexInput4>
+          <SignupButton onClick={onSubmitHandler}>회원가입</SignupButton>
+        </InputBox>
+        <LoginBox>
           {" "}
           이미 계정이 있으신가요?{" "}
-          <span onClick={() => navigate("/")}>
-            <span style={{ color: "#FD6E7F" }}>&nbsp;로그인</span>
-          </span>
-        </div>
-      </form>
-    </div>
+          <span onClick={() => navigate("/")}>로그인</span>
+        </LoginBox>
+      </SignupBox>
+    </SignupContainer>
   );
 };
 
 export default SignUp;
 
+const DuplicateCheckEmail = styled.button`
+  position: absolute;
+  width: 75px;
+  font-size: 15px;
+  right: 10px;
+  top: 7px;
+  border: 1px solid #929292;
+  border-radius: 4px;
+  background: #fafafa;
+  color: #929292;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
+const DuplicateCheckNick = styled.button`
+  position: absolute;
+  width: 75px;
+  font-size: 15px;
+  right: 10px;
+  top: 7px;
+  border: 1px solid #929292;
+  border-radius: 4px;
+  background: #fafafa;
+  color: #929292;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
 
+const LoGoSignUp = styled.span`
+  margin-left: 40px;
+  color: #ed9071;
+`;
+const LoGoSignUp1 = styled.span`
+  margin-left: 30px;
+  color: #ed9071;
+  font-weight: 500;
+  font-size: 30px;
+`;
 
+const Green = styled.div`
+  color: green;
+  font-size: 12px;
+  margin-bottom: 5px;
+`;
 
+const ErrorMessageWrap = styled.div`
+  color: #ef0000;
+  font-size: 12px;
+  margin-bottom: 5px;
+`;
 
+const FlexInput = styled.span`
+  position: relative;
+`;
+const FlexInput2 = styled.span`
+  position: relative;
+`;
+const FlexInput3 = styled.span``;
+const FlexInput4 = styled.span``;
+
+const SignupContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const SignupBox = styled.form`
+  background-color: white;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 0px;
+`;
+
+const InputBox = styled.div`
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+`;
+
+const Input = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom: 5px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #fafafa;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
+const Input2 = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #fafafa;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
+const Input3 = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #fafafa;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
+const Input4 = styled.input`
+  border: 1px solid #929292;
+  width: 250px;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  background: #fafafa;
+  &:focus {
+    outline: 1px solid #adadad;
+  }
+`;
+
+const SignupButton = styled.button`
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  width: 253px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  // 버튼 누르면 손모양 나오게 하는 마우스 커서
+  cursor: pointer;
+  background-color: #ed9071;
+`;
+
+const LogoBox = styled.div`
+  width: 175px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const SignupText = styled.div`
+  width: 200px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: bold;
+`;
+
+const LoginBox = styled.div`
+  background-color: white;
+  span {
+    margin-left: 4px;
+    font-weight: bold;
+    // 버튼 누르면 손모양 나오게 하는 마우스 커서
+    cursor: pointer;
+  }
+`;

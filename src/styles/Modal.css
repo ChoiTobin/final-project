@@ -33,6 +33,7 @@ body.active-modal {
   line-height: 1.4;
   color: #333;
   background: #fff;
+  /* padding: 14px 28px; */
   border-radius: 10px;
 }
 .modalTwo2 {

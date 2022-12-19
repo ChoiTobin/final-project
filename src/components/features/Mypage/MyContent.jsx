@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __deleteMyPost, __getMyPost } from "../../../redux/modules/mypageSlice";
-import Edit from "../../../img/my-edit.png";
-import Delete from "../../../img/my-delete.png";
-import Dates from "../../../img/my-date.png";
+import { ReactComponent as Edit } from "../../../img/my-edit.svg";
+import { ReactComponent as Delete } from "../../../img/my-delete.svg";
+import { ReactComponent as Dates } from "../../../img/my-date.svg";
 import ModalPortal from "../../element/ModalPortal";
 import EditDetail from "./EditDetail";
 import "../../element/MyModal.css";
@@ -20,19 +20,6 @@ const MyContent = ({ myPost }) => {
     dispatch(__deleteMyPost(id));
     window.confirm("해당 게시글을 삭제하시겠습니까?");
     window.location.reload();
-  };
-
-  const status = (item) => {
-    switch (item) {
-      case "진행중":
-        return "#ED9071";
-      case "산책중":
-        return "#4db173";
-      case "완료":
-        return "#AFAFAF";
-      default:
-        return null;
-    }
   };
 
   const [modify, setModify] = useState(false);
@@ -65,7 +52,13 @@ const MyContent = ({ myPost }) => {
                         navigate(`/Detail/${post.id}`);
                       }}
                     >
-                      <State style={{ color: status(post.state) }}>
+                      <State
+                        style={
+                          post.state
+                            ? { color: "#ED9071" }
+                            : { color: "#A1A1A1" }
+                        }
+                      >
                         {post.state}
                       </State>
                       <Title>{post.title}</Title>
@@ -73,7 +66,7 @@ const MyContent = ({ myPost }) => {
 
                     <Down className="bottom-line">
                       <CreatedAt>
-                        <img src={Dates} alt="" />
+                        <Dates />
                         &nbsp;{post.date}
                         <span>{post.createdAt}</span>
                       </CreatedAt>
@@ -81,22 +74,18 @@ const MyContent = ({ myPost }) => {
                   </div>
                   <Icon>
                     {/* 여기서 수정하기 버튼을 누르면 "EditDetail.jsx"로 이동해야 한다 */}
-                    <img
-                      src={Edit}
-                      alt=""
+                    <Edit
                       onClick={openModifyModal}
                       style={{ cursor: "pointer" }}
                     />
                     {modify && (
                       <ModalPortal>
                         <div className="MyModal">
-                          <EditDetail onClose={closeModifyModal} postId={post.id} />
+                          <EditDetail onClose={closeModifyModal} />
                         </div>
                       </ModalPortal>
                     )}
-                    <img
-                      src={Delete}
-                      alt=""
+                    <Delete
                       onClick={() => onDeleteMyPost(post.id)}
                       style={{ cursor: "pointer" }}
                     />
@@ -115,8 +104,8 @@ const MyContent = ({ myPost }) => {
 export default MyContent;
 
 const Layout = styled.div`
-  min-height: 218px;
-  max-height: 219px;
+  min-height: 225px;
+  max-height: 226px;
   overflow-x: hidden;
   overflow-y: auto;
   /* 스크롤바 영역에 대한 설정 */
@@ -158,6 +147,7 @@ const Main = styled.div`
 `;
 
 const State = styled.span`
+  /* color: #ed9071; */
   font-family: "Pretendard", sans-serif;
   font-size: 14px;
   font-weight: 510;

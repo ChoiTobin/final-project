@@ -3,13 +3,21 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import Apis from "../../shared/Apis"
 import axios from "axios";
 import { __putPost } from "./mypageSlice";	
+const initialState = {	
+  isLoading: false,	
+  post:{},
+  posts:[], //공배열로 바꿔야함
+  error: null,	
+}
 
 // 평점넘기기
 export const __getPostRating = createAsyncThunk(	
   "api/posts/getPostRating",	
   async (payload, thunkAPI) => {
+
     try {	
       const response = await Apis.getPostRatingAX(payload)	
+
       window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
@@ -22,12 +30,15 @@ export const __getPostRating = createAsyncThunk(
 export const __getPostTime = createAsyncThunk(	
   "api/posts/getPost",	
   async (payload, thunkAPI) => {
-    try {	
-            const response = await Apis.getPostTimeAX(payload)
 
-      const payloadData = {page:payload.pageNumber , responseData:response.data.data}
-            return thunkAPI.fulfillWithValue(payloadData);	
-    } catch (error) {	
+    try {	
+      
+      const response = await Apis.getPostTimeAX(payload)	
+      
+
+
+      return thunkAPI.fulfillWithValue(response.data);	
+    } catch (error) {
       return thunkAPI.rejectWithValue(error);	
     }	
   }	
@@ -52,8 +63,10 @@ export const __getDetail = createAsyncThunk(
 export const __addPost = createAsyncThunk(	
   "api/posts/addPost",	
   async (payload, thunkAPI) => {	
+
     try {	
       const response = await Apis.postFileAX(payload)	
+
       alert("작성완료하였습니다.")
       window.location.replace('/home')
       return thunkAPI.fulfillWithValue(response.data);	
@@ -83,8 +96,8 @@ export const __getKeyword = createAsyncThunk(
 
     try {	
       const response = await Apis.getKeywordAX(payload)	
-      const payloadData = {page:payload.pageNumber , responseData:response.data.data}
-      return thunkAPI.fulfillWithValue(payloadData);	
+
+      return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
@@ -98,8 +111,8 @@ export const __getCategory = createAsyncThunk(
 
     try {	
       const response = await Apis.getFilterAX(payload)	
-            const payloadData = {page:payload.pageNumber , responseData:response.data.data}
-            return thunkAPI.fulfillWithValue(payloadData);	
+
+      return thunkAPI.fulfillWithValue(response.data);	
     } catch (error) {	
       return thunkAPI.rejectWithValue(error);	
     }	
@@ -108,13 +121,7 @@ export const __getCategory = createAsyncThunk(
 
 const postSlice = createSlice({	
   name: "post",	
-  initialState : {	
-    isLoading: false,	
-    post:{},
-    posts:[],
-    error: null,	
-  },	
-  
+  initialState,	
   reducers: {},	
   extraReducers: {	
     // 평점넘기기
@@ -137,14 +144,11 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getPostTime.fulfilled]: (state, action) => {	
+
       state.isLoading = false;	
       state.isSuccess = false;	
-      if (action.payload.page === 0) {
-        state.posts.splice(0)
-        state.posts.push(...action.payload.responseData)
-      } else {
-        state.posts.push(...action.payload.responseData)// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
-      }
+
+      state.posts.push(...action.payload.data);	
     },	
     [__getPostTime.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -198,14 +202,11 @@ const postSlice = createSlice({
       state.isLoading = true;	
     },	
     [__getKeyword.fulfilled]: (state, action) => {	
+
       state.isLoading = false;	
       state.isSuccess = false;	
-      if (action.payload.page === 0) {
-        state.posts.splice(0)
-        state.posts.push(...action.payload.responseData)
-      } else {
-        state.posts.push(...action.payload.responseData)// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
-      }
+      state.posts = action.payload.data;	
+      // state.posts.push(...action.payload.data);
     },	
     [__getKeyword.rejected]: (state, action) => {	
       state.isLoading = false;	
@@ -219,12 +220,9 @@ const postSlice = createSlice({
     [__getCategory.fulfilled]: (state, action) => {	
       state.isLoading = false;	
       state.isSuccess = false;	
-      if (action.payload.page === 0) {
-        state.posts.splice(0)
-        state.posts.push(...action.payload.responseData)
-      } else {
-        state.posts.push(...action.payload.responseData)// 기존에 있던 리스트에서 뒤에 붙여줘야하기 때문에 push를 써줘야함
-      }
+
+      state.posts = action.payload.data;	
+      // state.posts.push(...action.payload.data);
     },
     [__getCategory.rejected]: (state, action) => {	
       state.isLoading = false;	

@@ -11,7 +11,6 @@ import ChatRoomPage from "../pages/ChatRoomPage";
 import ChatList from "../pages/ChatList";
 import Rating from "../components/features/Posts/Rating";
 import Desc from "../pages/Desc.jsx"
-import Api from "../components/features/Posts/Api.jsx"
 
 // 추가
 import OAuth2RedirectHandler from "../components/features/Login/OAuth2RedirectHandler"
@@ -24,7 +23,6 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/Api" element={<Api />} />
         <Route path="/Rating" element={<Rating />} />
         <Route path="/" element={<Desc/>}/>
         <Route path="/signin" element={<SignIn />} />
@@ -33,12 +31,18 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/postlist" element={<PostList/>}/>
-        <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
-        <Route path='/MainLogin' element={<MainLogin />} />
-        <Route path="/chat" element={<ChatList/>} />
-        <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
-        <Route path="/Rating" element={<Rating />} />
-        <Route path="/auth/member/naver/callback" element={<OAuthNaverLogin />} />
+        {/* <Route path="/chat" element={<ChatList/>} /> */}
+      {/* 추가 */}  
+      <Route path="/auth/member/kakao/callback" element={<OAuth2RedirectHandler />} />
+      <Route path='/MainLogin' element={<MainLogin />} />
+      <Route path="/chat" element={<ChatList/>} />
+      <Route path="/ChatRoomPage/:id" element={<ChatRoomPage />} />
+      <Route path="/Rating" element={<Rating />} />
+       {/* 네이버 */}
+      <Route path="/auth/member/naver/callback" element={<OAuthNaverLogin />} />
+
+
+
       </Routes>
     </BrowserRouter>
   );

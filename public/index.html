@@ -6,7 +6,7 @@
 
     <meta property="og:title" content="당신과 함께 걸어갈, 크멍" />
     <meta property="og:description" content="바쁜 일상에서 안심하고 맡길 수 있는 반려동물 케어 플랫폼" />
-    <meta property="og:image" content="%PUBLIC_URL%/thumbnail.png" />
+    <meta property="og:image" content="{{ url_for('static', filename='ogimage.png') }}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
@@ -15,7 +15,6 @@
       name="당신과 함께 걸어갈, 크멍"
       content="바쁜 일상에서 안심하고 맡길 수 있는 반려동물 케어 플랫폼"
     />
-    <meta name="description" content="바쁜 일상에서 안심하고 맡길 수 있는 반려동물 케어 플랫폼">
     <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
     <!--
@@ -23,6 +22,9 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
+    
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -35,27 +37,11 @@
     <title>크멍 | 당신과 함께 걸어갈, 크멍</title>
     <style>
       * {
+        /* font-family: 'Spoqa Han Sans Neo', 'sans-serif'; */
         font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
       }
 
     </style>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('worker.js').then(function(registration) {
-            console.log('Worker registration successful', registration.scope);
-          }, function(err) {
-            console.log('Worker registration failed', err);
-          }).catch(function(err) {
-            console.log(err);
-          });
-        });
-      } else {
-        console.log('Service Worker is not supported by browser.');
-      }
-    </script>
-
   </head>
   <body>
     <noscript>당신과 함께 걸어갈, 크멍.</noscript>
